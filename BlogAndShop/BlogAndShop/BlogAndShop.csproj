@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Brand\Index.cshtml" />
+    <Content Remove="Views\ForumGroup\Index.cshtml" />
+    <Content Remove="Views\HomeBanner\Create.cshtml" />
+    <Content Remove="Views\HomeBanner\Details.cshtml" />
+    <Content Remove="Views\HomeBanner\Edit.cshtml" />
+    <Content Remove="Views\HomeBanner\Index.cshtml" />
+    <Content Remove="Views\SocialMedia\Create.cshtml" />
+    <Content Remove="Views\SocialMedia\Details.cshtml" />
+    <Content Remove="Views\SocialMedia\Edit.cshtml" />
+    <Content Remove="Views\SocialMedia\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Address\Index.cshtml" />
+    <None Include="Views\ApplicationRole\Index.cshtml" />
+    <None Include="Views\ApplicationUser\Index.cshtml" />
+    <None Include="Views\Brand\Index.cshtml" />
+    <None Include="Views\CartItem\Index.cshtml" />
+    <None Include="Views\ForumComment\Index.cshtml" />
+    <None Include="Views\ForumGroup\Index.cshtml" />
+    <None Include="Views\ForumTitle\Index.cshtml" />
+    <None Include="Views\HomeBanner\Create.cshtml" />
+    <None Include="Views\HomeBanner\Details.cshtml" />
+    <None Include="Views\HomeBanner\Edit.cshtml" />
+    <None Include="Views\HomeBanner\Index.cshtml" />
+    <None Include="Views\Media\Details.cshtml" />
+    <None Include="Views\Media\Edit.cshtml" />
+    <None Include="Views\Media\Index.cshtml" />
+    <None Include="Views\PaymentItem\Index.cshtml" />
+    <None Include="Views\PaymentLog\Index.cshtml" />
+    <None Include="Views\Payment\Index.cshtml" />
+    <None Include="Views\PostComment\Index.cshtml" />
+    <None Include="Views\PostGroup\Index.cshtml" />
+    <None Include="Views\Post\Index.cshtml" />
+    <None Include="Views\ProductComment\Index.cshtml" />
+    <None Include="Views\ProductGroup\Index.cshtml" />
+    <None Include="Views\Product\Index.cshtml" />
+    <None Include="Views\Shop\Item.cshtml" />
+    <None Include="Views\RoleAccess\Index.cshtml" />
+    <None Include="Views\SiteConfig\Index.cshtml" />
+    <None Include="Views\SocialMedia\Create.cshtml" />
+    <None Include="Views\SocialMedia\Details.cshtml" />
+    <None Include="Views\SocialMedia\Edit.cshtml" />
+    <None Include="Views\SocialMedia\Index.cshtml" />
+    <None Include="Views\Tag\Create.cshtml" />
+    <None Include="Views\Tag\Details.cshtml" />
+    <None Include="Views\Tag\Edit.cshtml" />
+    <None Include="Views\Tag\Index.cshtml" />
+    <None Include="Views\UserCart\Index.cshtml" />
+    <None Include="Views\UserRoles\Index.cshtml" />
+    <None Include="wwwroot\UploadedFiles\MediaUpload\2111191201_e banking.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlogAndShop.Data\BlogAndShop.Data.csproj" />
+    <ProjectReference Include="..\BlogAndShop.Services\BlogAndShop.Services.csproj" />
+  </ItemGroup>
+
+</Project>

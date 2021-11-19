@@ -1,0 +1,105 @@
+@using BlogAndShop.Services
+@model BlogAndShop.Data.ViewModel.Common.AdminListViewModel<BlogAndShop.Data.Data.PaymentInfo.PaymentItem>
+@{
+	Layout = "_AdminLayout";
+}
+
+
+
+
+<!-- start:row -->
+<div class="row gutters-sm">
+
+	<!-- start:col: -->
+	<div class="col-12 mb-3">
+
+		<!-- start:portlet -->
+		<div class="portlet">
+
+			<div class="portlet-header border-bottom">
+				<span>لیست</span>
+				<a asp-action="Create" class="btn btn-sm rounded-circle btn-outline-primary mb-2 float-end">
+					<i class="fi fi-plus"></i>
+				</a>
+			</div>
+
+			<div class="portlet-body">
+				<div class="container py-6">
+
+					<form class="bs-validate" novalidate="" id="form_id" method="post" action="#">
+
+						<!--
+
+							IMPORTANT
+							The "action" hidden input is updated by javascript according to button params/action:
+								data-js-form-advanced-hidden-action-id="#action"
+								data-js-form-advanced-hidden-action-value="delete"
+
+							In your backend, should process data like this (PHP example):
+
+								if($_POST['action'] === 'delete') {
+
+									foreach($_POST['item_id'] as $item_id) {
+										// ... delete $item_id from database
+									}
+
+								}
+
+						-->
+						<input type="hidden" id="action" name="action" value=""><!-- value populated by js -->
+
+
+						<div class="table-responsive">
+							<table class="table table-framed">
+								<thead>
+									<tr>
+										@Html.AdminTableHeader(typeof(BlogAndShop.Data.Data.PaymentInfo.PaymentItem))
+									</tr>
+								</thead>
+
+								<!-- #item_list used by checkall: data-checkall-container="#item_list" -->
+								<tbody id="item_list">
+									@Html.AdminTableItems(typeof(BlogAndShop.Data.Data.PaymentInfo.PaymentItem), Model.Items,"PaymentItem")
+								</tbody>
+
+								<tfoot>
+									<tr>
+										@Html.AdminTableHeader(typeof(BlogAndShop.Data.Data.PaymentInfo.PaymentItem))
+									</tr>
+								</tfoot>
+
+							</table>
+						</div>
+
+
+
+						<!-- options and pagination -->
+						<div class="mt-4 text-center-xs">
+
+							<div class="row">
+							
+								<div class="col-12 col-md-6 mt-4">
+									<!-- pagination -->
+									@await Component.InvokeAsync("AdminPagination", Model.AdminListPaginationModel)
+									<!-- pagination -->
+								</div>
+
+							</div>
+
+						</div>
+						<!-- /options and pagination -->
+
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- end:portlet -->
+
+	</div>
+	<!-- end:col: -->
+
+</div>
+<!-- end:row: -->
+<!-- doc:end -->

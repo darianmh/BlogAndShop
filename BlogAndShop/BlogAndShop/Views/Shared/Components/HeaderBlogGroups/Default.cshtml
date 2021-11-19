@@ -1,0 +1,37 @@
+﻿
+@model List<BlogAndShop.Data.ViewModel.Product.LinkGroupHeaderViewModel>
+
+
+
+<li class="nav-item dropdown dropdown">
+
+	<a href="#" id="mainNavShopGategories" class="nav-link dropdown-toggle"
+	   data-toggle="dropdown"
+	   aria-haspopup="true"
+	   aria-expanded="False">
+		نوشته ها
+	</a>
+
+	<div aria-labelledby="mainNavHome" class="dropdown-menu dropdown-menu-clean dropdown-menu-hover">
+		<ul class="list-unstyled m-0 p-0">
+			<li class="dropdown-item"><a asp-controller="Blog" class="dropdown-link">بلاگ</a></li>
+			@foreach (var cat in Model)
+			{
+				<li class="dropdown-item dropdown">
+					<a asp-controller="Blog" asp-route-group="@cat.Id" class="dropdown-link" data-toggle="dropdown">@cat.Name</a>
+					@if (cat.SubGroups.Any())
+					{
+						<ul class="dropdown-menu dropdown-menu-hover dropdown-menu-block-md shadow-lg b-0 m-0">
+							@foreach (var sub in cat.SubGroups)
+							{
+								<li class="dropdown-item"><a asp-controller="Blog" asp-route-group="@sub.Id" class="dropdown-link">@sub.Name</a></li>
+							}
+						</ul>
+					}
+				</li>
+			}
+			<li class="dropdown-item"><a asp-controller="Blog" asp-action="Item" class="dropdown-link">Help Center 1</a></li>
+		</ul>
+	</div>
+
+</li>

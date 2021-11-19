@@ -1,0 +1,83 @@
+﻿@model BlogAndShop.Data.ViewModel.Utilities.EditCreateTemplateViewModel
+
+<div class="col-12 col-lg-12 mb-5">
+
+
+	<ul class="nav nav-pills mb-3" id="pills-icon-tab" role="tablist">
+		<li class="nav-item mx-1">
+			<a class="nav-link btn btn-primary b-0 shadow-md btn-noshadow text-center active" id="pills-icon-home-tab" data-toggle="pill" href="#pills-icon-file" role="tab" aria-controls="pills-icon-file" aria-selected="true">
+				<span class="d-block">
+					<i class="fi fi-arrow-upload"></i>
+				</span>
+				بارگزاری فایل
+			</a>
+		</li>
+
+		<li class="nav-item mx-1">
+			<a class="nav-link btn btn-primary b-0 shadow-md btn-noshadow text-center" id="pills-icon-profile-tab" data-toggle="pill" href="#pills-icon-address" role="tab" aria-controls="pills-icon-address" aria-selected="false">
+				<span class="d-block">
+					<i class="fi fi-cloud-upload"></i>
+				</span>
+				آدرس فایل
+			</a>
+		</li>
+
+	</ul>
+
+	<div class="tab-content" id="pills-icon-tabContent">
+
+		<div class="tab-pane fade show active" id="pills-icon-file" role="tabpanel" aria-labelledby="pills-icon-file-tab">
+			<div class="row">
+
+				<div class="col-12">
+
+
+					<div class="input-group">
+						<div class="custom-file custom-file-primary">
+
+							@{ var uploadName = Model.Name + "File";}
+							<input name="@uploadName"
+								   type="file"
+								   data-file-toast-position="bottom-center"
+								   data-file-preview-container=".js-file-input-preview-single-container2"
+								   data-file-preview-img-height="150"
+								   data-file-preview-show-info="true"
+								   data-file-preview-class="shadow-md m-2 rounded float-start"
+								   data-file-btn-clear="a.js-file-upload-clear2"
+								   class="custom-file-input"
+								   id="@uploadName">
+
+							<label class="custom-file-label" for="inputGroupFile02">انتخاب فایل</label>
+
+						</div>
+					</div>
+
+
+					<div class="js-file-input-preview-single-container2 ml--n6 mr--n6 mt-4 hide-empty">
+						<!-- preview container -->
+					</div>
+
+					<!--
+						clear files button
+						hidden by default
+					-->
+					<div class="mt-1">
+						<a href="#" class="hide js-file-upload-clear2 btn btn-light btn-sm">
+							حذف فایل
+						</a>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade show" id="pills-icon-address" role="tabpanel" aria-labelledby="pills-icon-address-tab">
+
+			<input class='form-control text-box single-line' id='@Model.Name' name='@Model.Name' type='@Model.TypeName' value='@Model.Value'>
+		</div>
+
+
+	</div>
+
+
+</div>

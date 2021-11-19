@@ -1,0 +1,137 @@
+﻿@model BlogAndShop.Data.ViewModel.Product.ProductListViewModel
+<!-- PAGE TITLE -->
+<section class="bg-light p-0">
+	<div class="container py-5">
+
+		<h1 class="h3">
+			@{ string headerText = Model.CurrentGroup?.Title ?? "همه محصولات";}
+			@headerText
+		</h1>
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb fs--14">
+				<li class="breadcrumb-item"><a asp-controller="Home">خانه</a></li>
+				<li class="breadcrumb-item active" aria-current="page">@headerText</li>
+			</ol>
+		</nav>
+
+	</div>
+</section>
+<!-- /PAGE TITLE -->
+<!-- -->
+<section>
+	<div class="container">
+
+		<div class="row">
+
+			<!-- sidebar -->
+			@await Component.InvokeAsync("ShopSideBar")
+			<!-- /sidebar -->
+			<!-- products -->
+			<div class="col-12 col-sm-12 col-md-12 col-lg-9">
+
+
+
+
+				@if (Model.CurrentGroup != null)
+				{
+					<p>
+						@Model.CurrentGroup.Description
+					</p>
+				}
+
+
+
+
+				<!-- additional filters -->
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+
+					<h3 class="h5 mb-0">
+						@{ var count = Model.Products?.Count ?? 0;}
+						@count محصول موجود است
+					</h3>
+
+				</div>
+				<!-- /additional filters -->
+				<!-- product list -->
+				<div class="row gutters-xs--xs">
+
+					@if (Model.Products != null && Model.Products.Any())
+					{
+						foreach (var item in Model.Products)
+						{
+
+							<!-- squared item -->
+							<div class="col-6 col-md-4 mb-4 mb-2-xs">
+
+								<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+									<!-- hover buttons : top -->
+									<div class="position-absolute top-0 end-0 text-align-end w--60 z-index-3 m-3 show-hover-item">
+
+										<a href="#" class="btn btn-danger shadow-lg btn-sm rounded-circle mb-2" title="" data-toggle="tooltip" data-placement="left" data-original-title="add to cart">
+											<i class="fi fi-cart-1"></i>
+										</a>
+									</div>
+									<!-- /hover buttons : top -->
+
+
+									<a asp-controller="Shop" asp-action="Item" asp-route-productId="@item.Id" class="d-block text-decoration-none">
+
+										<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.BannerImage">
+											<img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="@item.Title">
+										</figure>
+
+										<span class="d-block text-center-xs text-gray-600 py-3">
+
+											<!--
+												.max-height-50  = limited to 2 rows of text
+												-or-
+												.text-truncate
+											-->
+											<span class="d-block fs--16 max-h-50 overflow-hidden">
+												@item.Title
+											</span>
+
+											<!-- price -->
+											<span class="d-block text-danger font-weight-medium fs--16 mt-2">
+
+												@if (item.OffPrice == null)
+												{
+													<del>@item.Price.ToString("N0") <sup>ريال</sup></del>
+												}
+												else
+												{
+													<del class="text-muted">@item.Price.ToString("N0") <sup>ريال</sup></del>
+
+													<span>@item.OffPrice.Value.ToString("N0")<sup>ريال</sup></span>
+												}
+											</span>
+
+										</span>
+
+									</a>
+
+								</div>
+
+							</div>
+							<!-- /squared item -->
+						}
+					}
+
+				</div>
+				<!-- /product list -->
+				<!-- pagination -->
+				@await Component.InvokeAsync("AdminPagination", Model.ListPaginationModel)
+				<!-- pagination -->
+
+
+
+			</div>
+			<!-- /products -->
+
+		</div>
+
+	</div>
+</section>
+<!-- / -->

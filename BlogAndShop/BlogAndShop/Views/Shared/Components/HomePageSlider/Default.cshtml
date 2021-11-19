@@ -1,0 +1,40 @@
+﻿
+@model List<BlogAndShop.Data.ViewModel.HomePage.HomeBannerModel>
+
+<section class="swiper-container swiper-btn-group swiper-btn-group-end text-white p-0 h-50vh overflow-hidden"
+		 data-swiper='{
+					"slidesPerView": 1,
+					"spaceBetween": 0,
+					"autoplay": { "delay" : 3500, "disableOnInteraction": false },
+					"loop": true,
+					"pagination": { "type": "bullets" }
+				}'>
+
+	<div class="swiper-wrapper h-100">
+
+		@{ var count = 1;}
+		@foreach (var item in Model)
+		{
+			<!-- slide @count-->
+			<div class="h-100 swiper-slide d-middle bg-white overlay-dark overlay-opacity-2 d-middle bg-cover" style="background-image:url('@item.BannerPath')">
+				<div class="container z-index-10 text-white text-center-xs">
+
+					@Html.Raw(item.HtmlContent)
+
+
+				</div>
+			</div>
+			<!-- /slide @count-->
+			count++;
+		}
+
+	</div>
+
+	<!-- Add Arrows -->
+	<div class="swiper-button-next swiper-button-white"></div>
+	<div class="swiper-button-prev swiper-button-white"></div>
+
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+
+</section>

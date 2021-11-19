@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Publish\BlogAndShop</_PublishTargetUrl>
+    <History>True|2021-11-19T19:00:22.0519766Z;True|2021-11-18T11:44:09.6844996+03:30;True|2021-11-17T02:38:32.5474564+03:30;True|2021-11-17T02:35:52.5469087+03:30;True|2021-10-31T17:45:10.0703371+03:30;True|2021-10-30T17:30:42.9062138+03:30;True|2021-10-29T21:46:58.0665201+03:30;</History>
+  </PropertyGroup>
+</Project>

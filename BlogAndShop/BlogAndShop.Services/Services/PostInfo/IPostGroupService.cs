@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BlogAndShop.Data.Data.PostInfo;
+using BlogAndShop.Data.ViewModel.PostInfo;
+using BlogAndShop.Data.ViewModel.Product;
+using BlogAndShop.Services.Services.Main;
+
+namespace BlogAndShop.Services.Services.PostInfo
+{
+    public interface IPostGroupService : IMainService<PostGroup>
+    {
+        Task<List<LinkGroupHeaderViewModel>> GetHeaderModel();
+        /// <summary>
+        /// دریافت لیست پست ها بر اساس گروه
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="page"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        Task<BlogListViewModel> GetPostModel(int categoryId, int page, int count);
+    }
+}

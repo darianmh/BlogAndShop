@@ -1,0 +1,13 @@
+﻿
+@model List<BlogAndShop.Data.ViewModel.Common.SocialMediaModel>
+
+
+@foreach (var item in Model)
+{
+	<a href="@item.Address" class="btn btn-sm btn-facebook transition-hover-top mb-2 rounded-circle text-white" rel="noopener" aria-label="@item.Name">
+		<i class="@item.LogoClass"></i>
+	</a>
+
+
+}
+

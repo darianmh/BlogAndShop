@@ -1,0 +1,118 @@
+﻿@model BlogAndShop.Data.ViewModel.Product.ProductCategoryViewModel
+<!-- PAGE TITLE -->
+<section class="bg-light p-0">
+	<div class="container py-5">
+		@if (Model.CurrentGroup != null)
+		{
+			<h1 class="h3">
+				@Model.CurrentGroup.Title
+			</h1>
+		}
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb fs--14">
+				<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">خانه</a></li>
+				<li class="breadcrumb-item active" aria-current="page">دسته بندی ها</li>
+			</ol>
+		</nav>
+
+	</div>
+</section>
+<!-- /PAGE TITLE -->
+<!-- -->
+<section>
+	<div class="container">
+
+		<div class="row">
+
+			<!-- products -->
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+
+
+				@if (Model.CurrentGroup != null)
+				{
+					<p>
+						@Model.CurrentGroup.Description
+					</p>
+				}
+
+
+				<!-- additional filters -->
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+
+					<h3 class="h5 mb-0">
+						@{ var count = Model.SubCategories?.Count ?? 0;}
+						@count دسته موجود است
+					</h3>
+
+				</div>
+
+				<!-- product list -->
+				<div class="row gutters-xs--xs">
+
+
+					@if (Model.SubCategories != null && Model.SubCategories.Any())
+					{
+						foreach (var item in Model.SubCategories)
+						{
+							if (item.CurrentGroup != null)
+							{
+
+								<!-- landscape item -->
+								<div class="col-6 col-md-4 mb-4 mb-2-xs">
+
+									<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+
+										<a asp-controller="Shop" asp-action="Categories" asp-route-categoryId="@item.CurrentGroup.Id" class="d-block text-decoration-none">
+
+											<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.CurrentGroup.ImageUrl">
+												<img class="w-100" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiA5IiAvPg==" alt="@item.CurrentGroup.Title">
+											</figure>
+
+											<span class="d-block text-center-xs text-gray-600 py-3">
+
+												<!--
+												.max-height-50  = limited to 2 rows of text
+												-or-
+												.text-truncate
+												-->
+												<span class="d-block fs--16 max-h-50 overflow-hidden">
+													@item.CurrentGroup.Title
+												</span>
+
+
+											</span>
+
+										</a>
+
+									</div>
+
+								</div>
+								<!-- /landscape item -->
+							}
+						}
+					}
+					else
+					{
+						<p>موردی یافت نشد</p>
+					}
+
+
+				</div>
+				<!-- /product list -->
+				<!-- pagination -->
+				<nav aria-label="pagination" class="mt-5">
+					<a class="btn btn-light btn-sm" asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.CurrentGroup?.Id">نمایش محصولات این دسته ></a>
+				</nav>
+				<!-- pagination -->
+
+			</div>
+			<!-- /products -->
+
+		</div>
+
+	</div>
+</section>
+<!-- / -->
