@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.User;
 
@@ -17,6 +19,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [ForeignKey("Post")]
         [Display(Name = "پست")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(Post), false)]
         public int PostId { get; set; }
 
         /// <summary>
@@ -24,6 +27,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         /// </summary>
         [ForeignKey("ParentPostComment")]
         [Display(Name = "کامنت ")]
+        [DbOptionList(typeof(PostComment), true)]
         public int? ParentId { get; set; }
 
         /// <summary>
@@ -31,6 +35,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         /// </summary>
         [Display(Name = "متن")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [TextArea]
         public string Text { get; set; }
 
         /// <summary>
@@ -39,6 +44,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [ForeignKey("User")]
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [Hidden]
         public int OwnerId { get; set; }
 
         /// <summary>
@@ -48,9 +54,13 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         public bool IsAccepted { get; set; }
 
         //np
+        [Ignore]
         public virtual PostModel Post { get; set; }
+        [Ignore]
         public virtual PostCommentModel ParentPostComment { get; set; }
+        [Ignore]
         public virtual List<PostCommentModel> PostComments { get; set; }
+        [Ignore]
         public virtual ApplicationUserModel User { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
@@ -18,6 +19,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [ForeignKey("Product")]
         [Display(Name = "محصول")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(Data.Product.Product), false)]
         public int ProductId { get; set; }
 
         /// <summary>
@@ -26,6 +28,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [ForeignKey("UserCart")]
         [Display(Name = "سبد خرید")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(UserCart), false)]
         public int CartId { get; set; }
 
         /// <summary>
@@ -38,7 +41,9 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
 
 
         //np
+        [Ignore]
         public virtual UserCartModel UserCart { get; set; }
+        [Ignore]
         public virtual ProductModel Product { get; set; }
     }
 }

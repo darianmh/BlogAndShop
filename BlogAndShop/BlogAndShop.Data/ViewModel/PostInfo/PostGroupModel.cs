@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.PostInfo
@@ -21,17 +23,22 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         /// group description
         /// </summary>
         [Display(Name = "توضیحات")]
+        [TextArea]
         public string Description { get; set; }
         /// <summary>
         ///  اگر زیر مجموعه باشد
         /// </summary>
         [ForeignKey("ParentPostGroup")]
         [Display(Name = "سرگروه")]
+        [DbOptionList(typeof(PostGroup), true)]
         public int? ParentId { get; set; }
 
         //np
+        [Ignore]
         public virtual List<Post_PostGroupModel> Post_PostGroups { get; set; }
+        [Ignore]
         public virtual List<PostGroupModel> PostGroups { get; set; }
+        [Ignore]
         public virtual PostGroupModel ParentPostGroup { get; set; }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
@@ -21,6 +22,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         [ForeignKey("User")]
         [Display(Name = "نگارنده")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [Ignore]
         public int OwnerId { get; set; }
 
         /// <summary>
@@ -34,12 +36,16 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// tag description
         /// </summary>
         [Display(Name = "توضیحات")]
+        [TextArea]
         public string Description { get; set; }
 
 
         //np
+        [Ignore]
         public virtual ApplicationUserModel User { get; set; }
+        [Ignore]
         public virtual List<ProductTagModel> ProductTags { get; set; }
+        [Ignore]
         public virtual List<Post_TagsModel> Post_Tags { get; set; }
 
     }

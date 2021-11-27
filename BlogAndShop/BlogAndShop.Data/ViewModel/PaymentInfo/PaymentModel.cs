@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.User;
@@ -21,6 +22,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [ForeignKey("User")]
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [Hidden]
         public int OwnerId { get; set; }
 
         /// <summary>
@@ -50,6 +52,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [ForeignKey("Address")]
         [Display(Name = "آدرس")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(Address), false)]
         public int AddressId { get; set; }
 
         /// <summary>
@@ -57,21 +60,27 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         /// </summary>
         [Display(Name = "وضعیت")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [EnumList(typeof(PaymentStatus))]
         public PaymentStatus Status { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [Display(Name = "متن")]
+        [TextArea]
         public string Text { get; set; }
 
 
 
 
         //np
+        [Ignore]
         public virtual ApplicationUserModel User { get; set; }
+        [Ignore]
         public virtual AddressModel Address { get; set; }
+        [Ignore]
         public virtual List<PaymentItemModel> PaymentItems { get; set; }
+        [Ignore]
         public virtual List<PaymentLogModel> PaymentLogs { get; set; }
     }
 }

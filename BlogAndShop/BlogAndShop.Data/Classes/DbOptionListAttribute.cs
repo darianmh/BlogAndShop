@@ -13,10 +13,12 @@ namespace BlogAndShop.Data.Classes
         public Type NavigationProperty { get; set; }
 
         public bool AllowNull { get; set; }
-        public DbOptionListAttribute(Type np, bool allowNull)
+        public bool Multiple { get; set; }
+        public DbOptionListAttribute(Type np, bool allowNull, bool multiple = false)
         {
             NavigationProperty = np;
             AllowNull = allowNull;
+            Multiple = multiple;
         }
     }
 }

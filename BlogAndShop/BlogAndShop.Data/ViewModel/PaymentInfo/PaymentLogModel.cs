@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.ViewModel.Common;
 
@@ -16,6 +17,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [ForeignKey("Payment")]
         [Display(Name = "فاکتور")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(Payment), false)]
         public int PaymentId { get; set; }
 
         /// <summary>
@@ -23,15 +25,18 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         /// </summary>
         [Display(Name = "وضعیت")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [EnumList(typeof(PaymentStatus))]
         public PaymentStatus Status { get; set; }
 
         /// <summary>
         /// توضیحات
         /// </summary>
         [Display(Name = "توضیحات")]
+        [TextArea]
         public string Description { get; set; }
 
         //np
+        [Ignore]
         public virtual PaymentModel Payment { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace BlogAndShop.Data.ViewModel.Forum
         /// </summary>
         [ForeignKey("User")]
         [Display(Name = "مالک")]
-        [Ignore]
+        [Hidden]
         public int OwnerId { get; set; }
 
         /// <summary>

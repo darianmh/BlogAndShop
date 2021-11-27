@@ -12,9 +12,13 @@ namespace BlogAndShop.Data.Classes
         /// type of enum
         /// </summary>
         public Type EnumType { get; set; }
-        public EnumListAttribute(Type enumType)
+
+        public bool Multiple { get; }
+
+        public EnumListAttribute(Type enumType, bool multiple = false)
         {
             EnumType = enumType;
+            Multiple = multiple;
         }
     }
 }

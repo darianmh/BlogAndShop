@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.PostInfo
 {
-    [AdminFilterName("PostInfo","Post")]
+    [AdminFilterName("PostInfo", "Post")]
     public class PostController : BaseAdminController
     {
         #region Fields
@@ -34,7 +34,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             var model = item.ToModel();
             return View(model);
         }
-        
+
         public IActionResult Create()
         {
             return View(new PostModel());

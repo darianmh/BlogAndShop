@@ -114,9 +114,9 @@ namespace BlogAndShop.ViewComponents
         private async Task<List<SelectListItem>> GetOptionList<T>(PropertyInfo property, T model,
             EditCreateTemplateType propType, ApplicationDbContext db)
         {
-            if (propType != EditCreateTemplateType.DbList && propType != EditCreateTemplateType.Enum)
+            if (propType != EditCreateTemplateType.DbList && propType != EditCreateTemplateType.Enum && propType != EditCreateTemplateType.DbListMulti && propType != EditCreateTemplateType.EnumMulti)
                 return null;
-            if (propType == EditCreateTemplateType.Enum)
+            if (propType == EditCreateTemplateType.Enum || propType == EditCreateTemplateType.EnumMulti)
                 return GetEnumList(property, model);
             //type is db list
             return await GetDbOptionList(property, model, db);
@@ -159,9 +159,10 @@ namespace BlogAndShop.ViewComponents
             foreach (var enumValue in enumValues)
             {
                 var type = Convert.ChangeType(enumValue, attr.EnumType);
-                var name = type.ToString();
-                var val = ((int)type).ToString();
-                list.Add(new SelectListItem(name, val));
+                var name = Enum.GetName(attr.EnumType, type);
+                var val = ((int)type);
+                var selected = val == ((int)(property.GetValue(model) ?? 0));
+                list.Add(new SelectListItem(name, val.ToString(), selected));
             }
 
             return list;
@@ -202,11 +203,17 @@ namespace BlogAndShop.ViewComponents
             if (textArea)
                 return EditCreateTemplateType.TextArea;
             var optionList = CheckDbList(property);
-            if (optionList)
-                return EditCreateTemplateType.DbList;
+            if (optionList.Item1)
+                if (optionList.Item2)
+                    return EditCreateTemplateType.DbListMulti;
+                else
+                    return EditCreateTemplateType.DbList;
             var enumList = CheckEnumList(property);
-            if (enumList)
-                return EditCreateTemplateType.Enum;
+            if (enumList.Item1)
+                if (enumList.Item2)
+                    return EditCreateTemplateType.EnumMulti;
+                else
+                    return EditCreateTemplateType.Enum;
             if (property.PropertyType == typeof(bool))
                 return EditCreateTemplateType.Bool;
             if (property.PropertyType == typeof(string))
@@ -247,11 +254,11 @@ namespace BlogAndShop.ViewComponents
         /// if model value should fill from enum info
         /// </summary>
         /// <param name="property"></param>
-        /// <returns></returns>
-        private static bool CheckEnumList(PropertyInfo property)
+        /// <returns>first bool is base and second bool is for multiple</returns>
+        private static Tuple<bool, bool> CheckEnumList(PropertyInfo property)
         {
-            var attr = property.GetCustomAttribute<Data.Classes.EnumListAttribute>();
-            return attr != null;
+            var attr = (EnumListAttribute)property.GetCustomAttribute<Data.Classes.EnumListAttribute>();
+            return new Tuple<bool, bool>(attr != null, attr?.Multiple ?? false);
         }
 
         /// <summary>
@@ -259,10 +266,10 @@ namespace BlogAndShop.ViewComponents
         /// </summary>
         /// <param name="property"></param>
         /// <returns></returns>
-        private static bool CheckDbList(PropertyInfo property)
+        private static Tuple<bool, bool> CheckDbList(PropertyInfo property)
         {
             var attr = property.GetCustomAttribute<DbOptionListAttribute>();
-            return attr != null;
+            return new Tuple<bool, bool>(attr != null, attr?.Multiple ?? false);
         }
 
         /// <summary>

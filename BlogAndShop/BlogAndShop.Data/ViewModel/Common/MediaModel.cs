@@ -37,7 +37,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// عنوان پسوند فایل
         /// </summary>
         [Display(Name = "پسوند")]
-        [Ignore]
+        [Hidden]
         public string Extension { get; set; }
         [Ignore]
         public IFormFile PathFile { get; set; }

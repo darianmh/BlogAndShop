@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
@@ -96,6 +97,12 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Required(ErrorMessage = "{0} الزامی است")]
         public decimal? OffPrice { get; set; }
 
+
+
+        //extra entity
+        [DbOptionList(typeof(Tag), true, true)]
+        [Display(Name = "تگ ها")]
+        public List<int> SelectedTags { get; set; }
 
         //np
         [Ignore]

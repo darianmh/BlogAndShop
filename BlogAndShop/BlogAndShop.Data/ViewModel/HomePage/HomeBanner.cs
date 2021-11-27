@@ -11,12 +11,14 @@ namespace BlogAndShop.Data.ViewModel.HomePage
         /// </summary>
         [Display(Name = "متن عکس")]
         [AdminShowItem(1)]
+        [HtmlEdit]
         public string HtmlContent { get; set; }
         /// <summary>
         /// آدرس تصویر بنر
         /// </summary>
         [Display(Name = "تصویر")]
         [AdminShowItem(2)]
+        [FileUpload]
         public string BannerPath { get; set; }
         /// <summary>
         /// لینک بنر

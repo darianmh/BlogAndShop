@@ -13,6 +13,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// توضیحات متا سایت
         /// </summary>
         [Display(Name = "توضیحات متا")]
+        [TextArea]
         public string Description { get; set; }
 
         /// <summary>
@@ -25,6 +26,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// یک فایل برای بارگزاری همه سایز های لوگو
         /// </summary>
         [Display(Name = "فایل لوگو")]
+        [FileUpload]
         public string LogoFile { get; set; }
         /// <summary>
         /// شماره تماس برای مشتریان

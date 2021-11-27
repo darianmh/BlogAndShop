@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 
@@ -18,11 +20,14 @@ namespace BlogAndShop.Data.ViewModel.User
         [ForeignKey("User")]
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(ApplicationUser), false)]
         public int OwnerId { get; set; }
 
 
         //np
+        [Ignore]
         public virtual ApplicationUserModel User { get; set; }
+        [Ignore]
         public virtual List<CartItemModel> CartItems { get; set; }
     }
 }

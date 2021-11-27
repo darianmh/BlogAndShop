@@ -13,6 +13,8 @@
         TextArea = 8,
         Ignore = 9,
         File = 10,
-        Bool = 11
+        Bool = 11,
+        DbListMulti = 12,
+        EnumMulti = 13
     }
 }

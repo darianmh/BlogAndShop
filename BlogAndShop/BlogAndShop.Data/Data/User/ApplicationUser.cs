@@ -5,6 +5,7 @@ using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.User
@@ -33,5 +34,12 @@ namespace BlogAndShop.Data.Data.User
         public virtual List<ProductComment> ProductComments { get; set; }
         [JsonIgnore]
         public virtual List<UserCart> UserCarts { get; set; }
+
+
+
+        public SelectListItem GetSelectListItem()
+        {
+            return new SelectListItem(Email, Id.ToString());
+        }
     }
 }

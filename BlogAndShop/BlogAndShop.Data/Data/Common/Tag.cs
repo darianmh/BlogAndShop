@@ -5,6 +5,7 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.Common
@@ -46,5 +47,10 @@ namespace BlogAndShop.Data.Data.Common
         [JsonIgnore]
         public virtual List<Post_Tags> Post_Tags { get; set; }
 
+
+        public override SelectListItem GetSelectListItem()
+        {
+            return new SelectListItem(Title, Id.ToString());
+        }
     }
 }

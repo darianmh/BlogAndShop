@@ -20,15 +20,15 @@
 			{
 				requiredText = $" data-val-required='{item.DisplayName} مورد نیاز است.' ";
 			}
-			if (item.ObjectType == EditCreateTemplateType.DbList || item.ObjectType == EditCreateTemplateType.Enum)
+			if (item.ObjectType == EditCreateTemplateType.DbList || item.ObjectType == EditCreateTemplateType.Enum || item.ObjectType == EditCreateTemplateType.DbListMulti || item.ObjectType == EditCreateTemplateType.EnumMulti)
 			{
 				if (item.ListForOptionList != null)
 				{
-					<select id='@item.Name' name='@item.Name' @requiredText class="form-control bs-select" data-live-search="true">
+					var multiple = item.ObjectType == EditCreateTemplateType.DbListMulti || item.ObjectType == EditCreateTemplateType.EnumMulti ? "multiple='multiple'" : "";
+					<select id='@item.Name' name='@item.Name' @requiredText class="form-control bs-select" data-live-search="true" data-actions-box="true" @multiple>
 						@foreach (var option in item.ListForOptionList)
 						{
-							var isSelected = option.Value == item.Value?.ToString();
-							if (isSelected)
+							if (option.Selected)
 							{
 								<option value="@option.Value" selected="selected">@option.Text</option>
 							}
@@ -44,25 +44,21 @@
 
 			else if (item.ObjectType == EditCreateTemplateType.HtmlEditor)
 			{
-				<textarea id='@item.Name' name='@item.Name'
-						  class="form-control summernote-editor"
-						  data-placeholder="Type yout text here..."
-						  data-min-height="300"
-						  data-max-height="1000"
-						  data-focus="false"
-						  data-lang="en-US"
-						  data-toolbar='[
-												    ["style", ["style"]],
-												    ["font", ["bold", "italic", "underline", "clear"]],
-												    ["fontname", ["fontname"]],
-												    ["color", ["color"]],
-												    ["para", ["ul", "ol", "paragraph"]],
-												    ["height", ["height"]],
-												    ["table", ["table"]],
-												    ["insert", ["link", "picture", "hr"]],
-												    ["view", ["fullscreen", "codeview"]],
-												    ["help", ["help"]]
-												  ]'>@item.Value</textarea>
+
+				<input id='@item.Name' name='@item.Name' type="hidden" />
+
+				var id = $"{item.Name}_1";
+				<div id='@id' name='@id' class="richtexteditor" style="width: 960px; margin: 0 auto;">
+					@Html.Raw(item.Value)
+				</div>
+
+				<script>
+					var editor1 = new RichTextEditor(document.getElementById("@id"));
+					editor1.attachEvent("change", function () {
+						document.getElementById("@item.Name").value = editor1.getHTMLCode();
+					});
+				</script>
+
 				check = true;
 			}
 			else if (item.ObjectType == EditCreateTemplateType.TextArea)

@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.PostInfo
@@ -16,6 +19,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [ForeignKey("Post")]
         [Display(Name = "پست")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(Post), false)]
         public int PostId { get; set; }
 
         /// <summary>
@@ -24,12 +28,15 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [ForeignKey("User")]
         [Display(Name = "تگ")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [DbOptionList(typeof(Tag), false)]
         public int TagId { get; set; }
 
 
 
         //np
+        [Ignore]
         public virtual PostModel Post { get; set; }
+        [Ignore]
         public virtual TagModel Tag { get; set; }
     }
 }
