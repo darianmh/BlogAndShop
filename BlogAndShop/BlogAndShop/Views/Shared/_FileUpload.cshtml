@@ -1,6 +1,6 @@
 ﻿@model BlogAndShop.Data.ViewModel.Utilities.EditCreateTemplateViewModel
 
-<div class="col-12 col-lg-12 mb-5">
+<div class="col-12 col-lg-12 mb-5 border p-3">
 
 
 	<ul class="nav nav-pills mb-3" id="pills-icon-tab" role="tablist">
@@ -9,7 +9,7 @@
 				<span class="d-block">
 					<i class="fi fi-arrow-upload"></i>
 				</span>
-				بارگزاری فایل
+				تصاویر موجود
 			</a>
 		</li>
 
@@ -30,43 +30,12 @@
 			<div class="row">
 
 				<div class="col-12">
-
-
-					<div class="input-group">
-						<div class="custom-file custom-file-primary">
-
-							@{ var uploadName = Model.Name + "File";}
-							<input name="@uploadName"
-								   type="file"
-								   data-file-toast-position="bottom-center"
-								   data-file-preview-container=".js-file-input-preview-single-container2"
-								   data-file-preview-img-height="150"
-								   data-file-preview-show-info="true"
-								   data-file-preview-class="shadow-md m-2 rounded float-start"
-								   data-file-btn-clear="a.js-file-upload-clear2"
-								   class="custom-file-input"
-								   id="@uploadName">
-
-							<label class="custom-file-label" for="inputGroupFile02">انتخاب فایل</label>
-
-						</div>
-					</div>
-
-
-					<div class="js-file-input-preview-single-container2 ml--n6 mr--n6 mt-4 hide-empty">
-						<!-- preview container -->
-					</div>
-
-					<!--
-						clear files button
-						hidden by default
-					-->
-					<div class="mt-1">
-						<a href="#" class="hide js-file-upload-clear2 btn btn-light btn-sm">
-							حذف فایل
-						</a>
-					</div>
-
+					<button type="button" onclick="LoadAdminImage('@Model.Name')" class="btn btn-primary btn-soft mb-3">
+						<i class="fi fi-mollecules"></i>
+						نمایش تصاویر موجود
+					</button>
+					@{ var id = Model.Name + "Pre";}
+					<div class="row" id='@id'></div>
 
 				</div>
 			</div>
@@ -80,4 +49,40 @@
 	</div>
 
 
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalFull" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelFull" aria-hidden="true">
+
+	<div class="modal-dialog modal-full" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabelFull">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span class="fi fi-close fs--18" aria-hidden="true"></span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="row" id="ModalImageContainer">
+
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">
+					<i class="fi fi-close"></i>
+					لغو
+				</button>
+				<button type="button" class="btn btn-primary" onclick="LoadImages()">
+					<i class="fi fi-plus"></i>
+					بارگزاری بیشتر
+				</button>
+			</div>
+
+		</div>
+	</div>
 </div>

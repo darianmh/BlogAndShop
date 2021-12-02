@@ -27,6 +27,48 @@
 					</a>
 					<form method="post" enctype="multipart/form-data">
 						@await Component.InvokeAsync("EditCreateTemplate", new { Model, Html.ViewContext.HttpContext })
+
+						<div class="form-group mb-3">
+
+							<label asp-for='PathFile'></label>
+
+
+							<div class="input-group">
+								<div class="custom-file custom-file-primary">
+
+									@{ var uploadName = "PathFile";}
+									<input name="@uploadName"
+										   type="file"
+										   data-file-toast-position="bottom-center"
+										   data-file-preview-container=".js-file-input-preview-single-container2"
+										   data-file-preview-img-height="150"
+										   data-file-preview-show-info="true"
+										   data-file-preview-class="shadow-md m-2 rounded float-start"
+										   data-file-btn-clear="a.js-file-upload-clear2"
+										   class="custom-file-input"
+										   id="@uploadName">
+
+									<label class="custom-file-label" for="inputGroupFile02">انتخاب فایل</label>
+
+								</div>
+							</div>
+
+
+							<div class="js-file-input-preview-single-container2 ml--n6 mr--n6 mt-4 hide-empty">
+								<!-- preview container -->
+							</div>
+
+							<!--
+							clear files button
+							hidden by default
+							-->
+							<div class="mt-1">
+								<a href="#" class="hide js-file-upload-clear2 btn btn-light btn-sm">
+									حذف فایل
+								</a>
+							</div>
+
+						</div>
 						<div class="mt--10">
 							<button class="btn btn-primary" type="submit">تایید</button>
 							<a asp-action="Index" class="btn btn-dark">لیست</a>

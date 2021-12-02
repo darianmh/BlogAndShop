@@ -1,4 +1,5 @@
 @using BlogAndShop.Services
+@using BlogAndShop.Data.ViewModel.Common
 @model BlogAndShop.Data.ViewModel.Common.MediaModel
 
 @{
@@ -21,7 +22,12 @@
 			<div class="portlet-body">
 				<div class="container py-6">
 					<form>
-						@Html.AdminDetails(typeof(BlogAndShop.Data.ViewModel.Common.MediaModel), Model)
+						@await Component.InvokeAsync("DetailsTemplate", new { Model, Html.ViewContext.HttpContext })
+						@if (Model.FileType == FileType.Image)
+						{
+							<label>تصویر</label>
+							<img class="w-100 img-fluid rounded" src="@Model.Path" alt="...">
+						}
 						<div class="mt--10">
 							<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a>
 							<a asp-action="Index" class="btn btn-dark">لیست</a>

@@ -16,7 +16,6 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// عنوان
         /// </summary>
         [Display(Name = "عنوان")]
-        [Hidden]
         public string Title { get; set; }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// آدرس سی دی ان  یا سایت خودمان
         /// </summary>
         [Display(Name = "آدرس")]
-        [FileUpload]
+        [Hidden]
         public string Path { get; set; }
 
         /// <summary>
@@ -40,7 +39,10 @@ namespace BlogAndShop.Data.ViewModel.Common
         [Hidden]
         public string Extension { get; set; }
         [Ignore]
+        [Display(Name = "فایل")]
         public IFormFile PathFile { get; set; }
+        [Ignore]
+        public FileType FileType { get; set; }
         //np
         [Ignore]
         public virtual List<ProductMediaModel> ProductMedias { get; set; }

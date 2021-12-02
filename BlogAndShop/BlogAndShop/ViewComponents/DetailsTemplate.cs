@@ -1,25 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using BlogAndShop.Classes;
-using BlogAndShop.Data.Classes;
-using BlogAndShop.Data.Context;
-using BlogAndShop.Data.Data.Common;
-using BlogAndShop.Data.ViewModel.Utilities;
+﻿using System.Threading.Tasks;
 using BlogAndShop.Services.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using EnumListAttribute = BlogAndShop.Data.Classes.EnumListAttribute;
-using HtmlEditAttribute = BlogAndShop.Data.Classes.HtmlEditAttribute;
 
 namespace BlogAndShop.ViewComponents
 {
-    public class EditCreateTemplate : ViewComponent
+    public class DetailsTemplate : ViewComponent
     {
         #region Fields
 
@@ -27,7 +13,7 @@ namespace BlogAndShop.ViewComponents
         #region Methods
 
         /// <summary>
-        /// سازنده قالب برای صفحه ویرایش و ساخت
+        /// سازنده قالب برای صفحه جزییات
         /// </summary>
         /// <typeparam name="T">مدل موجود در صفحه</typeparam>
         /// <param name="model"></param>
@@ -43,7 +29,7 @@ namespace BlogAndShop.ViewComponents
         #endregion
         #region Ctor
 
-        public EditCreateTemplate()
+        public DetailsTemplate()
         {
 
         }

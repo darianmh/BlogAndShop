@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName("Common", "Media")]
+    [AdminFilterName("Common", "فایل ها")]
     public class MediaController : BaseAdminController
     {
         #region Fields
@@ -65,7 +65,7 @@ namespace BlogAndShop.Controllers.Admin.Common
             var fileExt = Path.GetExtension(filePath);
             model.Path = filePath;
             model.Extension = fileExt;
-            model.Title = model.PathFile.FileName;
+            model.Title = string.IsNullOrEmpty(model.Title) ? model.PathFile.FileName : model.Title;
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             return RedirectToAction("Details", new { id = item.Id });
@@ -81,7 +81,7 @@ namespace BlogAndShop.Controllers.Admin.Common
                 _fileHelperService.RemoveFile(model.Path, _hostEnvironment);
                 model.Path = filePath;
                 model.Extension = fileExt;
-                model.Title = model.PathFile.FileName;
+                model.Title = string.IsNullOrEmpty(model.Title) ? model.PathFile.FileName : model.Title;
             }
             var item = model.ToEntity();
             await _service.UpdateAsync(item);

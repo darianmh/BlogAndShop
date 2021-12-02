@@ -554,3 +554,5 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Account\Profile.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Account\_AccountMenu.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\_ProductHeaderGroupSet.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\DetailsTemplate\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\AjaxService\LoadImages.cshtml.g.cs

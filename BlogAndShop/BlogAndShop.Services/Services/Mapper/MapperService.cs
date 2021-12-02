@@ -62,7 +62,34 @@ namespace BlogAndShop.Services.Services.Mapper
         //Media
         public static MediaModel ToModel(this Media item)
         {
-            return Map<MediaModel>(item);
+            var model = Map<MediaModel>(item);
+            //file type
+            if (item.Extension.Equals("bmp", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals("jpg", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals("jpeg", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals("gif", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals("png", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals(".bmp", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals(".gif", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals(".png", StringComparison.OrdinalIgnoreCase))
+            {
+                model.FileType = FileType.Image;
+            }
+            else if (item.Extension.Equals("mp4", StringComparison.OrdinalIgnoreCase)
+                     || item.Extension.Equals("WMV", StringComparison.OrdinalIgnoreCase)
+                     || item.Extension.Equals(".mp4", StringComparison.OrdinalIgnoreCase)
+                     || item.Extension.Equals(".WMV", StringComparison.OrdinalIgnoreCase))
+            {
+                model.FileType = FileType.Video;
+            }
+            else
+            {
+                model.FileType = FileType.Document;
+            }
+
+            return model;
         }
 
         public static Media ToEntity(this MediaModel item)
