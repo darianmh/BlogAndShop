@@ -12,10 +12,16 @@ namespace BlogAndShop.Data.Data.User
 {
     public class ApplicationUser : IdentityUser<int>
     {
+        public string Name { get; set; }
+        public string Family { get; set; }
+
+
 
         //np
         [JsonIgnore]
         public virtual List<Post> Posts { get; set; }
+        [JsonIgnore]
+        public virtual List<UserToken> UserTokens { get; set; }
         [JsonIgnore]
         public virtual List<Tag> Tags { get; set; }
         [JsonIgnore]

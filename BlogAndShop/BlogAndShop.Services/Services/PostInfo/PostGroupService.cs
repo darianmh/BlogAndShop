@@ -27,7 +27,7 @@ namespace BlogAndShop.Services.Services.PostInfo
             return model;
         }
 
-        public async Task<BlogListViewModel> GetPostModel(int categoryId, int page, int count)
+        public async Task<BlogListViewModel> GetPostModel(int? categoryId, int page, int count)
         {
             var posts = await _postService.GetPostsByGroup(categoryId, page, count);
             return new BlogListViewModel()

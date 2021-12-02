@@ -60,6 +60,8 @@ namespace BlogAndShop.Data.Data.PostInfo
         [Required(ErrorMessage = "{0} الزامی است")]
         [AdminShowItem(3)]
         public int OwnerId { get; set; }
+        [Display(Name = "منتشر شده")]
+        public bool IsPublished { get; set; }
 
 
         //np

@@ -20,6 +20,6 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="page"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        Task<BlogListViewModel> GetPostModel(int categoryId, int page, int count);
+        Task<BlogListViewModel> GetPostModel(int? categoryId, int page, int count);
     }
 }

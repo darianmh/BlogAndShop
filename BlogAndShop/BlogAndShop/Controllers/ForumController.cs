@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlogAndShop.Controllers
 {
-    public class ForumController : Controller
+    public class ForumController : MainBaseController
     {
         public IActionResult Index()
         {

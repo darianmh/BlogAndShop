@@ -28,6 +28,14 @@ namespace BlogAndShop.Services.Services.Product
             return model;
         }
 
+        public async Task<List<ProductGroupModel>> GetHeaderNastedModel()
+        {
+            var allParents = await Queryable.Where(x => x.ParentId == null).ToListAsync();
+            //var model = GetHeaderModel(allActives);
+            var model = await GetHeader2Model(allParents);
+            return model;
+        }
+
         public async Task<ProductCategoryViewModel> GetGroupsModel(int? categoryId)
         {
             var groups = await GetSubGroups(categoryId);
@@ -68,6 +76,11 @@ namespace BlogAndShop.Services.Services.Product
         {
             var group = await GetByIdAsync(groupId);
             return group.ToModel();
+        }
+
+        public async Task<List<ProductGroup>> GetByParentId(int productGroupId)
+        {
+            return await Queryable.Where(x => x.ParentId == productGroupId).ToListAsync();
         }
 
         #endregion
@@ -172,6 +185,30 @@ namespace BlogAndShop.Services.Services.Product
         private async Task<List<ProductGroup>> GetBaseGroups()
         {
             return await Queryable.Where(x => x.ParentId == null).ToListAsync();
+        }
+
+        /// <summary>
+        /// تبدیل لیست دیتابیس به مدل هدر
+        /// </summary>
+        /// <param name="allActives"></param>
+        /// <returns></returns>
+        private async Task<List<ProductGroupModel>> GetHeader2Model(List<ProductGroup> allActives)
+        {
+            var model = new List<ProductGroupModel>();
+            //پیمایش همه
+            foreach (var productGroup in allActives)
+            {
+                var temp = productGroup.ToModel();
+                var children = await GetByParentId(productGroup.Id);
+                if (children != null && children.Any())
+                {
+                    temp.ProductGroups = await GetHeader2Model(children);
+                }
+
+                model.Add(temp);
+            }
+
+            return model;
         }
 
         /// <summary>

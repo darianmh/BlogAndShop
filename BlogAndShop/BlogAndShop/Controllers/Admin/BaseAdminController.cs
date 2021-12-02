@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BlogAndShop.Classes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin
 {
-    public class BaseAdminController : Controller
+    public class BaseAdminController : MainBaseController
     {
         protected int GetUserId()
         {

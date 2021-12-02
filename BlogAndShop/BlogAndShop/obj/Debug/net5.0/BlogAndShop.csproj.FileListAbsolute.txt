@@ -547,3 +547,10 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ForumGroup\Edit.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Forum\Index.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Forum\Item.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Account\ForgotPassword.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\MessageShowPage.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Account\Profile.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Account\_AccountMenu.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\_ProductHeaderGroupSet.cshtml.g.cs

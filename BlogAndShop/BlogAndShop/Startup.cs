@@ -10,8 +10,11 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
+using BlogAndShop.Data.Data.User;
 using BlogAndShop.Services;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.User.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop
@@ -32,14 +35,42 @@ namespace BlogAndShop
             //add db
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BlogAndShop")));
 
-
             //add services
             services.AddServices();
 
+            //identity
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+                .AddRoleStore<ApplicationRoleStore>()
+                .AddUserStore<ApplicationUserStore>()
+                .AddUserManager<ApplicationUserManager>()
+                .AddRoleManager<ApplicationRoleManager>()
+                .AddSignInManager<ApplicationSigninManager>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //identity account
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                //options.Cookie.Expiration
+
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/Account/Index";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+                //options.ReturnUrlParameter=""
+            });
+
             //assembly
             AssemblyHelper.BaseSiteAssembly = Assembly.GetExecutingAssembly();
+
             //admin controllers
             AdminPanelService.GetAllController(AssemblyHelper.BaseSiteAssembly);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +91,7 @@ namespace BlogAndShop
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

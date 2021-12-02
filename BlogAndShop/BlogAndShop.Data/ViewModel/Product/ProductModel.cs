@@ -96,6 +96,8 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Display(Name = "تخفیف")]
         [Required(ErrorMessage = "{0} الزامی است")]
         public decimal? OffPrice { get; set; }
+        [Display(Name = "منتشر شده")]
+        public bool IsPublished { get; set; }
 
 
 

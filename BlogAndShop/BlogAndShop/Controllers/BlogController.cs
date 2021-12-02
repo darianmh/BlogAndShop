@@ -7,7 +7,7 @@ using BlogAndShop.Services.Services.PostInfo;
 
 namespace BlogAndShop.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : MainBaseController
     {
         #region Fields
 
@@ -18,7 +18,7 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Methods
 
-        public async Task<IActionResult> Index(int categoryId, int page = 1, int count = 10)
+        public async Task<IActionResult> Index(int? categoryId, int page = 1, int count = 10)
         {
             var model = await _postGroupService.GetPostModel(categoryId, page, count);
             return View(model);

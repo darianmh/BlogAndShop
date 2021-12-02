@@ -10,7 +10,7 @@ using BlogAndShop.Services.Services.Product;
 
 namespace BlogAndShop.Controllers
 {
-    public class ShopController : Controller
+    public class ShopController : MainBaseController
     {
 
         #region Fields

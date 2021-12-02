@@ -83,3 +83,9 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Sy
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\System.Security.Principal.Windows.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\System.Security.Permissions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\System.Windows.Extensions.xml
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Cookies.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.xml
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Cookies.xml
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.xml

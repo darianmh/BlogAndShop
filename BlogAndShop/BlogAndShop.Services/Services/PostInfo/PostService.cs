@@ -26,6 +26,7 @@ namespace BlogAndShop.Services.Services.PostInfo
             DbModelInfo<Post> posts;
             if (categoryId == null) posts = await GetAllInfoAsync(page, count);
             else posts = await GetAllByGroupAsync(page, count, (int)categoryId);
+            posts.List = posts.List.Where(x => x.IsPublished).ToList();
             return posts;
         }
 

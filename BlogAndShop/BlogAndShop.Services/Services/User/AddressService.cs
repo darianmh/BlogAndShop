@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Services.Services.Main;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.User
 {
@@ -13,6 +17,11 @@ namespace BlogAndShop.Services.Services.User
         #region Methods
 
 
+        public async Task<List<Address>> GetUserAddresses(int userId)
+        {
+            var result = await Queryable.Where(x => x.OwnerId == userId).ToListAsync();
+            return result;
+        }
         #endregion
         #region Utilities
 
@@ -23,5 +32,6 @@ namespace BlogAndShop.Services.Services.User
         {
         }
         #endregion
+
     }
 }

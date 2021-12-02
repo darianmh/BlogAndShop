@@ -74,7 +74,8 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [DbOptionList(typeof(PostGroup), false, true)]
         [Display(Name = "دسته بندی ها")]
         public List<int> SelectedGroups { get; set; }
-
+        [Display(Name = "منتشر شده")]
+        public bool IsPublished { get; set; }
 
         //np
         [Ignore]

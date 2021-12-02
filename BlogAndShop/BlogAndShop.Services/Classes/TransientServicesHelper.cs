@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Reflection;
 using BlogAndShop.Data.Context;
+using BlogAndShop.Services.Services.Common.SenderServices;
+using BlogAndShop.Services.Services.User.Identity;
 using BlogAndShop.Services.Services.Utilities.File;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,6 +35,18 @@ namespace BlogAndShop.Services.Classes
 
             //file
             services.AddTransient<IFileHelperService, FileHelperService>();
+
+
+            //identity
+            services.AddTransient<ApplicationUserManager>();
+            services.AddTransient<ApplicationUserStore>();
+            services.AddTransient<ApplicationRoleManager>();
+            services.AddTransient<ApplicationRoleStore>();
+            services.AddTransient<ApplicationSigninManager>();
+
+            //other
+            services.AddTransient<ISendService, SendService>();
+
             return services;
         }
     }

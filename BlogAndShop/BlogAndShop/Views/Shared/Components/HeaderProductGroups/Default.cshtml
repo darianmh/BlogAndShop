@@ -1,9 +1,9 @@
 ﻿
-@model List<BlogAndShop.Data.ViewModel.Product.LinkGroupHeaderViewModel>
+@model List<BlogAndShop.Data.ViewModel.Product.ProductGroupModel>
 
 
 
-<li class="nav-item dropdown dropdown-mega">
+<li class="nav-item dropdown">
 
 	<a href="#" id="mainNavShopGategories" class="nav-link dropdown-toggle"
 	   data-toggle="dropdown"
@@ -12,52 +12,12 @@
 		محصولات
 	</a>
 
-	<div aria-labelledby="mainNavShopGategories" class="dropdown-menu dropdown-menu-hover dropdown-menu-clean">
-		<!-- Blog and Shop : Megamenu -->
+	<div aria-labelledby="mainNavHome" class="dropdown-menu dropdown-menu-clean dropdown-menu-hover">
 		<ul class="list-unstyled m-0 p-0">
-			<li class="dropdown-item bg-transparent">
-
-				@if (Model.Any())
-				{
-					for (var row = 0; row * 4 < Model.Count; row++)
-					{
-						<div class="row col-border-md">
-							@for (var item = 0; item < 4; item++)
-							{
-								var num = (4 * row) + item;
-								if (num >= Model.Count)
-								{
-									break;
-								}
-								var group = Model[num];
-								<div class="col-12 col-md-3">
-
-									<h3 class="h6 text-muted text-uppercase fs--14 mb-3"><a asp-controller="Shop" asp-action="Index" asp-route-group="@group.Id">@group.Name</a></h3>
-									@if (group.SubGroups.Any())
-									{
-										<ul class="prefix-link-icon prefix-icon-dot">
-											@for (var subNum = 0; subNum < (Math.Min(3, group.SubGroups.Count)); subNum++)
-											{
-												var sub = group.SubGroups[subNum];
-												<li class="dropdown-item">
-													<a class="dropdown-link" asp-controller="Shop" asp-action="Index" asp-route-group="@sub.Id">@sub.Name</a>
-												</li>
-											}
-
-										</ul>
-									}
-
-
-								</div>
-							}
-
-						</div>
-					}
-				}
-
-
-			</li>
+			<li class="dropdown-item"><a asp-controller="Shop" class="dropdown-link">همه محصولات</a></li>
+			@await Html.PartialAsync("_ProductHeaderGroupSet", Model)
 		</ul>
 	</div>
+
 
 </li>

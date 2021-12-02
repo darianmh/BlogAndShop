@@ -94,6 +94,7 @@ namespace BlogAndShop.Data.Data.Product
         /// </summary>
         [Display(Name = "تخفیف")]
         public decimal? OffPrice { get; set; }
+        public bool IsPublished { get; set; }
 
 
         //np

@@ -17,6 +17,11 @@ namespace BlogAndShop.Services.Services.Product
         /// <returns></returns>
         Task<List<LinkGroupHeaderViewModel>> GetHeaderModel();
         /// <summary>
+        /// مدل استفاده برای ساخت هدر سایت به صورت تو در تو
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductGroupModel>> GetHeaderNastedModel();
+        /// <summary>
         /// مدل برای نمایش در صفحه دسته بندی ها
         /// </summary>
         /// <param name="categoryId"></param>
@@ -46,5 +51,7 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="groupId"></param>
         /// <returns></returns>
         Task<ProductGroupModel> GetByIdInModel(int groupId);
+
+        Task<List<ProductGroup>> GetByParentId(int productGroupId);
     }
 }

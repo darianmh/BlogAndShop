@@ -10,5 +10,6 @@ namespace BlogAndShop.Services.Services.User
 {
     public interface IAddressService : IMainService<Address>
     {
+        Task<List<Address>> GetUserAddresses(int userId);
     }
 }

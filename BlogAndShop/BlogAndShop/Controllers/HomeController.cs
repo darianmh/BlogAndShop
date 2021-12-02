@@ -14,7 +14,7 @@ using BlogAndShop.Services.Services.User;
 
 namespace BlogAndShop.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MainBaseController
     {
         #region Fields
         private readonly ILogger<HomeController> _logger;

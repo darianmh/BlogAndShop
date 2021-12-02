@@ -17,7 +17,7 @@ namespace BlogAndShop.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = await _productGroupService.GetHeaderModel();
+            var model = await _productGroupService.GetHeaderNastedModel();
             return View(model);
         }
 

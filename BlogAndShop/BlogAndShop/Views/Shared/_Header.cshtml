@@ -139,28 +139,7 @@
 				</li>
 
 				<!-- join us button -->
-				<li class="list-inline-item mx-1 dropdown">
-
-					<a href="#!" class="btn btn-pill btn-sm btn-primary">
-
-						<!-- visible : mobile only (including small screen : iPhone 5) -->
-						<span class="d-block d-sm-none">
-							ورود
-						</span>
-
-						<!-- visible : desktop only -->
-						<span class="d-none d-sm-block">
-
-							<i class="fi fi-layers"></i>
-							<span class="d-inline-block pl-2 pr-2">
-								ورود / عضویت
-							</span>
-
-						</span>
-
-					</a>
-
-				</li>
+				@await Html.PartialAsync("_Login")
 
 			</ul>
 			<!-- /OPTIONS -->

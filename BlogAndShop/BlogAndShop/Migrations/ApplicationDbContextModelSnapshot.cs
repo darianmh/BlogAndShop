@@ -447,6 +447,9 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("HtmlContent")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Keywords")
                         .HasColumnType("nvarchar(max)");
 
@@ -625,6 +628,9 @@ namespace BlogAndShop.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
@@ -856,11 +862,17 @@ namespace BlogAndShop.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Family")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -972,6 +984,35 @@ namespace BlogAndShop.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("UserCart");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserTokenType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserToken");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1405,6 +1446,17 @@ namespace BlogAndShop.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserToken", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
+                        .WithMany("UserTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", null)
@@ -1567,6 +1619,8 @@ namespace BlogAndShop.Migrations
                     b.Navigation("Tags");
 
                     b.Navigation("UserCarts");
+
+                    b.Navigation("UserTokens");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.User.UserCart", b =>

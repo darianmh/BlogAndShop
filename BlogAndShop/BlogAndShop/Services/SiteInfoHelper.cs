@@ -8,6 +8,7 @@ using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
+using BlogAndShop.Services.Services.User.Identity;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,6 +23,16 @@ namespace BlogAndShop.Services
         #endregion
         #region Methods
 
+        public static async Task<string> GetUserName(this IHtmlHelper helper)
+        {
+            var user = helper.ViewContext.HttpContext.User.Identity?.Name;
+            if (user == null) return "";
+            var userManager =
+                (ApplicationUserManager)helper.ViewContext.HttpContext.RequestServices.GetService(
+                    typeof(ApplicationUserManager));
+            if (userManager == null) return "";
+            return await userManager.GetUSerDisplayNameAsync(user);
+        }
         public static async Task<string> GetSiteLogo(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
