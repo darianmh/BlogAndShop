@@ -41,7 +41,7 @@ namespace BlogAndShop
             //identity
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
             })
                 .AddRoleStore<ApplicationRoleStore>()
                 .AddUserStore<ApplicationUserStore>()

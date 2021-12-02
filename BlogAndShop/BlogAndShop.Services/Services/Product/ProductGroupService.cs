@@ -46,7 +46,7 @@ namespace BlogAndShop.Services.Services.Product
         public async Task<ProductListViewModel> GetProductModel(int? categoryId, int? brandId, int page, int count)
         {
             var currentGroup = await GetCurrentGroup(categoryId);
-            var products = await _productService.GetProductByGroup(categoryId, brandId, count, page);
+            var products = await _productService.GetProductByGroup(categoryId, brandId, count, page, this);
             return new ProductListViewModel()
             {
                 CurrentGroup = currentGroup,
@@ -57,14 +57,17 @@ namespace BlogAndShop.Services.Services.Product
 
         public async Task<List<ProductMiniModel>> GetSuggestedProduct(int productId, int groupId, int count = 4)
         {
-            var productsWithGroup = await _productService.GetProductByGroup(groupId, brandId: null, count, 1);
+            var productsWithGroup = await _productService.GetProductByGroup(groupId, brandId: null, count: count, page: 1, this);
             var result = CreateSuggestModel(productsWithGroup.List, productId);
             if (result.Count >= count)
                 return result;
+            var suggestedGroups = new List<int?>();
             while (result.Count < count)
             {
-                var suggestedGroup = await GetSuggestedGroup(groupId);
-                var temp = await GetGroupProducts(productId, suggestedGroup, count);
+                var suggestedGroup = await GetSuggestedGroup(groupId, suggestedGroups);
+                if (suggestedGroup != null)
+                    suggestedGroups.Add(suggestedGroup);
+                var temp = await GetGroupProducts(productId, count, suggestedGroup);
                 result.AddRange(temp);
             }
             if (result.Count > 4) result = result.Take(4).ToList();
@@ -83,12 +86,33 @@ namespace BlogAndShop.Services.Services.Product
             return await Queryable.Where(x => x.ParentId == productGroupId).ToListAsync();
         }
 
+        public async Task<List<int>> GetChildrenGroupsId(int categoryId)
+        {
+            var group = await Queryable.Include(x => x.ProductGroups).FirstOrDefaultAsync(x => x.Id == categoryId);
+            var list = new List<int>();
+            if (group.ProductGroups != null)
+            {
+                list = group.ProductGroups.Select(x => x.Id).ToList();
+                var tempList = new List<int>();
+                foreach (var id in list)
+                {
+                    var temp = await GetChildrenGroupsId(id);
+                    tempList.AddRange(temp);
+                }
+
+                list.AddRange(tempList);
+            }
+
+            list.Add(categoryId);
+            return list.GroupBy(x => x).Select(x => x.First()).ToList();
+        }
+
         #endregion
         #region Utilities
 
-        private async Task<IEnumerable<ProductMiniModel>> GetGroupProducts(int productId, int suggestedGroup, int count)
+        private async Task<IEnumerable<ProductMiniModel>> GetGroupProducts(int productId, int count, int? suggestedGroup)
         {
-            var productsWithGroup = await _productService.GetProductByGroup(suggestedGroup, brandId: null, count, 1);
+            var productsWithGroup = await _productService.GetProductByGroup(suggestedGroup, brandId: null, count: count, page: 1, this);
             return CreateSuggestModel(productsWithGroup.List, productId);
         }
 
@@ -97,13 +121,16 @@ namespace BlogAndShop.Services.Services.Product
         /// دریافت یک پروه مشابه گروه داده شده
         /// </summary>
         /// <param name="groupId"></param>
+        /// <param name="suggestedGroups"></param>
         /// <returns></returns>
-        private async Task<int> GetSuggestedGroup(int groupId)
+        private async Task<int?> GetSuggestedGroup(int groupId, List<int?> suggestedGroups)
         {
             var group = await GetByIdAsync(groupId);
-            if (group.ParentId != null)
+            if (group.ParentId != null && !suggestedGroups.Contains(group.ParentId))
                 return group.ParentId.Value;
-            return GetRandomId();
+            //return GetRandomId();
+            //todo set random
+            return null;
         }
 
         private int GetRandomId()

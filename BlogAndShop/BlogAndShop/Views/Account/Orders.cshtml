@@ -1,0 +1,54 @@
+﻿@using BlogAndShop.Data.Classes.Date
+@model List<BlogAndShop.Data.ViewModel.PaymentInfo.PaymentModel>
+@{
+	ViewData["ProfileActive"] = "active";
+}
+<!-- -->
+<section>
+	<div class="container">
+
+		<div class="row">
+
+			@await Html.PartialAsync("_AccountMenu")
+
+
+			<div class="col-12 col-sm-12 col-md-12 col-lg-9">
+
+				@foreach (var item in Model)
+				{
+
+					<!-- order -->
+					<div class="clearfix p-3 shadow-xs shadow-md-hover mb-3 rounded bg-white">
+
+						<h2 class="fs--18">
+							<a asp-controller="UserPayment" asp-action="Info" asp-route-id="@item.Id" class="float-end fs--12">
+								جزییات
+							</a>
+							<a asp-controller="UserPayment" asp-action="Info" asp-route-id="@item.Id" class="text-dark">
+								سفارش #@item.Id
+							</a>
+						</h2>
+
+						<p class="mb-0 fs--14">
+							تاریخ: @item.CreateDateTime.ToPeString() | مجموع: @item.FinalAmount <span>ريال</span>
+						</p>
+
+						<p class="mb-0 fs--14">
+							وضعیت:&nbsp;
+							<span class="text-warning font-weight-normal">Pending / New</span>
+						</p>
+
+					</div>
+					<!-- /order -->
+				}
+
+
+
+			</div>
+
+
+		</div>
+
+	</div>
+</section>
+<!-- / -->

@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.User
 {
-    [AdminFilterName("User","RoleAccess")]
+    [AdminFilterName(AdminControllerNames.User, "RoleAccess")]
     public class RoleAccessController : BaseAdminController
     {
         #region Fields
@@ -34,7 +34,7 @@ namespace BlogAndShop.Controllers.Admin.User
             var model = item.ToModel();
             return View(model);
         }
-        
+
         public IActionResult Create()
         {
             return View(new RoleAccessModel());

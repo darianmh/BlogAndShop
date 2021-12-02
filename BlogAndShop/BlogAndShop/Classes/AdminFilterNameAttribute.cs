@@ -11,10 +11,10 @@ namespace BlogAndShop.Classes
     {
         public string Name { get; }
         public string Group { get; }
-        public AdminFilterNameAttribute(string group, string name)
+        public AdminFilterNameAttribute(AdminControllerNames group, string name)
         {
             Name = name;
-            Group = group;
+            Group = group.ToString();
         }
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)

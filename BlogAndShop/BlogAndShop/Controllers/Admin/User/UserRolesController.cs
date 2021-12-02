@@ -11,7 +11,7 @@
 
 //namespace BlogAndShop.Controllers.Admin.User
 //{
-//    [AdminFilterName("User","UserRoles")]
+//    [AdminFilterName(AdminControllerNames.User, "نقش های کاربر")]
 //    public class UserRolesController : BaseAdminController
 //    {
 //        #region Fields
@@ -34,7 +34,7 @@
 //            var model = item.ToModel();
 //            return View(model);
 //        }
-        
+
 //        public IActionResult Create()
 //        {
 //            return View(new UserRolesModel());

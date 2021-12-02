@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.Forum
 {
-    [AdminFilterName("Forum", "ForumGroup")]
+    [AdminFilterName(AdminControllerNames.Forum, "ForumGroup")]
     public class ForumGroupController : BaseAdminController
     {
         #region Fields

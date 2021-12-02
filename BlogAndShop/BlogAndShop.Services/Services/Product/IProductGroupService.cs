@@ -53,5 +53,12 @@ namespace BlogAndShop.Services.Services.Product
         Task<ProductGroupModel> GetByIdInModel(int groupId);
 
         Task<List<ProductGroup>> GetByParentId(int productGroupId);
+
+        /// <summary>
+        /// لیست گروه های زیر مجموعه به همراه خود گروه اصلی را برمیگرداند
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        Task<List<int>> GetChildrenGroupsId(int categoryId);
     }
 }

@@ -19,9 +19,10 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="brandId"></param>
         /// <param name="count"></param>
         /// <param name="page"></param>
+        /// <param name="productGroupService"></param>
         /// <returns></returns>
         Task<DbModelInfo<Data.Data.Product.Product>> GetProductByGroup(int? categoryId, int? brandId, int count,
-            int page);
+            int page, IProductGroupService productGroupService);
         /// <summary>
         /// ساخت مدل کوچک از محصول
         /// </summary>

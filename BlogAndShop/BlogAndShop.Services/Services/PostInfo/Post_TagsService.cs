@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Services.Services.Main;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo
 {
@@ -12,6 +16,11 @@ namespace BlogAndShop.Services.Services.PostInfo
         #endregion
         #region Methods
 
+
+        public async Task<List<Post_Tags>> GetPostTags(int postId)
+        {
+            return await Queryable.Where(x => x.PostId == postId).ToListAsync();
+        }
 
         #endregion
         #region Utilities

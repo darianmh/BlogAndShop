@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
@@ -87,5 +88,8 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [Ignore]
         public virtual List<Post_TagsModel> Post_Tags { get; set; }
 
+        //extra
+        [Ignore]
+        public List<TagModel> Tags { get; set; }
     }
 }

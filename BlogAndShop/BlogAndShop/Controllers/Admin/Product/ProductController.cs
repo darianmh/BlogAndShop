@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
-    [AdminFilterName("Product", "Product")]
+    [AdminFilterName(AdminControllerNames.Product, "Product")]
     public class ProductController : BaseAdminController
     {
         #region Fields

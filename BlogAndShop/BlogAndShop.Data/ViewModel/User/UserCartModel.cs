@@ -24,6 +24,14 @@ namespace BlogAndShop.Data.ViewModel.User
         public int OwnerId { get; set; }
 
 
+        [Ignore]
+        public decimal TotalPrice { get; set; }
+        [Ignore]
+        public decimal OffPrice { get; set; }
+        [Ignore]
+        //مبلغ قابل پرداخت
+        public decimal ToPayPrice { get; set; }
+
         //np
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }

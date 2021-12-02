@@ -10,7 +10,5 @@ namespace BlogAndShop.Data.ViewModel.User
     {
         public ApplicationUserModel User { get; set; }
         public List<AddressModel> Addresses { get; set; }
-        public string CurrentPassword { get; set; }
-        public string NewPassword { get; set; }
     }
 }

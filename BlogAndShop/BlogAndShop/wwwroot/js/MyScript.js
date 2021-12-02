@@ -1,7 +1,7 @@
 ﻿/*  NewsLetter  */
 function SendNewsEmail() {
   var mail = $("#newsLetterEmail").val();
-  AJAXPost('/Home/AddEmailLetter?email=' ? +mail, "", SendNewsEmailCb);
+  AJAXPost('/Home/AddEmailLetter?email=' + mail, "", SendNewsEmailCb);
 }
 function SendNewsEmailCb(data) {
   MyAlert("ایمیل افزوده شد");
@@ -59,4 +59,17 @@ function AJAXPost(url, data, callBack, errorCallBack) {
       stopLoading();
     }
   });
+}
+
+
+//profile addresses
+function setAddressEditRecord(City, Street, SecondaryStreet, Alley, Number, Details, Id) {
+  $('input[name="City"]').val(City);
+  $('input[name="Street"]').val(Street);
+  $('input[name="SecondaryStreet"]').val(SecondaryStreet);
+  $('input[name="Alley"]').val(Alley);
+  $('input[name="Number"]').val(Number);
+  $('input[name="Details"]').val(Details);
+  $('input[name="Id"]').val(Id);
+  $("#exampleModalMd").modal('show');
 }

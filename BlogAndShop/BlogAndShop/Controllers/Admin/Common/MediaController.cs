@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName("Common", "فایل ها")]
+    [AdminFilterName(AdminControllerNames.Common, "فایل ها")]
     public class MediaController : BaseAdminController
     {
         #region Fields

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName("Common", "SocialMedia")]
+    [AdminFilterName(AdminControllerNames.Common, "SocialMedia")]
     public class SocialMediaController : BaseAdminController
     {
         #region Fields

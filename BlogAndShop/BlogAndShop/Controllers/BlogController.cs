@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogAndShop.Services.Services.Common;
+using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PostInfo;
 
 namespace BlogAndShop.Controllers
@@ -13,6 +15,7 @@ namespace BlogAndShop.Controllers
 
         private readonly IPostGroupService _postGroupService;
         private readonly IPostService _postService;
+        private readonly ITagService _tagService;
 
 
         #endregion
@@ -24,9 +27,14 @@ namespace BlogAndShop.Controllers
             return View(model);
         }
 
-        public IActionResult Item()
+        public async Task<IActionResult> Item(int postId)
         {
-            return View();
+            var item = await _postService.GetByIdAsync(postId);
+            if (item == null) return NotFound();
+            var model = item.ToModel();
+            var tags = await _tagService.GetPostTags(postId);
+            model.Tags = tags.Select(x => x.ToModel()).ToList();
+            return View(model);
         }
         #endregion
         #region Utilities
@@ -35,10 +43,11 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Ctor
 
-        public BlogController(IPostGroupService postGroupService, IPostService postService)
+        public BlogController(IPostGroupService postGroupService, IPostService postService, ITagService tagService)
         {
             _postGroupService = postGroupService;
             _postService = postService;
+            _tagService = tagService;
         }
         #endregion
 

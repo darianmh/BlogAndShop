@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.PostInfo
 {
-    [AdminFilterName("PostInfo","PostComment")]
+    [AdminFilterName(AdminControllerNames.PostInfo,"PostComment")]
     public class PostCommentController : BaseAdminController
     {
         #region Fields

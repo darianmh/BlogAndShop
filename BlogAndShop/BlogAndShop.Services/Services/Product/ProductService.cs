@@ -21,15 +21,17 @@ namespace BlogAndShop.Services.Services.Product
 
         public async Task<DbModelInfo<Data.Data.Product.Product>> GetProductByGroup(int? categoryId, int? brandId,
             int count,
-            int page)
+            int page, IProductGroupService productGroupService)
         {
             DbModelInfo<Data.Data.Product.Product> products;
             if (categoryId == null && brandId == null) products = await GetAllInfoAsync(page, count);
-            else if (brandId == null) products = await GetAllByGroupAsync(page, count, (int)categoryId);
+            else if (brandId != null && categoryId != null) products = await GetAllByGroupAndBrandAsync(page, count, (int)categoryId, (int)brandId, productGroupService);
+            else if (brandId == null) products = await GetAllByGroupAsync(page, count, (int)categoryId, productGroupService);
             //category is null
             else products = await GetAllByBrandAsync(page, count, (int)brandId);
             return products;
         }
+
 
 
         public ProductMiniModel GetProductMiniModel(Data.Data.Product.Product product)
@@ -47,10 +49,11 @@ namespace BlogAndShop.Services.Services.Product
         #endregion
         #region Utilities
 
-        private async Task<DbModelInfo<Data.Data.Product.Product>> GetAllByGroupAsync(int page, int count, int categoryId)
+        private async Task<DbModelInfo<Data.Data.Product.Product>> GetAllByGroupAsync(int page, int count, int categoryId, IProductGroupService productGroupService)
         {
             page = page - 1;
-            var all = Queryable.Where(x => x.ProductGroupId == categoryId);
+            var groups = await productGroupService.GetChildrenGroupsId(categoryId);
+            var all = Queryable.Where(x => groups.Contains(x.ProductGroupId));
             var list = await Pagination(all, page, count);
             return new DbModelInfo<Data.Data.Product.Product>
             {
@@ -60,6 +63,13 @@ namespace BlogAndShop.Services.Services.Product
         }
 
 
+        private async Task<DbModelInfo<Data.Data.Product.Product>> GetAllByGroupAndBrandAsync(int page, int count,
+            int categoryId, int brandId, IProductGroupService productGroupService)
+        {
+            var group = await GetAllByGroupAsync(page, count, categoryId, productGroupService);
+            group.List = group.List.Where(x => x.BrandId == brandId).ToList();
+            return group;
+        }
 
         private async Task<DbModelInfo<Data.Data.Product.Product>> GetAllByBrandAsync(int page, int count, int brandId)
         {

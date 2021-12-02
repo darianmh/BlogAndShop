@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.HomePage
 {
-    [AdminFilterName("HomePage", "Banner")]
+    [AdminFilterName(AdminControllerNames.HomePage, "Banner")]
     public class HomeBannerController : BaseAdminController
     {
         #region Fields

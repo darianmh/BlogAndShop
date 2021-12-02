@@ -131,11 +131,70 @@ namespace BlogAndShop.Controllers
             ModelState.AddModelError("", "نام کاربر مورد تایید نمی باشد.");
             return View("ForgotPassword", model);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EditProfile(ApplicationUserModel model)
+        {
+            if (User.Identity == null) return NotFound();
+            var user = await _applicationUserManager.FindAsync(User.Identity.Name);
+            if (user == null) return NotFound();
+            user.Name = model.Name;
+            user.Family = model.Family;
+            if (model.PhoneNumber != null && !model.PhoneNumber.Equals(user.PhoneNumber, StringComparison.OrdinalIgnoreCase))
+            {
+                user.PhoneNumber = model.PhoneNumber;
+                user.PhoneNumberConfirmed = false;
+            }
+            if (model.Email != null && !model.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                user.Email = model.Email;
+                user.EmailConfirmed = false;
+            }
+            await _applicationUserManager.UpdateAsync(user);
+            //password
+            if (!string.IsNullOrEmpty(model.NewPassword) && !string.IsNullOrEmpty(model.CurrentPassword))
+            {
+                var result = await _applicationUserManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (!result.Succeeded)
+                {
+                    HttpContext.Items.Add("Errors", "نام کاربری مورد تایید نیست.");
+                }
+            }
+            return RedirectToAction("Profile");
+        }
         [Authorize]
         [HttpPost]
         public IActionResult CreateNewAddress()
         {
             return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DeleteAddress(int id)
+        {
+            var address = await _addressService.GetByIdAsync(id);
+            if (address != null) await _addressService.DeleteAsync(address);
+            return RedirectToAction("Profile");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddOrEditNewAddress(AddressModel model)
+        {
+            if (User.Identity == null) return NotFound();
+            var user = await _applicationUserManager.FindAsync(User.Identity.Name);
+            if (user == null) return NotFound();
+            var address = model.ToEntity();
+            address.OwnerId = user.Id;
+            if (address.Id == 0)
+            {
+                await _addressService.InsertAsync(address);
+            }
+            else
+            {
+                await _addressService.UpdateAsync(address);
+            }
+
+            return RedirectToAction("Profile");
         }
         [Authorize]
         public IActionResult Orders()
@@ -154,6 +213,11 @@ namespace BlogAndShop.Controllers
                 Addresses = addresses.Select(x => x.ToModel()).ToList(),
                 User = user.ToModel()
             };
+            if (HttpContext.Items.ContainsKey("Errors"))
+            {
+                var error = HttpContext.Items["Errors"];
+                ModelState.AddModelError("", error?.ToString() ?? "");
+            }
             return View(model);
         }
         [Authorize]

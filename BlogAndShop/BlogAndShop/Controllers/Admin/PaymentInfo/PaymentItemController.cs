@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.PaymentInfo
 {
-    [AdminFilterName("PaymentInfo","PaymentItem")]
+    [AdminFilterName(AdminControllerNames.PaymentInfo,"PaymentItem")]
     public class PaymentItemController : BaseAdminController
     {
         #region Fields

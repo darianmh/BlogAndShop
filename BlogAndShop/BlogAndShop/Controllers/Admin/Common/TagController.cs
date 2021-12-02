@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName("Common", "Tag")]
+    [AdminFilterName(AdminControllerNames.Common, "Tag")]
     public class TagController : BaseAdminController
     {
         #region Fields

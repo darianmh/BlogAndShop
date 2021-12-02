@@ -24,41 +24,6 @@ namespace BlogAndShop.Services
 
 		#endregion
 		#region Methods
-		/// <summary>
-		/// ساختن صفحه جزییات
-		/// </summary>
-		/// <param name="html"></param>
-		/// <param name="type"></param>
-		/// <param name="modelItem"></param>
-		/// <returns></returns>
-		public static HtmlString AdminDetails<TModel>(this IHtmlHelper<TModel> html, Type type, object modelItem)
-		{
-			var properties = type.GetProperties();
-			var baseProps = typeof(BaseEntity).GetProperties().Select(x => x.Name).ToList();
-			var text = "";
-			foreach (var property in properties)
-			{
-				var temp = "";
-				if (baseProps?.Contains(property.Name) ?? false)
-				{
-					temp +=
-						$"<input class='form-control text-box single-line' data-val='true' id='{property.Name}' name='{property.Name}' type='hidden' value='{property.GetValue(modelItem)}'>";
-				}
-				else
-				{
-					var displayAttr = (DisplayAttribute)property.GetCustomAttribute(typeof(DisplayAttribute));
-					var name = displayAttr?.Name ?? property.Name;
-					var inputType = GetInputType(property);
-					if (inputType == null) continue;
-					temp += $"<label for='{property.Name}'>{name}</label>";
-					temp +=
-						$"<input disabled='disabled' class='form-control text-box single-line' data-val='true' data-val-required='{name} مورد نیاز است.' id='{property.Name}' name='{property.Name}' type='{inputType}' value='{property.GetValue(modelItem)}'>";
-				}
-
-				text += temp;
-			}
-			return new HtmlString(text);
-		}
 
 		/// <summary>
 		/// دریافت اعضای کلاس مد نظر و نمایش نام آن ها به عنوان هدر جدول
@@ -187,16 +152,6 @@ namespace BlogAndShop.Services
 		#endregion
 		#region Utilities
 
-		private static string GetInputType(PropertyInfo property)
-		{
-			if (property.PropertyType == typeof(string))
-				return "text";
-			if ((property.PropertyType == typeof(DateTime)) || (property.PropertyType == typeof(DateTime?)))
-				return "date";
-			if (property.PropertyType == typeof(int) || property.PropertyType == typeof(decimal) || property.PropertyType == typeof(double) || property.PropertyType == typeof(int?) || property.PropertyType == typeof(decimal?) || property.PropertyType == typeof(double?))
-				return "number";
-			return null;
-		}
 		private static List<AdminShowItemAttributeInfo> GetPropertyList(Type type)
 		{
 			var properties = type.GetProperties();

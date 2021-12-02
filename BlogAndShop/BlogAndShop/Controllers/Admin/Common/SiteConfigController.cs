@@ -12,7 +12,7 @@ using BlogAndShop.Services.Classes;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName("Common", "SiteConfig")]
+    [AdminFilterName(AdminControllerNames.Common, "SiteConfig")]
     public class SiteConfigController : BaseAdminController
     {
         #region Fields

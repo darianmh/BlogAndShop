@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
-    [AdminFilterName("Product", "Brand")]
+    [AdminFilterName(AdminControllerNames.Product, "Brand")]
     public class BrandController : BaseAdminController
     {
         #region Fields

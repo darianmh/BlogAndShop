@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.PaymentInfo
 {
-    [AdminFilterName("PaymentInfo","CartItem")]
+    [AdminFilterName(AdminControllerNames.PaymentInfo,"CartItem")]
     public class CartItemController : BaseAdminController
     {
         #region Fields

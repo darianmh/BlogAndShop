@@ -36,14 +36,14 @@
 					<!-- ACCOUNT TAB -->
 					<div id="tab_account" class="tab-pane active">
 
-						<form method="post" action="#" novalidate class="bs-validate" enctype="multipart/form-data">
+						<form method="post" asp-controller="Account" asp-action="EditProfile" novalidate class="bs-validate" enctype="multipart/form-data">
 
 
 							<!-- PERSONAL DETAIL -->
 							<div class="p-4 shadow-xs border bt-0 mb-4 bg-white">
 
 								<div class="row">
-
+									@Html.ValidationSummary()
 									<!-- avatar -->
 									<div class="col-12 col-md-3 text-center">
 
@@ -84,7 +84,7 @@
 											<div class="col-12 col-sm-6 col-md-6">
 
 												<div class="form-label-group mb-3">
-													<input required placeholder="نام" asp-for="User.Name" type="text" class="form-control">
+													<input required placeholder="نام" asp-for="User.Name" name="Name" type="text" class="form-control">
 													<label asp-for="User.Name">نام</label>
 												</div>
 
@@ -93,7 +93,7 @@
 											<div class="col-12 col-sm-6 col-md-6">
 
 												<div class="form-label-group mb-3">
-													<input required placeholder="نام خانوادگی" asp-for="User.Family" type="text" class="form-control">
+													<input required placeholder="نام خانوادگی" asp-for="User.Family" name="Family" type="text" class="form-control">
 													<label asp-for="User.Family">نام خانوادگی</label>
 												</div>
 
@@ -106,7 +106,7 @@
 
 												<div class="input-group-over">
 													<div class="form-label-group mb-3">
-														<input readonly placeholder="ایمیل" asp-for="User.Email" type="email" class="form-control">
+														<input readonly placeholder="ایمیل" asp-for="User.Email" name="Email" type="email" class="form-control">
 														<label asp-for="User.Email">ایمیل</label>
 													</div>
 
@@ -121,7 +121,7 @@
 												</div>
 
 												<div id="email_edit_info" class="mt-1 mb-4 fs--13 text-muted hide">
-												بعد از تغییر یک پیام برای تایید به شما ایمیل خواهد شد
+													بعد از تغییر یک پیام برای تایید به شما ایمیل خواهد شد
 												</div>
 												<!-- /ایمیل -->
 
@@ -131,7 +131,7 @@
 											<div class="col-12 col-sm-6 col-md-6">
 
 												<div class="form-label-group mb-3">
-													<input required placeholder="شماره تماس" asp-for="User.PhoneNumber" type="text" class="form-control">
+													<input required placeholder="شماره تماس" asp-for="User.PhoneNumber" name="PhoneNumber" type="text" class="form-control">
 													<label asp-for="User.PhoneNumber">شماره تماس</label>
 												</div>
 
@@ -169,12 +169,12 @@
 
 											<div class="input-group-over">
 												<div class="form-label-group mb-3">
-													<input placeholder="رمز فعلی" asp-for="CurrentPassword" type="password" class="form-control">
+													<input placeholder="رمز فعلی" asp-for="User.CurrentPassword" name="CurrentPassword" type="password" class="form-control">
 													<label for="CurrentPassword">رمز فعلی</label>
 												</div>
 
 												<!-- `SOW : Form Advanced` plugin used -->
-												<a href="#" class="btn fs--12 btn-password-type-toggle" data-target="#account_current_password">
+												<a href="#" class="btn fs--12 btn-password-type-toggle" data-target="#User_CurrentPassword">
 													<span class="group-icon">
 														<i class="fi fi-eye m-0"></i>
 														<i class="fi fi-close m-0"></i>
@@ -188,12 +188,12 @@
 
 											<div class="input-group-over">
 												<div class="form-label-group mb-3">
-													<input placeholder="رمز جدید" asp-for="NewPassword" type="password" class="form-control">
+													<input placeholder="رمز جدید" asp-for="User.NewPassword" name="NewPassword" type="password" class="form-control">
 													<label for="NewPassword">رمز جدید</label>
 												</div>
 
 												<!-- `SOW : Form Advanced` plugin used -->
-												<a href="#" class="btn fs--12 btn-password-type-toggle" data-target="#account_new_password">
+												<a href="#" class="btn fs--12 btn-password-type-toggle" data-target="#User_NewPassword">
 													<span class="group-icon">
 														<i class="fi fi-eye m-0"></i>
 														<i class="fi fi-close m-0"></i>
@@ -230,17 +230,15 @@
 
 						<h3 class="h5 clearfix mb-3 mt-3">
 
-							<a href="#"
-							   data-href="_ajax/modal_address.html"
-							   data-ajax-modal-size="modal-md"
-							   data-ajax-modal-centered="false"
-							   data-ajax-modal-backdrop="static"
-							   class="js-ajax-modal float-end btn btn-sm btn-primary fs--14 mb-0">
+
+							<!-- Button trigger modal -->
+							<button type="button" class="js-ajax-modal float-end btn btn-sm btn-primary fs--14 mb-0" data-toggle="modal" data-target="#exampleModalMd">
+								<i class="fi fi-mollecules"></i>
 								افزودن آدرس
-							</a>
+							</button>
 
 							<span class="float-start mt-2">
-								<span class="text-primary"> آدرس های </span>ارسال 
+								<span class="text-primary"> آدرس های </span>ارسال
 							</span>
 
 						</h3>
@@ -265,30 +263,14 @@
 
 									<div class="col-4 col-sm-3 col-md-3 col-lg-2">
 
-										<a href="#"
-										   data-href="_ajax/modal_address.html"
-										   data-ajax-modal-size="modal-md"
-										   data-ajax-modal-centered="false"
-										   data-ajax-modal-backdrop="static"
-										   class="js-ajax-modal float-end btn btn-sm btn-block btn-light fs--14 mb-0">
-											Edit
-										</a>
+										<button onclick="setAddressEditRecord('@item.City','@item.Street','@item.SecondaryStreet','@item.Alley','@item.Number','@item.Details','@item.Id')" type="button" class="js-ajax-modal float-end btn btn-sm btn-block btn-light fs--14 mb-0">
+											<i class="fi fi-mollecules"></i>
+											ویرایش
+										</button>
 
-										<a href="#"
-										   data-href="#?action=delete&amp;item_id=1"
-										   data-ajax-confirm-mode="regular"
-										   data-ajax-confirm-size="modal-md"
-										   data-ajax-confirm-centered="false"
-										   data-ajax-confirm-title="Please Confirm"
-										   data-ajax-confirm-body="Are you sure? Remove from favourites?"
-										   data-ajax-confirm-btn-yes-class="btn-sm btn-danger"
-										   data-ajax-confirm-btn-yes-text="Yes, Remove"
-										   data-ajax-confirm-btn-yes-icon="fi fi-check"
-										   data-ajax-confirm-btn-no-class="btn-sm btn-light"
-										   data-ajax-confirm-btn-no-text="Cancel"
-										   data-ajax-confirm-btn-no-icon="fi fi-close"
-										   class="js-ajax-confirm float-end btn btn-sm btn-block btn-light fs--14 mb-0 mt-2">
-											Delete
+										<a asp-controller="Account" asp-action="DeleteAddress" asp-route-id="@item.Id"
+										   class="float-end btn btn-sm btn-block btn-light fs--14 mb-0 mt-2">
+											حذف
 										</a>
 
 									</div>
@@ -308,3 +290,106 @@
 	</div>
 </section>
 <!-- / -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalMd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMd" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form novalidate class="bs-validate" method="post" asp-controller="Account" asp-action="AddOrEditNewAddress">
+				<input type="hidden" name="Id" value="0" />
+				<div class="modal-header">
+					<h2 class="modal-title fs--18 m-0">
+						افزودن آدرس جدید
+					</h2>
+
+					<button type="button" class="close pointer" data-dismiss="modal" aria-label="Close">
+						<span class="fi fi-close fs--18" aria-hidden="true"></span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+
+					<div class="row">
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input required placeholder="City/Town" id="addr_city" name="City" type="text" class="form-control">
+								<label for="addr_city">نام شهر</label>
+							</div>
+
+						</div>
+
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input required placeholder="Zip / Postal Code" id="addr_zipcode" name="Street" type="text" class="form-control">
+								<label for="addr_zipcode">خیابان</label>
+							</div>
+
+						</div>
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input placeholder="City/Town" id="addr_city" name="SecondaryStreet" type="text" class="form-control">
+								<label for="addr_city">خیابان فرعی</label>
+							</div>
+
+						</div>
+
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input required placeholder="Zip / Postal Code" id="addr_zipcode" name="Alley" type="text" class="form-control">
+								<label for="addr_zipcode">کوچه</label>
+							</div>
+
+						</div>
+
+
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input required placeholder="Zip / Postal Code" id="addr_zipcode" name="Number" type="text" class="form-control">
+								<label for="addr_zipcode">پلاک</label>
+							</div>
+
+						</div>
+
+						<div class="col-12 col-sm-12 col-lg-12 mb--20">
+
+							<div class="form-label-group mb-3">
+								<input placeholder="Street and Number, P.O. Box, c/o." id="addr_address_1" name="Details" type="text" class="form-control">
+								<label for="addr_address_1">ادامه...</label>
+							</div>
+
+
+						</div>
+
+
+
+
+
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-sm btn-primary">
+						<i class="fi fi-check"></i>
+						ذخیره
+					</button>
+
+					<a href="#" class="btn btn-sm btn-secondary" data-dismiss="modal">
+						<i class="fi fi-close"></i>
+						انصراف
+					</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

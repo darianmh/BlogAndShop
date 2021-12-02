@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.User;
@@ -95,6 +96,10 @@ namespace BlogAndShop.Data.ViewModel.User
         public virtual int AccessFailedCount { get; set; }
         public string Name { get; set; }
         public string Family { get; set; }
+        [Ignore]
+        public string CurrentPassword { get; set; }
+        [Ignore]
+        public string NewPassword { get; set; }
 
         //np
         public virtual List<PostModel> Posts { get; set; }

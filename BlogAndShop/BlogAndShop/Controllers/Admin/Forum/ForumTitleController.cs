@@ -11,7 +11,7 @@ using BlogAndShop.Classes;
 
 namespace BlogAndShop.Controllers.Admin.Forum
 {
-    [AdminFilterName("Forum", "ForumTitle")]
+    [AdminFilterName(AdminControllerNames.Forum, "ForumTitle")]
     public class ForumTitleController : BaseAdminController
     {
         #region Fields
