@@ -11,6 +11,7 @@ using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace BlogAndShop.Services.Classes
 {
@@ -121,7 +122,8 @@ namespace BlogAndShop.Services.Classes
             MethodInfo method = attr.NavigationProperty.GetMethod(nameof(BaseEntity.GetSelectListItem));
             List<SelectListItem> list = new List<SelectListItem>();
             if (attr.AllowNull) list.Add(new SelectListItem("انتخاب کنید", null));
-            list.AddRange(queryable.Select(x => (SelectListItem)method.Invoke(x, null)));
+            var value = property.GetValue(model);
+            list.AddRange(queryable.Select(x => (SelectListItem)method.Invoke(x, new object?[] { JsonConvert.SerializeObject(value) })));
             return list;
         }
 

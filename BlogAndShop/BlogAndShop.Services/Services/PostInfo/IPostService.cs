@@ -24,5 +24,12 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="count"></param>
         /// <returns></returns>
         Task<List<TopPostModel>> GetTopPosts(int count);
+        /// <summary>
+        /// مدل نهایی را برای نمایش بلاگ بر میگرداند
+        /// شامل تگ ها، کامنت ها و پست های مشابه
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        Task<PostModel> GetPostModel(int postId);
     }
 }

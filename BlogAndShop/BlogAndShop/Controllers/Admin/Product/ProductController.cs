@@ -17,6 +17,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         #region Fields
 
         private readonly IProductService _service;
+        private readonly IProductTagService _productTagService;
 
         #endregion
         #region Methods
@@ -32,6 +33,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = await _service.GetByIdAsync(id);
             var model = item.ToModel();
+            model.SelectedTags = await _productTagService.GetByProductId(id);
             return View(model);
         }
 
@@ -43,6 +45,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = await _service.GetByIdAsync(id);
             var model = item.ToModel();
+            model.SelectedTags = await _productTagService.GetByProductId(id);
             return View(model);
         }
 
@@ -74,9 +77,10 @@ namespace BlogAndShop.Controllers.Admin.Product
         #endregion
         #region Ctor
 
-        public ProductController(IProductService service) : base()
+        public ProductController(IProductService service, IProductTagService productTagService) : base()
         {
             _service = service;
+            _productTagService = productTagService;
         }
         #endregion
 

@@ -5,8 +5,8 @@
 	<div class="container">
 
 		<div class="row">
-			
-		@await Component.InvokeAsync("BlogSideBar")
+
+			@await Component.InvokeAsync("BlogSideBar")
 			<div class="col-lg-9 order-2 order-lg-1">
 
 				<div class="mb-4">
@@ -61,7 +61,7 @@
 					<div class="col-6">
 
 						<h4 class="fs--13 text-muted">
-							پست های مشابه
+							تگ ها
 						</h4>
 
 						@foreach (var tag in Model.Tags)
@@ -92,365 +92,187 @@
 				<!-- /Tags and share -->
 				<!-- Related Posts -->
 				<h3 class="h5 mt-5 mb-4">
-					Related Posts
+					پست های مشابه
 				</h3>
 
 				<div class="row">
+					@foreach (var item in Model.RelatedPosts)
+					{
 
-					<!-- post -->
-					<a href="blog-page-single-sidebar.html" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
+						<!-- post -->
+						<a target="_blank" asp-controller="Blog" asp-action="Item" asp-route-postId="@item.Id" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
 
-						<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden">
-							<img class="img-fluid rounded" src="~/lib/Smarty/demo.files/images/unsplash/portfolio/thumb_330/boxed-water-is-better-CYEgCGYm2JY-unsplash-min.jpg" alt="...">
-						</figure>
+							<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden">
+								<img class="img-fluid rounded" src="@item.BannerImage" alt="@item.Title">
+							</figure>
 
-						<p class="mt--20 fs--20 mb--6">
-							<span class="h6 text-dark d-block">
-								Let There Be Light: Retail Lighting Designs to Encourage Sales
-							</span>
+							<p class="mt--20 fs--20 mb--6">
+								<span class="h6 text-dark d-block">
+									@item.Title
+								</span>
 
-							<span class="d-block text-muted font-regular fs--14">
-								Post Date: <time datetime="2019-12-03">Dec 03, 2019</time>
-							</span>
-						</p>
+								<span class="d-block text-muted font-regular fs--14">
+									تاریخ: <time datetime="@item.UpdateDateTime.ToString("yyyy-MM-dd")">@item.UpdateDateTime.ToPeString()</time>
+								</span>
+							</p>
 
-					</a>
-					<!-- /post -->
-					<!-- post -->
-					<a href="blog-page-single-sidebar.html" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
+						</a>
+						<!-- /post -->
 
-						<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden">
-							<img class="img-fluid rounded" src="~/lib/Smarty/demo.files/images/unsplash/portfolio/thumb_330/boxed-water-is-better-D1KrCHVipIw-unsplash-min.jpg" alt="...">
-						</figure>
-
-						<p class="mt--20 fs--20 mb--6">
-							<span class="h6 text-dark d-block">
-								Let There Be Light: Retail Lighting Designs to Encourage Sales
-							</span>
-
-							<span class="d-block text-muted font-regular fs--14">
-								Post Date: <time datetime="2019-12-03">Dec 03, 2019</time>
-							</span>
-						</p>
-
-					</a>
-					<!-- /post -->
-					<!-- post -->
-					<a href="blog-page-single-sidebar.html" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
-
-						<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden">
-							<img class="img-fluid rounded" src="~/lib/Smarty/demo.files/images/unsplash/portfolio/thumb_330/boxed-water-is-better-na5pGXdsMOU-unsplash-min.jpg" alt="...">
-						</figure>
-
-						<p class="mt--20 fs--20 mb--6">
-							<span class="h6 text-dark d-block">
-								Let There Be Light: Retail Lighting Designs to Encourage Sales
-							</span>
-
-							<span class="d-block text-muted font-regular fs--14">
-								Post Date: <time datetime="2019-12-03">Dec 03, 2019</time>
-							</span>
-						</p>
-
-					</a>
-					<!-- /post -->
-
+					}
 				</div>
 				<!-- /Related Posts -->
 				<!-- COMMENTS -->
 				<div class="clearfix mt-5">
 					<h3 class="font-weight-light mb-4">
-						Comments
+						نظرات کاربران
 					</h3>
+					@if (!string.IsNullOrEmpty(Model.MessageText))
+					{
+						<h3 class="alert alert-success">
+							@Model.MessageText
+						</h3>
+					}
+					@if (User.Identity.IsAuthenticated)
+					{
+						<div id="replyAlert"></div>
+						<!-- Write Comment Form -->
+						<form novalidate method="post" asp-controller="Blog" asp-action="AddComment" class="bs-validate d-block bg-white shadow-primary-xs rounded p-3 mb-5">
+							<input type="hidden" name="ParentId" id="CommentParentId" />
+							<input type="hidden" name="PostId" value="@Model.Id" />
 
-					<!-- already logged in -->
-					<span class="d-block text-muted fs--12 mb-1">
-						Logged in as: <b>John Doe</b>.
-						Not you? Please <a rel="nofollow" href="#!">sign out</a>
-					</span>
+							<div class="clearfix mb-3">
 
-					<!-- Write Comment Form -->
-					<form novalidate method="post" action="#" class="bs-validate d-block bg-white shadow-primary-xs rounded p-3 mb-5">
-
-						<div class="row">
-
-							<div class="col-12 col-md-6">
-
-								<div class="form-label-group mb-3">
-									<input required placeholder="Name" id="comment_name" type="text" value="" class="form-control">
-									<label for="comment_name">Name</label>
+								<div class="form-label-group">
+									<textarea required rows="3" name="Text" id="comment_description"
+											  data-output-target=".js-form-advanced-char-left"
+											  class="form-control js-form-advanced-char-count-down"
+											  maxlength="3000" placeholder="متن نظر"></textarea>
+									<label for="comment_description">نظر شما</label>
 								</div>
 
-							</div>
-
-							<div class="col-12 col-md-6">
-
-								<div class="form-label-group mb-3">
-									<input required placeholder="Email" id="comment_email" type="email" value="" class="form-control">
-									<label for="comment_email">Email</label>
-								</div>
-
-							</div>
-
-						</div>
-
-
-						<div class="clearfix mb-3">
-
-							<div class="form-label-group">
-								<textarea required rows="3" id="comment_description"
-										  data-output-target=".js-form-advanced-char-left"
-										  class="form-control js-form-advanced-char-count-down"
-										  maxlength="3000" placeholder="Your comment"></textarea>
-								<label for="comment_description">Your comment</label>
-							</div>
-
-							<span class="fs--12 text-muted text-align-end float-end mt-1">
-								characters left: <span class="js-form-advanced-char-left">3000</span>
-							</span>
-
-						</div>
-
-
-						<!--
-							GDPR CONSENT
-							!only if user not logged in!
-						-->
-						<div class="clearfix bg-light position-relative rounded p-4 mb-4">
-
-							<span class="text-muted fs--12 d-block position-absolute bottom-0 end-0 m-2">
-								EU GDPR
-							</span>
-
-							<label class="form-checkbox form-checkbox-primary">
-								<input required type="checkbox" name="checkbox">
-								<i></i>
-								<span>
-									I consent that my data is being stored in
-									line with the guidelines set out in
-									<a href="page-terms-and-conditions.html" target="_blank">Privacy Policy</a>.
+								<span class="fs--12 text-muted text-align-end float-end mt-1">
+									کاراکترهای باقیمانده: <span class="js-form-advanced-char-left">3000</span>
 								</span>
-							</label>
 
+							</div>
+
+
+
+
+							<button type="submit" class="btn btn-primary btn-sm">
+								تایید نظر
+							</button>
+						</form>
+						<!-- /Write Comment Form -->
+					}
+					else
+					{
+						<div class="bs-validate d-block bg-white shadow-primary-xs rounded p-3 mb-5">
+							<p>برای نظر دادن وارد شوید.</p>
 						</div>
-						<!-- /GDPR CONSENT -->
-
-
-						<button type="submit" class="btn btn-primary btn-sm">
-							Submit Comment
-						</button>
-					</form>
-					<!-- /Write Comment Form -->
+					}
 					<!-- LIST COMMENTS -->
 					<h3 class="font-weight-light mb-4">
-						3 Comments
+						@Model.CommentsModel.Count نظر
 					</h3>
 
 
+					@foreach (var item in Model.CommentsModel)
+					{
 
-					<!-- Comment 1 + Reply -->
-					<div class="media mb-4">
+						<!-- Comment 1 + Reply -->
+						<div class="media mb-4">
 
-						<!-- avatar : as background -->
-						<div class="w--100 text-center">
-							<div class="w--70 h--70 mb-1 rounded-circle d-inline-block bg-light bg-cover" style="background-image: src="~/lib/Smarty/demo.files/images/unsplash/team/thumb_330/erik-mclean-06vpBIHmiYc-unsplash.jpg')"></div>
-							<span class="d-block text-dark">Felicia Doe</span>
-							<small class="d-block text-dark fs--12">3 weeks ago</small>
-						</div>
-
-						<div class="media-body">
-							<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-
-							<!-- options -->
-							<ul class="list-inline mt--20 mb--20">
-
-								<!-- like -->
-								<li class="list-inline-item">
-
-									<!--
-										NOTE: working ajax button! Check console for debug
-										No security implemented to block multiple votes
-										So on page refresh, should be handled by backend!
-									-->
-									<a href="#" class="btn-toggle btn btn-light py-1 px-2 fs--14"
-									   data-toggle-ajax-url-on="demo.files/php/demo.ajax_request.php?comment_id=1&amp;vote=1">
-
-										<span class="group-icon">
-											<i class="fi fi-like"></i>
-											<i class="fi fi-like text-primary"></i>
-										</span>
-
-										<span>like</span>
-									</a>
-
-								</li>
-								<!-- /like -->
-								<!-- reply -->
-								<li class="list-inline-item">
-
-									<!--
-
-										Replies are using an ajax modal!
-										Replace with wordpress style, if wordpress used!
-
-										This format can be used on custom blog CMS.
-
-									-->
-									<a href="#" class="js-ajax-modal btn btn-light py-1 px-2 fs--14"
-									   data-href="_ajax/modal_blog_comment_reply.html?comment_id=1#hash1"
-									   data-ajax-modal-size="modal-md"
-									   data-ajax-modal-centered="false"
-									   data-ajax-modal-backdrop="static">
-										<i class="fi fi-plus"></i>
-										<span>reply</span>
-									</a>
-
-								</li>
-								<!-- /reply -->
-
-							</ul>
-							<!-- /options -->
-							<!-- ... replies here ... -->
-							<!-- REPLY -->
-							<div class="media mb-4">
-
-								<!-- avatar : as background -->
-								<div class="w--100 text-center">
-									<div class="w--70 h--70 mb-1 rounded-circle d-inline-block bg-light bg-cover" style="background-image: src="~/lib/Smarty/demo.files/images/unsplash/team/thumb_330/michael-dam-mEZ3PoFGs_k-unsplash.jpg')"></div>
-									<span class="d-block text-dark">John Doe</span>
-									<small class="d-block text-dark fs--12">just now</small>
+							<!-- avatar : as background -->
+							<div class="w--100 text-center">
+								<div class="w--70 h--70 mb-1 rounded-circle d-inline-block bg-light bg-cover">
+									<i class="fi fi-user-male fs--40 d-block mt-1 text-gray-500"></i>
 								</div>
+								<span class="d-block text-dark">@item.OwnerName</span>
+								<small class="d-block text-dark fs--12">@item.DateTime.ToPeString()</small>
+							</div>
 
-								<div class="media-body">
-									<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+							<div class="media-body">
+								<p>@item.Text</p>
 
-									<ul class="list-inline mt--20 mb--20">
+								<!-- options -->
+								<ul class="list-inline mt--20 mb--20">
 
-										<!-- like -->
-										<li class="list-inline-item">
+									<!-- reply -->
+									<li class="list-inline-item">
 
-											<!--
-												NOTE: working ajax button! Check console for debug
-												No security implemented to block multiple votes
-												So on page refresh, should be handled by backend!
-											-->
-											<a href="#" class="btn-toggle btn btn-light py-1 px-2 fs--14"
-											   data-toggle-ajax-url-on="demo.files/php/demo.ajax_request.php?comment_id=1&amp;vote=1">
+										<a href="#" class="js-ajax-modal btn btn-light py-1 px-2 fs--14"
+										   onclick="ReplyPostComment('@item.Id','@item.OwnerName')">
+											<i class="fi fi-plus"></i>
+											<span>پاسخ</span>
+										</a>
 
-												<span class="group-icon">
-													<i class="fi fi-like"></i>
-													<i class="fi fi-like text-primary"></i>
-												</span>
+									</li>
+									<!-- /reply -->
 
-												<span>like</span>
-											</a>
+								</ul>
+								<!-- /options -->
+								<!-- ... replies here ... -->
+								<!-- REPLY -->
+								@foreach (var child in item.ChildrenComments)
+								{
 
-										</li>
-										<!-- /like -->
+									<div class="media mb-4">
 
-									</ul>
+										<!-- avatar : as background -->
+										<div class="w--100 text-center">
+											<div class="w--70 h--70 mb-1 rounded-circle d-inline-block bg-light bg-cover">
+												<i class="fi fi-user-male fs--40 d-block mt-1 text-gray-500"></i>
+											</div>
+											<span class="d-block text-dark">@child.OwnerName</span>
+											<small class="d-block text-dark fs--12">@child.DateTime.ToPeString()</small>
+										</div>
 
-								</div>
+										<div class="media-body">
+											<p>@child.Text</p>
+
+											<ul class="list-inline mt--20 mb--20">
+
+												<!-- reply -->
+												<li class="list-inline-item">
+
+													<!--
+
+													Replies are using an ajax modal!
+													Replace with wordpress style, if wordpress used!
+
+													This format can be used on custom blog CMS.
+
+													-->
+													<a href="#" class="js-ajax-modal btn btn-light py-1 px-2 fs--14"
+													   onclick="ReplyPostComment('@child.Id','@child.OwnerName')">
+														<i class="fi fi-plus"></i>
+														<span>پاسخ</span>
+													</a>
+
+												</li>
+												<!-- /reply -->
+
+											</ul>
+
+										</div>
+
+									</div>
+								}
+								<!-- /REPLY -->
 
 							</div>
-							<!-- /REPLY -->
 
 						</div>
-
-					</div>
-					<!-- /Comment 1 + Reply -->
-					<!-- Comment Anonymous : no avatar -->
-					<div class="media mb-4">
-
-						<!-- avatar : as background -->
-						<div class="w--100 text-center">
-							<div class="w--70 h--70 mb-1 rounded-circle d-inline-block bg-light bg-cover">
-								<i class="fi fi-user-male fs--40 d-block mt-1 text-gray-500"></i>
-							</div>
-							<span class="d-block text-dark">Peter Parker</span>
-							<small class="d-block text-dark fs--12">2 days ago</small>
-						</div>
-
-						<div class="media-body">
-							<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
-
-							<!-- options -->
-							<ul class="list-inline mt--20 mb--20">
-
-								<!-- like -->
-								<li class="list-inline-item">
-
-									<!--
-										NOTE: working ajax button! Check console for debug
-										No security implemented to block multiple votes
-										So on page refresh, should be handled by backend!
-									-->
-									<a href="#" class="btn-toggle btn btn-light py-1 px-2 fs--14"
-									   data-toggle-ajax-url-on="demo.files/php/demo.ajax_request.php?comment_id=1&amp;vote=1">
-
-										<span class="group-icon">
-											<i class="fi fi-like"></i>
-											<i class="fi fi-like text-primary"></i>
-										</span>
-
-										<span>like</span>
-									</a>
-
-								</li>
-								<!-- /like -->
-								<!-- reply -->
-								<li class="list-inline-item">
-
-									<!--
-
-										Replies are using an ajax modal!
-										Replace with wordpress style, if wordpress used!
-
-										This format can be used on custom blog CMS.
-
-									-->
-									<a href="#" class="js-ajax-modal btn btn-light py-1 px-2 fs--14"
-									   data-href="_ajax/modal_blog_comment_reply.html?comment_id=1#hash1"
-									   data-ajax-modal-size="modal-md"
-									   data-ajax-modal-centered="false"
-									   data-ajax-modal-backdrop="static">
-										<i class="fi fi-plus"></i>
-										<span>reply</span>
-									</a>
-
-								</li>
-								<!-- /reply -->
-
-							</ul>
-							<!-- /options -->
-							<!-- ... replies here ... -->
-
-						</div>
-
-					</div>
-					<!-- /Comment Anonymous : no avatar -->
+						<!-- /Comment 1 + Reply -->
+					}
 					<!-- /LIST COMMENTS -->
 
 
 
 				</div>
 				<!-- /COMMENTS -->
-				<!-- SUBSCRIBE -->
-				<form novalidate method="post" action="#" class="bs-validate d-block bg-white shadow-primary-xs px-4 py-5 mt--100 text-center rounded">
-					<div class="py-4 col-lg-8 ml-lg-auto mr-lg-auto">
-
-						<h3 class="mb-0">Subscribe</h3>
-						<p class="lead mb-5 text-muted">Get for free our tips, tricks &amp; news</p>
-
-						<input required placeholder="your email address..." name="subscriber_email" class="form-control text-center mb-2" type="email" value="">
-
-						<button type="submit" class="btn btn-primary btn-block">
-							Subscribe me!
-						</button>
-
-					</div>
-				</form>
-				<!-- /SUBSCRIBE -->
 
 
 			</div>

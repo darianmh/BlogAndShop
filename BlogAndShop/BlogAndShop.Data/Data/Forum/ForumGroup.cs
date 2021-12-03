@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
@@ -48,9 +49,9 @@ namespace BlogAndShop.Data.Data.Forum
 
 
 
-        public override SelectListItem GetSelectListItem()
+        public override SelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Title, Id.ToString());
+            return new SelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

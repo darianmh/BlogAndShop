@@ -23,7 +23,9 @@ namespace BlogAndShop.Services.Services.User.Identity
         public async Task<ApplicationUser> FindAsync(string name)
         {
             name = name.Trim();
+            int.TryParse(name, out var intName);
             return Context.Users.AsEnumerable().FirstOrDefault(x =>
+                (x.Id == intName) ||
                 (x.UserName != null && x.UserName.Equals(name, StringComparison.OrdinalIgnoreCase)) ||
                 (x.Email != null && x.Email.Equals(name, StringComparison.OrdinalIgnoreCase)) ||
                 (x.PhoneNumber != null && x.PhoneNumber.Equals(name, StringComparison.OrdinalIgnoreCase)));

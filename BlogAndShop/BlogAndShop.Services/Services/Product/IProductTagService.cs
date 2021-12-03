@@ -10,5 +10,6 @@ namespace BlogAndShop.Services.Services.Product
 {
     public interface IProductTagService : IMainService<ProductTag>
     {
+        Task<List<int>> GetByProductId(int id);
     }
 }

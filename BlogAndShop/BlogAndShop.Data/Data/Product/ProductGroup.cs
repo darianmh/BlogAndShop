@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
@@ -52,9 +53,9 @@ namespace BlogAndShop.Data.Data.Product
         public virtual ProductGroup ParentProductGroup { get; set; }
 
 
-        public override SelectListItem GetSelectListItem()
+        public override SelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Title, Id.ToString());
+            return new SelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +16,19 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="categoryId">group id</param>
         /// <returns></returns>
         Task<List<int>> GetPostsWithGroup(int categoryId);
+
+        /// <summary>
+        /// یافتن گروه های پست
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        Task<List<Post_PostGroup>> GetPostGroups(int postId);
+
+        /// <summary>
+        /// دریافت پست ها بر اساس گروه ها
+        /// </summary>
+        /// <param name="groups"></param>
+        /// <returns></returns>
+        Task<List<Post_PostGroup>> GetPostsWithGroups(List<int> groups);
     }
 }

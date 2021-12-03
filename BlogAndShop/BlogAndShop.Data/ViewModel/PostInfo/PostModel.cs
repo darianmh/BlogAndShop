@@ -91,5 +91,12 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         //extra
         [Ignore]
         public List<TagModel> Tags { get; set; }
+        [Ignore]
+        public List<PostModel> RelatedPosts { get; set; }
+
+        [Ignore]
+        public List<CommentModel> CommentsModel { get; set; }
+        [Ignore]
+        public string MessageText { get; set; }
     }
 }

@@ -14,9 +14,9 @@ namespace BlogAndShop.Data.Data.Common
         public DateTime UpdateDateTime { get; set; }
 
 
-        public virtual SelectListItem GetSelectListItem()
+        public virtual SelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Id.ToString(), Id.ToString());
+            return new SelectListItem(Id.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
         }
     }
     public class BaseEntity : BaseEntity<int>

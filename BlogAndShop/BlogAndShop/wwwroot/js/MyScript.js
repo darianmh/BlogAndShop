@@ -73,3 +73,15 @@ function setAddressEditRecord(City, Street, SecondaryStreet, Alley, Number, Deta
   $('input[name="Id"]').val(Id);
   $("#exampleModalMd").modal('show');
 }
+
+//post comment
+function ReplyPostComment(commentId, name) {
+  $("#CommentParentId").val(commentId);
+  var alertText =
+    '<div class="alert alert-info" role="alert"><button onclick="CancelReplyPostComment()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fi fi-close" aria-hidden="true"></span></button>پاسخ به: ' + name + '</div>';
+  $("#replyAlert").html(alertText);
+}
+function CancelReplyPostComment() {
+  $("#replyAlert").html('');
+  $("#CommentParentId").val('');
+}

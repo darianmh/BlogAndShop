@@ -21,6 +21,16 @@ namespace BlogAndShop.Services.Services.PostInfo
             return await Queryable.Where(x => x.GroupId == categoryId).Select(x => x.PostId).ToListAsync();
         }
 
+        public async Task<List<Post_PostGroup>> GetPostGroups(int postId)
+        {
+            return await Queryable.Where(x => x.PostId == postId).ToListAsync();
+        }
+
+        public async Task<List<Post_PostGroup>> GetPostsWithGroups(List<int> groups)
+        {
+            return await Queryable.Where(x => groups.Contains(x.GroupId)).ToListAsync();
+        }
+
         #endregion
         #region Utilities
 
