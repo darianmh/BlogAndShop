@@ -16,12 +16,4 @@ namespace BlogAndShop.Services.Services.Common.SenderServices
         /// <returns></returns>
         Task<bool> Send(ApplicationUser user, string text);
     }
-
-    public class SendService : ISendService
-    {
-        public async Task<bool> Send(ApplicationUser user, string text)
-        {
-            return true;
-        }
-    }
 }

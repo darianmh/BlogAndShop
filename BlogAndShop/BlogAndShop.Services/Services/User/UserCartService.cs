@@ -58,13 +58,25 @@ namespace BlogAndShop.Services.Services.User
         /// <returns></returns>
         private UserCartModel GetPricingInfo(UserCartModel model)
         {
-            var total = model.CartItems.Sum(x => x.Quantity * x.Product.Price);
-            var off = model.CartItems.Sum(x => x.Quantity * x.Product.OffPrice) ?? 0;
-            var toPay = total - off;
+            var total = model.CartItems.Sum(x => x.TotalPrice);
+            var off = model.CartItems.Sum(x => x.OffPriceTotal);
             model.OffPrice = off;
-            model.ToPayPrice = toPay;
-            model.TotalPrice = total;
+            model.ToPayPrice = total;
+            model.TotalPrice = total + off;
             return model;
+        }
+        /// <summary>
+        /// محاسبه قیمت هر آیتم در سبد خرید
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private CartItemModel GetPricingInfo(CartItemModel tempModel)
+        {
+            tempModel.OffPriceTotal =
+                tempModel.Product.OffPrice == null ? 0
+                : ((decimal)tempModel.Product.OffPrice) * tempModel.Quantity;
+            tempModel.TotalPrice = (tempModel.Quantity * tempModel.Product.Price) - tempModel.OffPriceTotal;
+            return tempModel;
         }
 
         private async Task<List<CartItemModel>> GetCardItemsProduct(List<CartItem> cartItems)
@@ -77,11 +89,13 @@ namespace BlogAndShop.Services.Services.User
                 var productModel = product.ToModel();
                 var tempModel = cartItem.ToModel();
                 tempModel.Product = productModel;
+                tempModel = GetPricingInfo(tempModel);
                 result.Add(tempModel);
             }
 
             return result;
         }
+
 
         private async Task<UserCart> Create(int userId)
         {

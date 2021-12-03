@@ -84,7 +84,7 @@ else
 
 									<div class="col-4 col-sm-4 col-md-2 col-lg-2 text-center">
 
-										<img class="img-fluid max-h-80" src="demo.files/images/unsplash/products/thumb_330/hardik-sharma-CrPAvN29Nhs-unsplash-min.jpg" alt="...">
+										<img class="img-fluid max-h-80" src="@item.Product.BannerImage" alt="...">
 
 									</div>
 
@@ -95,39 +95,34 @@ else
 											<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 
 												<div class="clearfix my-2 d-block">
-													<a class="fs--18 text-dark font-weight-medium" href="#!">
-														Product title here
+													<a target="_blank" class="fs--18 text-dark font-weight-medium" asp-controller="Shop" asp-action="Item" asp-route-productId="@item.ProductId">
+														@item.Product.Title
 													</a>
 
 													<span class="d-block text-muted fs--12">
-														Unit Price:
-														$158.95
+														قیمت:
+														@item.Product.Price ريال
 													</span>
 
 													<ul class="list-inline">
 														<li class="list-inline-item">
 															<a class="js-ajax-confirm fs--13" href="#"
-															   data-href="#?action=delete&amp;item_id=1"
+															   data-href="/UserPayment/RemoveCartItem?productId=@item.ProductId"
 															   data-ajax-confirm-mode="regular"
 															   data-ajax-confirm-size="modal-md"
 															   data-ajax-confirm-centered="true"
-															   data-ajax-confirm-title="Please Confirm"
-															   data-ajax-confirm-body="Delete this item from your cart?"
+															   data-ajax-confirm-title="تایید کنید"
+															   data-ajax-confirm-body="آیا از حذف این محصول مطمئن هستید؟"
 															   data-ajax-confirm-btn-yes-class="btn-sm btn-danger"
-															   data-ajax-confirm-btn-yes-text="Yes, Delete"
+															   data-ajax-confirm-btn-yes-text="بله, حذف شود"
 															   data-ajax-confirm-btn-yes-icon="fi fi-check"
 															   data-ajax-confirm-btn-no-class="btn-sm btn-light"
-															   data-ajax-confirm-btn-no-text="Cancel"
+															   data-ajax-confirm-btn-no-text="لغو"
 															   data-ajax-confirm-btn-no-icon="fi fi-close">
-																Delete
+																حذف
 															</a>
 														</li>
 
-														<li class="list-inline-item">
-															<a class="fs--13" href="#!">
-																Save for later
-															</a>
-														</li>
 													</ul>
 
 												</div>
@@ -135,48 +130,76 @@ else
 											</div>
 
 
-											<div class="col-6 col-sm-6 col-md-3 col-lg-3 text-center">
+											<div class="col-6 col-sm-6 col-md-3 col-lg-3 text-align-end">
 
-												<div class="position-relative">
-													<span class="js-form-advanced-limit-info badge badge-warning hide animate-bouncein position-absolute absolute-top start-0 m-1">
-														please, order between 1 and 99.
+												@if (item.Product.OffPrice != null)
+												{
+													var price = item.Product.Price - (decimal)item.Product.OffPrice;
+
+
+													<p class="fs--13 text-weight-muted mb-0">
+														<del>@item.Product.Price.ToString("N0") ريال</del>
+													</p>
+
+													<p class="fs--16 font-weight-medium mb-0">
+														@price.ToString("N0") ريال
+													</p>
+												}
+												else
+												{
+													<p class="fs--16 font-weight-medium mb-0">
+														@item.Product.Price.ToString("N0") ريال
+													</p>
+
+												}
+
+												@if (item.Product.OffPrice != null)
+												{
+													<span class="text-success d-block fs--12 mb-2">
+														سود شما:<br>
+														@{ var off = ((decimal)item.Product.OffPrice).ToString("N0"); }
+														@off ريال
 													</span>
-
-													<input type="number" name="qty[5][]" class="cart-qty form-control form-control-sm text-center js-form-advanced-limit" min="0" max="99" value="1">
-												</div>
-
-												<span class="d-block text-muted fs--11 mt-1">
-													99 in stock
-												</span>
-
+												}
 											</div>
-
 
 											<div class="col-6 col-sm-6 col-md-3 col-lg-3 text-align-end">
 
-												<p class="fs--13 text-weight-muted mb-0">
-													<del>$189.95</del>
-												</p>
 
 												<p class="fs--16 font-weight-medium mb-0">
-													$158.95
+													تعداد:
+													@item.Quantity
+												</p>
+												@{
+												}
+												<p class="fs--16 font-weight-medium mb-0">
+													@item.TotalPrice.ToString("N0") ريال
 												</p>
 
-												<span class="text-success d-block fs--12 mb-2">
-													You save:<br>
-													$31.00
-												</span>
+												@if (item.Product.OffPrice != null)
+												{
+													<span class="text-success d-block fs--12 mb-2">
+														سود شما:<br>
+														@item.OffPriceTotal.ToString("N0") ريال
+													</span>
+												}
 
 											</div>
 
+
 										</div>
+
 
 									</div>
 
+
 								</div>
+
 								<!-- /PRODUCT -->
 
+
 							</div>
+
 							<!-- /ITEM -->
 						}
 
@@ -218,38 +241,32 @@ else
 									<div class="clearfix">
 										جمع کل:
 										<span class="float-end font-weight-medium">
-											@Model.TotalPrice <span>ريال</span>
+											@Model.TotalPrice.ToString("N0") <span>ريال</span>
 										</span>
 									</div>
 
 									<div class="clearfix">
 										تخفیف:
 										<span class="float-end">
-											@Model.OffPrice <span>ريال</span>
+											@Model.OffPrice.ToString("N0") <span>ريال</span>
 										</span>
 									</div>
 
 
-									<div class="clearfix">
-										حمل و نقل:
-										<span class="float-end text-align-end">
-											<a href="#!" class="fs--14">calculate</a>
-										</span>
-									</div>
 								</div>
 
 
 								<div class="clearfix mb-3">
 									<h4 class="float-start fs--20">مبلغ قابل پرداخت:</h4>
 									<h4 class="float-end fs--20 ">
-										@Model.ToPayPrice <span>ريال</span>
+										@Model.ToPayPrice.ToString("N0") <span>ريال</span>
 									</h4>
 								</div>
 
 
 								<div class="border-bottom pb-3 mb-2">
 
-									<a href="shop-page-checkout.html" class="btn btn-primary btn-block fs--14">
+									<a asp-controller="UserPayment" asp-action="ConfirmOrder" class="btn btn-primary btn-block fs--14">
 										<span>نهایی کردن سفارش</span>
 										<i class="fi fi-arrow-end fs--12"></i>
 									</a>

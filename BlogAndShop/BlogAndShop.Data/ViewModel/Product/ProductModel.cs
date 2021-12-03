@@ -106,6 +106,8 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Display(Name = "تگ ها")]
         public List<int> SelectedTags { get; set; }
 
+
+
         //np
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }

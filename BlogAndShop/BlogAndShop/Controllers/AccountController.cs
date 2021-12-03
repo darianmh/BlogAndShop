@@ -7,6 +7,7 @@ using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.User;
 using BlogAndShop.Services.Services.Common.SenderServices;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.PaymentInfo;
 using BlogAndShop.Services.Services.User;
 using BlogAndShop.Services.Services.User.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -23,6 +24,7 @@ namespace BlogAndShop.Controllers
         private readonly ISendService _sendService;
         private readonly IUserTokenService _userTokenService;
         private readonly IAddressService _addressService;
+        private readonly IPaymentService _paymentService;
 
         #endregion
         #region Methods
@@ -197,9 +199,13 @@ namespace BlogAndShop.Controllers
             return RedirectToAction("Profile");
         }
         [Authorize]
-        public IActionResult Orders()
+        public async Task<IActionResult> Orders()
         {
-            return View();
+            if (User.Identity == null) return NotFound();
+            var user = await _applicationUserManager.FindAsync(User.Identity.Name);
+            if (user == null) return NotFound();
+            var orders = await _paymentService.GetUserPaymentsModel(user.Id);
+            return View(orders);
         }
         [Authorize]
         public async Task<IActionResult> Profile()
@@ -238,13 +244,14 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Ctor
 
-        public AccountController(ApplicationUserManager applicationUserManager, ApplicationSigninManager applicationSigninManager, ISendService sendService, IUserTokenService userTokenService, IAddressService addressService)
+        public AccountController(ApplicationUserManager applicationUserManager, ApplicationSigninManager applicationSigninManager, ISendService sendService, IUserTokenService userTokenService, IAddressService addressService, IPaymentService paymentService)
         {
             _applicationUserManager = applicationUserManager;
             _applicationSigninManager = applicationSigninManager;
             _sendService = sendService;
             _userTokenService = userTokenService;
             _addressService = addressService;
+            _paymentService = paymentService;
         }
 
         #endregion

@@ -45,5 +45,11 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         public virtual UserCartModel UserCart { get; set; }
         [Ignore]
         public virtual ProductModel Product { get; set; }
+
+
+        //extra entity
+        [Ignore]
+        public decimal TotalPrice { get; set; }
+        public decimal OffPriceTotal { get; set; }
     }
 }

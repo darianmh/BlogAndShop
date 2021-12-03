@@ -29,5 +29,13 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="product"></param>
         /// <returns></returns>
         ProductMiniModel GetProductMiniModel(Data.Data.Product.Product product);
+
+        /// <summary>
+        /// ساخت مدل کوچک از محصول
+        /// با استفاده از آی دی محصول
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        Task<ProductModel> GetProductModel(int modelProductId);
     }
 }

@@ -210,8 +210,8 @@
 
 
 				<!-- Form -->
-				<form novalidate class="bs-validate" method="get" action="#" data-error-scroll-up="true">
-
+				<form novalidate class="bs-validate" method="get" asp-controller="UserPayment" asp-action="AddCartItem" data-error-scroll-up="true">
+					<input type="hidden" name="productId" value="@Model.ProductModel.Id" />
 					<!-- ADD TO CART -->
 					<div class="d-flex ml-0 mr-0 mt-2">
 
@@ -225,7 +225,7 @@
 						</div>
 
 						<div class="pl-2 pr-2 w-100">
-							<button class="btn btn-danger bg-gradient-danger text-white px-4 b-0 btn-block">
+							<button type="submit" class="btn btn-danger bg-gradient-danger text-white px-4 b-0 btn-block">
 								<span class="px-4 p-0-xs">
 									<i>
 										<svg width="22px" height="22px" x="0px" y="0px" viewBox="0 10 459.529 500.529">
@@ -240,12 +240,12 @@
 								</span>
 
 								<!-- free shipping : optional : good for conversions -->
-								<span class="d-block pt-2 pb-1">
+								<!--<span class="d-block pt-2 pb-1">
 									<span class="hr"></span>
 									<span class="font-light fs--13 opacity-7 d-block mt-2">
 										ارسال رایگان
 									</span>
-								</span>
+								</span>-->
 								<!-- /free shipping : optional : good for conversions -->
 
 							</button>
