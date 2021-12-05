@@ -1,4 +1,12 @@
 ﻿@model BlogAndShop.Data.ViewModel.PostInfo.BlogListViewModel
+
+@{
+	ViewBag.metaDescription = Model.Description;
+	ViewBag.metaTitle = Model.Title;
+	ViewBag.metaKeywords = Model.Keywords;
+}
+
+
 <!-- start :: blog content -->
 <section>
 	<div class="container">

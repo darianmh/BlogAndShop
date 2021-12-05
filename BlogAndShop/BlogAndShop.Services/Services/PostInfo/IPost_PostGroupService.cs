@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.PostInfo;
+using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Services.Services.Main;
 
 namespace BlogAndShop.Services.Services.PostInfo
@@ -30,5 +31,18 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="groups"></param>
         /// <returns></returns>
         Task<List<Post_PostGroup>> GetPostsWithGroups(List<int> groups);
+
+        /// <summary>
+        /// یافتن گروه های پست و بازگرداندن مدل
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        Task<List<Post_PostGroupModel>> GetPostGroupsModel(int postId);
+
+        /// <summary>
+        /// حذف گروه های قبلی و ذخیره گروه های جدید
+        /// </summary>
+        /// <returns></returns>
+        Task SetPostGroups(int postId, List<int> selectedGroups);
     }
 }

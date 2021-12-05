@@ -1,4 +1,10 @@
 ﻿@model BlogAndShop.Data.ViewModel.Product.ProductItemViewModel
+@{
+	ViewBag.metaDescription = Model.ProductModel.MetaDescription;
+	ViewBag.metaTitle = Model.ProductModel.Title;
+	ViewBag.metaKeywords = Model.ProductModel.Keywords;
+}
+
 <!-- PRODUCT -->
 <section class="pt-5">
 	<div class="container">

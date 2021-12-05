@@ -1,5 +1,12 @@
 ﻿@using BlogAndShop.Services.Classes.Date
 @model BlogAndShop.Data.ViewModel.PostInfo.PostModel
+@{
+	ViewBag.metaDescription = Model.Description;
+	ViewBag.metaTitle = Model.Title;
+	ViewBag.metaKeywords = Model.Keywords;
+}
+
+
 <!-- start :: blog content -->
 <section>
 	<div class="container">

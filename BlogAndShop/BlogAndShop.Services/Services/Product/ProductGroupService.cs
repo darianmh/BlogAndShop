@@ -17,6 +17,7 @@ namespace BlogAndShop.Services.Services.Product
         #region Fields
 
         private readonly IProductService _productService;
+        private readonly IBrandService _brandService;
 
         #endregion
         #region Methods
@@ -47,13 +48,19 @@ namespace BlogAndShop.Services.Services.Product
         {
             var currentGroup = await GetCurrentGroup(categoryId);
             var products = await _productService.GetProductByGroup(categoryId, brandId, count, page, this);
-            return new ProductListViewModel()
+            var brand = brandId == null ? null : await _brandService.GetByIdAsync((int)brandId);
+            var result = new ProductListViewModel()
             {
                 CurrentGroup = currentGroup,
                 Products = products.List.Select(x => _productService.GetProductMiniModel(x)).ToList(),
-                ListPaginationModel = new ListPaginationModel(products.TotalCount > page * count, hasPre: page > 1, page: page, count: products.List.Count, pagesCount: ((products.TotalCount - 1) / count) + 1)
+                ListPaginationModel = new ListPaginationModel(products.TotalCount > page * count, hasPre: page > 1, page: page, count: products.List.Count, pagesCount: ((products.TotalCount - 1) / count) + 1),
+                Brand = brand?.ToModel()
             };
+            result.Keywords = GetKeywords(result.CurrentGroup, result.Products);
+            result.HeaderText = GetHeaderGroupName(result);
+            return result;
         }
+
 
         public async Task<List<ProductMiniModel>> GetSuggestedProduct(int productId, int groupId, int count = 4)
         {
@@ -110,6 +117,30 @@ namespace BlogAndShop.Services.Services.Product
         #endregion
         #region Utilities
 
+        /// <summary>
+        /// بازگرداندن نام سربرگ محصولات
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private string GetHeaderGroupName(ProductListViewModel result)
+        {
+            var text = result.CurrentGroup?.Title;
+            if (!string.IsNullOrEmpty(text)) text = text + " - ";
+            text = text + result.Brand?.Name;
+            return text ?? "همه محصولات";
+        }
+
+
+        /// <summary>
+        /// تولید کلمات کلیدی با استفاده از ترکیب کلمات گروه و محصولات
+        /// </summary>
+        /// <returns></returns>
+        private string GetKeywords(ProductGroupModel currentGroup, List<ProductMiniModel> products)
+        {
+            var allKeywords = currentGroup?.Keywords + "," + string.Join(',', products.Select(x => x.Keywords));
+            var keywordsList = allKeywords.Split(',').GroupBy(x => x).Select(x => x).ToList();
+            return string.Join(",", keywordsList);
+        }
         private async Task<IEnumerable<ProductMiniModel>> GetGroupProducts(int productId, int count, int? suggestedGroup)
         {
             var productsWithGroup = await _productService.GetProductByGroup(suggestedGroup, brandId: null, count: count, page: 1, this);
@@ -312,9 +343,10 @@ namespace BlogAndShop.Services.Services.Product
 
         #endregion
         #region Ctor
-        public ProductGroupService(ApplicationDbContext db, IProductService productService) : base(db)
+        public ProductGroupService(ApplicationDbContext db, IProductService productService, IBrandService brandService) : base(db)
         {
             _productService = productService;
+            _brandService = brandService;
         }
         #endregion
 

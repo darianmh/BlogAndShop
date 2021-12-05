@@ -16,14 +16,44 @@ namespace BlogAndShop.Services.Services.Product
         #endregion
         #region Methods
 
+        public async Task<List<ProductTag>> GetProductTags(int id)
+        {
+            return await Queryable.Where(x => x.ProductId == id).ToListAsync();
+        }
 
         public async Task<List<int>> GetByProductId(int id)
         {
-            return await Queryable.Where(x => x.ProductId == id).Select(x => x.TagId).ToListAsync();
+            var tags = await GetProductTags(id);
+            return tags.Select(x => x.TagId).ToList();
         }
+
+        public async Task SetProductTag(int modelId, List<int> selectedTags)
+        {
+
+            var tags = await GetProductTags(modelId);
+            await DeleteAsync(tags);
+            if (selectedTags == null) return;
+            await CreateTags(modelId, selectedTags);
+        }
+
         #endregion
         #region Utilities
+        private async Task CreateTags(int productId, List<int> selectedTags)
+        {
+            selectedTags = selectedTags.GroupBy(x => x).Select(x => x.First()).ToList();
+            var tags = new List<ProductTag>();
+            foreach (var selectedTag in selectedTags)
+            {
+                var temp = new ProductTag()
+                {
+                    ProductId = productId,
+                    TagId = selectedTag
+                };
+                tags.Add(temp);
+            }
 
+            await InsertAsync(tags);
+        }
 
         #endregion
         #region Ctor

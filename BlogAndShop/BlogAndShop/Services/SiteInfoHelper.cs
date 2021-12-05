@@ -33,6 +33,16 @@ namespace BlogAndShop.Services
             if (userManager == null) return "";
             return await userManager.GetUSerDisplayNameAsync(user);
         }
+        public static async Task<string> GetSiteIcon(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.SiteIcon;
+        }
+        public static async Task<string> GetSiteIcon512(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.SiteIcon512;
+        }
         public static async Task<string> GetSiteLogo(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
@@ -42,6 +52,11 @@ namespace BlogAndShop.Services
         {
             var model = await GetSiteInfo(helper);
             return model.Title;
+        }
+        public static async Task<string> GetSiteKeywords(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.Keywords;
         }
         public static async Task<string> GetSiteDescription(this IHtmlHelper helper)
         {

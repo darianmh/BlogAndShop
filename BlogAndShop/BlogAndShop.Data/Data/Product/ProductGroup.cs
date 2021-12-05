@@ -43,6 +43,12 @@ namespace BlogAndShop.Data.Data.Product
         [AdminShowItem(4)]
         public string ImageUrl { get; set; }
 
+        /// <summary>
+        /// کلمات کلیدی
+        /// </summary>
+        [Display(Name = "کلمات کلیدی")]
+        [AdminShowItem(5)]
+        public string Keywords { get; set; }
 
         //np
         [JsonIgnore]

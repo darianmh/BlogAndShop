@@ -1,5 +1,6 @@
 
 
+using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
@@ -17,6 +18,8 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         #region Fields
 
         private readonly IPostService _service;
+        private readonly IPost_TagsService _postTagsService;
+        private readonly IPost_PostGroupService _postPostGroupService;
 
         #endregion
         #region Methods
@@ -32,6 +35,10 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         {
             var item = await _service.GetByIdAsync(id);
             var model = item.ToModel();
+            model.Post_Tags = await _postTagsService.GetPostTagsModel(id);
+            model.SelectedTags = model.Post_Tags.Select(x => x.TagId).ToList();
+            model.Post_PostGroups = await _postPostGroupService.GetPostGroupsModel(id);
+            model.SelectedGroups = model.Post_PostGroups.Select(x => x.GroupId).ToList();
             return View(model);
         }
 
@@ -43,21 +50,31 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         {
             var item = await _service.GetByIdAsync(id);
             var model = item.ToModel();
+            model.Post_Tags = await _postTagsService.GetPostTagsModel(id);
+            model.SelectedTags = model.Post_Tags.Select(x => x.TagId).ToList();
+            model.Post_PostGroups = await _postPostGroupService.GetPostGroupsModel(id);
+            model.SelectedGroups = model.Post_PostGroups.Select(x => x.GroupId).ToList();
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(PostModel model)
         {
+            if (!ModelState.IsValid) return View(model);
             var item = model.ToEntity();
             await _service.InsertAsync(item);
+            await _postTagsService.SetPostTags(model.Id, model.SelectedTags);
+            await _postPostGroupService.SetPostGroups(model.Id, model.SelectedGroups);
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
         public async Task<IActionResult> Edit(PostModel model)
         {
+            if (!ModelState.IsValid) return View(model);
             var item = model.ToEntity();
             await _service.UpdateAsync(item);
+            await _postTagsService.SetPostTags(model.Id, model.SelectedTags);
+            await _postPostGroupService.SetPostGroups(model.Id, model.SelectedGroups);
             return RedirectToAction("Details", new { id = model.Id });
         }
 
@@ -73,9 +90,11 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         #endregion
         #region Ctor
 
-        public PostController(IPostService service) : base()
+        public PostController(IPostService service, IPost_TagsService postTagsService, IPost_PostGroupService postPostGroupService) : base()
         {
             _service = service;
+            _postTagsService = postTagsService;
+            _postPostGroupService = postPostGroupService;
         }
         #endregion
 

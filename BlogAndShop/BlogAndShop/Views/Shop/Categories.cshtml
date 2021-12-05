@@ -1,4 +1,12 @@
 ﻿@model BlogAndShop.Data.ViewModel.Product.ProductCategoryViewModel
+
+@{
+	ViewBag.metaDescription = Model.CurrentGroup?.Description;
+	ViewBag.metaTitle = Model.CurrentGroup?.Title;
+	ViewBag.metaKeywords = Model.CurrentGroup?.Keywords;
+}
+
+
 <!-- PAGE TITLE -->
 <section class="bg-light p-0">
 	<div class="container py-5">

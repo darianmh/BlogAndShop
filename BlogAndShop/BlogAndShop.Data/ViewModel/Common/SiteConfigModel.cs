@@ -58,5 +58,23 @@ namespace BlogAndShop.Data.ViewModel.Common
         [Display(Name = "درباه ما")]
         [HtmlEdit]
         public string AboutUs { get; set; }
+        /// <summary>
+        /// کلمات کلیدی
+        /// </summary>
+        [Display(Name = "کلمات کلیدی")]
+        [TextArea]
+        public string Keywords { get; set; }
+        /// <summary>
+        /// آیکون اصلی سایت
+        /// </summary>
+        [FileUpload]
+        [Display(Name = "آیکون اصلی")]
+        public string SiteIcon { get; set; }
+        /// <summary>
+        /// آیکون اپلی سایت
+        /// </summary>
+        [FileUpload]
+        [Display(Name = "آیکون اپلی 512")]
+        public string SiteIcon512 { get; set; }
     }
 }

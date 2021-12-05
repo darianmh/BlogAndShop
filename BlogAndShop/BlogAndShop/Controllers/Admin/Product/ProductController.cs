@@ -55,6 +55,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             model.AuthorId = GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
+            await _productTagService.SetProductTag(model.Id, model.SelectedTags);
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -62,6 +63,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = model.ToEntity();
             await _service.UpdateAsync(item);
+            await _productTagService.SetProductTag(model.Id, model.SelectedTags);
             return RedirectToAction("Details", new { id = model.Id });
         }
 

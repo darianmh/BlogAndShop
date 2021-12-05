@@ -56,5 +56,17 @@ namespace BlogAndShop.Data.Data.Common
         [Display(Name = "درباه ما")]
         [HtmlEdit]
         public string AboutUs { get; set; }
+        /// <summary>
+        /// کلمات کلیدی
+        /// </summary>
+        public string Keywords { get; set; }
+        /// <summary>
+        /// آیکون اصلی سایت
+        /// </summary>
+        public string SiteIcon { get; set; }
+        /// <summary>
+        /// آیکون اپلی سایت
+        /// </summary>
+        public string SiteIcon512 { get; set; }
     }
 }

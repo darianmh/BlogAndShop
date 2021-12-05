@@ -97,6 +97,7 @@ namespace BlogAndShop.Data.Data.Product
         [Display(Name = "تخفیف")]
         public decimal? OffPrice { get; set; }
         public bool IsPublished { get; set; }
+        public string Keywords { get; set; }
 
 
         //np
@@ -116,6 +117,7 @@ namespace BlogAndShop.Data.Data.Product
         public virtual List<ProductTag> ProductTags { get; set; }
         [JsonIgnore]
         public virtual List<PaymentItem> PaymentItems { get; set; }
+
 
         public override SelectListItem GetSelectListItem(string selected)
         {

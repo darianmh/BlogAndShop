@@ -32,6 +32,12 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [Display(Name = "سرگروه")]
         [DbOptionList(typeof(PostGroup), true)]
         public int? ParentId { get; set; }
+        /// <summary>
+        /// کلمات کلیدی
+        /// </summary>
+        [TextArea]
+        [Display(Name = "کلمات کلیدی")]
+        public string Keywords { get; set; }
 
         //np
         [Ignore]

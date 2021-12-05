@@ -30,15 +30,34 @@ namespace BlogAndShop.Services.Services.PostInfo
         public async Task<BlogListViewModel> GetPostModel(int? categoryId, int page, int count)
         {
             var posts = await _postService.GetPostsByGroup(categoryId, page, count);
-            return new BlogListViewModel()
+            var group = categoryId == null ? null : await GetByIdAsync((int)categoryId);
+            var result = new BlogListViewModel()
             {
                 ListPaginationModel = new ListPaginationModel(posts.TotalCount > page * count, hasPre: page > 1, page: page, count: posts.List.Count, pagesCount: ((posts.TotalCount - 1) / count) + 1),
-                Posts = posts.List.Select(x => x.ToModel()).ToList()
+                Posts = posts.List.Select(x => x.ToModel()).ToList(),
+                PostGroup = group?.ToModel()
             };
+            result = GetMetaTagsInfo(result, categoryId);
+            return result;
         }
 
         #endregion
         #region Utilities
+
+        /// <summary>
+        /// بازگرداندن اطلاعات متا برای سئو
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        private BlogListViewModel GetMetaTagsInfo(BlogListViewModel result, int? categoryId)
+        {
+            result.Title = result.PostGroup?.Title;
+            result.Description = result.PostGroup?.Description;
+            result.Keywords = result.PostGroup?.Keywords;
+            return result;
+        }
+
 
         /// <summary>
         /// تبدیل لیست دیتابیس به مدل هدر

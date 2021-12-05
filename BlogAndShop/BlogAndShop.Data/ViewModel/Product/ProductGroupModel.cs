@@ -37,9 +37,14 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// تصویر
         /// </summary>
         [Display(Name = "تصویر")]
-        [Ignore]
+        [FileUpload]
         public string ImageUrl { get; set; }
-
+        /// <summary>
+        /// کلمات کلیدی
+        /// </summary>
+        [Display(Name = "کلمات کلیدی")]
+        [FileUpload]
+        public string Keywords { get; set; }
 
         //np
         [Ignore]

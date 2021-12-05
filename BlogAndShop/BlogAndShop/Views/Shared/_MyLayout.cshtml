@@ -1,9 +1,29 @@
-﻿
+﻿@using BlogAndShop.Services
+@using Microsoft.AspNetCore.Http.Extensions
+
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
-	<title>Smarty V3</title>
-	<meta name="description" content="...">
+	@{
+		var metaDescription = ViewBag.metaDescription ?? await Html.GetSiteDescription();
+		var metaKeywords = ViewBag.metaKeywords ?? await Html.GetSiteKeywords();
+		var metaTitle = await Html.GetSiteName() + " - " + ViewBag.metaTitle;
+	}
+
+	@*  meta tags *@
+	<title>@metaTitle</title>
+	<meta name="description" content="@metaDescription">
+	<meta property="og:title" content="@metaTitle" />
+	<meta property="og:description" content="@metaDescription" />
+	<meta property="og:image" content="@await Html.GetSiteLogo()" />
+	<meta property="og:url" content="@Context.Request.GetDisplayUrl()" />
+	<meta name="keywords" content="@metaKeywords">
+
+
+	<!-- favicon -->
+	<link rel="shortcut icon" href="@await Html.GetSiteLogo()">
+	<link rel="apple-touch-icon" href="@await Html.GetSiteLogo()">
+
 
 	<meta name="viewport" content="width=device-width, maximum-scale=5, initial-scale=1, user-scalable=0">
 	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
@@ -20,9 +40,6 @@
 	<link rel="stylesheet" href="~/lib/Smarty/assets/css/vendor_bundle.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
 
-	<!-- favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="apple-touch-icon" href="~/lib/Smarty/demo.files/logo/icon_512x512.png">
 
 	<link rel="manifest" href="~/lib/Smarty/assets/images/manifest/manifest.json">
 	<meta name="theme-color" content="#377dff">

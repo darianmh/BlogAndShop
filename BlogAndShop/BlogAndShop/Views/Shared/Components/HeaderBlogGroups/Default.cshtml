@@ -17,20 +17,27 @@
 			<li class="dropdown-item"><a asp-controller="Blog" asp-action="Index" class="dropdown-link">بلاگ</a></li>
 			@foreach (var cat in Model)
 			{
-				<li class="dropdown-item dropdown">
-					<a asp-controller="Blog" asp-route-group="@cat.Id" class="dropdown-link" data-toggle="dropdown">@cat.Name</a>
-					@if (cat.SubGroups.Any())
-					{
+				@if (cat.SubGroups != null && cat.SubGroups.Any())
+				{
+					<li class="dropdown-item dropdown">
+						<a asp-controller="Blog" asp-action="Index" asp-route-categoryId="@cat.Id" class="dropdown-link" data-toggle="dropdown">@cat.Name</a>
 						<ul class="dropdown-menu dropdown-menu-hover dropdown-menu-block-md shadow-lg b-0 m-0">
+							<li class="dropdown-item"><a asp-controller="Blog" asp-action="Index" asp-route-categoryId="@cat.Id" class="dropdown-link">@cat.Name</a></li>
 							@foreach (var sub in cat.SubGroups)
 							{
-								<li class="dropdown-item"><a asp-controller="Blog" asp-route-group="@sub.Id" class="dropdown-link">@sub.Name</a></li>
+								<li class="dropdown-item"><a asp-controller="Blog" asp-action="Index" asp-route-categoryId="@sub.Id" class="dropdown-link">@sub.Name</a></li>
 							}
 						</ul>
-					}
-				</li>
+					</li>
+				}
+				else
+				{
+
+					<li class="dropdown-item">
+						<a asp-controller="Blog" asp-action="Index" asp-route-categoryId="@cat.Id" class="dropdown-link">@cat.Name</a>
+					</li>
+				}
 			}
-			<li class="dropdown-item"><a asp-controller="Blog" asp-action="Item" class="dropdown-link">Help Center 1</a></li>
 		</ul>
 	</div>
 

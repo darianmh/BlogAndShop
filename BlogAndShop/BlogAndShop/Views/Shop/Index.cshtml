@@ -1,17 +1,24 @@
 ﻿@model BlogAndShop.Data.ViewModel.Product.ProductListViewModel
+
+@{
+	ViewBag.metaDescription = Model.CurrentGroup?.Description;
+	ViewBag.metaTitle = Model.HeaderText;
+	ViewBag.metaKeywords = Model.Keywords;
+}
+
+
 <!-- PAGE TITLE -->
 <section class="bg-light p-0">
 	<div class="container py-5">
 
 		<h1 class="h3">
-			@{ string headerText = Model.CurrentGroup?.Title ?? "همه محصولات";}
-			@headerText
+			@Model.HeaderText
 		</h1>
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb fs--14">
 				<li class="breadcrumb-item"><a asp-controller="Home">خانه</a></li>
-				<li class="breadcrumb-item active" aria-current="page">@headerText</li>
+				<li class="breadcrumb-item active" aria-current="page">@Model.HeaderText</li>
 			</ol>
 		</nav>
 

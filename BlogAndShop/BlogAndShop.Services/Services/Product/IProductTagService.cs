@@ -10,6 +10,8 @@ namespace BlogAndShop.Services.Services.Product
 {
     public interface IProductTagService : IMainService<ProductTag>
     {
+        Task<List<ProductTag>> GetProductTags(int id);
         Task<List<int>> GetByProductId(int id);
+        Task SetProductTag(int modelId, List<int> modelSelectedTags);
     }
 }

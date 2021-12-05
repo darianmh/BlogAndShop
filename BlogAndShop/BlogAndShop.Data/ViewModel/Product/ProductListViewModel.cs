@@ -9,7 +9,10 @@ namespace BlogAndShop.Data.ViewModel.Product
     public class ProductListViewModel
     {
         public ProductGroupModel CurrentGroup { get; set; }
+        public BrandModel Brand { get; set; }
         public List<ProductMiniModel> Products { get; set; }
         public ListPaginationModel ListPaginationModel { get; set; }
+        public string Keywords { get; set; }
+        public string HeaderText { get; set; }
     }
 }

@@ -269,6 +269,14 @@ namespace BlogAndShop.Services.Services.Main
             return false;
         }
 
+        public async Task DeleteAsync(List<T> entity)
+        {
+            foreach (var item in entity)
+            {
+                await DeleteAsync(item);
+            }
+        }
+
         #endregion
 
         #region Utilities

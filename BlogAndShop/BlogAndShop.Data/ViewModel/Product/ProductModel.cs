@@ -48,7 +48,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// Banner Image
         /// </summary>
         [Display(Name = "تصویر")]
-        [Ignore]
+        [FileUpload]
         public string BannerImage { get; set; }
 
         /// <summary>
@@ -98,6 +98,9 @@ namespace BlogAndShop.Data.ViewModel.Product
         public decimal? OffPrice { get; set; }
         [Display(Name = "منتشر شده")]
         public bool IsPublished { get; set; }
+        [Display(Name = "کلمات کلیدی")]
+        [TextArea]
+        public string Keywords { get; set; }
 
 
 

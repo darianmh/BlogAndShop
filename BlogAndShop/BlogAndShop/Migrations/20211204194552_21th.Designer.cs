@@ -4,14 +4,16 @@ using BlogAndShop.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogAndShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211204194552_21th")]
+    partial class _21th
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,9 +73,6 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LogoFile")
                         .HasColumnType("nvarchar(max)");
 
@@ -82,12 +81,6 @@ namespace BlogAndShop.Migrations
 
                     b.Property<int>("SelectIndex")
                         .HasColumnType("int");
-
-                    b.Property<string>("SiteIcon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SiteIcon512")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -535,9 +528,6 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
@@ -644,9 +634,6 @@ namespace BlogAndShop.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -737,9 +724,6 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Keywords")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ParentId")

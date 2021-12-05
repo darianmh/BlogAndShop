@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PostInfo;
+using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Services.Services.Main;
+using BlogAndShop.Services.Services.Mapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo
@@ -22,9 +24,40 @@ namespace BlogAndShop.Services.Services.PostInfo
             return await Queryable.Where(x => x.PostId == postId).ToListAsync();
         }
 
+        public async Task<List<Post_TagsModel>> GetPostTagsModel(int postId)
+        {
+            var tags = await GetPostTags(postId);
+            return tags.Select(x => x.ToModel()).ToList();
+        }
+
+        public async Task SetPostTags(int postId, List<int> selectedTags)
+        {
+            var tags = await GetPostTags(postId);
+            await DeleteAsync(tags);
+            if (selectedTags == null) return;
+            await CreateTags(postId, selectedTags);
+        }
+
+
         #endregion
         #region Utilities
 
+        private async Task CreateTags(int postId, List<int> selectedTags)
+        {
+            selectedTags = selectedTags.GroupBy(x => x).Select(x => x.First()).ToList();
+            var tags = new List<Post_Tags>();
+            foreach (var selectedTag in selectedTags)
+            {
+                var temp = new Post_Tags()
+                {
+                    PostId = postId,
+                    TagId = selectedTag
+                };
+                tags.Add(temp);
+            }
+
+            await InsertAsync(tags);
+        }
 
         #endregion
         #region Ctor

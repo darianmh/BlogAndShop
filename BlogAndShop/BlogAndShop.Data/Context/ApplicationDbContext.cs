@@ -44,8 +44,7 @@ namespace BlogAndShop.Data.Context
             //post group
             modelBuilder.Entity<Post_PostGroup>(entity =>
             {
-                entity.HasKey(x => x.GroupId);
-                entity.HasKey(x => x.PostId);
+                entity.HasKey(x => new { x.GroupId, x.PostId });
                 entity.HasOne(x => x.PostGroup)
                     .WithMany(x => x.Post_PostGroups)
                     .HasForeignKey(x => x.GroupId);
@@ -56,8 +55,7 @@ namespace BlogAndShop.Data.Context
             //post tag
             modelBuilder.Entity<Post_Tags>(entity =>
             {
-                entity.HasKey(x => x.TagId);
-                entity.HasKey(x => x.PostId);
+                entity.HasKey(x => new { x.TagId, x.PostId });
                 entity.HasOne(x => x.Post)
                     .WithMany(x => x.Post_Tags)
                     .HasForeignKey(x => x.PostId);
@@ -68,8 +66,7 @@ namespace BlogAndShop.Data.Context
             //product media
             modelBuilder.Entity<ProductMedia>(entity =>
             {
-                entity.HasKey(x => x.ProductId);
-                entity.HasKey(x => x.MediaId);
+                entity.HasKey(x => new { x.ProductId, x.MediaId });
                 entity.HasOne(x => x.Media)
                     .WithMany(x => x.ProductMedias)
                     .HasForeignKey(x => x.MediaId);
@@ -80,8 +77,7 @@ namespace BlogAndShop.Data.Context
             //product tag
             modelBuilder.Entity<ProductTag>(entity =>
             {
-                entity.HasKey(x => x.ProductId);
-                entity.HasKey(x => x.TagId);
+                entity.HasKey(x => new { x.ProductId, x.TagId });
                 entity.HasOne(x => x.Tag)
                     .WithMany(x => x.ProductTags)
                     .HasForeignKey(x => x.TagId);

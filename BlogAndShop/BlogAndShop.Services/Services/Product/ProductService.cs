@@ -42,7 +42,8 @@ namespace BlogAndShop.Services.Services.Product
                 Id = product.Id,
                 BannerImage = product.BannerImage,
                 OffPrice = product.OffPrice,
-                Price = product.Price
+                Price = product.Price,
+                Keywords = product.Keywords
             };
         }
 
