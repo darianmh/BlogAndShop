@@ -1090,9 +1090,11 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.runtimeconfig.json
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.pdb
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Authorization.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Metadata.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
@@ -1108,9 +1110,13 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyModel.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Identity.Core.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Identity.Stores.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Options.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.Primitives.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
@@ -1135,6 +1141,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Runtime.Caching.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Runtime.CompilerServices.Unsafe.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\cs\Microsoft.CodeAnalysis.resources.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\de\Microsoft.CodeAnalysis.resources.dll

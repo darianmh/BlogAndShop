@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace BlogAndShop.Services
+namespace BlogAndShop.Services.Services.Utilities
 {
     public static class AssemblyHelper
     {

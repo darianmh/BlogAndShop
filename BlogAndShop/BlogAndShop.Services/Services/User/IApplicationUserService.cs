@@ -8,7 +8,7 @@ using BlogAndShop.Services.Services.Main;
 
 namespace BlogAndShop.Services.Services.User
 {
-    public interface IApplicationUserService
+    public interface IApplicationUserService : IMainService<ApplicationUser>
     {
     }
 }

@@ -1,5 +1,4 @@
-﻿using BlogAndShop.Classes;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin
 {

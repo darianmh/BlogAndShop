@@ -8,7 +8,8 @@ using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PostInfo;
 using Microsoft.AspNetCore.Mvc;
-using BlogAndShop.Classes;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Services.Classes;
 
 namespace BlogAndShop.Controllers.Admin.PostInfo
 {

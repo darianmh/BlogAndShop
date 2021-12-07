@@ -26,7 +26,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Mi
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.JSInterop.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.WebUtilities.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Routing.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.Net.Http.Headers.dll
@@ -35,7 +34,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Mi
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Http.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.Policy.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\System.IO.Pipelines.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.Extensions.ObjectPool.dll
@@ -61,7 +59,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Mi
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.DataProtection.Abstractions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.JSInterop.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.WebUtilities.xml
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Routing.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.Net.Http.Headers.xml
@@ -70,7 +67,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Mi
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Http.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Abstractions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Hosting.Abstractions.xml
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.Policy.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\System.IO.Pipelines.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.Extensions.ObjectPool.xml

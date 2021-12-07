@@ -13,7 +13,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Micr
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Authentication.Core.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Authentication.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Authentication.OAuth.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Authorization.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Authorization.Policy.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Components.Authorization.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Components.dll
@@ -46,7 +45,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Micr
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Identity.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Localization.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Localization.Routing.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Metadata.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Mvc.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Mvc.ApiExplorer.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.AspNetCore.Mvc.Core.dll
@@ -96,7 +94,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Micr
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Configuration.UserSecrets.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Configuration.Xml.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -109,7 +106,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Micr
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Http.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Localization.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Logging.Configuration.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Logging.Console.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Logging.Debug.dll
@@ -120,8 +116,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Micr
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.ObjectPool.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Options.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.Primitives.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Extensions.WebEncoders.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.JSInterop.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Microsoft.Net.Http.Headers.dll
@@ -220,7 +214,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\Syst
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Resources.Reader.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Resources.ResourceManager.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Resources.Writer.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Runtime.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\refs\System.Runtime.Extensions.dll
@@ -559,3 +552,10 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Vie
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Shared\_Login.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Shared\_ProductHeaderGroupSet.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\UserPayment\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.AspNetCore.Authorization.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.AspNetCore.Metadata.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.Extensions.Options.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.Extensions.Primitives.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\System.Runtime.CompilerServices.Unsafe.dll

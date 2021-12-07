@@ -121,7 +121,7 @@ namespace BlogAndShop.Services.Classes
             if (queryable == null) return null;
             MethodInfo method = attr.NavigationProperty.GetMethod(nameof(BaseEntity.GetSelectListItem));
             List<SelectListItem> list = new List<SelectListItem>();
-            if (attr.AllowNull) list.Add(new SelectListItem("انتخاب کنید", null));
+            if (attr.AllowNull && !attr.Multiple) list.Add(new SelectListItem("انتخاب کنید", null));
             var value = property.GetValue(model);
             list.AddRange(queryable.Select(x => (SelectListItem)method.Invoke(x, new object?[] { JsonConvert.SerializeObject(value) })));
             return list;

@@ -255,7 +255,7 @@ namespace BlogAndShop.Services.Services.Main
         public async Task<DbModelInfo<T>> GetAllInfoAsync(int page, int count)
         {
             page = page - 1;
-            var all = await Pagination(Queryable, page, count);
+            var all = await Pagination(Queryable.AsNoTracking(), page, count);
             return new DbModelInfo<T>
             {
                 List = all ?? new List<T>(),
@@ -271,6 +271,13 @@ namespace BlogAndShop.Services.Services.Main
         public async Task<bool> CheckIdAsync(TId id)
         {
             return await Queryable.AnyAsync(x => x.Id.Equals(id));
+        }
+        public async Task DeleteAsync(List<T> entity)
+        {
+            foreach (var item in entity)
+            {
+                await DeleteAsync(item);
+            }
         }
 
         #endregion

@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using BlogAndShop.Classes;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Common;

@@ -7,7 +7,8 @@ using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Forum;
 using Microsoft.AspNetCore.Mvc;
-using BlogAndShop.Classes;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Services.Classes;
 
 namespace BlogAndShop.Controllers.Admin.Forum
 {

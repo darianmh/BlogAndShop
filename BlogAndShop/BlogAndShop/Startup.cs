@@ -14,6 +14,7 @@ using BlogAndShop.Data.Data.User;
 using BlogAndShop.Services;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.User.Identity;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +34,8 @@ namespace BlogAndShop
         {
             services.AddControllersWithViews();
             //add db
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BlogAndShop")));
+            services.AddDbContext<ApplicationDbContext>(opt =>
+                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BlogAndShop")));
 
             //add services
             services.AddServices();

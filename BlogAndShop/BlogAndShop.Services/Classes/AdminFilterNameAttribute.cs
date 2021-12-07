@@ -1,16 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Services.Services.User.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace BlogAndShop.Classes
+namespace BlogAndShop.Services.Classes
 {
     public class AdminFilterNameAttribute : AuthorizeAttribute, IAsyncAuthorizationFilter
     {
         public string Name { get; }
         public string Group { get; }
+        public string AccessName => $"{Name} - {Group}";
         public AdminFilterNameAttribute(AdminControllerNames group, string name)
         {
             Name = name;
@@ -19,9 +21,11 @@ namespace BlogAndShop.Classes
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
+            var userManager = (ApplicationUserManager)context.HttpContext.RequestServices.GetService(typeof(ApplicationUserManager));
+            if (userManager == null) return;
             var user = context.HttpContext.User;
 
-            if (user.Identity != null && !user.Identity.IsAuthenticated)
+            if (user.Identity == null || !user.Identity.IsAuthenticated)
             {
                 var url = new
                 {
@@ -31,11 +35,17 @@ namespace BlogAndShop.Classes
                 return;
             }
 
-            // you can also use registered services
-            //var someService = context.HttpContext.RequestServices.GetService<iuseo>();
-
-
-            //context.Result = new StatusCodeResult((int)System.Net.HttpStatusCode.Forbidden);
+            var hasAccess =
+                await userManager.UserHasAccess(user.Identity.Name, AccessName);
+            if (!hasAccess)
+            {
+                var url = new
+                {
+                    ReturnUrl = $"{context.HttpContext.Request.GetDisplayUrl()}"
+                };
+                context.Result = new RedirectToActionResult("Login", "Account", url);
+                return;
+            }
             return;
         }
     }

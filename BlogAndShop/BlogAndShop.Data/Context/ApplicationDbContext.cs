@@ -91,7 +91,7 @@ namespace BlogAndShop.Data.Context
                 .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
 
             foreach (var fk in cascadeFKs)
-                fk.DeleteBehavior = DeleteBehavior.Restrict;
+                fk.DeleteBehavior = DeleteBehavior.Cascade;
         }
 
         public virtual DbSet<Post_PostGroup> Post_PostGroup { get; set; }

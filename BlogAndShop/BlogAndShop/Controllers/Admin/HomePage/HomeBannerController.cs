@@ -1,9 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
-using BlogAndShop.Classes;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.HomePage;
+using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.HomePage;
 using BlogAndShop.Services.Services.Mapper;

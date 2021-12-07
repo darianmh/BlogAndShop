@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using BlogAndShop.Classes;
 using BlogAndShop.Controllers.Admin;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Model;
+using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.User.Identity;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Services
 {
@@ -21,10 +24,14 @@ namespace BlogAndShop.Services
         /// یافتن کنترلر های ادمین
         /// تنظیم نام آها و لینک آنها
         /// </summary>
+        /// <param name="applicationUserManager"></param>
+        /// <param name="identityName"></param>
         /// <returns></returns>
-        public static List<AdminPanelLinkGroup> GetLinks()
+        public static async Task<List<AdminPanelLinkGroup>> GetLinks(ApplicationUserManager applicationUserManager,
+            string identityName)
         {
-            var groupedLinks = GetControllerGroups(AssemblyHelper.AdminControllers);
+            if (string.IsNullOrEmpty(identityName)) return new List<AdminPanelLinkGroup>();
+            var groupedLinks = await GetControllerGroups(AssemblyHelper.AdminControllers, applicationUserManager, identityName);
             var links = GetLinksGroupModel(groupedLinks);
             return links;
         }
@@ -64,13 +71,16 @@ namespace BlogAndShop.Services
             }).ToList();
         }
 
-        private static List<AdminPanelLinkTemp> GetControllerGroups(List<Type> allControllers)
+        private static async Task<List<AdminPanelLinkTemp>> GetControllerGroups(List<Type> allControllers,
+            ApplicationUserManager applicationUserManager, string identityName)
         {
             var result = new List<AdminPanelLinkTemp>();
             foreach (var controller in allControllers)
             {
                 var attr = (AdminFilterNameAttribute)controller.GetCustomAttribute(typeof(AdminFilterNameAttribute));
                 if (attr == null) continue;
+                var hasAccess = await applicationUserManager.UserHasAccess(identityName, attr.AccessName);
+                if (!hasAccess) continue;
                 var url = controller.Name.Replace("Controller", String.Empty);
                 var model = new AdminPanelLinkTemp { Group = attr.Group, Name = attr.Name, LinkUrl = url };
                 result.Add(model);

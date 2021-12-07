@@ -59,6 +59,7 @@ namespace BlogAndShop.Services.Services.Main
         Task<DbModelInfo<T>> GetAllInfoAsync(int page, int count);
         Task<IQueryable<T>> RunAsync(Expression<Func<T, bool>> query);
         Task<bool> CheckIdAsync(TId id);
+        Task DeleteAsync(List<T> entity);
     }
 
     public interface IBaseDbServices

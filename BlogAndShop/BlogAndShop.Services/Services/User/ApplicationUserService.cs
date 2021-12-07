@@ -4,7 +4,7 @@ using BlogAndShop.Services.Services.Main;
 
 namespace BlogAndShop.Services.Services.User
 {
-    public class ApplicationUserService : IApplicationUserService
+    public class ApplicationUserService : MainServiceNonBaseEntity<ApplicationUser>, IApplicationUserService
     {
         #region Fields
 
@@ -19,7 +19,7 @@ namespace BlogAndShop.Services.Services.User
 
         #endregion
         #region Ctor
-        public ApplicationUserService(ApplicationDbContext db)
+        public ApplicationUserService(ApplicationDbContext db) : base(db)
         {
         }
         #endregion

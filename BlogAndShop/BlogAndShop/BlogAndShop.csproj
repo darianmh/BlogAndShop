@@ -171,4 +171,8 @@
     <ProjectReference Include="..\BlogAndShop.Services\BlogAndShop.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+
 </Project>

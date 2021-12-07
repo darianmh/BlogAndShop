@@ -7,7 +7,8 @@ using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Common;
 using Microsoft.AspNetCore.Mvc;
-using BlogAndShop.Classes;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Services.Classes;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {

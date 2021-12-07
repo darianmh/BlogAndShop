@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using BlogAndShop.Classes;
+using BlogAndShop.Data.Classes;
+using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace BlogAndShop.Services
