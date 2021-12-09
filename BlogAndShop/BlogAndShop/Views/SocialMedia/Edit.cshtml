@@ -22,7 +22,7 @@
 				<div class="container py-6">
 
 					<form method="post">
-						@Html.AdminInfoForm(typeof(BlogAndShop.Data.ViewModel.Common.SocialMediaModel), Model)
+						@await Component.InvokeAsync("EditCreateTemplate", new { Model, Html.ViewContext.HttpContext })
 						<div class="mt--10">
 							<button class="btn btn-primary" type="submit">تایید</button>
 							<a asp-action="Index" class="btn btn-dark">لیست</a>

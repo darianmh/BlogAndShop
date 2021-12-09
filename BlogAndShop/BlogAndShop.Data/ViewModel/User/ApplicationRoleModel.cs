@@ -19,6 +19,7 @@ namespace BlogAndShop.Data.ViewModel.User
         /// Gets or sets the name for this role.
         /// </summary>
         [Display(Name = "نام")]
+        [AdminShowItem(1)]
         public virtual string Name { get; set; }
 
         /// <summary>

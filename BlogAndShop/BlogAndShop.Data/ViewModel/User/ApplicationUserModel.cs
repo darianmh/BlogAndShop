@@ -11,6 +11,7 @@ using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.User
 {
@@ -30,6 +31,7 @@ namespace BlogAndShop.Data.ViewModel.User
         /// Gets or sets the email address for this user.
         /// </summary>
         [ProtectedPersonalData]
+        [AdminShowItem(2)]
         public virtual string Email { get; set; }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace BlogAndShop.Data.ViewModel.User
         /// Gets or sets a telephone number for the user.
         /// </summary>
         [ProtectedPersonalData]
+        [AdminShowItem(3)]
         public virtual string PhoneNumber { get; set; }
 
         /// <summary>
@@ -102,12 +105,15 @@ namespace BlogAndShop.Data.ViewModel.User
         /// </summary>
         [Hidden]
         public virtual int AccessFailedCount { get; set; }
+        [AdminShowItem(1)]
         public string Name { get; set; }
         public string Family { get; set; }
         [Ignore]
         public string CurrentPassword { get; set; }
         [Ignore]
         public string NewPassword { get; set; }
+
+        public bool IsSuperAdmin { get; set; }
 
 
         //extra entity
@@ -118,6 +124,9 @@ namespace BlogAndShop.Data.ViewModel.User
         //np
         [Ignore]
         public virtual List<PostModel> Posts { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<ProductCallRequestModel> ProductCallRequests { get; set; }
         [Ignore]
         public virtual List<TagModel> Tags { get; set; }
         [Ignore]

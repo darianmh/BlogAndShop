@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BlogAndShop.Services;
 using BlogAndShop.Services.Services.User.Identity;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.ViewComponents
@@ -17,7 +18,7 @@ namespace BlogAndShop.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var adminLinks = await AdminPanelService.GetLinks(_applicationUserManager, User.Identity?.Name);
+            var adminLinks = await AdminPanelService.GetLinks(_applicationUserManager, User.Identity?.Name, Request.GetEncodedPathAndQuery());
             return View(adminLinks);
         }
 

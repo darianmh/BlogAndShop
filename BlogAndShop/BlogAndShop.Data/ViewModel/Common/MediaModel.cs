@@ -16,6 +16,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// عنوان
         /// </summary>
         [Display(Name = "عنوان")]
+        [AdminShowItem(1)]
         public string Title { get; set; }
 
         /// <summary>
@@ -37,6 +38,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// </summary>
         [Display(Name = "پسوند")]
         [Hidden]
+        [AdminShowItem(2)]
         public string Extension { get; set; }
         [Ignore]
         [Display(Name = "فایل")]

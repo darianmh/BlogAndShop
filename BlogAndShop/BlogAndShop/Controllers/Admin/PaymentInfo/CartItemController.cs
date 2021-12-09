@@ -9,10 +9,11 @@ using BlogAndShop.Services.Services.PaymentInfo;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.PaymentInfo
 {
-    [AdminFilterName(AdminControllerNames.PaymentInfo,"CartItem")]
+    [AdminFilterName(AdminControllerNames.PaymentInfo, "CartItem")]
     public class CartItemController : BaseAdminController
     {
         #region Fields
@@ -25,7 +26,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<CartItem>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<CartItemModel, CartItem>(all, page, count);
             return View(model);
         }
 
@@ -35,7 +36,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
             var model = item.ToModel();
             return View(model);
         }
-        
+
         public IActionResult Create()
         {
             return View(new CartItemModel());
@@ -74,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
         #endregion
         #region Ctor
 
-        public CartItemController(ICartItemService service) : base()
+        public CartItemController(ICartItemService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

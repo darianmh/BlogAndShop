@@ -10,6 +10,7 @@ using BlogAndShop.Services.Services.Common;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 using BlogAndShop.Services.Services.Utilities.File;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -31,7 +32,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<Media>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<MediaModel, Media>(all, page, count);
             return View(model);
         }
 
@@ -101,7 +102,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         #endregion
         #region Ctor
 
-        public MediaController(IMediaService service, IFileHelperService fileHelperService, IHostEnvironment hostEnvironment) : base()
+        public MediaController(IMediaService service, IFileHelperService fileHelperService, IHostEnvironment hostEnvironment, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
             _fileHelperService = fileHelperService;

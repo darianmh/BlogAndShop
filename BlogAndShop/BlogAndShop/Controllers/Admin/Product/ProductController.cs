@@ -9,6 +9,7 @@ using BlogAndShop.Services.Services.Product;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
@@ -26,7 +27,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<Data.Data.Product.Product>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<ProductModel,Data.Data.Product.Product>(all, page, count);
             return View(model);
         }
 
@@ -80,7 +81,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         #endregion
         #region Ctor
 
-        public ProductController(IProductService service, IProductTagService productTagService) : base()
+        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
             _productTagService = productTagService;

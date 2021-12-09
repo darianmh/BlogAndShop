@@ -21,7 +21,7 @@
 			<div class="portlet-body">
 				<div class="container py-6">
 					<form>
-						@Html.AdminDetails(typeof(BlogAndShop.Data.ViewModel.HomePage.HomeBannerModel), Model)
+						@await Component.InvokeAsync("DetailsTemplate", new { Model, Html.ViewContext.HttpContext })
 						<div class="mt--10">
 							<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a>
 							<a asp-action="Index" class="btn btn-dark">لیست</a>

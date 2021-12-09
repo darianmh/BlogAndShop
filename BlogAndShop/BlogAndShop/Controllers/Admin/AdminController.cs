@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin
 {
@@ -14,6 +15,10 @@ namespace BlogAndShop.Controllers.Admin
         public IActionResult Index()
         {
             return View();
+        }
+
+        public AdminController(IAdminModelHelper adminModelHelper) : base(adminModelHelper)
+        {
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.User.Identity;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.User
 {
@@ -29,7 +30,7 @@ namespace BlogAndShop.Controllers.Admin.User
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<ApplicationRole>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<ApplicationRoleModel, ApplicationRole>(all, page, count);
             return View(model);
         }
 
@@ -98,7 +99,7 @@ namespace BlogAndShop.Controllers.Admin.User
         #endregion
         #region Ctor
 
-        public ApplicationRoleController(IApplicationRoleService service, ApplicationRoleManager applicationRoleManager, ApplicationUserManager applicationUserManager, IRoleAccessService roleAccessService) : base()
+        public ApplicationRoleController(IApplicationRoleService service, ApplicationRoleManager applicationRoleManager, ApplicationUserManager applicationUserManager, IRoleAccessService roleAccessService, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
             _applicationRoleManager = applicationRoleManager;

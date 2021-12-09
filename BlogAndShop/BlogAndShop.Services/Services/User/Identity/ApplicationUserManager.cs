@@ -102,7 +102,8 @@ namespace BlogAndShop.Services.Services.User.Identity
         public async Task<bool> UserHasAccess(string user, string accessName)
         {
             var userModel = await FindAsync(user);
-            if (user == null) return false;
+            if (userModel == null) return false;
+            if (userModel.IsSuperAdmin) return true;
             var roles = await GetRolesAsync(userModel);
             var rolesModel = await _applicationRoleService.GetRolesByNames(roles.ToList());
             var allAccesses = await _roleAccessService.GetAllAccessesByRoles(rolesModel);

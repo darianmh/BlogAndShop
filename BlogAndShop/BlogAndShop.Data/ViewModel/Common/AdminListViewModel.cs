@@ -14,6 +14,11 @@ namespace BlogAndShop.Data.ViewModel.Common
             Items = items;
         }
 
+        public AdminListViewModel()
+        {
+            Items = new List<T>();
+        }
+
         public List<T> Items { get; set; }
         public ListPaginationModel AdminListPaginationModel { get; set; }
 

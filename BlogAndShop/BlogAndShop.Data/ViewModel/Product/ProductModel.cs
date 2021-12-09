@@ -8,6 +8,7 @@ using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.User;
+using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.Product
 {
@@ -21,6 +22,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(1)]
         public string Title { get; set; }
 
         /// <summary>
@@ -56,6 +58,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "تعداد")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(2)]
         public int Quantity { get; set; }
         /// <summary>
         /// برند
@@ -70,6 +73,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "قیمت")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(3)]
         public decimal Price { get; set; }
 
         /// <summary>
@@ -95,6 +99,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "تخفیف")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(4)]
         public decimal? OffPrice { get; set; }
         [Display(Name = "منتشر شده")]
         public bool IsPublished { get; set; }
@@ -114,6 +119,9 @@ namespace BlogAndShop.Data.ViewModel.Product
         //np
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<ProductCallRequestModel> ProductCallRequests { get; set; }
         [Ignore]
         public virtual ProductGroupModel ProductGroup { get; set; }
         [Ignore]

@@ -124,8 +124,8 @@
 							Logo : height: 60px max
 							visibility : mobile only
 						-->
-						<a class="navbar-brand d-inline-block d-lg-none" href="index.html">
-							<img src="~/lib/Smarty/assets/images/logo/logo_dark.svg" width="110" height="60" alt="...">
+						<a class="navbar-brand d-inline-block d-lg-none" asp-controller="Home" asp-action="Index">
+							<img src="@await Html.GetSiteLogo()" width="110" height="60" alt="...">
 						</a>
 
 
@@ -153,8 +153,8 @@
 								Optional Mobile Menu Logo
 								Logo : height: 70px max
 							-->
-							<a class="navbar-brand px-4" href="index.html">
-								<img src="~/lib/Smarty/assets/images/logo/logo_dark.svg" width="110" height="70" alt="...">
+							<a class="navbar-brand px-4" asp-controller="Home" asp-action="Index">
+								<img src="@await Html.GetSiteLogo()" width="110" height="70" alt="...">
 							</a>
 
 						</div>

@@ -83,6 +83,9 @@ namespace BlogAndShop.Migrations
                     b.Property<int>("SelectIndex")
                         .HasColumnType("int");
 
+                    b.Property<int>("ShoppingModel")
+                        .HasColumnType("int");
+
                     b.Property<string>("SiteIcon")
                         .HasColumnType("nvarchar(max)");
 
@@ -175,6 +178,9 @@ namespace BlogAndShop.Migrations
 
                     b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("MessageStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -495,6 +501,9 @@ namespace BlogAndShop.Migrations
                     b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("MessageStatus")
+                        .HasColumnType("int");
+
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
@@ -683,6 +692,46 @@ namespace BlogAndShop.Migrations
                     b.ToTable("Product");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductCallRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MessageStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductCallRequest");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductComment", b =>
                 {
                     b.Property<int>("Id")
@@ -695,6 +744,9 @@ namespace BlogAndShop.Migrations
 
                     b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("MessageStatus")
+                        .HasColumnType("int");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
@@ -882,6 +934,9 @@ namespace BlogAndShop.Migrations
 
                     b.Property<string>("Family")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsSuperAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -1139,7 +1194,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Tags")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1150,7 +1205,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.Forum.ForumTitle", "ForumTitle")
                         .WithMany("ForumComments")
                         .HasForeignKey("ForumId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
@@ -1167,13 +1222,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.Forum.ForumGroup", "ForumGroup")
                         .WithMany("ForumTitles")
                         .HasForeignKey("ForumGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("ForumTitles")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ForumGroup");
@@ -1186,13 +1241,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.UserCart", "UserCart")
                         .WithMany("CartItems")
                         .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
                         .WithMany("CartItems")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -1205,13 +1260,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.Address", "Address")
                         .WithMany("Payments")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Payments")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Address");
@@ -1224,13 +1279,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.PaymentInfo.Payment", "Payment")
                         .WithMany("PaymentItems")
                         .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
                         .WithMany("PaymentItems")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Payment");
@@ -1243,7 +1298,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.PaymentInfo.Payment", "Payment")
                         .WithMany("PaymentLogs")
                         .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Payment");
@@ -1254,7 +1309,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1265,7 +1320,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("PostComments")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.PostComment", "ParentPostComment")
@@ -1275,7 +1330,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.Post", "Post")
                         .WithMany("PostComments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ParentPostComment");
@@ -1299,13 +1354,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.PostGroup", "PostGroup")
                         .WithMany("Post_PostGroups")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.Post", "Post")
                         .WithMany("Post_PostGroups")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -1318,13 +1373,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.Post", "Post")
                         .WithMany("Post_Tags")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Common.Tag", "Tag")
                         .WithMany("Post_Tags")
                         .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -1337,19 +1392,19 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Products")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Product.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Product.ProductGroup", "ProductGroup")
                         .WithMany("Products")
                         .HasForeignKey("ProductGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Brand");
@@ -1359,12 +1414,29 @@ namespace BlogAndShop.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductCallRequest", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
+                        .WithMany("ProductCallRequests")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
+                        .WithMany("ProductCallRequests")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductComment", b =>
                 {
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "Owner")
                         .WithMany("ProductComments")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Product.ProductComment", "ParentProductComment")
@@ -1374,7 +1446,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
                         .WithMany("ProductComments")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Owner");
@@ -1398,13 +1470,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.Common.Media", "Media")
                         .WithMany("ProductMedias")
                         .HasForeignKey("MediaId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
                         .WithMany("ProductMedias")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Media");
@@ -1417,13 +1489,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
                         .WithMany("ProductTags")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.Common.Tag", "Tag")
                         .WithMany("ProductTags")
                         .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -1436,7 +1508,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Addresses")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1447,7 +1519,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", "ApplicationRole")
                         .WithMany("RoleAccesses")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ApplicationRole");
@@ -1458,7 +1530,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("UserCarts")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1469,7 +1541,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("UserTokens")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1480,7 +1552,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1489,7 +1561,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1498,7 +1570,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1507,13 +1579,13 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1522,7 +1594,7 @@ namespace BlogAndShop.Migrations
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1587,6 +1659,8 @@ namespace BlogAndShop.Migrations
 
                     b.Navigation("PaymentItems");
 
+                    b.Navigation("ProductCallRequests");
+
                     b.Navigation("ProductComments");
 
                     b.Navigation("ProductMedias");
@@ -1629,6 +1703,8 @@ namespace BlogAndShop.Migrations
                     b.Navigation("PostComments");
 
                     b.Navigation("Posts");
+
+                    b.Navigation("ProductCallRequests");
 
                     b.Navigation("ProductComments");
 

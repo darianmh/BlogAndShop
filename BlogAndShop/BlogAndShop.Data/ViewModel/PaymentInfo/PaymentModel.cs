@@ -23,6 +23,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [Hidden]
+        [AdminShowItem(1)]
         public int OwnerId { get; set; }
 
         /// <summary>
@@ -44,6 +45,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         /// </summary>
         [Display(Name = "مبلغ نهایی")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(2)]
         public decimal FinalAmount { get; set; }
 
         /// <summary>
@@ -61,6 +63,7 @@ namespace BlogAndShop.Data.ViewModel.PaymentInfo
         [Display(Name = "وضعیت")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [EnumList(typeof(PaymentStatus))]
+        [AdminShowItem(3)]
         public PaymentStatus Status { get; set; }
 
         /// <summary>

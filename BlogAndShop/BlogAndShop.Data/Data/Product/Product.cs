@@ -112,6 +112,8 @@ namespace BlogAndShop.Data.Data.Product
         [JsonIgnore]
         public virtual List<CartItem> CartItems { get; set; }
         [JsonIgnore]
+        public virtual List<ProductCallRequest> ProductCallRequests { get; set; }
+        [JsonIgnore]
         public virtual List<ProductComment> ProductComments { get; set; }
         [JsonIgnore]
         public virtual List<ProductTag> ProductTags { get; set; }
@@ -121,9 +123,18 @@ namespace BlogAndShop.Data.Data.Product
 
         public override SelectListItem GetSelectListItem(string selected)
         {
-            var allSelected = (List<int>)JsonConvert.DeserializeObject(selected);
+            try
+            {
+                //اگر لیستی از محصولات باشد
+                var allSelected = (List<int>)JsonConvert.DeserializeObject(selected);
 
-            return new SelectListItem(Id.ToString(), Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
+                return new SelectListItem(Id.ToString(), Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
+            }
+            catch
+            {
+                //اگر تک باشد
+                return new SelectListItem(Id.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
+            }
         }
     }
 }

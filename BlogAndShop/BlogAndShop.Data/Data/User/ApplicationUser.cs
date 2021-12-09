@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.PaymentInfo;
@@ -40,12 +42,26 @@ namespace BlogAndShop.Data.Data.User
         public virtual List<ProductComment> ProductComments { get; set; }
         [JsonIgnore]
         public virtual List<UserCart> UserCarts { get; set; }
+        [JsonIgnore]
+        public virtual List<ProductCallRequest> ProductCallRequests { get; set; }
+
+        public bool IsSuperAdmin { get; set; }
 
 
-
-        public SelectListItem GetSelectListItem()
+        public SelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Email, Id.ToString());
+            try
+            {
+                //اگر لیستی از محصولات باشد
+                var allSelected = (List<int>)JsonConvert.DeserializeObject(selected);
+
+                return new SelectListItem(Email, Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
+            }
+            catch
+            {
+                //اگر تک باشد
+                return new SelectListItem(Email, Id.ToString(),selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
+            }
         }
     }
 }

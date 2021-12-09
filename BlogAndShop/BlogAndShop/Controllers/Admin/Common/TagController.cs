@@ -9,10 +9,11 @@ using BlogAndShop.Services.Services.Common;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName(AdminControllerNames.Common, "Tag")]
+    [AdminFilterName(AdminControllerNames.Common, "تگ ها")]
     public class TagController : BaseAdminController
     {
         #region Fields
@@ -25,7 +26,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<Tag>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<TagModel, Tag>(all, page, count);
             return View(model);
         }
 
@@ -74,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         #endregion
         #region Ctor
 
-        public TagController(ITagService service) : base()
+        public TagController(ITagService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

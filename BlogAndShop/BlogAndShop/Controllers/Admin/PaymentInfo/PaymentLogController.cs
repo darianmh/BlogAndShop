@@ -9,10 +9,11 @@ using BlogAndShop.Services.Services.PaymentInfo;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.PaymentInfo
 {
-    [AdminFilterName(AdminControllerNames.PaymentInfo,"PaymentLog")]
+    [AdminFilterName(AdminControllerNames.PaymentInfo,"تاریخچه های پرداخت")]
     public class PaymentLogController : BaseAdminController
     {
         #region Fields
@@ -25,7 +26,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<PaymentLog>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<PaymentLogModel,PaymentLog>(all, page, count);
             return View(model);
         }
 
@@ -74,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
         #endregion
         #region Ctor
 
-        public PaymentLogController(IPaymentLogService service) : base()
+        public PaymentLogController(IPaymentLogService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

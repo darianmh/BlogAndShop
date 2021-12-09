@@ -6,11 +6,12 @@ using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.Forum
 {
-    [AdminFilterName(AdminControllerNames.Forum, "ForumGroup")]
+    [AdminFilterName(AdminControllerNames.Forum, "گروه انجمن ها")]
     public class ForumGroupController : BaseAdminController
     {
         #region Fields
@@ -23,7 +24,7 @@ namespace BlogAndShop.Controllers.Admin.Forum
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<ForumGroup>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<ForumGroupModel, ForumGroup>(all, page, count);
             return View(model);
         }
 
@@ -74,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.Forum
         #endregion
         #region Ctor
 
-        public ForumGroupController(IForumGroupService service) : base()
+        public ForumGroupController(IForumGroupService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

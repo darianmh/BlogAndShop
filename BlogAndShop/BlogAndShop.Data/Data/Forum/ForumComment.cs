@@ -41,6 +41,12 @@ namespace BlogAndShop.Data.Data.Forum
         [AdminShowItem(3)]
         public bool IsAccepted { get; set; }
 
+        /// <summary>
+        /// وضعیت مشاهده این درخواست
+        /// </summary>
+        [Display(Name = "وضعیت مشاهده")]
+        [EnumList(typeof(MessageStatus))]
+        public MessageStatus MessageStatus { get; set; }
 
         //np
         [JsonIgnore]

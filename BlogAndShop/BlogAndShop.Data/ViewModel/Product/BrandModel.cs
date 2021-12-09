@@ -14,11 +14,13 @@ namespace BlogAndShop.Data.ViewModel.Product
 
         [Display(Name = "نام")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(1)]
         public string Name { get; set; }
 
         [Display(Name = "توضیحات")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [TextArea]
+        [AdminShowItem(2)]
         public string Description { get; set; }
         [Display(Name = "آدرس سایت")]
         [Required(ErrorMessage = "{0} الزامی است")]

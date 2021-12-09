@@ -51,6 +51,10 @@ namespace BlogAndShop.Data.Data.Common
         [EnumList(typeof(SiteIndex))]
         public SiteIndex SelectIndex { get; set; }
         /// <summary>
+        /// نوع خرید از طریق ثبت درخواست تماس یا از سبد خرید
+        /// </summary>
+        public ShoppingModel ShoppingModel { get; set; }
+        /// <summary>
         /// حاوی html درباره ما
         /// </summary>
         [Display(Name = "درباه ما")]
@@ -68,5 +72,6 @@ namespace BlogAndShop.Data.Data.Common
         /// آیکون اپلی سایت
         /// </summary>
         public string SiteIcon512 { get; set; }
+
     }
 }

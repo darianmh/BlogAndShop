@@ -26,12 +26,14 @@ namespace BlogAndShop.Data.ViewModel.User
         /// شهر
         /// </summary>
         [Display(Name = "شهر")]
+        [AdminShowItem(1)]
         public string City { get; set; }
 
         /// <summary>
         /// خیابان
         /// </summary>
         [Display(Name = "خیابان")]
+        [AdminShowItem(2)]
         public string Street { get; set; }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace BlogAndShop.Data.ViewModel.User
         /// کوچه
         /// </summary>
         [Display(Name = "کوچه")]
+        [AdminShowItem(3)]
         public string Alley { get; set; }
 
         /// <summary>

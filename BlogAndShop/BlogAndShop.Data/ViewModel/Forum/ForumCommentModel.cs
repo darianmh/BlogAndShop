@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
@@ -34,13 +35,22 @@ namespace BlogAndShop.Data.ViewModel.Forum
         [Display(Name = "متن")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [TextArea]
+        [AdminShowItem(1)]
         public string Text { get; set; }
 
         /// <summary>
         /// ادمین باید هر کامنت را تایید کند
         /// </summary>
         [Display(Name = "تایید شده؟")]
+        [AdminShowItem(2)]
         public bool IsAccepted { get; set; }
+        /// <summary>
+        /// وضعیت مشاهده این درخواست
+        /// </summary>
+        [Display(Name = "وضعیت مشاهده")]
+        [EnumList(typeof(MessageStatus))]
+        [AdminShowItem(3)]
+        public MessageStatus MessageStatus { get; set; }
 
 
         //np

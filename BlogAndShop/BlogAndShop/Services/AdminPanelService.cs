@@ -26,15 +26,18 @@ namespace BlogAndShop.Services
         /// </summary>
         /// <param name="applicationUserManager"></param>
         /// <param name="identityName"></param>
+        /// <param name="currentUrl"></param>
         /// <returns></returns>
         public static async Task<List<AdminPanelLinkGroup>> GetLinks(ApplicationUserManager applicationUserManager,
-            string identityName)
+            string identityName, string currentUrl)
         {
             if (string.IsNullOrEmpty(identityName)) return new List<AdminPanelLinkGroup>();
             var groupedLinks = await GetControllerGroups(AssemblyHelper.AdminControllers, applicationUserManager, identityName);
-            var links = GetLinksGroupModel(groupedLinks);
+            var urlFormat = GetUrlFormat(currentUrl);
+            var links = GetLinksGroupModel(groupedLinks, urlFormat);
             return links;
         }
+
 
         public static List<Type> GetAllController(Assembly assembly)
         {
@@ -46,7 +49,17 @@ namespace BlogAndShop.Services
         #endregion
         #region Utilities
 
-        private static List<AdminPanelLinkGroup> GetLinksGroupModel(List<AdminPanelLinkTemp> groupedLinks)
+        private static CurrentUrlFormat GetUrlFormat(string currentUrl)
+        {
+            var segments = currentUrl.Split('/');
+            return new CurrentUrlFormat()
+            {
+                Action = segments.Length > 2 ? segments[2] : "Index",
+                Controller = segments.Length > 1 ? segments[1] : ""
+            };
+        }
+        private static List<AdminPanelLinkGroup> GetLinksGroupModel(List<AdminPanelLinkTemp> groupedLinks,
+            CurrentUrlFormat currentUrlFormat)
         {
             var groups = groupedLinks.GroupBy(x => x.Group);
             var result = new List<AdminPanelLinkGroup>();
@@ -55,19 +68,22 @@ namespace BlogAndShop.Services
                 var model = new AdminPanelLinkGroup()
                 {
                     Group = temp.Key,
-                    Links = GetLinksModel(temp.ToList())
+                    Links = GetLinksModel(temp.ToList(), currentUrlFormat),
                 };
+                model.IsActive = model.Links.Any(x => x.IsActive);
                 result.Add(model);
             }
             return result;
         }
 
-        private static List<AdminPanelLink> GetLinksModel(List<AdminPanelLinkTemp> list)
+        private static List<AdminPanelLink> GetLinksModel(List<AdminPanelLinkTemp> list,
+            CurrentUrlFormat currentUrlFormat)
         {
             return list.Select(x => new AdminPanelLink()
             {
                 LinkUrl = x.LinkUrl,
-                Name = x.Name
+                Name = x.Name,
+                IsActive = currentUrlFormat.Controller.Equals(x.LinkUrl, StringComparison.OrdinalIgnoreCase)
             }).ToList();
         }
 

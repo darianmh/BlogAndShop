@@ -64,8 +64,8 @@
 
 				@foreach (var group in Model)
 				{
-
-					<li class="nav-item">
+					var groupActive = group.IsActive ? "active" : "";
+					<li class="nav-item @groupActive">
 						<a class="nav-link" href="#">
 							<span class="group-icon float-end">
 								<i class="fi fi-arrow-end-slim"></i>
@@ -79,8 +79,9 @@
 
 							@foreach (var item in group.Links)
 							{
-								<li class="nav-item">
-									<a class="nav-link js-ajax" href="/@item.LinkUrl">
+								var itemActive = item.IsActive ? "active" : "";
+								<li class="nav-item @itemActive">
+									<a class="nav-link" href="/@item.LinkUrl">
 										@item.Name
 									</a>
 								</li>

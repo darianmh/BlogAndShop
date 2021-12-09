@@ -17,6 +17,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(1)]
         public string Title { get; set; }
 
         /// <summary>
@@ -24,6 +25,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "توضیحات")]
         [HtmlEdit]
+        [AdminShowItem(1)]
         public string Description { get; set; }
 
         /// <summary>

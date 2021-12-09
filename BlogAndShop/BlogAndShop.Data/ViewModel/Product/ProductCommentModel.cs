@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
@@ -21,6 +22,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Display(Name = "محصول")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [DbOptionList(typeof(Data.Product.Product), false)]
+        [AdminShowItem(2)]
         public int ProductId { get; set; }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Display(Name = "متن")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [TextArea]
+        [AdminShowItem(1)]
         public string Text { get; set; }
 
         /// <summary>
@@ -53,6 +56,13 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "تایید شده؟")]
         public bool IsAccepted { get; set; }
+        /// <summary>
+        /// وضعیت مشاهده این درخواست
+        /// </summary>
+        [Display(Name = "وضعیت مشاهده")]
+        [EnumList(typeof(MessageStatus))]
+        [AdminShowItem(3)]
+        public MessageStatus MessageStatus { get; set; }
 
 
 

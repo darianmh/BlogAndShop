@@ -23,6 +23,6 @@ function LoadImages() {
 function SetSelectedImage(path) {
   $("#" + targetInputName).val(path);
   $("#exampleModalFull").modal('hide');
-  var image = ' <div class="col-2  mb-4"><img class="w-100 img-fluid rounded" src="' + path + '" ></div>';
+  var image = '<div class="col-2  mb-4"><img class="w-100 img-fluid rounded" src="' + path + '" ></div>';
   $("#" + targetInputName + "Pre").html(image);
 }

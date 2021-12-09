@@ -48,6 +48,17 @@ namespace BlogAndShop.Services.Services.Mapper
             return Map<HomeBanner>(item);
         }
 
+        //ProductCallRequest
+        public static ProductCallRequestModel ToModel(this ProductCallRequest item)
+        {
+            return Map<ProductCallRequestModel>(item);
+        }
+
+        public static ProductCallRequest ToEntity(this ProductCallRequestModel item)
+        {
+            return Map<ProductCallRequest>(item);
+        }
+
         //SocialMedia
         public static SocialMediaModel ToModel(this SocialMedia item)
         {

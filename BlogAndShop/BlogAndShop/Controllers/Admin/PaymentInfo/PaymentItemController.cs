@@ -9,6 +9,7 @@ using BlogAndShop.Services.Services.PaymentInfo;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.PaymentInfo
 {
@@ -25,7 +26,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<PaymentItem>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<PaymentItemModel, PaymentItem>(all, page, count);
             return View(model);
         }
 
@@ -74,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.PaymentInfo
         #endregion
         #region Ctor
 
-        public PaymentItemController(IPaymentItemService service) : base()
+        public PaymentItemController(IPaymentItemService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

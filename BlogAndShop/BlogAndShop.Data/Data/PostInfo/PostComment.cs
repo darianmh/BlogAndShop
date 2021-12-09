@@ -52,6 +52,12 @@ namespace BlogAndShop.Data.Data.PostInfo
         [Display(Name = "مورد تایید است؟")]
         [AdminShowItem(4)]
         public bool IsAccepted { get; set; }
+        /// <summary>
+        /// وضعیت مشاهده این درخواست
+        /// </summary>
+        [Display(Name = "وضعیت مشاهده")]
+        [EnumList(typeof(MessageStatus))]
+        public MessageStatus MessageStatus { get; set; }
 
         //np
         [JsonIgnore]

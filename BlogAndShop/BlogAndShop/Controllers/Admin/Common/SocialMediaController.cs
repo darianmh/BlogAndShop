@@ -5,11 +5,12 @@ using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName(AdminControllerNames.Common, "SocialMedia")]
+    [AdminFilterName(AdminControllerNames.Common, "شبکه های اجتماعی")]
     public class SocialMediaController : BaseAdminController
     {
         #region Fields
@@ -22,7 +23,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<SocialMedia>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<SocialMediaModel,SocialMedia>(all, page, count);
             return View(model);
         }
 
@@ -74,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         #endregion
         #region Ctor
 
-        public SocialMediaController(ISocialMediaService service) : base()
+        public SocialMediaController(ISocialMediaService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

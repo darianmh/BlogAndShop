@@ -1,4 +1,4 @@
-
+﻿
 
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Common;
@@ -9,10 +9,11 @@ using BlogAndShop.Services.Services.Common;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Common
 {
-    [AdminFilterName(AdminControllerNames.Common, "SiteConfig")]
+    [AdminFilterName(AdminControllerNames.Common, "تنظیمات سایت")]
     public class SiteConfigController : BaseAdminController
     {
         #region Fields
@@ -77,7 +78,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         #endregion
         #region Ctor
 
-        public SiteConfigController(ISiteConfigService service) : base()
+        public SiteConfigController(ISiteConfigService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }

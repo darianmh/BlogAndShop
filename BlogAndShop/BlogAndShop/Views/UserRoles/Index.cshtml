@@ -28,67 +28,7 @@
 
 					<form class="bs-validate" novalidate="" id="form_id" method="post" action="#">
 
-						<!--
-
-							IMPORTANT
-							The "action" hidden input is updated by javascript according to button params/action:
-								data-js-form-advanced-hidden-action-id="#action"
-								data-js-form-advanced-hidden-action-value="delete"
-
-							In your backend, should process data like this (PHP example):
-
-								if($_POST['action'] === 'delete') {
-
-									foreach($_POST['item_id'] as $item_id) {
-										// ... delete $item_id from database
-									}
-
-								}
-
-						-->
-						<input type="hidden" id="action" name="action" value=""><!-- value populated by js -->
-
-
-						<div class="table-responsive">
-							<table class="table table-framed">
-								<thead>
-									<tr>
-										@Html.AdminTableHeader(typeof(BlogAndShop.Data.Data.User.UserRoles))
-									</tr>
-								</thead>
-
-								<!-- #item_list used by checkall: data-checkall-container="#item_list" -->
-								<tbody id="item_list">
-									@Html.AdminTableItems(typeof(BlogAndShop.Data.Data.User.UserRoles), Model.Items, "UserRoles")
-								</tbody>
-
-								<tfoot>
-									<tr>
-										@Html.AdminTableHeader(typeof(BlogAndShop.Data.Data.User.UserRoles))
-									</tr>
-								</tfoot>
-
-							</table>
-						</div>
-
-
-
-						<!-- options and pagination -->
-						<div class="mt-4 text-center-xs">
-
-							<div class="row">
-
-								<div class="col-12 col-md-6 mt-4">
-									<!-- pagination -->
-									@await Component.InvokeAsync("AdminPagination", Model.AdminListPaginationModel)
-									<!-- pagination -->
-								</div>
-
-							</div>
-
-						</div>
-						<!-- /options and pagination -->
-
+						@await Component.InvokeAsync("AdminIndexListing", new { paging = Model.AdminListPaginationModel, items=Model.Items })
 					</form>
 
 				</div>

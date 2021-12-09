@@ -559,3 +559,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.Extensions.Options.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\Microsoft.Extensions.Primitives.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Release\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\HomeBanner\Create.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\HomeBanner\Details.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\HomeBanner\Edit.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\HomeBanner\Index.cshtml.g.cs

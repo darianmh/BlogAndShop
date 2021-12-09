@@ -53,6 +53,12 @@ namespace BlogAndShop.Data.ViewModel.Common
         [EnumList(typeof(SiteIndex))]
         public SiteIndex SelectIndex { get; set; }
         /// <summary>
+        /// نوع خرید از طریق ثبت درخواست تماس یا از سبد خرید
+        /// </summary>
+        [Display(Name = "نوع خرید")]
+        [EnumList(typeof(ShoppingModel))]
+        public ShoppingModel ShoppingModel { get; set; }
+        /// <summary>
         /// حاوی html درباره ما
         /// </summary>
         [Display(Name = "درباه ما")]

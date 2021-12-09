@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.User
@@ -15,6 +16,7 @@ namespace BlogAndShop.Data.ViewModel.User
         /// </summary>
         [Display(Name = "نام اتریبیوت")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(1)]
         public string AttrName { get; set; }
 
         /// <summary>
@@ -23,6 +25,7 @@ namespace BlogAndShop.Data.ViewModel.User
         [ForeignKey("ApplicationRole")]
         [Display(Name = "نقش")]
         [Required(ErrorMessage = "{0} الزامی است")]
+        [AdminShowItem(2)]
         public int RoleId { get; set; }
 
 

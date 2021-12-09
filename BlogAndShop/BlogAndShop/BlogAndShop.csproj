@@ -8,10 +8,10 @@
   <ItemGroup>
     <Content Remove="Views\Brand\Index.cshtml" />
     <Content Remove="Views\ForumGroup\Index.cshtml" />
-    <Content Remove="Views\HomeBanner\Create.cshtml" />
-    <Content Remove="Views\HomeBanner\Details.cshtml" />
-    <Content Remove="Views\HomeBanner\Edit.cshtml" />
-    <Content Remove="Views\HomeBanner\Index.cshtml" />
+    <Content Remove="Views\ProductCallRequest\Create.cshtml" />
+    <Content Remove="Views\ProductCallRequest\Details.cshtml" />
+    <Content Remove="Views\ProductCallRequest\Edit.cshtml" />
+    <Content Remove="Views\ProductCallRequest\Index.cshtml" />
     <Content Remove="Views\SocialMedia\Create.cshtml" />
     <Content Remove="Views\SocialMedia\Details.cshtml" />
     <Content Remove="Views\SocialMedia\Edit.cshtml" />
@@ -31,6 +31,10 @@
     <None Include="Views\HomeBanner\Details.cshtml" />
     <None Include="Views\HomeBanner\Edit.cshtml" />
     <None Include="Views\HomeBanner\Index.cshtml" />
+    <None Include="Views\ProductCallRequest\Create.cshtml" />
+    <None Include="Views\ProductCallRequest\Details.cshtml" />
+    <None Include="Views\ProductCallRequest\Edit.cshtml" />
+    <None Include="Views\ProductCallRequest\Index.cshtml" />
     <None Include="Views\Media\Details.cshtml" />
     <None Include="Views\Media\Edit.cshtml" />
     <None Include="Views\Media\Index.cshtml" />

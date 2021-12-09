@@ -21,6 +21,7 @@ namespace BlogAndShop.Data.ViewModel.User
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [DbOptionList(typeof(ApplicationUser), false)]
+        [AdminShowItem(1)]
         public int OwnerId { get; set; }
 
 
@@ -30,6 +31,7 @@ namespace BlogAndShop.Data.ViewModel.User
         public decimal OffPrice { get; set; }
         [Ignore]
         //مبلغ قابل پرداخت
+        [AdminShowItem(2)]
         public decimal ToPayPrice { get; set; }
 
         //np

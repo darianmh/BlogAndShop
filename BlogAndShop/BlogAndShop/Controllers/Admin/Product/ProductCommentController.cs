@@ -9,10 +9,11 @@ using BlogAndShop.Services.Services.Product;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
-    [AdminFilterName(AdminControllerNames.Product, "ProductComment")]
+    [AdminFilterName(AdminControllerNames.Product, "نظرات محصولات")]
     public class ProductCommentController : BaseAdminController
     {
         #region Fields
@@ -25,7 +26,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = new AdminListViewModel<ProductComment>(hasNext: all.TotalCount > page * count, hasPre: page > 1, items: all.List, page: page, count: all.List.Count, pagesCount: ((all.TotalCount - 1) / count) + 1);
+            var model = AdminModelHelper.GetIndexModel<ProductCommentModel,ProductComment>(all, page, count);
             return View(model);
         }
 
@@ -75,7 +76,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         #endregion
         #region Ctor
 
-        public ProductCommentController(IProductCommentService service) : base()
+        public ProductCommentController(IProductCommentService service, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {
             _service = service;
         }
