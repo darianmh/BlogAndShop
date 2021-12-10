@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PaymentInfo;
+using BlogAndShop.Data.ViewModel.Admin;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.User;
 using BlogAndShop.Services.Services.Main;
@@ -40,6 +41,18 @@ namespace BlogAndShop.Services.Services.PaymentInfo
         public async Task<List<Payment>> GetUserPayments(int userId)
         {
             return await Queryable.Where(x => x.OwnerId == userId).ToListAsync();
+        }
+
+        public async Task<List<NewNotificationModel>> GetNewOrders()
+        {
+            var allNew = await Queryable.Where(x => x.Status == PaymentStatus.Waiting).ToListAsync();
+            return allNew.Select(x => new NewNotificationModel
+            {
+                Id = x.Id,
+                Date = x.CreateDateTime,
+                NewNotificationType = NewNotificationType.Product,
+                Text = x.Text
+            }).ToList();
         }
 
         #endregion

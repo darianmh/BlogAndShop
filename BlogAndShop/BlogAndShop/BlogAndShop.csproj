@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\EmailAccount\Index.cshtml" />
+    <Content Remove="Views\ProductMedia\Index.cshtml" />
+    <Content Remove="Views\ProductForumGroup\Index.cshtml" />
     <Content Remove="Views\Brand\Index.cshtml" />
     <Content Remove="Views\ForumGroup\Index.cshtml" />
     <Content Remove="Views\ProductCallRequest\Create.cshtml" />
@@ -22,6 +25,9 @@
     <None Include="Views\Address\Index.cshtml" />
     <None Include="Views\ApplicationRole\Index.cshtml" />
     <None Include="Views\ApplicationUser\Index.cshtml" />
+    <None Include="Views\EmailAccount\Index.cshtml" />
+    <None Include="Views\ProductMedia\Index.cshtml" />
+    <None Include="Views\ProductForumGroup\Index.cshtml" />
     <None Include="Views\Brand\Index.cshtml" />
     <None Include="Views\CartItem\Index.cshtml" />
     <None Include="Views\ForumComment\Index.cshtml" />
@@ -176,7 +182,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
+    <UpToDateCheckInput Remove="Views\EmailAccount\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\EmailAccount\Create.cshtml" />
   </ItemGroup>
 
 </Project>

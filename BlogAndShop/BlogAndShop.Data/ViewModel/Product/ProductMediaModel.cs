@@ -17,6 +17,8 @@ namespace BlogAndShop.Data.ViewModel.Product
         [ForeignKey("Media")]
         [Display(Name = "مدیا")]
         [DbOptionList(typeof(Media), false)]
+        [AdminShowItem(1)]
+        [AdminKey]
         public int MediaId { get; set; }
 
         /// <summary>
@@ -25,6 +27,8 @@ namespace BlogAndShop.Data.ViewModel.Product
         [ForeignKey("Product")]
         [Display(Name = "محصول")]
         [DbOptionList(typeof(Data.Product.Product), false)]
+        [AdminShowItem(2)]
+        [AdminKey]
         public int ProductId { get; set; }
 
 

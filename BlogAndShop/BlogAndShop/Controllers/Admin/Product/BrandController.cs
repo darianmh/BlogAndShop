@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
-    [AdminFilterName(AdminControllerNames.Product, "Brand")]
+    [AdminFilterName(AdminControllerNames.Product, "برند")]
     public class BrandController : BaseAdminController
     {
         #region Fields
@@ -24,7 +24,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = AdminModelHelper.GetIndexModel<BrandModel,Brand>(all, page, count);
+            var model = AdminModelHelper.GetIndexModel<BrandModel, Brand>(all, page, count);
             return View(model);
         }
 

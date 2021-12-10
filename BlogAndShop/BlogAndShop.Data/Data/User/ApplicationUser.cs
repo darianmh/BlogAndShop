@@ -60,8 +60,19 @@ namespace BlogAndShop.Data.Data.User
             catch
             {
                 //اگر تک باشد
-                return new SelectListItem(Email, Id.ToString(),selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
+                return new SelectListItem(Email, Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
             }
         }
+
+        public string GetShowTextById(string id)
+        {
+            return UserName;
+        }
+
+        public virtual bool Find(string id)
+        {
+            return Id.ToString().Equals(id, StringComparison.OrdinalIgnoreCase);
+        }
+
     }
 }

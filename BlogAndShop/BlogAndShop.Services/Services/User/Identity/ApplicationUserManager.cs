@@ -49,17 +49,14 @@ namespace BlogAndShop.Services.Services.User.Identity
         /// <summary>
         /// نقش های کاربر را پاک کرده و نقش های جدید را ذخیره می کند
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="selectedRoles"></param>
         /// <returns></returns>
-        public async Task SetUserRoles(int userId, List<int> selectedRoles)
+        public async Task SetUserRoles(ApplicationUser user, List<int> selectedRoles)
         {
-            var user = await FindByIdAsync(userId.ToString());
+            user = await FindByIdAsync(user.Id.ToString());
             if (user == null) return;
-            var roles = await GetRolesByUser(userId);
+            var roles = await GetRolesByUser(user.Id);
             await RemoveFromRolesAsync(user, roles.Select(x => x.Name).ToList());
             await CreateRoles(user, selectedRoles);
-            await UpdateAsync(user);
         }
 
 

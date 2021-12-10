@@ -32,6 +32,18 @@ namespace BlogAndShop.Services.Services.Common
             return model;
         }
 
+        public async Task<int> GetProductForumGroup()
+        {
+            var info = await GetInfo();
+            return info?.ProductForumGroup ?? 0;
+        }
+
+        public async Task<ShoppingModel> GetShoppingModel()
+        {
+            var info = await GetInfo();
+            return info?.ShoppingModel ?? ShoppingModel.Call;
+        }
+
         #endregion
         #region Utilities
 

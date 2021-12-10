@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.Data.Email;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.HomePage;
 using BlogAndShop.Data.Data.PaymentInfo;
@@ -11,6 +12,7 @@ using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Data.ViewModel.Email;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.HomePage;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
@@ -46,6 +48,18 @@ namespace BlogAndShop.Services.Services.Mapper
         public static HomeBanner ToEntity(this HomeBannerModel item)
         {
             return Map<HomeBanner>(item);
+        }
+
+
+        //HomeBanner
+        public static EmailAccountModel ToModel(this EmailAccount item)
+        {
+            return Map<EmailAccountModel>(item);
+        }
+
+        public static EmailAccount ToEntity(this EmailAccountModel item)
+        {
+            return Map<EmailAccount>(item);
         }
 
         //ProductCallRequest
@@ -145,6 +159,17 @@ namespace BlogAndShop.Services.Services.Mapper
         public static ForumComment ToEntity(this ForumCommentModel item)
         {
             return Map<ForumComment>(item);
+        }
+
+        //ForumComment
+        public static ProductForumGroupModel ToModel(this Product_ForumInfo item)
+        {
+            return Map<ProductForumGroupModel>(item);
+        }
+
+        public static Product_ForumInfo ToEntity(this ProductForumGroupModel item)
+        {
+            return Map<Product_ForumInfo>(item);
         }
 
         //ForumTitle

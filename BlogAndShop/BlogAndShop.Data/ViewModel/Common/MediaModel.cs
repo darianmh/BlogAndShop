@@ -48,5 +48,6 @@ namespace BlogAndShop.Data.ViewModel.Common
         //np
         [Ignore]
         public virtual List<ProductMediaModel> ProductMedias { get; set; }
+
     }
 }

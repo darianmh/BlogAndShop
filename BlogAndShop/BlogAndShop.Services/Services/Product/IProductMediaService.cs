@@ -18,5 +18,7 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="productId"></param>
         /// <returns></returns>
         Task<List<MediaModel>> GetProductImagesModel(int productId);
+
+        Task<ProductMedia> Find(int productId, int mediaId);
     }
 }

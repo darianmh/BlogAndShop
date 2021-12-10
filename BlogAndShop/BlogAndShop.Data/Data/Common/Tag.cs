@@ -54,7 +54,7 @@ namespace BlogAndShop.Data.Data.Common
         public override SelectListItem GetSelectListItem(string selected)
         {
             var array = (JArray)JsonConvert.DeserializeObject(selected);
-            var selectedValues = array.Select(Convert.ToInt32).ToList();
+            var selectedValues = array?.Select(Convert.ToInt32)?.ToList() ?? new List<int>();
             return new SelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
         }
     }

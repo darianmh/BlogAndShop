@@ -71,6 +71,12 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EnamadAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnamadLogo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Keywords")
                         .HasColumnType("nvarchar(max)");
 
@@ -78,6 +84,15 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProductForumGroup")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SamandehiAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SamandehiLogo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SelectIndex")
@@ -161,6 +176,54 @@ namespace BlogAndShop.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.Email.EmailAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EnableSsl")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FriendlyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Host")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Port")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("UserDefaultCredentials")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailAccount");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Forum.ForumComment", b =>
@@ -274,6 +337,21 @@ namespace BlogAndShop.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("ForumTitle");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.Forum.Product_ForumInfo", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ForumTitleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "ForumTitleId");
+
+                    b.HasIndex("ForumTitleId");
+
+                    b.ToTable("ProductForumInfos");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.HomePage.HomeBanner", b =>
@@ -1236,6 +1314,25 @@ namespace BlogAndShop.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.Forum.Product_ForumInfo", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Forum.ForumTitle", "ForumTitle")
+                        .WithMany("ProductForumGroups")
+                        .HasForeignKey("ForumTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
+                        .WithMany("ProductForumGroups")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ForumTitle");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.CartItem", b =>
                 {
                     b.HasOne("BlogAndShop.Data.Data.User.UserCart", "UserCart")
@@ -1618,6 +1715,8 @@ namespace BlogAndShop.Migrations
             modelBuilder.Entity("BlogAndShop.Data.Data.Forum.ForumTitle", b =>
                 {
                     b.Navigation("ForumComments");
+
+                    b.Navigation("ProductForumGroups");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.Payment", b =>
@@ -1662,6 +1761,8 @@ namespace BlogAndShop.Migrations
                     b.Navigation("ProductCallRequests");
 
                     b.Navigation("ProductComments");
+
+                    b.Navigation("ProductForumGroups");
 
                     b.Navigation("ProductMedias");
 

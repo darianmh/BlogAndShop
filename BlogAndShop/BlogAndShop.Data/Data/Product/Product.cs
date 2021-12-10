@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Product;
@@ -119,6 +120,8 @@ namespace BlogAndShop.Data.Data.Product
         public virtual List<ProductTag> ProductTags { get; set; }
         [JsonIgnore]
         public virtual List<PaymentItem> PaymentItems { get; set; }
+        [JsonIgnore]
+        public virtual List<Product_ForumInfo> ProductForumGroups { get; set; }
 
 
         public override SelectListItem GetSelectListItem(string selected)
@@ -128,13 +131,18 @@ namespace BlogAndShop.Data.Data.Product
                 //اگر لیستی از محصولات باشد
                 var allSelected = (List<int>)JsonConvert.DeserializeObject(selected);
 
-                return new SelectListItem(Id.ToString(), Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
+                return new SelectListItem(Title.ToString(), Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
             }
             catch
             {
                 //اگر تک باشد
-                return new SelectListItem(Id.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
+                return new SelectListItem(Title.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
             }
+        }
+
+        public override string GetShowTextById(string id)
+        {
+            return Title;
         }
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Services.Main;
@@ -12,5 +12,11 @@ namespace BlogAndShop.Services.Services.Product
         /// </summary>
         /// <returns></returns>
         Task<List<BrandModel>> GetList();
+        /// <summary>
+        /// بازگرداندن مدل برند
+        /// </summary>
+        /// <param name="productModelBrandId"></param>
+        /// <returns></returns>
+        Task<BrandModel> GetBrandModel(int productModelBrandId);
     }
 }

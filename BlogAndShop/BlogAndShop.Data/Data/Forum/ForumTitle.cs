@@ -74,10 +74,22 @@ namespace BlogAndShop.Data.Data.Forum
         [JsonIgnore]
         public virtual List<ForumComment> ForumComments { get; set; }
 
+        [JsonIgnore]
+        public virtual List<Product_ForumInfo> ProductForumGroups { get; set; }
+
 
         public override SelectListItem GetSelectListItem(string selected)
         {
             return new SelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+        }
+        public override string GetShowTextById(string id)
+        {
+            return Title;
+        }
+
+        public virtual bool Find(string id)
+        {
+            return Id.ToString().Equals(id, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

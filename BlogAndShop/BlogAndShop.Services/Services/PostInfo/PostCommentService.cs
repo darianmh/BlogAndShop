@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
+using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.PostInfo;
+using BlogAndShop.Data.ViewModel.Admin;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.User.Identity;
@@ -29,6 +31,17 @@ namespace BlogAndShop.Services.Services.PostInfo
             return await CreateCommentsModel(comments);
         }
 
+        public async Task<List<NewNotificationModel>> GetNewComments()
+        {
+            var newMessages = await Queryable.Where(x => x.MessageStatus == MessageStatus.New).ToListAsync();
+            return newMessages.Select(x => new NewNotificationModel
+            {
+                Id = x.PostId,
+                Date = x.CreateDateTime,
+                NewNotificationType = NewNotificationType.Post,
+                Text = x.Text
+            }).ToList();
+        }
 
         #endregion
         #region Utilities

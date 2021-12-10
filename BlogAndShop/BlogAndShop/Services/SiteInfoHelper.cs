@@ -7,6 +7,7 @@ using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
+using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.User.Identity;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
@@ -51,6 +52,26 @@ namespace BlogAndShop.Services
         {
             var model = await GetSiteInfo(helper);
             return model.Title;
+        }
+        public static async Task<string> GetSamandehiLogo(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.SamandehiLogo;
+        }
+        public static async Task<string> GetEnamadLogo(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.EnamadLogo;
+        }
+        public static async Task<string> GetSamandehi(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.SamandehiAddress;
+        }
+        public static async Task<string> GetEnamad(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.EnamadAddress;
         }
         public static async Task<string> GetSiteKeywords(this IHtmlHelper helper)
         {

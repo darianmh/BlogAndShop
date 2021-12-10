@@ -13,7 +13,7 @@ namespace BlogAndShop.Controllers
             return View();
         }
 
-        public IActionResult Item()
+        public IActionResult Item(int id)
         {
             return View();
         }

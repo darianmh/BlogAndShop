@@ -19,6 +19,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Display(Name = "محصول")]
         [DbOptionList(typeof(Data.Product.Product), false)]
         [ForeignKey("Product")]
+        [Required]
         public int ProductId { get; set; }
         /// <summary>
         /// اگر لاگین بود اطلاعات کاربر
@@ -32,6 +33,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "شماره تماس")]
         [AdminShowItem(2)]
+        [Required]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// نام

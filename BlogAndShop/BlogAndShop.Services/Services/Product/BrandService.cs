@@ -28,6 +28,12 @@ namespace BlogAndShop.Services.Services.Product
             return CacheHelper.Brands;
         }
 
+        public async Task<BrandModel> GetBrandModel(int productModelBrandId)
+        {
+            var entity = await GetByIdAsync(productModelBrandId);
+            return entity == null ? new BrandModel() : entity.ToModel();
+        }
+
         #endregion
         #region Utilities
 

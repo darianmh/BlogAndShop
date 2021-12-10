@@ -57,7 +57,7 @@ namespace BlogAndShop.Controllers.Admin.User
             if (!ModelState.IsValid) return View(model);
             var item = model.ToEntity();
             await _service.InsertAsync(item);
-            await _applicationUserManager.SetUserRoles(model.Id, model.SelectedRoles);
+            await _applicationUserManager.SetUserRoles(item, model.SelectedRoles);
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -66,7 +66,7 @@ namespace BlogAndShop.Controllers.Admin.User
             if (!ModelState.IsValid) return View(model);
             var item = model.ToEntity();
             await _service.UpdateAsync(item);
-            await _applicationUserManager.SetUserRoles(model.Id, model.SelectedRoles);
+            await _applicationUserManager.SetUserRoles(item, model.SelectedRoles);
             return RedirectToAction("Details", new { id = model.Id });
         }
 

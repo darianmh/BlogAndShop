@@ -1,4 +1,5 @@
-﻿@model BlogAndShop.Data.ViewModel.Product.ProductItemViewModel
+﻿@using BlogAndShop.Data.Data.Common
+@model BlogAndShop.Data.ViewModel.Product.ProductItemViewModel
 @{
 	ViewBag.metaDescription = Model.ProductModel.MetaDescription;
 	ViewBag.metaTitle = Model.ProductModel.Title;
@@ -221,47 +222,93 @@
 					<!-- ADD TO CART -->
 					<div class="d-flex ml-0 mr-0 mt-2">
 
-						<!-- QUANTITY INPUT -->
-						<div>
-							<span class="js-form-advanced-limit-info badge badge-warning hide animate-bouncein position-absolute absolute-top start-0 m-1 z-index-5">
-								لطفا, بین 1 و @Model.ProductModel.Quantity انتخاب کنید.
-							</span>
 
-							<input required type="number" name="qty" value="1" step="1" min="1" max="@Model.ProductModel.Quantity" class="form-control text-center js-form-advanced-limit w--80 h-100 m-0" data-toggle="tooltip" data-original-title="quantity">
-						</div>
-
-						<div class="pl-2 pr-2 w-100">
-							<button type="submit" class="btn btn-danger bg-gradient-danger text-white px-4 b-0 btn-block">
-								<span class="px-4 p-0-xs">
-									<i>
-										<svg width="22px" height="22px" x="0px" y="0px" viewBox="0 10 459.529 500.529">
-											<path fill="#ffffff" d="M17,55.231h48.733l69.417,251.033c1.983,7.367,8.783,12.467,16.433,12.467h213.35c6.8,0,12.75-3.967,15.583-10.2    l77.633-178.5c2.267-5.383,1.7-11.333-1.417-16.15c-3.117-4.817-8.5-7.65-14.167-7.65H206.833c-9.35,0-17,7.65-17,17    s7.65,17,17,17H416.5l-62.9,144.5H164.333L94.917,33.698c-1.983-7.367-8.783-12.467-16.433-12.467H17c-9.35,0-17,7.65-17,17    S7.65,55.231,17,55.231z"></path>
-											<path fill="#ffffff" d="M135.433,438.298c21.25,0,38.533-17.283,38.533-38.533s-17.283-38.533-38.533-38.533S96.9,378.514,96.9,399.764    S114.183,438.298,135.433,438.298z"></path>
-											<path fill="#ffffff" d="M376.267,438.298c0.85,0,1.983,0,2.833,0c10.2-0.85,19.55-5.383,26.35-13.317c6.8-7.65,9.917-17.567,9.35-28.05    c-1.417-20.967-19.833-37.117-41.083-35.7c-21.25,1.417-37.117,20.117-35.7,41.083    C339.433,422.431,356.15,438.298,376.267,438.298z"></path>
-										</svg>
-									</i>
-
-
-									<span class="fs--18 pl-2 pr-2">افزودن به سبد خرید</span>
-								</span>
-
-								<!-- free shipping : optional : good for conversions -->
-								<!--<span class="d-block pt-2 pb-1">
-									<span class="hr"></span>
-									<span class="font-light fs--13 opacity-7 d-block mt-2">
-										ارسال رایگان
+						@if (Model.ShoppingModel == ShoppingModel.Cart || Model.ProductModel.Quantity < 1)
+						{
+							<div class="pl-2 pr-2 w-100">
+								<!-- QUANTITY INPUT -->
+								<div>
+									<span class="js-form-advanced-limit-info badge badge-warning hide animate-bouncein position-absolute absolute-top start-0 m-1 z-index-5">
+										لطفا, بین 1 و @Model.ProductModel.Quantity انتخاب کنید.
 									</span>
-								</span>-->
-								<!-- /free shipping : optional : good for conversions -->
 
-							</button>
-						</div>
+									<input required type="number" name="qty" value="1" step="1" min="1" max="@Model.ProductModel.Quantity" class="form-control text-center js-form-advanced-limit w--80 h-100 m-0" data-toggle="tooltip" data-original-title="quantity">
+								</div>
+								<button type="submit" class="btn btn-danger bg-gradient-danger text-white px-4 b-0 btn-block">
+									<span class="px-4 p-0-xs">
+										<i>
+											<svg width="22px" height="22px" x="0px" y="0px" viewBox="0 10 459.529 500.529">
+												<path fill="#ffffff" d="M17,55.231h48.733l69.417,251.033c1.983,7.367,8.783,12.467,16.433,12.467h213.35c6.8,0,12.75-3.967,15.583-10.2    l77.633-178.5c2.267-5.383,1.7-11.333-1.417-16.15c-3.117-4.817-8.5-7.65-14.167-7.65H206.833c-9.35,0-17,7.65-17,17    s7.65,17,17,17H416.5l-62.9,144.5H164.333L94.917,33.698c-1.983-7.367-8.783-12.467-16.433-12.467H17c-9.35,0-17,7.65-17,17    S7.65,55.231,17,55.231z"></path>
+												<path fill="#ffffff" d="M135.433,438.298c21.25,0,38.533-17.283,38.533-38.533s-17.283-38.533-38.533-38.533S96.9,378.514,96.9,399.764    S114.183,438.298,135.433,438.298z"></path>
+												<path fill="#ffffff" d="M376.267,438.298c0.85,0,1.983,0,2.833,0c10.2-0.85,19.55-5.383,26.35-13.317c6.8-7.65,9.917-17.567,9.35-28.05    c-1.417-20.967-19.833-37.117-41.083-35.7c-21.25,1.417-37.117,20.117-35.7,41.083    C339.433,422.431,356.15,438.298,376.267,438.298z"></path>
+											</svg>
+										</i>
+
+
+										<span class="fs--18 pl-2 pr-2">افزودن به سبد خرید</span>
+									</span>
+
+									<!-- free shipping : optional : good for conversions -->
+									<!--<span class="d-block pt-2 pb-1">
+										<span class="hr"></span>
+										<span class="font-light fs--13 opacity-7 d-block mt-2">
+											ارسال رایگان
+										</span>
+									</span>-->
+									<!-- /free shipping : optional : good for conversions -->
+
+								</button>
+							</div>
+						}
+						else
+						{
+							<div class="pl-2 pr-2 w-100">
+								<button type="button" class="btn btn-danger bg-gradient-danger text-white px-4 b-0 btn-block" data-toggle="modal" data-target="#exampleModalMd">
+									>
+									<span class="px-4 p-0-xs">
+										<i>
+											<svg width="22px" height="22px" x="0px" y="0px" viewBox="0 10 459.529 500.529">
+												<path fill="#ffffff" d="M17,55.231h48.733l69.417,251.033c1.983,7.367,8.783,12.467,16.433,12.467h213.35c6.8,0,12.75-3.967,15.583-10.2    l77.633-178.5c2.267-5.383,1.7-11.333-1.417-16.15c-3.117-4.817-8.5-7.65-14.167-7.65H206.833c-9.35,0-17,7.65-17,17    s7.65,17,17,17H416.5l-62.9,144.5H164.333L94.917,33.698c-1.983-7.367-8.783-12.467-16.433-12.467H17c-9.35,0-17,7.65-17,17    S7.65,55.231,17,55.231z"></path>
+												<path fill="#ffffff" d="M135.433,438.298c21.25,0,38.533-17.283,38.533-38.533s-17.283-38.533-38.533-38.533S96.9,378.514,96.9,399.764    S114.183,438.298,135.433,438.298z"></path>
+												<path fill="#ffffff" d="M376.267,438.298c0.85,0,1.983,0,2.833,0c10.2-0.85,19.55-5.383,26.35-13.317c6.8-7.65,9.917-17.567,9.35-28.05    c-1.417-20.967-19.833-37.117-41.083-35.7c-21.25,1.417-37.117,20.117-35.7,41.083    C339.433,422.431,356.15,438.298,376.267,438.298z"></path>
+											</svg>
+										</i>
+
+
+										<span class="fs--18 pl-2 pr-2">ثبت درخواست تماس</span>
+									</span>
+
+								</button>
+							</div>
+						}
 
 					</div>
 
 				</form>
 				<!-- /Form -->
+				<div class="mt-5">
 
+					<h3 class="h5">
+						Specifications
+					</h3>
+
+					<!-- specs list -->
+					<ul class="list-unstyled mb-0">
+
+
+						<li class="list-item clearfix border-bottom py-3">
+							<a asp-controller="Shop" asp-action="Index" asp-route-brandId="@Model.ProductModel.Brand.Id" class="float-end link-muted">
+								@Model.ProductModel.Brand.Name
+							</a>
+							<span class="text-muted">
+								<i class="fi fi-brain fs--20"></i>
+								<span class="d-inline-block px-2">برند</span>
+							</span>
+						</li>
+
+					</ul>
+					<!-- /specs list -->
+				</div>
 			</div>
 
 		</div>
@@ -487,3 +534,142 @@
 	</div>
 </section>
 <!-- /DESCRIPTION -->
+<!-- SUGGESTIONS LINKS -->
+<section>
+	<div class="container">
+
+		<h2 class="h4 mb-5">
+			لینک های بررسی محصول
+		</h2>
+
+		<div class="table-responsive">
+
+			<table class="table table-striped">
+				<tbody>
+					@foreach (var item in Model.ForumTitles)
+					{
+						<tr>
+							<td class="text-muted">
+								<a asp-controller="Forum" asp-action="Item" asp-route-id="@item.Id" class="text-decoration-none">
+
+									<div class="text-center-xs text-gray-600 py-3">
+
+										<!-- .max-height-80  = limited to 2 rows of text -->
+										<span class="d-block fs--16 max-h-50 overflow-hidden">
+											@item.Title
+										</span>
+
+									</div>
+
+								</a>
+							</td>
+						</tr>
+
+					}
+					@if (Model.ProductModel.Brand != null && !string.IsNullOrEmpty(Model.ProductModel.Brand.SiteUrl))
+					{
+
+						<tr>
+							<td class="text-muted">
+								<a href="@Model.ProductModel.Brand.SiteUrl" class="text-decoration-none">
+
+									<div class="text-center-xs text-gray-600 py-3">
+
+										<!-- .max-height-80  = limited to 2 rows of text -->
+										<span class="d-block fs--16 max-h-50 overflow-hidden">
+											معرفی برند @Model.ProductModel.Brand.Name
+										</span>
+
+									</div>
+
+								</a>
+							</td>
+							<td>
+						</tr>
+					}
+
+				</tbody>
+			</table>
+
+
+		</div>
+
+
+	</div>
+</section>
+<!-- /SUGGESTIONS LINKS -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalMd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMd" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form novalidate class="bs-validate" id="ProductRequestForm" method="post" asp-controller="AjaxService" asp-action="AddCallRequest">
+				<input type="hidden" name="ProductId" id="ProductId" value="@Model.ProductModel.Id" />
+				<div class="modal-header">
+					<h2 class="modal-title fs--18 m-0">
+						افزودن درخواست تماس
+					</h2>
+
+					<button type="button" class="close pointer" data-dismiss="modal" aria-label="Close">
+						<span class="fi fi-close fs--18" aria-hidden="true"></span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+
+					<div class="row">
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input required placeholder="City/Town" id="PhoneNumber" name="PhoneNumber" type="text" class="form-control">
+								<label for="addr_city">شماره تماس</label>
+							</div>
+
+						</div>
+
+
+						<div class="col-12 col-sm-6 col-lg-6">
+
+							<div class="form-label-group mb-3">
+								<input placeholder="Zip / Postal Code" id="Name" name="Name" type="text" class="form-control">
+								<label for="addr_zipcode">نام</label>
+							</div>
+
+						</div>
+
+
+
+						<div class="col-12 col-sm-12 col-lg-12 mb--20">
+
+							<div class="form-label-group mb-3">
+								<input placeholder="توضیحات" id="Description" name="Description" type="text" class="form-control">
+								<label for="addr_address_1">توضیحات</label>
+							</div>
+
+
+						</div>
+
+
+
+
+
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="submit" onclick="" class="btn btn-sm btn-primary">
+						<i class="fi fi-check"></i>
+						ذخیره
+					</button>
+
+					<a href="#" class="btn btn-sm btn-secondary" data-dismiss="modal">
+						<i class="fi fi-close"></i>
+						انصراف
+					</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

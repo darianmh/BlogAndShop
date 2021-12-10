@@ -1,4 +1,5 @@
 ﻿using System;
+using BlogAndShop.Data.Classes;
 
 namespace BlogAndShop.Data.ViewModel.Common
 {
@@ -10,6 +11,7 @@ namespace BlogAndShop.Data.ViewModel.Common
     }
     public class BaseEntityModel<TId>
     {
+        [AdminKey]
         public TId Id { get; set; }
         public DateTime CreateDateTime { get; set; }
         public DateTime UpdateDateTime { get; set; }

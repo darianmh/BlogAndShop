@@ -72,6 +72,32 @@ namespace BlogAndShop.Data.Data.Common
         /// آیکون اپلی سایت
         /// </summary>
         public string SiteIcon512 { get; set; }
-
+        /// <summary>
+        /// لوگو اینماد
+        /// </summary>
+        [Display(Name = "لوگو اینماد")]
+        [FileUpload]
+        public string EnamadLogo { get; set; }
+        /// <summary>
+        /// لوگو ساماندهی
+        /// </summary>
+        [Display(Name = "لوگو ساماندهی")]
+        [FileUpload]
+        public string SamandehiLogo { get; set; }
+        /// <summary>
+        /// آدرس اینماد
+        /// </summary>
+        [Display(Name = "اینماد")]
+        public string EnamadAddress { get; set; }
+        /// <summary>
+        /// آدرس ساماندهی
+        /// </summary>
+        [Display(Name = "ساماندهی")]
+        public string SamandehiAddress { get; set; }
+        /// <summary>
+        /// گروه انجمن برای استفاده در محصولات
+        /// </summary>
+        [Display(Name = "انجمن بررسی محصول")]
+        public int? ProductForumGroup { get; set; }
     }
 }

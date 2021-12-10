@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.PaymentInfo;
+using BlogAndShop.Data.ViewModel.Admin;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Services.Services.Main;
 
@@ -23,5 +24,10 @@ namespace BlogAndShop.Services.Services.PaymentInfo
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<List<Payment>> GetUserPayments(int userId);
+        /// <summary>
+        /// سفارشاتی که جدید هستند را باز می کند
+        /// </summary>
+        /// <returns></returns>
+        Task<List<NewNotificationModel>> GetNewOrders();
     }
 }

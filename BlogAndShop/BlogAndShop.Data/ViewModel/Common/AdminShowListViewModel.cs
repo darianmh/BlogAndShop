@@ -8,7 +8,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// <summary>
         /// کلید اول آیدی و کلید دوم سایر مقدار ها است
         /// </summary>
-        public Dictionary<string, List<string>> Values { get; set; }
+        public List<AdminShowListKeyValues> Values { get; set; }
         public List<string> Keys { get; set; }
         public string Controller { get; set; }
     }

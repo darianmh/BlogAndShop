@@ -3,18 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogAndShop.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.Product;
 
 namespace BlogAndShop.Controllers
 {
-    public class AjaxService : Controller
+    public class AjaxService : MainBaseController
     {
         #region Fields
 
         private readonly IMediaService _mediaService;
+        private readonly IProductCallRequestService _productCallRequestService;
 
         #endregion
         #region Methods
@@ -26,6 +30,21 @@ namespace BlogAndShop.Controllers
             return View(result);
         }
 
+        [HttpPost]
+        public async Task<ApiJsonResult<string>> AddCallRequest([FromForm] ProductCallRequestModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return ReturnErrorJsonResult<string>("اطلاعات کامل نمی باشد");
+            }
+
+            model.UserId = GetUserId();
+            model.MessageStatus = MessageStatus.New;
+            var item = model.ToEntity();
+            var check = await _productCallRequestService.CreateNew(item);
+            if (check) return ReturnJsonResult("");
+            return ReturnErrorJsonResult<string>("مشکلی پیش آمد.");
+        }
         #endregion
         #region Utilities
 
@@ -33,9 +52,10 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Ctor
 
-        public AjaxService(IMediaService mediaService)
+        public AjaxService(IMediaService mediaService, IProductCallRequestService productCallRequestService)
         {
             _mediaService = mediaService;
+            _productCallRequestService = productCallRequestService;
         }
 
         #endregion

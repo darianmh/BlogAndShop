@@ -10,6 +10,7 @@ function SendNewsEmailCb(data) {
 /* Common  */
 function MyAlert(text) {
   alert(text);
+
 }
 
 
@@ -18,7 +19,7 @@ function startLoading() {
   $('.loader').show();
 }
 function stopLoading() {
-  $('.loader').show();
+  $('.loader').hide();
 }
 
 /*  Common Ajax  */
@@ -51,11 +52,12 @@ function AJAXPost(url, data, callBack, errorCallBack) {
       if (data.ok) {
         callBack(data.data);
       } else {
-        errorCallBack(data.data);
+        errorCallBack(data);
       }
       stopLoading();
     },
     error: function (data) {
+
       stopLoading();
     }
   });
@@ -84,4 +86,31 @@ function ReplyPostComment(commentId, name) {
 function CancelReplyPostComment() {
   $("#replyAlert").html('');
   $("#CommentParentId").val('');
+}
+
+//product call request
+$("#ProductRequestForm").submit(function (e) {
+  e.preventDefault();
+  productCallRequest();
+  return false;
+});
+
+function productCallRequest() {
+  var model = {
+    ProductId: $("#ProductId").val(),
+    PhoneNumber: $("#PhoneNumber").val(),
+    Name: $("#Name").val(),
+    Description: $("#Description").val()
+  };
+  if (model.PhoneNumber === "" || model.PhoneNumber === null) return;
+  AJAXPost("/AjaxService/AddCallRequest", model, productCallRequestCB, productCallRequestCBError);
+}
+function productCallRequestCB(data) {
+  alert("درخواست شما ثبت شد.");
+  $("#exampleModalMd").modal('hide');
+  stopLoading();
+}
+function productCallRequestCBError(data) {
+  alert(data.description.join(', '));
+  stopLoading();
 }

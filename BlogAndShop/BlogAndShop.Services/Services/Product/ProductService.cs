@@ -54,6 +54,12 @@ namespace BlogAndShop.Services.Services.Product
             return product.ToModel();
         }
 
+        public async Task<string> GetProductName(int productId)
+        {
+            var product = await GetByIdAsync(productId);
+            return product?.Title ?? "";
+        }
+
         #endregion
         #region Utilities
 

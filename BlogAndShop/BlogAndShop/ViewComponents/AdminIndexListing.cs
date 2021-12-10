@@ -6,7 +6,10 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Context;
+using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Services.Classes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.ViewComponents
@@ -14,6 +17,8 @@ namespace BlogAndShop.ViewComponents
     public class AdminIndexListing : ViewComponent
     {
         #region Fields
+
+        private readonly ApplicationDbContext _dbContext;
 
 
         #endregion
@@ -42,25 +47,80 @@ namespace BlogAndShop.ViewComponents
             };
         }
 
-        private Dictionary<string, List<string>> GetPropertiesValue(IEnumerable modelItems, List<AdminShowItemAttributeInfo> propertyList)
+        private List<AdminShowListKeyValues> GetPropertiesValue(IEnumerable modelItems, List<AdminShowItemAttributeInfo> propertyList)
         {
-            var result = new Dictionary<string, List<string>>();
+            var result = new List<AdminShowListKeyValues>();
 
             foreach (object item in modelItems)
             {
                 var temp = new List<string>();
                 foreach (var property in propertyList)
                 {
-                    var value = property.PropertyInfo.GetValue(item)?.ToString();
+                    string? value;
+                    var attr = property.PropertyInfo.GetCustomAttribute<DbOptionListAttribute>();
+                    var currentValue = property.PropertyInfo.GetValue(item)?.ToString();
+                    if (attr != null)
+                    {
+                        value = GetValueFromDb(attr, property.PropertyInfo, currentValue);
+                    }
+                    else
+                    {
+                        value = currentValue;
+                    }
                     if (value?.Length > 30) value = string.Join(string.Empty, value.Take(70)) + "...";
                     temp.Add(value);
                 }
 
-                var id = item.GetType()?.GetProperty("Id")?.GetValue(item)?.ToString() ?? "";
-                result.Add(id, temp);
+                var id = GetKey(item);
+                var model = new AdminShowListKeyValues
+                {
+                    Value = temp,
+                    Key = id
+                };
+                result.Add(model);
             }
 
             return result;
+        }
+
+        private string GetValueFromDb(DbOptionListAttribute attr, PropertyInfo propertyInfo,
+            string currentValue)
+        {
+            var queryAble = _dbContext.Set(attr.NavigationProperty);
+            if (queryAble == null) return "";
+            MethodInfo findMethod = attr.NavigationProperty.GetMethod(nameof(BaseEntity.Find));
+            MethodInfo nameMethod = attr.NavigationProperty.GetMethod("GetShowTextById");
+            if (findMethod == null || nameMethod == null) return "";
+            var item = queryAble.ToList().FirstOrDefault(x => (bool)findMethod.Invoke(x, new[] { currentValue }));
+            if (item == null) return "";
+            var text = nameMethod.Invoke(item, new[] { currentValue });
+            return text?.ToString() ?? "";
+        }
+
+        /// <summary>
+        /// دریافت کلید برا اساس کلید های دیتابیس
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private string GetKey(object item)
+        {
+            var type = item.GetType();
+
+            var text = "";
+            var check = false;
+            foreach (var property in type.GetProperties())
+            {
+                var attr = (AdminKeyAttribute)property.GetCustomAttribute<AdminKeyAttribute>();
+                if (attr == null) continue;
+                check = true;
+                var temp = $"{property.Name}={property.GetValue(item)}";
+                text += temp + "&";
+            }
+
+            if (!check)
+                return "Id=" + type?.GetProperty("Id")?.GetValue(item)?.ToString() ?? "";
+
+            return text;
         }
 
         private List<string> GetPropertiesKey(List<AdminShowItemAttributeInfo> propertyList)
@@ -98,6 +158,10 @@ namespace BlogAndShop.ViewComponents
         #endregion
         #region Ctor
 
+        public AdminIndexListing(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         #endregion
 
 

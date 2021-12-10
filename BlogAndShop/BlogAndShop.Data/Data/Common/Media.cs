@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Product;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.Common
@@ -43,5 +45,21 @@ namespace BlogAndShop.Data.Data.Common
         //np
         [JsonIgnore]
         public virtual List<ProductMedia> ProductMedias { get; set; }
+
+
+        public override SelectListItem GetSelectListItem(string selected)
+        {
+            return new SelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public override string GetShowTextById(string id)
+        {
+            return Title;
+        }
+
+        public override bool Find(string id)
+        {
+            return base.Find(id);
+        }
     }
 }

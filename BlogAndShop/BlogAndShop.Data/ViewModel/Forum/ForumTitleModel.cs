@@ -78,5 +78,8 @@ namespace BlogAndShop.Data.ViewModel.Forum
         [JsonIgnore]
         [Ignore]
         public virtual ForumGroupModel ForumGroup { get; set; }
+        [Ignore]
+        [JsonIgnore]
+        public virtual List<ProductForumGroupModel> ProductForumGroups { get; set; }
     }
 }

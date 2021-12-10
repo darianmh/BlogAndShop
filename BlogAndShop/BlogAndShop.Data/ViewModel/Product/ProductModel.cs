@@ -6,6 +6,7 @@ using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.User;
 using Newtonsoft.Json;
@@ -133,9 +134,11 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Ignore]
         public virtual List<ProductTagModel> ProductTags { get; set; }
         [Ignore]
-        public virtual List<BrandModel> Brands { get; set; }
+        public virtual BrandModel Brand { get; set; }
         [Ignore]
         public virtual List<PaymentItemModel> PaymentItems { get; set; }
+        [Ignore]
+        public virtual List<ProductForumGroupModel> ProductForumGroups { get; set; }
 
     }
 }

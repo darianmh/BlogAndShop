@@ -1,10 +1,10 @@
 ﻿@using BlogAndShop.Services
 <!-- Footer -->
-<footer id="footer" class="footer-dark">
+<footer id="footer" class="footer-dark fixed-bottom">
 
 	<!-- expandable : hidden by default -->
 	<div id="footer_expand" class="collapse">
-		<div class="container py-5">
+		<div class="container py-3">
 
 			<!-- social -->
 			<div class="clearfix">
@@ -62,7 +62,7 @@
 	<!-- /expandable : hidden by default -->
 
 
-	<div class="bg-distinct py-3 clearfix">
+	<div class="bg-distinct py-2 clearfix">
 
 		<div class="container clearfix font-weight-light text-center-xs position-relative">
 
@@ -102,13 +102,26 @@
 
 			<!-- credit card -->
 			<ul class="list-inline mb-0 mt-2 float-end float-none-xs">
-				<li class="list-inline-item m-0">
-					<img width="38" height="24" class="lazy" data-src="../../lib/smarty/assets/images/credit_card/mastercard.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="mastercard credit card icon">
-				</li>
+				@{
+					var samandehiLogo = await Html.GetSamandehiLogo();
+					var samandehi = await Html.GetSamandehi();
+					var enamadLogo = await Html.GetEnamadLogo();
+					var enamad = await Html.GetEnamad();
+				}
 
-				<li class="list-inline-item m-0">
-					<img width="38" height="24" class="lazy" data-src="../../lib/smarty/assets/images/credit_card/mastercard.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="mastercard credit card icon">
-				</li>
+				@if (!string.IsNullOrEmpty(samandehi))
+				{
+					<li class="list-inline-item m-0">
+						<img width="38" height="24" class="lazy" data-src="@samandehiLogo" src="@samandehiLogo"
+							 alt="mastercard credit card icon">
+					</li>
+				}
+				@if (!string.IsNullOrEmpty(enamad))
+				{
+					<li class="list-inline-item m-0">
+						<img width="38" height="24" class="lazy" data-src="@enamadLogo" src="@enamadLogo" alt="mastercard credit card icon">
+					</li>
+				}
 				<!-- more vendors on assets/images/credit_card/ -->
 
 			</ul>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data;
 using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
@@ -85,6 +86,19 @@ namespace BlogAndShop.Data.Context
                     .WithMany(x => x.ProductTags)
                     .HasForeignKey(x => x.ProductId);
             });
+            //ProductForumGroup
+            modelBuilder.Entity<Product_ForumInfo>(entity =>
+            {
+                entity.HasKey(x => new { x.ProductId, x.ForumTitleId });
+
+                entity.HasOne(x => x.Product)
+                    .WithMany(x => x.ProductForumGroups)
+                    .HasForeignKey(x => x.ProductId);
+
+                entity.HasOne(x => x.ForumTitle)
+                    .WithMany(x => x.ProductForumGroups)
+                    .HasForeignKey(x => x.ForumTitleId);
+            });
 
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(t => t.GetForeignKeys())
@@ -98,5 +112,6 @@ namespace BlogAndShop.Data.Context
         public virtual DbSet<Post_Tags> Post_Tags { get; set; }
         public virtual DbSet<ProductMedia> ProductMedia { get; set; }
         public virtual DbSet<ProductTag> ProductTag { get; set; }
+        public virtual DbSet<Product_ForumInfo> ProductForumInfos { get; set; }
     }
 }

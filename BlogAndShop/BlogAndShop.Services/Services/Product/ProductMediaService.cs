@@ -27,6 +27,12 @@ namespace BlogAndShop.Services.Services.Product
             var model = await _mediaService.GetImagesModel(all);
             return model;
         }
+
+        public async Task<ProductMedia> Find(int productId, int mediaId)
+        {
+            return await Queryable.FirstOrDefaultAsync(x => x.ProductId == productId && x.MediaId == mediaId);
+        }
+
         #endregion
         #region Utilities
 

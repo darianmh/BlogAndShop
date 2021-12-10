@@ -62,7 +62,8 @@ namespace BlogAndShop.Data.Data.PaymentInfo
         public PaymentStatus Status { get; set; }
 
         /// <summary>
-        /// 
+        /// متن برای معرفی محصول به ادمین
+        /// هدف نکته مشتری نیست
         /// </summary>
         [Display(Name = "متن")]
         public string Text { get; set; }

@@ -37,5 +37,11 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="product"></param>
         /// <returns></returns>
         Task<ProductModel> GetProductModel(int modelProductId);
+        /// <summary>
+        /// دریافت نام محصول
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        Task<string> GetProductName(int productId);
     }
 }

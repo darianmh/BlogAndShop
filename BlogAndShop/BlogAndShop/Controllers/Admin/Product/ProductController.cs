@@ -9,17 +9,19 @@ using BlogAndShop.Services.Services.Product;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
-    [AdminFilterName(AdminControllerNames.Product, "Product")]
+    [AdminFilterName(AdminControllerNames.Product, "محصولات")]
     public class ProductController : BaseAdminController
     {
         #region Fields
 
         private readonly IProductService _service;
         private readonly IProductTagService _productTagService;
+        private readonly IForumTitleService _forumTitleService;
 
         #endregion
         #region Methods
@@ -27,7 +29,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = AdminModelHelper.GetIndexModel<ProductModel,Data.Data.Product.Product>(all, page, count);
+            var model = AdminModelHelper.GetIndexModel<ProductModel, Data.Data.Product.Product>(all, page, count);
             return View(model);
         }
 
@@ -58,6 +60,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             await _productTagService.SetProductTag(model.Id, model.SelectedTags);
+            await _forumTitleService.CreateProductForum(item);
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -81,10 +84,11 @@ namespace BlogAndShop.Controllers.Admin.Product
         #endregion
         #region Ctor
 
-        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper) : base(adminModelHelper)
+        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper, IForumTitleService forumTitleService) : base(adminModelHelper)
         {
             _service = service;
             _productTagService = productTagService;
+            _forumTitleService = forumTitleService;
         }
         #endregion
 

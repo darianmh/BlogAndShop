@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
+using BlogAndShop.Services.Services.Common;
+using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Product;
 
@@ -18,6 +21,9 @@ namespace BlogAndShop.Controllers
         private readonly IProductGroupService _productGroupService;
         private readonly IProductService _productService;
         private readonly IProductMediaService _productMediaService;
+        private readonly IBrandService _brandService;
+        private readonly IForumTitleService _forumTitleService;
+        private readonly ISiteConfigService _siteConfigService;
 
         #endregion
         #region Methods
@@ -40,15 +46,20 @@ namespace BlogAndShop.Controllers
             var images = await _productMediaService.GetProductImagesModel(productId);
             var suggested = await _productGroupService.GetSuggestedProduct(productId, groupId: product.ProductGroupId);
             var group = await _productGroupService.GetByIdInModel(product.ProductGroupId);
+            var productModel = product.ToModel();
+            productModel.Brand = await _brandService.GetBrandModel(productModel.BrandId);
             var model = new ProductItemViewModel()
             {
                 Images = images,
-                ProductModel = product.ToModel(),
+                ProductModel = productModel,
                 SuggestedProducts = suggested,
-                Group = group
+                Group = group,
+                ForumTitles = await _forumTitleService.GetProductForumsModel(productId),
+                ShoppingModel = await _siteConfigService.GetShoppingModel()
             };
             return View(model);
         }
+
 
         #endregion
         #region Utilities
@@ -57,11 +68,14 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Ctor
 
-        public ShopController(IProductGroupService productGroupService, IProductService productService, IProductMediaService productMediaService)
+        public ShopController(IProductGroupService productGroupService, IProductService productService, IProductMediaService productMediaService, IBrandService brandService, IForumTitleService forumTitleService, ISiteConfigService siteConfigService)
         {
             _productGroupService = productGroupService;
             _productService = productService;
             _productMediaService = productMediaService;
+            _brandService = brandService;
+            _forumTitleService = forumTitleService;
+            _siteConfigService = siteConfigService;
         }
         #endregion
 

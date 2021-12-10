@@ -1,10 +1,12 @@
+using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Services.Services.Main;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.Forum
 {
-    public class ForumGroupService : MainService<ForumGroup>,IForumGroupService
+    public class ForumGroupService : MainService<ForumGroup>, IForumGroupService
     {
         #region Fields
 
@@ -13,6 +15,10 @@ namespace BlogAndShop.Services.Services.Forum
         #region Methods
 
 
+        public async Task<int> GetFirst()
+        {
+            return (await Queryable.FirstOrDefaultAsync())?.Id ?? 0;
+        }
         #endregion
         #region Utilities
 
