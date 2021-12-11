@@ -51,7 +51,7 @@ namespace BlogAndShop.Controllers.Admin.Forum
         [HttpPost]
         public async Task<IActionResult> Create(ForumCommentModel model)
         {
-            var userId = GetUserId();
+            var userId = await GetUserId();
             if (!ModelState.IsValid) return View("Edit", model);
             model.UserId = userId;
             var item = model.ToEntity();

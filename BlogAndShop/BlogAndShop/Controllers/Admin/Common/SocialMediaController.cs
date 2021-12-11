@@ -23,7 +23,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = AdminModelHelper.GetIndexModel<SocialMediaModel,SocialMedia>(all, page, count);
+            var model = AdminModelHelper.GetIndexModel<SocialMediaModel, SocialMedia>(all, page, count);
             return View(model);
         }
 

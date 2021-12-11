@@ -25,7 +25,6 @@ namespace BlogAndShop.Data.Data.PostInfo
         /// <summary>
         /// اگر ریپلای باشد این فیلد مقدار می گیرد
         /// </summary>
-        [ForeignKey("ParentPostComment")]
         [Display(Name = "کامنت ")]
         public int? ParentId { get; set; }
 
@@ -62,10 +61,6 @@ namespace BlogAndShop.Data.Data.PostInfo
         //np
         [JsonIgnore]
         public virtual Post Post { get; set; }
-        [JsonIgnore]
-        public virtual PostComment ParentPostComment { get; set; }
-        [JsonIgnore]
-        public virtual List<PostComment> PostComments { get; set; }
         [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
     }

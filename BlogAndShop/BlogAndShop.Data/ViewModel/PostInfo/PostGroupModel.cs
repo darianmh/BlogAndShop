@@ -30,7 +30,6 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         /// <summary>
         ///  اگر زیر مجموعه باشد
         /// </summary>
-        [ForeignKey("ParentPostGroup")]
         [Display(Name = "سرگروه")]
         [DbOptionList(typeof(PostGroup), true)]
         public int? ParentId { get; set; }
@@ -44,10 +43,6 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         //np
         [Ignore]
         public virtual List<Post_PostGroupModel> Post_PostGroups { get; set; }
-        [Ignore]
-        public virtual List<PostGroupModel> PostGroups { get; set; }
-        [Ignore]
-        public virtual PostGroupModel ParentPostGroup { get; set; }
 
     }
 }

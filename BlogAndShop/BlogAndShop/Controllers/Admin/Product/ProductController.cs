@@ -56,7 +56,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         [HttpPost]
         public async Task<IActionResult> Create(ProductModel model)
         {
-            model.AuthorId = GetUserId();
+            model.AuthorId = await GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             await _productTagService.SetProductTag(model.Id, model.SelectedTags);

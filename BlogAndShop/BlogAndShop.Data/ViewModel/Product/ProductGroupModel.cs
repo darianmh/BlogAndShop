@@ -31,7 +31,6 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// <summary>
         ///  اگر زیر مجموعه باشد
         /// </summary>
-        [ForeignKey("ParentProductGroup")]
         [Display(Name = "سرگروه")]
         [DbOptionList(typeof(ProductGroup), true)]
         public int? ParentId { get; set; }
@@ -52,8 +51,6 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Ignore]
         public virtual List<ProductModel> Products { get; set; }
         [Ignore]
-        public virtual List<ProductGroupModel> ProductGroups { get; set; }
-        [Ignore]
-        public virtual ProductGroupModel ParentProductGroup { get; set; }
+        public List<ProductGroupModel> ProductGroups { get; set; }
     }
 }

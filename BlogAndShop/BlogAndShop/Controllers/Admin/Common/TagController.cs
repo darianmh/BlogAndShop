@@ -51,6 +51,7 @@ namespace BlogAndShop.Controllers.Admin.Common
         [HttpPost]
         public async Task<IActionResult> Create(TagModel model)
         {
+            model.OwnerId = await GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             return RedirectToAction("Details", new { id = item.Id });

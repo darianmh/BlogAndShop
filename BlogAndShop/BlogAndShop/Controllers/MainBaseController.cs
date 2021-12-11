@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using BlogAndShop.Classes;
 using BlogAndShop.Data.ViewModel.Utilities;
+using BlogAndShop.Services.Services.User.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -16,10 +18,14 @@ namespace BlogAndShop.Controllers
             return View("MessageShowPage", new MessageShowPageViewModel() { Message = message });
         }
 
-        protected int? GetUserId()
+        protected async Task<int> GetUserId()
         {
-            if (User.Identity.IsAuthenticated) return Convert.ToInt32(User.Identity.Name);
-            return null;
+            if (User.Identity == null) return 0;
+            if (!User.Identity.IsAuthenticated) return 0;
+            var applicationUserManager =
+                (ApplicationUserManager)HttpContext.RequestServices.GetService(typeof(ApplicationUserManager));
+            var user = await applicationUserManager?.FindAsync(User.Identity.Name);
+            return user?.Id ?? 0;
         }
 
         /// <summary>

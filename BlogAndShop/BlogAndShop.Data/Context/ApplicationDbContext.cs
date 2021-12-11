@@ -11,6 +11,7 @@ using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
@@ -20,6 +21,7 @@ namespace BlogAndShop.Data.Context
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,17 +32,16 @@ namespace BlogAndShop.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            base.OnModelCreating(modelBuilder);
-
             var assembly = Assembly.GetExecutingAssembly();
             var typesToRegister = assembly.GetTypes()
                  .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(BaseEntity))).ToList();
 
             foreach (var type in typesToRegister)
             {
-                var method = modelBuilder.GetType().GetMethod("Entity", new Type[] { });
-                method = method.MakeGenericMethod(new Type[] { type });
-                method.Invoke(modelBuilder, null);
+                //var method = modelBuilder.GetType().GetMethod("Entity", new Type[] { });
+                //method = method.MakeGenericMethod(new Type[] { type });
+                //method.Invoke(modelBuilder, null);
+                modelBuilder.Entity(type);
             }
             //post group
             modelBuilder.Entity<Post_PostGroup>(entity =>
@@ -100,12 +101,27 @@ namespace BlogAndShop.Data.Context
                     .HasForeignKey(x => x.ForumTitleId);
             });
 
-            var cascadeFKs = modelBuilder.Model.GetEntityTypes()
-                .SelectMany(t => t.GetForeignKeys())
-                .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
+            //var entities = modelBuilder.Model.GetEntityTypes();
+            //var cascadeFKs = entities.SelectMany(t => t.GetForeignKeys())
+            //  .Where(fk => !fk.IsOwnership && fk.DeleteBehavior != DeleteBehavior.Cascade);
 
-            foreach (var fk in cascadeFKs)
-                fk.DeleteBehavior = DeleteBehavior.Cascade;
+            //foreach (var fk in cascadeFKs)
+            //    fk.DeleteBehavior = DeleteBehavior.Cascade;
+
+            // for the other conventions, we do a metadata model loop
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                // equivalent of modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+                entityType.SetTableName(entityType.DisplayName());
+
+                // equivalent of modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+                entityType.GetForeignKeys()
+                    //.Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade)
+                    .ToList()
+                    .ForEach(fk => fk.DeleteBehavior = DeleteBehavior.Cascade);
+            }
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public virtual DbSet<Post_PostGroup> Post_PostGroup { get; set; }

@@ -34,6 +34,7 @@ namespace BlogAndShop.Services.Services.Product
             return entity == null ? new BrandModel() : entity.ToModel();
         }
 
+
         #endregion
         #region Utilities
 

@@ -13,7 +13,7 @@ using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.PostInfo
 {
-    [AdminFilterName(AdminControllerNames.PostInfo, "نظرات محصولات")]
+    [AdminFilterName(AdminControllerNames.PostInfo, "نظرات پست")]
     public class PostCommentController : BaseAdminController
     {
         #region Fields
@@ -51,6 +51,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         [HttpPost]
         public async Task<IActionResult> Create(PostCommentModel model)
         {
+            model.OwnerId = await GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             return RedirectToAction("Details", new { id = item.Id });

@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.PostInfo;
@@ -63,6 +64,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         public async Task<IActionResult> Create(PostModel model)
         {
             if (!ModelState.IsValid) return View(model);
+            model.OwnerId = await GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             await _postTagsService.SetPostTags(model.Id, model.SelectedTags);
@@ -82,7 +84,15 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
 
         public async Task<IActionResult> Delete(int id)
         {
-            var item = await _service.DeleteAsync(id);
+            try
+            {
+                var item = await _service.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
             return RedirectToAction("Index");
         }
         #endregion

@@ -351,7 +351,7 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("ForumTitleId");
 
-                    b.ToTable("ProductForumInfos");
+                    b.ToTable("Product_ForumInfo");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.HomePage.HomeBanner", b =>
@@ -602,8 +602,6 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.HasIndex("ParentId");
-
                     b.HasIndex("PostId");
 
                     b.ToTable("PostComment");
@@ -636,8 +634,6 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("PostGroup");
                 });
@@ -846,8 +842,6 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.HasIndex("ParentId");
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductComment");
@@ -883,8 +877,6 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("ProductGroup");
                 });
@@ -1288,7 +1280,8 @@ namespace BlogAndShop.Migrations
 
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("ForumComments")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("ForumTitle");
 
@@ -1420,30 +1413,15 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.PostInfo.PostComment", "ParentPostComment")
-                        .WithMany("PostComments")
-                        .HasForeignKey("ParentId");
-
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.Post", "Post")
                         .WithMany("PostComments")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ParentPostComment");
-
                     b.Navigation("Post");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.PostGroup", b =>
-                {
-                    b.HasOne("BlogAndShop.Data.Data.PostInfo.PostGroup", "ParentPostGroup")
-                        .WithMany("PostGroups")
-                        .HasForeignKey("ParentId");
-
-                    b.Navigation("ParentPostGroup");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.Post_PostGroup", b =>
@@ -1521,7 +1499,8 @@ namespace BlogAndShop.Migrations
 
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("ProductCallRequests")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Product");
 
@@ -1536,10 +1515,6 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.Product.ProductComment", "ParentProductComment")
-                        .WithMany("ProductComments")
-                        .HasForeignKey("ParentId");
-
                     b.HasOne("BlogAndShop.Data.Data.Product.Product", "Product")
                         .WithMany("ProductComments")
                         .HasForeignKey("ProductId")
@@ -1548,18 +1523,7 @@ namespace BlogAndShop.Migrations
 
                     b.Navigation("Owner");
 
-                    b.Navigation("ParentProductComment");
-
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductGroup", b =>
-                {
-                    b.HasOne("BlogAndShop.Data.Data.Product.ProductGroup", "ParentProductGroup")
-                        .WithMany("ProductGroups")
-                        .HasForeignKey("ParentId");
-
-                    b.Navigation("ParentProductGroup");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductMedia", b =>
@@ -1735,16 +1699,9 @@ namespace BlogAndShop.Migrations
                     b.Navigation("PostComments");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.PostComment", b =>
-                {
-                    b.Navigation("PostComments");
-                });
-
             modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.PostGroup", b =>
                 {
                     b.Navigation("Post_PostGroups");
-
-                    b.Navigation("PostGroups");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.Brand", b =>
@@ -1769,15 +1726,8 @@ namespace BlogAndShop.Migrations
                     b.Navigation("ProductTags");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductComment", b =>
-                {
-                    b.Navigation("ProductComments");
-                });
-
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductGroup", b =>
                 {
-                    b.Navigation("ProductGroups");
-
                     b.Navigation("Products");
                 });
 

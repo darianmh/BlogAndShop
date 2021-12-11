@@ -22,7 +22,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         [ForeignKey("User")]
         [Display(Name = "نگارنده")]
         [Required(ErrorMessage = "{0} الزامی است")]
-        [Ignore]
+        [Hidden]
         public int OwnerId { get; set; }
 
         /// <summary>

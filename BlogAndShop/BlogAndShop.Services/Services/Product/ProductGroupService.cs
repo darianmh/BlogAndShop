@@ -95,11 +95,12 @@ namespace BlogAndShop.Services.Services.Product
 
         public async Task<List<int>> GetChildrenGroupsId(int categoryId)
         {
-            var group = await Queryable.Include(x => x.ProductGroups).FirstOrDefaultAsync(x => x.Id == categoryId);
+            var group = await Queryable.FirstOrDefaultAsync(x => x.Id == categoryId);
+            var children = await GetByParentId(categoryId);
             var list = new List<int>();
-            if (group.ProductGroups != null)
+            if (children != null && children.Any())
             {
-                list = group.ProductGroups.Select(x => x.Id).ToList();
+                list = children.Select(x => x.Id).ToList();
                 var tempList = new List<int>();
                 foreach (var id in list)
                 {

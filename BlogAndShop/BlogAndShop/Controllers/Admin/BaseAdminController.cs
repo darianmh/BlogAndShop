@@ -12,9 +12,5 @@ namespace BlogAndShop.Controllers.Admin
             AdminModelHelper = adminModelHelper;
         }
 
-        protected int GetUserId()
-        {
-            return 5;
-        }
     }
 }

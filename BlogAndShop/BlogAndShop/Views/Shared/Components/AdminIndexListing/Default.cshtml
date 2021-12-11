@@ -80,9 +80,9 @@ foreach($_POST['item_id'] as $item_id) {
 									-->
 									<a href='#'
 									   class='dropdown-item text-truncate js-ajax-confirm'
-									   data-href='/@Model.Controller/Delete/@item.Key'
+									   data-href='/@Model.Controller/Delete?@item.Key'
 									   data-ajax-confirm-method='GET'
-									   data-ajax-confirm-mode='ajax'
+									   data-ajax-confirm-mode='regular'
 									   data-ajax-confirm-size='modal-md'
 									   data-ajax-confirm-centered='false'
 									   data-ajax-confirm-callback-function=''

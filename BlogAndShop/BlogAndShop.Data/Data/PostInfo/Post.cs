@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.PostInfo
@@ -74,5 +76,10 @@ namespace BlogAndShop.Data.Data.PostInfo
         [JsonIgnore]
         public virtual List<Post_Tags> Post_Tags { get; set; }
 
+
+        public override SelectListItem GetSelectListItem(string selected)
+        {
+            return new SelectListItem(Title, Id.ToString(), selected: Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

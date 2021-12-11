@@ -26,7 +26,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var all = await _service.GetAllInfoAsync(page, count);
             //کسر یک عدد و سپس جمع آن برای رفع مشکل 10 تقسیم بر ده می باشد
-            var model = AdminModelHelper.GetIndexModel<ProductCommentModel,ProductComment>(all, page, count);
+            var model = AdminModelHelper.GetIndexModel<ProductCommentModel, ProductComment>(all, page, count);
             return View(model);
         }
 
@@ -51,7 +51,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         [HttpPost]
         public async Task<IActionResult> Create(ProductCommentModel model)
         {
-            model.OwnerId = GetUserId();
+            model.OwnerId = await GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             return RedirectToAction("Details", new { id = item.Id });

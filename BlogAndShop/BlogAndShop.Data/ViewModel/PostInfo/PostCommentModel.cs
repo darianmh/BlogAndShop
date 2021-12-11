@@ -26,7 +26,6 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         /// <summary>
         /// اگر ریپلای باشد این فیلد مقدار می گیرد
         /// </summary>
-        [ForeignKey("ParentPostComment")]
         [Display(Name = "کامنت ")]
         [DbOptionList(typeof(PostComment), true)]
         public int? ParentId { get; set; }
@@ -66,10 +65,6 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         //np
         [Ignore]
         public virtual PostModel Post { get; set; }
-        [Ignore]
-        public virtual PostCommentModel ParentPostComment { get; set; }
-        [Ignore]
-        public virtual List<PostCommentModel> PostComments { get; set; }
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }
     }

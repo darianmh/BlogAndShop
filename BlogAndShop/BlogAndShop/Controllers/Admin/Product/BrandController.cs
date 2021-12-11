@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Product;
@@ -63,8 +65,17 @@ namespace BlogAndShop.Controllers.Admin.Product
 
         public async Task<IActionResult> Delete(int id)
         {
-            var item = await _service.DeleteAsync(id);
-            return RedirectToAction("Index");
+            try
+            {
+                var item = await _service.GetByIdAsync(id);
+                if (item.Products.Any()) return MessagePage("اول محصولات را پاک نمایید");
+                await _service.DeleteAsync(item);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         #endregion
         #region Utilities

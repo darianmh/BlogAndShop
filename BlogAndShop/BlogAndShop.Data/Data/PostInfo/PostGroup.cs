@@ -34,7 +34,6 @@ namespace BlogAndShop.Data.Data.PostInfo
         /// <summary>
         ///  اگر زیر مجموعه باشد
         /// </summary>
-        [ForeignKey("ParentPostGroup")]
         [Display(Name = "سرگروه")]
         [AdminShowItem(3)]
         public int? ParentId { get; set; }
@@ -46,17 +45,20 @@ namespace BlogAndShop.Data.Data.PostInfo
         //np
         [JsonIgnore]
         public virtual List<Post_PostGroup> Post_PostGroups { get; set; }
-        [JsonIgnore]
-        public virtual List<PostGroup> PostGroups { get; set; }
-        [JsonIgnore]
-        public virtual PostGroup ParentPostGroup { get; set; }
 
 
         public override SelectListItem GetSelectListItem(string selected)
         {
-            var array = (JArray)JsonConvert.DeserializeObject(selected);
-            var selectedValues = array.Select(Convert.ToInt32).ToList();
-            return new SelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
+            try
+            {
+                var array = (JArray)JsonConvert.DeserializeObject(selected ?? "");
+                var selectedValues = array?.Select(Convert.ToInt32)?.ToList() ?? new List<int>();
+                return new SelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
+            }
+            catch (Exception e)
+            {
+                return base.GetSelectListItem(selected);
+            }
         }
     }
 }

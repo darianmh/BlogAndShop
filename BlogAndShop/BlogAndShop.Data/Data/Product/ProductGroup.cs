@@ -32,7 +32,6 @@ namespace BlogAndShop.Data.Data.Product
         /// <summary>
         ///  اگر زیر مجموعه باشد
         /// </summary>
-        [ForeignKey("ParentProductGroup")]
         [Display(Name = "سرگروه")]
         [AdminShowItem(3)]
         public int? ParentId { get; set; }
@@ -53,10 +52,6 @@ namespace BlogAndShop.Data.Data.Product
         //np
         [JsonIgnore]
         public virtual List<Product> Products { get; set; }
-        [JsonIgnore]
-        public virtual List<ProductGroup> ProductGroups { get; set; }
-        [JsonIgnore]
-        public virtual ProductGroup ParentProductGroup { get; set; }
 
 
         public override SelectListItem GetSelectListItem(string selected)

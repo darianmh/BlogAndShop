@@ -28,7 +28,6 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// <summary>
         ///      اگر ریپلای باشد این فیلد مقدار می گیرد
         /// </summary>
-        [ForeignKey("ParentProductComment")]
         [Display(Name = "پدر")]
         [DbOptionList(typeof(ProductComment), true)]
         public int? ParentId { get; set; }
@@ -71,9 +70,5 @@ namespace BlogAndShop.Data.ViewModel.Product
         public virtual ProductModel Product { get; set; }
         [Ignore]
         public virtual ApplicationUserModel Owner { get; set; }
-        [Ignore]
-        public virtual List<ProductCommentModel> ProductComments { get; set; }
-        [Ignore]
-        public virtual ProductCommentModel ParentProductComment { get; set; }
     }
 }

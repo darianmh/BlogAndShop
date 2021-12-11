@@ -38,7 +38,7 @@ namespace BlogAndShop.Controllers
                 return ReturnErrorJsonResult<string>("اطلاعات کامل نمی باشد");
             }
 
-            model.UserId = GetUserId();
+            model.UserId = await GetUserId();
             model.MessageStatus = MessageStatus.New;
             var item = model.ToEntity();
             var check = await _productCallRequestService.CreateNew(item);

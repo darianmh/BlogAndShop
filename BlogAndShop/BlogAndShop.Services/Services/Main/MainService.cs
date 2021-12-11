@@ -24,7 +24,24 @@ namespace BlogAndShop.Services.Services.Main
 
         private TDb Db { get; set; }
 
-        protected DbSet<T> Queryable => Db.Set<T>();
+        protected DbSet<T> Set => Db.Set<T>();
+        protected IQueryable<T> Queryable
+        {
+            get
+            {
+                var set = Set.AsQueryable();
+                var navigations = Db.Model.FindEntityType(typeof(T))
+                    .GetDerivedTypesInclusive()
+                    .SelectMany(type => type.GetNavigations())
+                    .Distinct();
+
+                foreach (var property in navigations)
+                    set = set.Include(property.Name);
+                return set;
+
+                return Db.Set<T>();
+            }
+        }
 
         #endregion
 
@@ -33,7 +50,7 @@ namespace BlogAndShop.Services.Services.Main
         {
             entity.CreateDateTime = DateTime.Now;
             entity.UpdateDateTime = DateTime.Now;
-            Queryable.Add(entity);
+            Set.Add(entity);
             Db.SaveChanges();
             return entity.Id;
         }
@@ -44,7 +61,7 @@ namespace BlogAndShop.Services.Services.Main
             {
                 entity.CreateDateTime = DateTime.Now;
                 entity.UpdateDateTime = DateTime.Now;
-                Queryable.Add(entity);
+                Set.Add(entity);
             }
             Db.SaveChanges();
         }
@@ -68,18 +85,11 @@ namespace BlogAndShop.Services.Services.Main
 
         public virtual void Delete(T entity)
         {
+            DeleteNavigationProperties(entity);
             Db.Entry(entity).State = EntityState.Deleted;
             Db.SaveChanges();
         }
 
-        public void Delete<TG>(TG entity) where TG : class
-        {
-            var tempEn = entity;
-            foreach (var temp in from property in (typeof(TG).GetProperties()) where property.PropertyType.Name == typeof(ICollection<>).Name select tempEn.GetType().GetProperty(property.Name) into propertyInfo where propertyInfo != null select propertyInfo.GetValue(tempEn) into navigation select ((IEnumerable<object>)navigation).ToList() into list from temp in list select temp)
-                Delete(temp);
-            Db.Entry(entity).State = EntityState.Deleted;
-            Db.SaveChanges();
-        }
 
         public void Delete(TId id)
         {
@@ -97,9 +107,8 @@ namespace BlogAndShop.Services.Services.Main
         {
             foreach (var entity in entities)
             {
-                Db.Entry(entity).State = EntityState.Deleted;
+                Delete(entity);
             }
-            Db.SaveChanges();
         }
 
         public bool CheckId(TId id)
@@ -114,7 +123,7 @@ namespace BlogAndShop.Services.Services.Main
 
         public T GetById(TId id)
         {
-            var entity = Queryable.Find(id);
+            var entity = Queryable.FirstOrDefault(x => x.Id.Equals(id));
             return entity;
         }
 
@@ -125,70 +134,51 @@ namespace BlogAndShop.Services.Services.Main
 
         public async Task<TId> InsertAsync(T entity)
         {
-            return await Task.Run(async () =>
-            {
-                entity.CreateDateTime = DateTime.Now;
-                entity.UpdateDateTime = DateTime.Now;
-                Queryable.Add(entity);
-                await Db.SaveChangesAsync();
-                return entity.Id;
-            });
+            entity.CreateDateTime = DateTime.Now;
+            entity.UpdateDateTime = DateTime.Now;
+            await Set.AddAsync(entity);
+            await Db.SaveChangesAsync();
+            return entity.Id;
         }
 
         public async Task<int> InsertAsync(List<T> entities)
         {
-            return await Task.Run(async () =>
+            foreach (var entity in entities)
             {
-
-                foreach (var entity in entities)
-                {
-                    entity.CreateDateTime = DateTime.Now;
-                    entity.UpdateDateTime = DateTime.Now;
-                    Queryable.Add(entity);
-                }
-                return await Db.SaveChangesAsync();
-            });
+                entity.CreateDateTime = DateTime.Now;
+                entity.UpdateDateTime = DateTime.Now;
+                await Set.AddAsync(entity);
+            }
+            return await Db.SaveChangesAsync();
         }
 
         public async Task<int> UpdateAsync(T entity)
         {
-            return await Task.Run(async () =>
-            {
-                entity.UpdateDateTime = DateTime.Now;
-                Db.Entry(entity).State = EntityState.Modified;
-                return await Db.SaveChangesAsync();
-            });
+            entity.UpdateDateTime = DateTime.Now;
+            Db.Entry(entity).State = EntityState.Modified;
+            return await Db.SaveChangesAsync();
         }
 
         public async Task<int> UpdateAsync(List<T> entities)
         {
-            return await Task.Run(async () =>
+            foreach (var entity in entities)
             {
-
-                foreach (var entity in entities)
-                {
-                    entity.UpdateDateTime = DateTime.Now;
-                    Db.Entry(entity).State = EntityState.Modified;
-                }
-                return await Db.SaveChangesAsync();
-            });
+                entity.UpdateDateTime = DateTime.Now;
+                Db.Entry(entity).State = EntityState.Modified;
+            }
+            return await Db.SaveChangesAsync();
         }
 
         public virtual async Task<int> DeleteAsync(T entity)
         {
-            return await Task.Run(async () =>
-            {
-
-                var tempEntity = entity;
-                foreach (var temp in from property in (typeof(T).GetProperties()) where property.PropertyType.Name == typeof(ICollection<>).Name select tempEntity.GetType().GetProperty(property.Name) into propertyInfo where propertyInfo != null select propertyInfo.GetValue(tempEntity) into navigation select ((IEnumerable<object>)navigation).ToList() into list from temp in list select temp)
-                    Delete(temp);
-                Db.Entry(entity).State = EntityState.Deleted;
-                return await Db.SaveChangesAsync();
-            });
+            await DeleteNavigationPropertiesAsync(entity);
+            Db.Entry(entity).State = EntityState.Deleted;
+            return await Db.SaveChangesAsync();
         }
+
         //public async Task<int> DeleteAsync<TG>(TG entity) where TG : class
         //{
-        //    return await Task.Run(async () =>
+        //    return await (async () =>
         //    {
 
         //        var tempEn = entity;
@@ -201,11 +191,8 @@ namespace BlogAndShop.Services.Services.Main
 
         public async Task<int> DeleteAsync(TId id)
         {
-            return await Task.Run(async () =>
-            {
-                var entity = GetById(id);
-                return await DeleteAsync(entity);
-            });
+            var entity = await GetByIdAsync(id);
+            return await DeleteAsync(entity);
         }
 
         public async Task DeleteAllAsync()
@@ -214,22 +201,17 @@ namespace BlogAndShop.Services.Services.Main
             await DeleteAllAsync(all);
         }
 
-        public Task DeleteAllAsync(List<T> entities)
+        public async Task DeleteAllAsync(List<T> entities)
         {
-            return Task.Run(async () =>
+            foreach (var entity in entities)
             {
-
-                foreach (var entity in entities)
-                {
-                    Db.Entry(entity).State = EntityState.Deleted;
-                }
-                return await Db.SaveChangesAsync();
-            });
+                await DeleteAsync(entity);
+            }
         }
 
         public virtual async Task<T> GetByIdAsync(TId id)
         {
-            var entity = await Queryable.FindAsync(id);
+            var entity = await Queryable.FirstOrDefaultAsync(x => x.Id.Equals(id));
             return entity;
         }
 
@@ -284,7 +266,47 @@ namespace BlogAndShop.Services.Services.Main
 
         #region Utilities
 
+        private void Delete<TG>(TG entity) where TG : class
+        {
+            var navigationProperties = GetNavigationProperties(entity);
+            foreach (object temp in navigationProperties)
+                Delete(temp);
+            Db.Entry(entity).State = EntityState.Deleted;
+            Db.SaveChanges();
+        }
+        private async Task DeleteNavigationPropertiesAsync(T entity)
+        {
+            var navigationProperties = GetNavigationProperties(entity);
+            foreach (object temp in navigationProperties)
+                Delete(temp);
+        }
 
+        private List<object> GetNavigationProperties(object entity)
+        {
+            var tempEntity = entity;
+            foreach (var property in (typeof(T).GetProperties()))
+            {
+                if (property.PropertyType.Name == typeof(List<>).Name)
+                {
+                    var propertyInfo = tempEntity.GetType().GetProperty(property.Name);
+                    if (propertyInfo != null)
+                    {
+                        var navigation = propertyInfo.GetValue(tempEntity);
+                        List<object> list = ((IEnumerable<object>)navigation)?.ToList() ?? new List<object>();
+                        return list;
+                    }
+                }
+            }
+
+            return new List<object>();
+        }
+
+        private void DeleteNavigationProperties(T entity)
+        {
+            var navigationProperties = GetNavigationProperties(entity);
+            foreach (object temp in navigationProperties)
+                Delete(temp);
+        }
         protected async Task<List<T>> Pagination<T>(IQueryable<T> all, int page, int count)
         {
             return await all.Skip(page * count).Take(count).ToListAsync();
