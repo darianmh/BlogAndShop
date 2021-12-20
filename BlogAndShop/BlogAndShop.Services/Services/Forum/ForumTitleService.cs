@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Forum;
+using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Common;
@@ -10,6 +11,7 @@ using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Product;
 using BlogAndShop.Services.Services.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.Forum
 {
@@ -54,6 +56,17 @@ namespace BlogAndShop.Services.Services.Forum
             {
                 LastDate = x.UpdateDateTime.ToString("s"),
                 Url = $"{DirectoryHelper.Domain}/Forum/Item/{x.Id}"
+            }).ToList();
+        }
+
+        public async Task<List<SearchResultItemModel>> Search(string key)
+        {
+            var all = await Queryable.Where(x => x.Title.Contains(key) || x.Description.Contains(key)).ToListAsync();
+            return all.Select(x => new SearchResultItemModel()
+            {
+                Name = x.Title,
+                SearchResultType = SiteMapType.Forum,
+                Id = x.Id
             }).ToList();
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using BlogAndShop.Data.Context;
+using BlogAndShop.Services.Services.Common.Search;
 using BlogAndShop.Services.Services.Common.SenderServices;
 using BlogAndShop.Services.Services.User.Identity;
 using BlogAndShop.Services.Services.Utilities;
@@ -49,6 +50,8 @@ namespace BlogAndShop.Services.Classes
             //other
             services.AddTransient<ISendService, SendService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
+            services.AddTransient<ISearchService, SearchService>();
+
 
 
             return services;

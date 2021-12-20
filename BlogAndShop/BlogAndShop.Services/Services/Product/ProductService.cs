@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Product;
+using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
@@ -71,6 +72,19 @@ namespace BlogAndShop.Services.Services.Product
                 Url = $"{DirectoryHelper.Domain}/Shop/Item/{x.Id}"
             }).ToList();
         }
+
+        public async Task<List<SearchResultItemModel>> Search(string key)
+        {
+            var all = await Queryable.Where(x => x.Title.Contains(key)).ToListAsync();
+            return all.Select(x => new SearchResultItemModel()
+            {
+                ImagePath = x.BannerImage,
+                Name = x.Title,
+                SearchResultType = SiteMapType.Shop,
+                Id = x.Id
+            }).ToList();
+        }
+
         #endregion
         #region Utilities
 

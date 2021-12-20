@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PostInfo;
+using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
@@ -38,5 +39,11 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// </summary>
         /// <returns></returns>
         Task<List<SiteMapItemModel>> GetSiteMap();
+        /// <summary>
+        /// جستجو در بین موارد موجود
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<List<SearchResultItemModel>> Search(string key);
     }
 }

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Search\Index.cshtml" />
     <Content Remove="wwwroot\richtexteditor\runtime\images\cpie_Color.cur" />
     <Content Remove="wwwroot\richtexteditor\runtime\images\cpns_Color.cur" />
     <Content Remove="wwwroot\richtexteditor\runtime\richtexteditor_preview.js" />
@@ -122,6 +123,7 @@
     <None Include="Views\RoleAccess\Details.cshtml" />
     <None Include="Views\RoleAccess\Edit.cshtml" />
     <None Include="Views\RoleAccess\Index.cshtml" />
+    <None Include="Views\Search\Index.cshtml" />
     <None Include="Views\Shared\Components\AdminIndexListing\Default.cshtml" />
     <None Include="Views\Shared\Components\AdminNewMessages\Default.cshtml" />
     <None Include="Views\Shared\Components\AdminNewOrder\Default.cshtml" />

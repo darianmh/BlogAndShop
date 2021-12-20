@@ -1,0 +1,227 @@
+﻿@using BlogAndShop.Data.ViewModel.Utilities.SiteMap
+@model BlogAndShop.Data.ViewModel.Common.Search.SearchResultModel
+
+@{
+	ViewBag.metaTitle = Model.Key;
+}
+
+
+<!-- PAGE TITLE -->
+<section class="bg-light p-0">
+	<div class="container py-5">
+
+		<h1 class="h3">
+			@Model.Key
+		</h1>
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb fs--14">
+				<li class="breadcrumb-item"><a asp-controller="Home">خانه</a></li>
+				<li class="breadcrumb-item active" aria-current="page">@Model.Key</li>
+			</ol>
+		</nav>
+
+	</div>
+</section>
+<!-- /PAGE TITLE -->
+<!-- -->
+<section>
+	<div class="container">
+
+		<div class="row">
+
+			<!-- sidebar -->
+			@await Component.InvokeAsync("ShopSideBar")
+			<!-- /sidebar -->
+			<!-- products -->
+			<div class="col-12 col-sm-12 col-md-12 col-lg-9">
+
+
+
+				<!-- additional filters -->
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+
+					<p>
+						محصولات
+					</p>
+					<h3 class="h5 mb-0">
+						@{
+							var count = Model.ShopCount;
+						}
+						@count محصول موجود است
+					</h3>
+				</div>
+				<!-- /additional filters -->
+				<!-- product list -->
+				<div class="row gutters-xs--xs">
+
+					@if (Model.Items != null && Model.Items.Any())
+					{
+						foreach (var item in Model.Items.Where(x => x.SearchResultType == SiteMapType.Shop))
+						{
+
+							<!-- squared item -->
+							<div class="col-6 col-md-4 mb-4 mb-2-xs">
+
+								<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+
+									<a asp-controller="Shop" asp-action="Item" asp-route-productId="@item.Id" class="d-block text-decoration-none">
+
+										<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.ImagePath">
+											<img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="@item.Name">
+										</figure>
+
+										<span class="d-block text-center-xs text-gray-600 py-3">
+
+											<!--
+											.max-height-50  = limited to 2 rows of text
+											-or-
+											.text-truncate
+											-->
+											<span class="d-block fs--16 max-h-50 overflow-hidden">
+												@item.Name
+											</span>
+
+
+										</span>
+
+									</a>
+
+								</div>
+
+							</div>
+							<!-- /squared item -->
+						}
+					}
+
+				</div>
+				<!-- /product list -->
+				<!-- additional filters -->
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+
+					<p>
+						مطالب بلاگ
+					</p>
+					<h3 class="h5 mb-0">
+						@{
+							count = Model.BlogCount;
+						}
+						@count مطلب موجود است
+					</h3>
+				</div>
+				<!-- /additional filters -->
+				<!-- blog list -->
+				<div class="row gutters-xs--xs">
+
+					@if (Model.Items != null && Model.Items.Any())
+					{
+						foreach (var item in Model.Items.Where(x => x.SearchResultType == SiteMapType.Blog))
+						{
+
+							<!-- squared item -->
+							<div class="col-6 col-md-4 mb-4 mb-2-xs">
+
+								<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+
+									<a asp-controller="Blog" asp-action="Item" asp-route-productId="@item.Id" class="d-block text-decoration-none">
+
+										<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.ImagePath">
+											<img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="@item.Name">
+										</figure>
+
+										<span class="d-block text-center-xs text-gray-600 py-3">
+
+											<!--
+												.max-height-50  = limited to 2 rows of text
+												-or-
+												.text-truncate
+											-->
+											<span class="d-block fs--16 max-h-50 overflow-hidden">
+												@item.Name
+											</span>
+
+
+										</span>
+
+									</a>
+
+								</div>
+
+							</div>
+							<!-- /squared item -->
+						}
+					}
+
+				</div>
+				<!-- /blog list -->
+				<!-- additional filters -->
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+
+					<p>
+						مطالب انجمن
+					</p>
+					<h3 class="h5 mb-0">
+						@{
+							count = Model.ForumCount;
+						}
+						@count عنوان موجود است
+					</h3>
+				</div>
+				<!-- /additional filters -->
+				<!-- forum list -->
+				<div class="row gutters-xs--xs">
+
+					@if (Model.Items != null && Model.Items.Any())
+					{
+						foreach (var item in Model.Items.Where(x => x.SearchResultType == SiteMapType.Forum))
+						{
+
+							<!-- squared item -->
+							<div class="col-6 col-md-4 mb-4 mb-2-xs">
+
+								<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+
+									<a asp-controller="Forum" asp-action="Item" asp-route-productId="@item.Id" class="d-block text-decoration-none">
+
+										<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.ImagePath">
+											<img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="@item.Name">
+										</figure>
+
+										<span class="d-block text-center-xs text-gray-600 py-3">
+
+											<!--
+												.max-height-50  = limited to 2 rows of text
+												-or-
+												.text-truncate
+											-->
+											<span class="d-block fs--16 max-h-50 overflow-hidden">
+												@item.Name
+											</span>
+
+										</span>
+
+									</a>
+
+								</div>
+
+							</div>
+							<!-- /squared item -->
+						}
+					}
+
+				</div>
+				<!-- /forum list -->
+
+
+
+			</div>
+			<!-- /products -->
+
+		</div>
+
+	</div>
+</section>
+<!-- / -->

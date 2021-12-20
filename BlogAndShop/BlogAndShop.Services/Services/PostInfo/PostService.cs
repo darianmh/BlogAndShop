@@ -5,6 +5,7 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes;
@@ -69,6 +70,18 @@ namespace BlogAndShop.Services.Services.PostInfo
             {
                 LastDate = x.UpdateDateTime.ToString("s"),
                 Url = $"{DirectoryHelper.Domain}/Blog/Item/{x.Id}"
+            }).ToList();
+        }
+
+        public async Task<List<SearchResultItemModel>> Search(string key)
+        {
+            var all = await Queryable.Where(x => x.Title.Contains(key)).ToListAsync();
+            return all.Select(x => new SearchResultItemModel()
+            {
+                ImagePath = x.BannerImage,
+                Name = x.Title,
+                SearchResultType = SiteMapType.Blog,
+                Id = x.Id
             }).ToList();
         }
 
