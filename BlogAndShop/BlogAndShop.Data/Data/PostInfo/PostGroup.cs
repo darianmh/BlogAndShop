@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -47,17 +48,17 @@ namespace BlogAndShop.Data.Data.PostInfo
         public virtual List<Post_PostGroup> Post_PostGroups { get; set; }
 
 
-        public override SelectListItem GetSelectListItem(string selected)
+        public override MySelectListItem GetSelectListItem(string selected)
         {
             try
             {
                 var array = (JArray)JsonConvert.DeserializeObject(selected ?? "");
                 var selectedValues = array?.Select(Convert.ToInt32)?.ToList() ?? new List<int>();
-                return new SelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
+                return new MySelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
             }
             catch (Exception e)
             {
-                return base.GetSelectListItem(selected);
+                return new MySelectListItem(Title.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
             }
         }
     }

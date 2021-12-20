@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Product;
+using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
 
 namespace BlogAndShop.Services.Services.Product
@@ -43,5 +44,10 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="productId"></param>
         /// <returns></returns>
         Task<string> GetProductName(int productId);
+        /// <summary>
+        /// سایت مپ را از تولید می کند از تمام موارد
+        /// </summary>
+        /// <returns></returns>
+        Task<List<SiteMapItemModel>> GetSiteMap();
     }
 }

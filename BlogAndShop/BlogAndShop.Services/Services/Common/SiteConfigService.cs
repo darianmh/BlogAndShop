@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
@@ -44,9 +45,30 @@ namespace BlogAndShop.Services.Services.Common
             return info?.ShoppingModel ?? ShoppingModel.Call;
         }
 
+        public async Task<List<string>> GetAdminPhoneNumbers()
+        {
+            var info = await GetInfo();
+            var email = info.AdminPhones;
+            return SplitAdminInfos(email);
+        }
+
+
+        public async Task<List<string>> GetAdminEmails()
+        {
+            var info = await GetInfo();
+            var phoneNumber = info.AdminEmails;
+            return SplitAdminInfos(phoneNumber);
+        }
+
         #endregion
         #region Utilities
 
+        private List<string> SplitAdminInfos(string infos)
+        {
+            if (infos == null) return new List<string>();
+            var split = infos.Split(',');
+            return split.Select(x => x.Trim()).ToList();
+        }
 
         #endregion
         #region Ctor

@@ -9,6 +9,7 @@ using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Product;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
@@ -124,19 +125,19 @@ namespace BlogAndShop.Data.Data.Product
         public virtual List<Product_ForumInfo> ProductForumGroups { get; set; }
 
 
-        public override SelectListItem GetSelectListItem(string selected)
+        public override MySelectListItem GetSelectListItem(string selected)
         {
             try
             {
                 //اگر لیستی از محصولات باشد
                 var allSelected = (List<int>)JsonConvert.DeserializeObject(selected);
 
-                return new SelectListItem(Title.ToString(), Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
+                return new MySelectListItem(Title.ToString(), Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
             }
             catch
             {
                 //اگر تک باشد
-                return new SelectListItem(Title.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
+                return new MySelectListItem(Title.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
             }
         }
 

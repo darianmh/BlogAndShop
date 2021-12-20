@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogAndShop.Data.Data.Common
@@ -16,9 +17,9 @@ namespace BlogAndShop.Data.Data.Common
         public DateTime UpdateDateTime { get; set; }
 
 
-        public virtual SelectListItem GetSelectListItem(string selected)
+        public virtual MySelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Id.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+            return new MySelectListItem(Id.ToString(), Id.ToString(), selected: Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
         }
         public virtual string GetShowTextById(string id)
         {

@@ -53,6 +53,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = model.ToEntity();
             await _service.InsertAsync(item);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -60,6 +61,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = model.ToEntity();
             await _service.UpdateAsync(item);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = model.Id });
         }
 
@@ -70,6 +72,7 @@ namespace BlogAndShop.Controllers.Admin.Product
                 var item = await _service.GetByIdAsync(id);
                 if (item.Products.Any()) return MessagePage("اول محصولات را پاک نمایید");
                 await _service.DeleteAsync(item);
+                CacheHelper.ClearCache();
                 return RedirectToAction("Index");
             }
             catch (Exception e)

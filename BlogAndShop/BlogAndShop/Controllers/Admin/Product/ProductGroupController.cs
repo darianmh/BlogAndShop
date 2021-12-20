@@ -1,5 +1,6 @@
 
 
+using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common;
@@ -13,7 +14,7 @@ using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Product
 {
-    [AdminFilterName(AdminControllerNames.Product,"گروه محصولات")]
+    [AdminFilterName(AdminControllerNames.Product, "گروه محصولات")]
     public class ProductGroupController : BaseAdminController
     {
         #region Fields
@@ -36,7 +37,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             var model = item.ToModel();
             return View(model);
         }
-        
+
         public IActionResult Create()
         {
             return View(new ProductGroupModel());
@@ -65,7 +66,9 @@ namespace BlogAndShop.Controllers.Admin.Product
 
         public async Task<IActionResult> Delete(int id)
         {
-            var item = await _service.DeleteAsync(id);
+            var item = await _service.GetByIdAsync(id);
+            if (item.Products.Any()) return MessagePage("لطفا اول محصولات را پاک نمایید.");
+            await _service.DeleteAsync(id);
             return RedirectToAction("Index");
         }
         #endregion

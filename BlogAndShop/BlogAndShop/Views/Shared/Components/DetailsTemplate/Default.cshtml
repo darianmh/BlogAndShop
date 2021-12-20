@@ -19,6 +19,10 @@
 						if (option.Selected)
 						{
 							<p>@option.Text</p>
+							if (option.HasImage)
+							{
+								<img src="@option.ImagePath" width="50px" />
+							}
 						}
 					}
 				}

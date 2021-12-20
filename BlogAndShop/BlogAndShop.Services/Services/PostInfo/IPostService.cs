@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.PostInfo;
+using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
 
 namespace BlogAndShop.Services.Services.PostInfo
@@ -31,5 +32,11 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="postId"></param>
         /// <returns></returns>
         Task<PostModel> GetPostModel(int postId);
+
+        /// <summary>
+        /// سایت مپ را از تولید می کند از تمام موارد
+        /// </summary>
+        /// <returns></returns>
+        Task<List<SiteMapItemModel>> GetSiteMap();
     }
 }

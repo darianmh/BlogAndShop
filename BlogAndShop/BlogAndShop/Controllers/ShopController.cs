@@ -39,6 +39,7 @@ namespace BlogAndShop.Controllers
             if (!model.SubCategories.Any()) return RedirectToAction("Index", new { categoryId = categoryId });
             return View(model);
         }
+        [Route("Shop/Item/{productId}")]
         public async Task<IActionResult> Item(int productId)
         {
             var product = await _productService.GetByIdAsync(productId);

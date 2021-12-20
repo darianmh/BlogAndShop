@@ -52,6 +52,12 @@ namespace BlogAndShop.Services.Services.User
             return all;
         }
 
+        public async Task DeleteAllByRoleIdASync(int id)
+        {
+            var all = await GetRoleAccessesByRole(id);
+            await DeleteAllAsync(all);
+        }
+
         #endregion
         #region Utilities
 

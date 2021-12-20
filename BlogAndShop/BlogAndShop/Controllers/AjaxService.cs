@@ -8,6 +8,7 @@ using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Services.Common;
+using BlogAndShop.Services.Services.Common.SenderServices;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Product;
 
@@ -19,6 +20,7 @@ namespace BlogAndShop.Controllers
 
         private readonly IMediaService _mediaService;
         private readonly IProductCallRequestService _productCallRequestService;
+        private readonly ISendService _sendService;
 
         #endregion
         #region Methods
@@ -42,7 +44,12 @@ namespace BlogAndShop.Controllers
             model.MessageStatus = MessageStatus.New;
             var item = model.ToEntity();
             var check = await _productCallRequestService.CreateNew(item);
-            if (check) return ReturnJsonResult("");
+            if (check)
+            {
+                var adminLink = $"<a href='https://{HttpContext.Request.Host.Value}/ProductCallRequest/Details/{item.Id}'>لینک اطلاعات</a>";
+                await _sendService.SendNotification($"سفارش تماس جدید در سیستم ثبت شد. اطلاعات بیشتر :{adminLink}", "سفارش تماس جدید");
+                return ReturnJsonResult("");
+            }
             return ReturnErrorJsonResult<string>("مشکلی پیش آمد.");
         }
         #endregion
@@ -52,10 +59,11 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Ctor
 
-        public AjaxService(IMediaService mediaService, IProductCallRequestService productCallRequestService)
+        public AjaxService(IMediaService mediaService, IProductCallRequestService productCallRequestService, ISendService sendService)
         {
             _mediaService = mediaService;
             _productCallRequestService = productCallRequestService;
+            _sendService = sendService;
         }
 
         #endregion

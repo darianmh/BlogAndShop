@@ -112,5 +112,18 @@ namespace BlogAndShop.Data.ViewModel.Common
         [Display(Name = "انجمن بررسی محصول")]
         [DbOptionList(typeof(ForumGroup), true, false)]
         public int? ProductForumGroup { get; set; }
+
+        /// <summary>
+        /// ایمیل های ادمین ها
+        /// برای ارسال پیام های مهم
+        /// </summary>
+        [Display(Name = "ایمیل ادمین (با, جداکنید)")]
+        public string AdminEmails { get; set; }
+        /// <summary>
+        /// شماره های ادمین ها
+        /// برای ارسال پیام های مهم
+        /// </summary>
+        [Display(Name = "شماره ادمین (با, جداکنید)")]
+        public string AdminPhones { get; set; }
     }
 }

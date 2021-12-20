@@ -1,6 +1,9 @@
 ﻿
 @using BlogAndShop.Data.ViewModel.Utilities
 @model List<BlogAndShop.Data.ViewModel.Utilities.EditCreateTemplateViewModel>
+@{
+	var selectItemCount = 0;
+}
 @foreach (var item in Model)
 {
 	string requiredText = "";
@@ -22,6 +25,9 @@
 			{
 				if (item.ListForOptionList != null)
 				{
+					selectItemCount++;
+					var selectImages = new Dictionary<string, string>();
+					var optionCount = 0;
 					var multiple = item.ObjectType == EditCreateTemplateType.DbListMulti || item.ObjectType == EditCreateTemplateType.EnumMulti ? "multiple='multiple'" : "";
 					<select id='@item.Name' name='@item.Name' @requiredText class="form-control bs-select" data-live-search="true" data-actions-box="true" @multiple>
 						@foreach (var option in item.ListForOptionList)
@@ -34,8 +40,29 @@
 							{
 								<option value="@option.Value">@option.Text</option>
 							}
+							if (option.HasImage)
+							{
+								var idName = $"bs-select-{selectItemCount}-{optionCount}";
+								selectImages.Add(idName, option.ImagePath);
+								optionCount++;
+							}
 						}
 					</select>
+
+					if (selectImages.Any())
+					{
+						@foreach (var image in selectImages)
+						{
+							<script>
+								setTimeout(function () {
+									var html = '<img src="@image.Value">';
+									$("#@image.Key").parent().append(html);
+									$("#@image.Key").parent().addClass('option_backgroundImage');
+								}, 6000);
+
+							</script>
+						}
+					}
 				}
 				check = true;
 			}
@@ -65,7 +92,7 @@
 				<textarea id='@item.Name' name='@item.Name' class="form-control" rows="3">@item.Value</textarea>
 				check = true;
 			}
-			else if (item.ObjectType == EditCreateTemplateType.File)
+			else if (item.ObjectType == EditCreateTemplateType.File || item.ObjectType == EditCreateTemplateType.File)
 			{
 				@await Html.PartialAsync("_FileUpload", item)
 				check = true;

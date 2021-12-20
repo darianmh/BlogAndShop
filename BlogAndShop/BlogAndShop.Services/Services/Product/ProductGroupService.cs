@@ -69,14 +69,14 @@ namespace BlogAndShop.Services.Services.Product
             if (result.Count >= count)
                 return result;
             var suggestedGroups = new List<int?>();
-            while (result.Count < count)
-            {
-                var suggestedGroup = await GetSuggestedGroup(groupId, suggestedGroups);
-                if (suggestedGroup != null)
-                    suggestedGroups.Add(suggestedGroup);
-                var temp = await GetGroupProducts(productId, count, suggestedGroup);
-                result.AddRange(temp);
-            }
+            //while (result.Count < count)
+            //{
+            var suggestedGroup = await GetSuggestedGroup(groupId, suggestedGroups);
+            if (suggestedGroup != null)
+                suggestedGroups.Add(suggestedGroup);
+            var temp = await GetGroupProducts(productId, count, suggestedGroup);
+            result.AddRange(temp);
+            //}
             if (result.Count > 4) result = result.Take(4).ToList();
             return result;
         }

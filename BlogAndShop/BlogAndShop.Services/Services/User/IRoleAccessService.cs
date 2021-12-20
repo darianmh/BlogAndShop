@@ -42,5 +42,7 @@ namespace BlogAndShop.Services.Services.User
         /// <param name="rolesModel"></param>
         /// <returns></returns>
         Task<List<RoleAccess>> GetAllAccessesByRoles(List<ApplicationRole> rolesModel);
+
+        Task DeleteAllByRoleIdASync(int id);
     }
 }

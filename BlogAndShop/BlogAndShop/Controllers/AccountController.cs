@@ -100,7 +100,9 @@ namespace BlogAndShop.Controllers
             }
 
             var token = await _applicationUserManager.GenerateToken(user, UserTokenType.ResetPassword);
-            var check = await _sendService.Send(user, $"کد شما برای بازیابی رمز عبور: {token}");
+            var body = $"کد شما برای بازیابی رمز عبور: {token}";
+            var subject = $"کاربر عزیر {_applicationUserManager.GetUSerDisplayNameAsync(user)}";
+            var check = await _sendService.Send(user, body, subject);
             return View(new ForgotPasswordModel
             {
                 UserId = user.Id

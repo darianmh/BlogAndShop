@@ -6,10 +6,12 @@ using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.PostInfo;
+using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo
@@ -59,6 +61,16 @@ namespace BlogAndShop.Services.Services.PostInfo
             return model;
         }
 
+
+        public async Task<List<SiteMapItemModel>> GetSiteMap()
+        {
+            var all = await GetAllAsync();
+            return all.Select(x => new SiteMapItemModel
+            {
+                LastDate = x.UpdateDateTime.ToString("s"),
+                Url = $"{DirectoryHelper.Domain}/Blog/Item/{x.Id}"
+            }).ToList();
+        }
 
         #endregion
         #region Utilities

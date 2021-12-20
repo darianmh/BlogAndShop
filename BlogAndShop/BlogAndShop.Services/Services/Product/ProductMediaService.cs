@@ -33,9 +33,44 @@ namespace BlogAndShop.Services.Services.Product
             return await Queryable.FirstOrDefaultAsync(x => x.ProductId == productId && x.MediaId == mediaId);
         }
 
+        public async Task<List<int>> GetByProductId(int id)
+        {
+            var tags = await GetProductImages(id);
+            return tags.Select(x => x.MediaId).ToList();
+        }
+
+        public async Task<List<ProductMedia>> GetProductImages(int id)
+        {
+            return await Queryable.Where(x => x.ProductId == id).ToListAsync();
+        }
+
+        public async Task SetProductMedia(int modelId, List<int> selectedMedias)
+        {
+
+            var medias = await GetProductImages(modelId);
+            await DeleteAsync(medias);
+            if (selectedMedias == null) return;
+            await CreateMedias(modelId, selectedMedias);
+        }
         #endregion
         #region Utilities
 
+        private async Task CreateMedias(int productId, List<int> selectedMedias)
+        {
+            selectedMedias = selectedMedias.GroupBy(x => x).Select(x => x.First()).ToList();
+            var tags = new List<ProductMedia>();
+            foreach (var selectedMedia in selectedMedias)
+            {
+                var temp = new ProductMedia()
+                {
+                    ProductId = productId,
+                    MediaId = selectedMedia
+                };
+                tags.Add(temp);
+            }
+
+            await InsertAsync(tags);
+        }
 
         #endregion
         #region Ctor

@@ -22,6 +22,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         private readonly IProductService _service;
         private readonly IProductTagService _productTagService;
         private readonly IForumTitleService _forumTitleService;
+        private readonly IProductMediaService _productMediaService;
 
         #endregion
         #region Methods
@@ -38,6 +39,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             var item = await _service.GetByIdAsync(id);
             var model = item.ToModel();
             model.SelectedTags = await _productTagService.GetByProductId(id);
+            model.SelectedImages = await _productMediaService.GetByProductId(id);
             return View(model);
         }
 
@@ -50,6 +52,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             var item = await _service.GetByIdAsync(id);
             var model = item.ToModel();
             model.SelectedTags = await _productTagService.GetByProductId(id);
+            model.SelectedImages = await _productMediaService.GetByProductId(id);
             return View(model);
         }
 
@@ -60,6 +63,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             var item = model.ToEntity();
             await _service.InsertAsync(item);
             await _productTagService.SetProductTag(model.Id, model.SelectedTags);
+            await _productMediaService.SetProductMedia(model.Id, model.SelectedImages);
             await _forumTitleService.CreateProductForum(item);
             return RedirectToAction("Details", new { id = item.Id });
         }
@@ -69,6 +73,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             var item = model.ToEntity();
             await _service.UpdateAsync(item);
             await _productTagService.SetProductTag(model.Id, model.SelectedTags);
+            await _productMediaService.SetProductMedia(model.Id, model.SelectedImages);
             return RedirectToAction("Details", new { id = model.Id });
         }
 
@@ -84,11 +89,12 @@ namespace BlogAndShop.Controllers.Admin.Product
         #endregion
         #region Ctor
 
-        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper, IForumTitleService forumTitleService) : base(adminModelHelper)
+        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper, IForumTitleService forumTitleService, IProductMediaService productMediaService) : base(adminModelHelper)
         {
             _service = service;
             _productTagService = productTagService;
             _forumTitleService = forumTitleService;
+            _productMediaService = productMediaService;
         }
         #endregion
 

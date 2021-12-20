@@ -98,6 +98,7 @@ namespace BlogAndShop.Services.Services.Mapper
                 || item.Extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
                 || item.Extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
                 || item.Extension.Equals(".gif", StringComparison.OrdinalIgnoreCase)
+                || item.Extension.Equals(".WebP", StringComparison.OrdinalIgnoreCase)
                 || item.Extension.Equals(".png", StringComparison.OrdinalIgnoreCase))
             {
                 model.FileType = FileType.Image;

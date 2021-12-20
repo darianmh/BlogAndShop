@@ -62,6 +62,12 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AdminEmails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminPhones")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
 

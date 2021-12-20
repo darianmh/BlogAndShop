@@ -114,6 +114,9 @@ namespace BlogAndShop.Data.ViewModel.Product
         [DbOptionList(typeof(Tag), true, true)]
         [Display(Name = "تگ ها")]
         public List<int> SelectedTags { get; set; }
+        [DbOptionList(typeof(Media), true, true)]
+        [Display(Name = "سایر تصویر ها")]
+        public List<int> SelectedImages { get; set; }
 
 
 

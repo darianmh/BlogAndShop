@@ -6,6 +6,7 @@ using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -48,19 +49,19 @@ namespace BlogAndShop.Data.Data.User
         public bool IsSuperAdmin { get; set; }
 
 
-        public SelectListItem GetSelectListItem(string selected)
+        public MySelectListItem GetSelectListItem(string selected)
         {
             try
             {
                 //اگر لیستی از محصولات باشد
                 var allSelected = (List<int>)JsonConvert.DeserializeObject(selected);
 
-                return new SelectListItem(Email, Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
+                return new MySelectListItem(Email, Id.ToString(), selected: allSelected.Any(x => Id.ToString().Equals(x.ToString(), StringComparison.OrdinalIgnoreCase)));
             }
             catch
             {
                 //اگر تک باشد
-                return new SelectListItem(Email, Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
+                return new MySelectListItem(Email, Id.ToString(), selected: Id.ToString().Equals(selected.ToString(), StringComparison.OrdinalIgnoreCase));
             }
         }
 

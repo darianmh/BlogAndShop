@@ -15,6 +15,7 @@
         File = 10,
         Bool = 11,
         DbListMulti = 12,
-        EnumMulti = 13
+        EnumMulti = 13,
+        FileMulti = 14
     }
 }

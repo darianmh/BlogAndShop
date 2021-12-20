@@ -67,8 +67,9 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             model.OwnerId = await GetUserId();
             var item = model.ToEntity();
             await _service.InsertAsync(item);
-            await _postTagsService.SetPostTags(model.Id, model.SelectedTags);
-            await _postPostGroupService.SetPostGroups(model.Id, model.SelectedGroups);
+            await _postTagsService.SetPostTags(item.Id, model.SelectedTags);
+            await _postPostGroupService.SetPostGroups(item.Id, model.SelectedGroups);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -79,6 +80,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             await _service.UpdateAsync(item);
             await _postTagsService.SetPostTags(model.Id, model.SelectedTags);
             await _postPostGroupService.SetPostGroups(model.Id, model.SelectedGroups);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = model.Id });
         }
 
@@ -87,6 +89,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             try
             {
                 var item = await _service.DeleteAsync(id);
+                CacheHelper.ClearCache();
             }
             catch (Exception e)
             {

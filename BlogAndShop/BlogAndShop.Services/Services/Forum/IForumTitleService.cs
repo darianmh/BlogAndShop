@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Forum;
+using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
 
 namespace BlogAndShop.Services.Services.Forum
@@ -23,5 +24,11 @@ namespace BlogAndShop.Services.Services.Forum
         /// <param name="item"></param>
         /// <returns></returns>
         Task CreateProductForum(Data.Data.Product.Product item);
+
+        /// <summary>
+        /// سایت مپ را از تولید می کند از تمام موارد
+        /// </summary>
+        /// <returns></returns>
+        Task<List<SiteMapItemModel>> GetSiteMap();
     }
 }

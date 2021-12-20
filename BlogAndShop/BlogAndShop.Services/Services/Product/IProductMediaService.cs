@@ -20,5 +20,20 @@ namespace BlogAndShop.Services.Services.Product
         Task<List<MediaModel>> GetProductImagesModel(int productId);
 
         Task<ProductMedia> Find(int productId, int mediaId);
+        /// <summary>
+        /// دریافت شناسه تصاویر محصول
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<List<int>> GetByProductId(int id);
+
+        /// <summary>
+        /// دریافت تصاویر محصول
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<List<ProductMedia>> GetProductImages(int id);
+
+        Task SetProductMedia(int modelId, List<int> selectedMedias);
     }
 }

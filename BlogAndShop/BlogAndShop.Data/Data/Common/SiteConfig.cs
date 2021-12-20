@@ -99,5 +99,16 @@ namespace BlogAndShop.Data.Data.Common
         /// </summary>
         [Display(Name = "انجمن بررسی محصول")]
         public int? ProductForumGroup { get; set; }
+        /// <summary>
+        /// ایمیل های ادمین ها
+        /// برای ارسال پیام های مهم
+        /// </summary>
+        public string AdminEmails { get; set; }
+        /// <summary>
+        /// شماره های ادمین ها
+        /// برای ارسال پیام های مهم
+        /// </summary>
+        [Display(Name = "شماره ادمین (با, جداکنید)")]
+        public string AdminPhones { get; set; }
     }
 }

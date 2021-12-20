@@ -9,8 +9,8 @@ function SendNewsEmailCb(data) {
 
 /* Common  */
 function MyAlert(text) {
-  alert(text);
-
+  //alert(text);
+  $.SOW.core.toast.show('indigo', '', text, 'top-center', 2500, true);
 }
 
 
@@ -106,11 +106,11 @@ function productCallRequest() {
   AJAXPost("/AjaxService/AddCallRequest", model, productCallRequestCB, productCallRequestCBError);
 }
 function productCallRequestCB(data) {
-  alert("درخواست شما ثبت شد.");
+  MyAlert("درخواست شما ثبت شد. همکاران ما به زودی با شما تماس خواهند گرفت.");
   $("#exampleModalMd").modal('hide');
   stopLoading();
 }
 function productCallRequestCBError(data) {
-  alert(data.description.join(', '));
+  MyAlert(data.description.join(', '));
   stopLoading();
 }

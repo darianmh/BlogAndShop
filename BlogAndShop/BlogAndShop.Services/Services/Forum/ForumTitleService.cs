@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Forum;
+using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Product;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Services.Services.Forum
 {
@@ -44,6 +47,15 @@ namespace BlogAndShop.Services.Services.Forum
             await _productForumGroupService.Create(forum, group);
         }
 
+        public async Task<List<SiteMapItemModel>> GetSiteMap()
+        {
+            var all = await GetAllAsync();
+            return all.Select(x => new SiteMapItemModel
+            {
+                LastDate = x.UpdateDateTime.ToString("s"),
+                Url = $"{DirectoryHelper.Domain}/Forum/Item/{x.Id}"
+            }).ToList();
+        }
 
         #endregion
         #region Utilities

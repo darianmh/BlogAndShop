@@ -11,6 +11,7 @@ using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Api;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.User;
+using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers
 {
@@ -88,6 +89,8 @@ namespace BlogAndShop.Controllers
             _logger = logger;
             _newsLetterEmailService = newsLetterEmailService;
             _siteConfigService = siteConfigService;
+
+
         }
         #endregion
 

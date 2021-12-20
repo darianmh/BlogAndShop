@@ -5,8 +5,10 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Product;
+using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.Product
@@ -60,6 +62,15 @@ namespace BlogAndShop.Services.Services.Product
             return product?.Title ?? "";
         }
 
+        public async Task<List<SiteMapItemModel>> GetSiteMap()
+        {
+            var all = await GetAllAsync();
+            return all.Select(x => new SiteMapItemModel
+            {
+                LastDate = x.UpdateDateTime.ToString("s"),
+                Url = $"{DirectoryHelper.Domain}/Shop/Item/{x.Id}"
+            }).ToList();
+        }
         #endregion
         #region Utilities
 

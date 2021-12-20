@@ -29,8 +29,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// <summary>
         /// آدرس سی دی ان  یا سایت خودمان
         /// </summary>
-        [Display(Name = "آدرس")]
-        [Hidden]
+        [Display(Name = "آدرس فایل")]
         public string Path { get; set; }
 
         /// <summary>
@@ -41,7 +40,7 @@ namespace BlogAndShop.Data.ViewModel.Common
         [AdminShowItem(2)]
         public string Extension { get; set; }
         [Ignore]
-        [Display(Name = "فایل")]
+        [Display(Name = "فایل (اگر خالی باشد آدرس اهمیت دارد)")]
         public IFormFile PathFile { get; set; }
         [Ignore]
         public FileType FileType { get; set; }

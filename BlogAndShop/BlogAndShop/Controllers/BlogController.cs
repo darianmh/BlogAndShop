@@ -30,7 +30,7 @@ namespace BlogAndShop.Controllers
             var model = await _postGroupService.GetPostModel(categoryId, page, count);
             return View(model);
         }
-
+        [Route("Blog/Item/{postId}")]
         public async Task<IActionResult> Item(int postId)
         {
             var model = await _postService.GetPostModel(postId);

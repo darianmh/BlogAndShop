@@ -27,7 +27,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         public string SiteUrl { get; set; }
         [Display(Name = "لوگو")]
         [Required(ErrorMessage = "{0} الزامی است")]
-        [Ignore]
+        [FileUpload]
         public string Logo { get; set; }
 
         //np

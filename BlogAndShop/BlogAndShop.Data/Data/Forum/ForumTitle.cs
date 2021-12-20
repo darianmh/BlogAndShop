@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
@@ -78,9 +79,9 @@ namespace BlogAndShop.Data.Data.Forum
         public virtual List<Product_ForumInfo> ProductForumGroups { get; set; }
 
 
-        public override SelectListItem GetSelectListItem(string selected)
+        public override MySelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+            return new MySelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
         }
         public override string GetShowTextById(string id)
         {

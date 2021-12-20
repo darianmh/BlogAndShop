@@ -7,6 +7,7 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -51,11 +52,11 @@ namespace BlogAndShop.Data.Data.Common
         public virtual List<Post_Tags> Post_Tags { get; set; }
 
 
-        public override SelectListItem GetSelectListItem(string selected)
+        public override MySelectListItem GetSelectListItem(string selected)
         {
             var array = (JArray)JsonConvert.DeserializeObject(selected);
             var selectedValues = array?.Select(Convert.ToInt32)?.ToList() ?? new List<int>();
-            return new SelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
+            return new MySelectListItem(Title, Id.ToString(), selectedValues.Contains(Id));
         }
     }
 }

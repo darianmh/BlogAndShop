@@ -6,7 +6,7 @@
     position: fixed;
     background-color: #210a0ad9;
     top: 0;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 
@@ -14,3 +14,25 @@
 .hidden {
     display: none;
 }
+
+
+.option_backgroundImage {
+    width: auto;
+    height: 55px;
+    border-bottom: solid 1px;
+}
+
+    .option_backgroundImage > a {
+        display: inline-block;
+        float: right;
+        width: 90%;
+    }
+
+    .option_backgroundImage > img {
+        height: 50px;
+        max-width: 80px;
+        z-index: 1000;
+        float: left;
+        display: inline-block;
+        width: 10%;
+    }

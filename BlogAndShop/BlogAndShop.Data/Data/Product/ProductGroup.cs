@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
@@ -54,9 +55,9 @@ namespace BlogAndShop.Data.Data.Product
         public virtual List<Product> Products { get; set; }
 
 
-        public override SelectListItem GetSelectListItem(string selected)
+        public override MySelectListItem GetSelectListItem(string selected)
         {
-            return new SelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+            return new MySelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

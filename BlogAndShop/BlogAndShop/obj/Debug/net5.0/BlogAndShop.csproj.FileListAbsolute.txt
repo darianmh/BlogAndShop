@@ -576,3 +576,16 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\EmailAccount\Details.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\EmailAccount\Edit.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\EmailAccount\Test.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Brand\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\EmailAccount\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ForumGroup\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ProductCallRequest\Create.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ProductCallRequest\Details.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ProductCallRequest\Edit.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ProductCallRequest\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ProductForumGroup\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\ProductMedia\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Create.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Details.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Edit.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Index.cshtml.g.cs

@@ -58,12 +58,12 @@ namespace BlogAndShop.Controllers.Admin.Common
         public async Task<IActionResult> Create([FromForm] MediaModel model)
         {
             if (!ModelState.IsValid) return View("Edit", model);
-            if (model.PathFile == null)
+            if (model.PathFile == null && string.IsNullOrEmpty(model.Path))
             {
                 ModelState.AddModelError("PathFile", "فایل الزامی است.");
                 return View("Edit", model);
             }
-            var filePath = await _fileHelperService.SaveFile("MediaUpload", model.PathFile, _hostEnvironment);
+            var filePath = model.PathFile != null ? await _fileHelperService.SaveFile("MediaUpload", model.PathFile, _hostEnvironment) : model.Path;
             var fileExt = Path.GetExtension(filePath);
             model.Path = filePath;
             model.Extension = fileExt;
@@ -76,9 +76,9 @@ namespace BlogAndShop.Controllers.Admin.Common
         public async Task<IActionResult> Edit([FromForm] MediaModel model)
         {
             if (!ModelState.IsValid) return View("Edit", model);
-            if (model.PathFile != null)
+            if (model.PathFile != null || !string.IsNullOrEmpty(model.Path))
             {
-                var filePath = await _fileHelperService.SaveFile("MediaUpload", model.PathFile, _hostEnvironment);
+                var filePath = model.PathFile != null ? await _fileHelperService.SaveFile("MediaUpload", model.PathFile, _hostEnvironment) : model.Path;
                 var fileExt = Path.GetExtension(filePath);
                 _fileHelperService.RemoveFile(model.Path, _hostEnvironment);
                 model.Path = filePath;

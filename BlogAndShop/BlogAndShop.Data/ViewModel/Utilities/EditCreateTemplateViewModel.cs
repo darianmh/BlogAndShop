@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogAndShop.Data.ViewModel.Utilities
 {
@@ -19,6 +18,6 @@ namespace BlogAndShop.Data.ViewModel.Utilities
         /// <summary>
         /// لیست رمانی مقدار میگیرد که نوع مدل اینام یا دی بی لیست باشد
         /// </summary>
-        public List<SelectListItem> ListForOptionList { get; set; }
+        public List<MySelectListItem> ListForOptionList { get; set; }
     }
 }

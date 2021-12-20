@@ -94,7 +94,7 @@ namespace BlogAndShop.Services.Classes
         /// <param name="propType"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        private async Task<List<SelectListItem>> GetOptionList<T>(PropertyInfo property, T model,
+        private async Task<List<MySelectListItem>> GetOptionList<T>(PropertyInfo property, T model,
             EditCreateTemplateType propType, ApplicationDbContext db)
         {
             if (propType != EditCreateTemplateType.DbList && propType != EditCreateTemplateType.Enum && propType != EditCreateTemplateType.DbListMulti && propType != EditCreateTemplateType.EnumMulti)
@@ -113,17 +113,17 @@ namespace BlogAndShop.Services.Classes
         /// <param name="model"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        private async Task<List<SelectListItem>> GetDbOptionList<T>(PropertyInfo property, T model, ApplicationDbContext db)
+        private async Task<List<MySelectListItem>> GetDbOptionList<T>(PropertyInfo property, T model, ApplicationDbContext db)
         {
             var attr = property.GetCustomAttribute<DbOptionListAttribute>();
             if (attr == null) return null;
             var queryable = db.Set(attr.NavigationProperty);
             if (queryable == null) return null;
             MethodInfo method = attr.NavigationProperty.GetMethod(nameof(BaseEntity.GetSelectListItem));
-            List<SelectListItem> list = new List<SelectListItem>();
-            if (attr.AllowNull && !attr.Multiple) list.Add(new SelectListItem("انتخاب کنید", null));
+            List<MySelectListItem> list = new List<MySelectListItem>();
+            if (attr.AllowNull && !attr.Multiple) list.Add(new MySelectListItem("انتخاب کنید", null));
             var value = property.GetValue(model);
-            list.AddRange(queryable.Select(x => (SelectListItem)method.Invoke(x, new object?[] { JsonConvert.SerializeObject(value) })));
+            list.AddRange(queryable.Select(x => (MySelectListItem)method.Invoke(x, new object?[] { JsonConvert.SerializeObject(value) })));
             return list;
         }
 
@@ -134,19 +134,19 @@ namespace BlogAndShop.Services.Classes
         /// <param name="property"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        private List<SelectListItem> GetEnumList<T>(PropertyInfo property, T model)
+        private List<MySelectListItem> GetEnumList<T>(PropertyInfo property, T model)
         {
             var attr = property.GetCustomAttribute<EnumListAttribute>();
             if (attr == null) return null;
             var enumValues = attr.EnumType.GetEnumValues();
-            var list = new List<SelectListItem>();
+            var list = new List<MySelectListItem>();
             foreach (var enumValue in enumValues)
             {
                 var type = Convert.ChangeType(enumValue, attr.EnumType);
                 var name = Enum.GetName(attr.EnumType, type);
                 var val = ((int)type);
                 var selected = val == ((int)(property.GetValue(model) ?? 0));
-                list.Add(new SelectListItem(name, val.ToString(), selected));
+                list.Add(new MySelectListItem(name, val.ToString(), selected));
             }
 
             return list;
@@ -172,8 +172,11 @@ namespace BlogAndShop.Services.Classes
         private static EditCreateTemplateType GetInputType(PropertyInfo property)
         {
             var isFile = CheckFileUpload(property);
-            if (isFile)
-                return EditCreateTemplateType.File;
+            if (isFile.Item1)
+                if (isFile.Item2)
+                    return EditCreateTemplateType.FileMulti;
+                else
+                    return EditCreateTemplateType.File;
             var isHidden = CheckHidden(property);
             if (isHidden)
                 return EditCreateTemplateType.Hidden;
@@ -220,12 +223,12 @@ namespace BlogAndShop.Services.Classes
         /// <summary>
         /// check model need to upload file
         /// </summary>
-        /// <param name="property"></param>
+        /// <param name="property">first bool is valid second bool multiple</param>
         /// <returns></returns>
-        private static bool CheckFileUpload(PropertyInfo property)
+        private static Tuple<bool, bool> CheckFileUpload(PropertyInfo property)
         {
             var attr = property.GetCustomAttribute<FileUploadAttribute>();
-            return attr != null;
+            return new Tuple<bool, bool>(attr != null, attr != null && attr.Multiple);
         }
 
         private static bool CheckIgnore(PropertyInfo property)

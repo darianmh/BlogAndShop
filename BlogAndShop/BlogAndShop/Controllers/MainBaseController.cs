@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Classes;
 using BlogAndShop.Data.ViewModel.Utilities;
 using BlogAndShop.Services.Services.User.Identity;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -74,5 +75,9 @@ namespace BlogAndShop.Controllers
             return ReturnErrorJsonResult<T>(new[] { description });
         }
 
+
+        public MainBaseController()
+        {
+        }
     }
 }

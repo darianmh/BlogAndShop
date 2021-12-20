@@ -8,6 +8,11 @@ namespace BlogAndShop.Data.Classes
     [AttributeUsage(AttributeTargets.Property)]
     public class FileUploadAttribute : Attribute
     {
+        public bool Multiple { get; }
 
+        public FileUploadAttribute(bool multiple = false)
+        {
+            Multiple = multiple;
+        }
     }
 }

@@ -89,6 +89,7 @@ namespace BlogAndShop.Controllers.Admin.User
 
         public async Task<IActionResult> Delete(int id)
         {
+            await _roleAccessService.DeleteAllByRoleIdASync(id);
             await _service.DeleteAsync(id);
             return RedirectToAction("Index");
         }

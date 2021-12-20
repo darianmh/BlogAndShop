@@ -223,7 +223,7 @@
 					<div class="d-flex ml-0 mr-0 mt-2">
 
 
-						@if (Model.ShoppingModel == ShoppingModel.Cart || Model.ProductModel.Quantity < 1)
+						@if (Model.ShoppingModel == ShoppingModel.Cart && Model.ProductModel.Quantity >= 1)
 						{
 							<div class="pl-2 pr-2 w-100">
 								<!-- QUANTITY INPUT -->

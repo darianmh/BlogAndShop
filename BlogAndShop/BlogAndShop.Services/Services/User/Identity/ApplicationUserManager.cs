@@ -52,11 +52,12 @@ namespace BlogAndShop.Services.Services.User.Identity
         /// <returns></returns>
         public async Task SetUserRoles(ApplicationUser user, List<int> selectedRoles)
         {
-            user = await FindByIdAsync(user.Id.ToString());
-            if (user == null) return;
+            var tempUser = await FindByIdAsync(user.Id.ToString());
+            if (tempUser == null) return;
+            tempUser = SetInfo(tempUser, user);
             var roles = await GetRolesByUser(user.Id);
-            await RemoveFromRolesAsync(user, roles.Select(x => x.Name).ToList());
-            await CreateRoles(user, selectedRoles);
+            await RemoveFromRolesAsync(tempUser, roles.Select(x => x.Name).ToList());
+            await CreateRoles(tempUser, selectedRoles);
         }
 
 
@@ -79,7 +80,17 @@ namespace BlogAndShop.Services.Services.User.Identity
         {
             var userModel = await FindAsync(user);
             if (userModel == null) return "";
-            return await GenerateDisplayName(userModel);
+            return GetUSerDisplayNameAsync(userModel);
+        }
+        /// <summary>
+        /// find user and generates display name
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public string GetUSerDisplayNameAsync(ApplicationUser user)
+        {
+            if (user == null) return "";
+            return GenerateDisplayName(user);
         }
         public async Task<ApplicationUser> FindAsync(string user)
         {
@@ -109,6 +120,21 @@ namespace BlogAndShop.Services.Services.User.Identity
         #endregion
         #region Utilities
 
+        private ApplicationUser SetInfo(ApplicationUser tempUser, ApplicationUser user)
+        {
+            tempUser.Email = user.Email;
+            tempUser.UserName = user.UserName;
+            tempUser.EmailConfirmed = user.EmailConfirmed;
+            tempUser.PhoneNumber = user.PhoneNumber;
+            tempUser.PhoneNumberConfirmed = user.PhoneNumberConfirmed;
+            tempUser.TwoFactorEnabled = user.TwoFactorEnabled;
+            tempUser.LockoutEnd = user.LockoutEnd;
+            tempUser.LockoutEnabled = user.LockoutEnabled;
+            tempUser.Name = user.Name;
+            tempUser.Family = user.Family;
+            tempUser.IsSuperAdmin = user.IsSuperAdmin;
+            return tempUser;
+        }
         private async Task CreateRoles(ApplicationUser user, List<int> selectedRoles)
         {
             if (selectedRoles == null) return;
@@ -118,7 +144,7 @@ namespace BlogAndShop.Services.Services.User.Identity
             await AddToRolesAsync(user, names);
         }
 
-        private async Task<string> GenerateDisplayName(ApplicationUser userModel)
+        private string GenerateDisplayName(ApplicationUser userModel)
         {
             if (!string.IsNullOrEmpty(userModel.Name) || !string.IsNullOrEmpty(userModel.Family))
                 return $"{userModel.Name} {userModel.Family}";
