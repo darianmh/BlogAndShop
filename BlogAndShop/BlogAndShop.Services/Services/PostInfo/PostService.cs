@@ -9,6 +9,7 @@ using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
@@ -68,7 +69,7 @@ namespace BlogAndShop.Services.Services.PostInfo
             var all = await GetAllAsync();
             return all.Select(x => new SiteMapItemModel
             {
-                LastDate = x.UpdateDateTime.ToString("s"),
+                LastDate = x.UpdateDateTime.ToSiteMapString(),
                 Url = $"{DirectoryHelper.Domain}/Blog/Item/{x.Id}"
             }).ToList();
         }

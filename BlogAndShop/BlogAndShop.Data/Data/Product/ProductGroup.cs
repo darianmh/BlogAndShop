@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Utilities;
@@ -57,7 +58,23 @@ namespace BlogAndShop.Data.Data.Product
 
         public override MySelectListItem GetSelectListItem(string selected)
         {
-            return new MySelectListItem(Title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+            var title = Title;
+            if (ParentId != null)
+                title = GetParentName((int)ParentId) + " - " + title;
+            return new MySelectListItem(title, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private string GetParentName(int parentId)
+        {
+            var parent = DataHelper.ProductGroups.FirstOrDefault(x => x.Id == parentId);
+            if (parent == null) return "";
+            var title = "";
+            if (parent.ParentId != null)
+            {
+                title = GetParentName((int)parent.ParentId);
+            }
+
+            return title + " - " + parent.Title;
         }
     }
 }

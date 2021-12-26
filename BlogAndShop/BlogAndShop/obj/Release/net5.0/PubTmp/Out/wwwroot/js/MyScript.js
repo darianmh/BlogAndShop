@@ -114,3 +114,28 @@ function productCallRequestCBError(data) {
   MyAlert(data.description.join(', '));
   stopLoading();
 }
+
+
+
+//forum
+
+$("#newCommentForm").submit(function (e) {
+  e.preventDefault();
+  newCommentRequest();
+  return false;
+});
+function newCommentRequest() {
+  var model = {
+    ForumId: $("#ForumId").val(),
+    Text: $("#Text").val(),
+  };
+  AJAXPost("/AjaxService/CreateComment", model, newCommentRequestCB, newCommentRequestCBError);
+}
+function newCommentRequestCB(data) {
+  MyAlert("نظر شما ثبت شد و پس از تایید نمایش داده خواهد شد.");
+  stopLoading();
+}
+function newCommentRequestCBError(data) {
+  MyAlert(data.description.join(', '));
+  stopLoading();
+}

@@ -41,6 +41,18 @@ namespace BlogAndShop.Services.Classes
             set => _topPosts = value;
         }
 
+        public static ProductCategoryViewModel ProductCategoryViewModel
+        {
+            get => _productCategoryViewModel;
+            set => _productCategoryViewModel = value;
+        }
+
+        public static Dictionary<int, ProductCategoryViewModel> ProductCategoryReference
+        {
+            get => _productCategoryReference;
+            set => _productCategoryReference = value;
+        }
+
         #endregion
         #region Methods
 
@@ -51,6 +63,8 @@ namespace BlogAndShop.Services.Classes
             _siteConfigCache = null;
             _socialMedias = null;
             _topPosts = null;
+            _productCategoryViewModel = null;
+            _productCategoryReference = null;
         }
         #endregion
         #region Utilities
@@ -61,6 +75,8 @@ namespace BlogAndShop.Services.Classes
         private static List<HomeBannerModel> _homeBanner;
         private static List<BrandModel> _brands;
         private static List<TopPostModel> _topPosts;
+        private static ProductCategoryViewModel _productCategoryViewModel;
+        private static Dictionary<int, ProductCategoryViewModel> _productCategoryReference;
 
         #endregion
         #region Ctor

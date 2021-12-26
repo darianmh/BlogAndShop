@@ -57,5 +57,12 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="key"></param>
         /// <returns></returns>
         Task<List<SearchResultItemModel>> Search(string key);
+
+        /// <summary>
+        /// دریافت آخرین محصول موجود در گروه
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        Task<Data.Data.Product.Product> GetLastGroupProduct(int groupId);
     }
 }

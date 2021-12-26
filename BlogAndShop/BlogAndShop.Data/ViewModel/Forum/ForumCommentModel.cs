@@ -53,6 +53,10 @@ namespace BlogAndShop.Data.ViewModel.Forum
         public MessageStatus MessageStatus { get; set; }
 
 
+        [Ignore]
+        public string UserName { get; set; }
+
+
         //np
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "OkpISNr/use/lKTSXp4oqF3TdNwWwIWn4yMOfIZi4fsV0daCHxk4P/vPcfwGPiyXsTeUz6CwNv4XoH6b7XCZBg==",
+  "dgSpecHash": "FNRy9guVMIL8JH2Rk7dVxeiA2ppiOwSufXtUV6LJwS6sM0NZeYjSWLaDpssC+tq0SCgTuelqZENTy0Y85Xk7CQ==",
   "success": true,
   "projectFilePath": "E:\\Projects\\BlogAndShopSite\\BlogAndShop\\BlogAndShop\\BlogAndShop.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Kashfi\\.nuget\\packages\\advancedstringbuilder\\0.1.0\\advancedstringbuilder.0.1.0.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.0\\microsoft.aspnetcore.authorization.6.0.0.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.11\\microsoft.aspnetcore.cryptography.internal.5.0.11.nupkg.sha512",
@@ -138,7 +139,10 @@
     "C:\\Users\\Kashfi\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Kashfi\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\Kashfi\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Kashfi\\.nuget\\packages\\webmarkupmin.aspnet.common\\2.10.0\\webmarkupmin.aspnet.common.2.10.0.nupkg.sha512",
+    "C:\\Users\\Kashfi\\.nuget\\packages\\webmarkupmin.aspnetcore5\\2.11.0\\webmarkupmin.aspnetcore5.2.11.0.nupkg.sha512",
+    "C:\\Users\\Kashfi\\.nuget\\packages\\webmarkupmin.core\\2.9.0\\webmarkupmin.core.2.9.0.nupkg.sha512"
   ],
   "logs": []
 }

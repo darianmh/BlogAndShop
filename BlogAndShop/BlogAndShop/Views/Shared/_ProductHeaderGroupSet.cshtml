@@ -5,7 +5,7 @@
 	@if (cat.ProductGroups != null && cat.ProductGroups.Any())
 	{
 		<li class="dropdown-item dropdown">
-			<a asp-controller="Shop" asp-action="Index" asp-route-group="@cat.Id" class="dropdown-link" data-toggle="dropdown">@cat.Title</a>
+			<a href="#" class="dropdown-link" data-toggle="dropdown">@cat.Title</a>
 			<ul class="dropdown-menu dropdown-menu-hover dropdown-menu-block-md shadow-lg b-0 m-0">
 				@await Html.PartialAsync("_ProductHeaderGroupSet", cat.ProductGroups)
 			</ul>

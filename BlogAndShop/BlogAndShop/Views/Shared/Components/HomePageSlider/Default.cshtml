@@ -16,7 +16,14 @@
 		@foreach (var item in Model)
 		{
 			<!-- slide @count-->
-			<div class="h-100 swiper-slide d-middle bg-white overlay-dark overlay-opacity-2 d-middle bg-cover" style="background-image:url('@item.BannerPath')">
+			<div class="lazy h-100 swiper-slide d-middle bg-white overlay-dark overlay-opacity-3 d-middle bg-cover"
+				 @*style="background-image:url('@item.BannerPath')"*@
+				 data-background-image="@item.BannerPath"
+				 data-background-image-xs="@item.BannerPath">
+				<!-- optional line lenses -->
+				<div class="position-absolute absolute-full w-100 overflow-hidden">
+					<img class="img-fluid" width="2000" height="2000" src="~/lib/Smarty/assets/images/masks/shape-line-lense.svg" alt="lines">
+				</div>
 				<div class="container z-index-10 text-white text-center-xs">
 
 					@Html.Raw(item.HtmlContent)
@@ -24,17 +31,18 @@
 
 				</div>
 			</div>
+
 			<!-- /slide @count-->
 			count++;
 		}
 
-	</div>
+		</div>
 
-	<!-- Add Arrows -->
-	<div class="swiper-button-next swiper-button-white"></div>
-	<div class="swiper-button-prev swiper-button-white"></div>
+		<!-- Add Arrows -->
+		<div class="swiper-button-next swiper-button-white"></div>
+		<div class="swiper-button-prev swiper-button-white"></div>
 
-	<!-- Add Pagination -->
-	<div class="swiper-pagination"></div>
+		<!-- Add Pagination -->
+		<div class="swiper-pagination"></div>
 
-</section>
+	</section>

@@ -9,6 +9,7 @@ using BlogAndShop.Services.Services.Forum;
 using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Product;
 using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.Forum
@@ -84,7 +85,6 @@ namespace BlogAndShop.Controllers.Admin.Forum
             _service = service;
         }
         #endregion
-
 
     }
 }

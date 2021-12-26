@@ -60,5 +60,13 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="categoryId"></param>
         /// <returns></returns>
         Task<List<int>> GetChildrenGroupsId(int categoryId);
+
+        /// <summary>
+        /// مدل برای نمایش در صفحه دسته بندی ها، فقط گروه هایی که محصول دارند
+        /// اگر تصویر نداشته باشند، تصویر آخرین محصول نمایش داده می شود
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        Task<ProductCategoryViewModel> GetGroupsHasProductsModel(int? categoryId);
     }
 }

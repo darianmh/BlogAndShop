@@ -7,6 +7,7 @@ using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
+using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Utilities;
@@ -68,7 +69,7 @@ namespace BlogAndShop.Services.Services.Product
             var all = await GetAllAsync();
             return all.Select(x => new SiteMapItemModel
             {
-                LastDate = x.UpdateDateTime.ToString("s"),
+                LastDate = x.UpdateDateTime.ToSiteMapString(),
                 Url = $"{DirectoryHelper.Domain}/Shop/Item/{x.Id}"
             }).ToList();
         }
@@ -83,6 +84,12 @@ namespace BlogAndShop.Services.Services.Product
                 SearchResultType = SiteMapType.Shop,
                 Id = x.Id
             }).ToList();
+        }
+
+        public async Task<Data.Data.Product.Product> GetLastGroupProduct(int groupId)
+        {
+            return await Queryable.Where(x => x.ProductGroupId == groupId).OrderBy(x => x.CreateDateTime).Reverse()
+                .FirstOrDefaultAsync();
         }
 
         #endregion

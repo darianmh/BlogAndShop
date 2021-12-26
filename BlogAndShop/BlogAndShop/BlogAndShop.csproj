@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Search\Index.cshtml" />
     <Content Remove="wwwroot\richtexteditor\runtime\images\cpie_Color.cur" />
     <Content Remove="wwwroot\richtexteditor\runtime\images\cpns_Color.cur" />
     <Content Remove="wwwroot\richtexteditor\runtime\richtexteditor_preview.js" />
@@ -137,6 +136,7 @@
     <None Include="Views\Shared\Components\HomeAbout\Default.cshtml" />
     <None Include="Views\Shared\Components\HomeBrandSlider\Default.cshtml" />
     <None Include="Views\Shared\Components\HomePageSlider\Default.cshtml" />
+    <None Include="Views\Shared\Components\ForumSideBar\Default.cshtml" />
     <None Include="Views\Shared\Components\ShopSideBar\Default.cshtml" />
     <None Include="Views\Shared\Components\SocialMedias\Default.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
@@ -287,6 +287,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.11.0" />
   </ItemGroup>
 
   <ItemGroup>

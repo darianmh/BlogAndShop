@@ -31,7 +31,7 @@
 					Logo : height: 70px max
 				-->
 				<a class="navbar-brand m-0" asp-controller="Home" asp-action="Index">
-					<img src="@await Html.GetSiteLogo()" width="110" height="70" alt="...">
+					<img src="@await Html.GetSiteLogo()" style="width: 110px !important; height: 70px !important;" alt="@await Html.GetSiteName()">
 				</a>
 
 			</div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
+using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.PostInfo;
 using BlogAndShop.Services.Services.Product;
@@ -25,17 +26,17 @@ namespace BlogAndShop.Services.Services.Utilities.SiteMap
             {
                 new SiteMapItemModel()
                 {
-                    LastDate = DateTime.Now.ToString("s"),
+                    LastDate = DateTime.Now.ToSiteMapString(),
                     Url = $"{domain}/sitemap/Blog"
                 },
                 new SiteMapItemModel()
                 {
-                    LastDate = DateTime.Now.ToString("s"),
+                    LastDate = DateTime.Now.ToSiteMapString(),
                     Url = $"{domain}/sitemap/Shop"
                 },
                 new SiteMapItemModel()
                 {
-                    LastDate = DateTime.Now.ToString("s"),
+                    LastDate = DateTime.Now.ToSiteMapString(),
                     Url = $"{domain}/sitemap/Forum"
                 }
             };

@@ -36,3 +36,7 @@
         display: inline-block;
         width: 10%;
     }
+
+.fi-instagram {
+    background-image: url('../MyImages/instagram.svg');
+}

@@ -35,7 +35,7 @@ namespace BlogAndShop.Controllers
 
         public async Task<IActionResult> Categories(int? categoryId)
         {
-            var model = await _productGroupService.GetGroupsModel(categoryId);
+            var model = await _productGroupService.GetGroupsHasProductsModel(categoryId);
             if (!model.SubCategories.Any()) return RedirectToAction("Index", new { categoryId = categoryId });
             return View(model);
         }

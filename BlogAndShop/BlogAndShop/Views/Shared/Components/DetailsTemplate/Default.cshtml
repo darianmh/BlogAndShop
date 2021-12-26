@@ -42,7 +42,10 @@
 			}
 			else if (item.ObjectType == EditCreateTemplateType.File)
 			{
-				<img class="w-100 img-fluid rounded" src="@item.Value" alt="...">
+				if (!string.IsNullOrEmpty(item.Value?.ToString()))
+				{
+					<img class="w-100 img-fluid rounded" src="@item.Value" alt="...">
+				}
 				check = true;
 			}
 			else if (item.ObjectType == EditCreateTemplateType.Bool)

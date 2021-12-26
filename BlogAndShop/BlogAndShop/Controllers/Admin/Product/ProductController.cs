@@ -23,6 +23,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         private readonly IProductTagService _productTagService;
         private readonly IForumTitleService _forumTitleService;
         private readonly IProductMediaService _productMediaService;
+        private readonly IForumGroupService _forumGroupService;
 
         #endregion
         #region Methods
@@ -61,10 +62,11 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             model.AuthorId = await GetUserId();
             var item = model.ToEntity();
-            await _service.InsertAsync(item);
-            await _productTagService.SetProductTag(model.Id, model.SelectedTags);
-            await _productMediaService.SetProductMedia(model.Id, model.SelectedImages);
-            await _forumTitleService.CreateProductForum(item);
+            var id = await _service.InsertAsync(item);
+            item.Id = id;
+            await _productTagService.SetProductTag(item.Id, model.SelectedTags);
+            await _productMediaService.SetProductMedia(item.Id, model.SelectedImages);
+            await _forumTitleService.CreateProductForum(item, _forumGroupService);
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -89,12 +91,13 @@ namespace BlogAndShop.Controllers.Admin.Product
         #endregion
         #region Ctor
 
-        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper, IForumTitleService forumTitleService, IProductMediaService productMediaService) : base(adminModelHelper)
+        public ProductController(IProductService service, IProductTagService productTagService, IAdminModelHelper adminModelHelper, IForumTitleService forumTitleService, IProductMediaService productMediaService, IForumGroupService forumGroupService) : base(adminModelHelper)
         {
             _service = service;
             _productTagService = productTagService;
             _forumTitleService = forumTitleService;
             _productMediaService = productMediaService;
+            _forumGroupService = forumGroupService;
         }
         #endregion
 

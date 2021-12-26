@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Data.ViewModel.Utilities;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.Product
@@ -33,5 +35,12 @@ namespace BlogAndShop.Data.Data.Product
         //np
         [JsonIgnore]
         public virtual List<Product> Products { get; set; }
+
+
+
+        public override MySelectListItem GetSelectListItem(string selected)
+        {
+            return new MySelectListItem(Name, Id.ToString(), Id.ToString().Equals(selected, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

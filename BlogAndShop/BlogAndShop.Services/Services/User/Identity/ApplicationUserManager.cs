@@ -85,6 +85,16 @@ namespace BlogAndShop.Services.Services.User.Identity
         /// <summary>
         /// find user and generates display name
         /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetUSerDisplayNameAsync(int userId)
+        {
+            var userModel = await FindByIdAsync(userId.ToString());
+            if (userModel == null) return "";
+            return GetUSerDisplayNameAsync(userModel);
+        }
+        /// <summary>
+        /// find user and generates display name
+        /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
         public string GetUSerDisplayNameAsync(ApplicationUser user)

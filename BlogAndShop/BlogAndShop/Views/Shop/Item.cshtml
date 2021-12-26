@@ -200,17 +200,17 @@
 					@if (Model.ProductModel.OffPrice == null)
 					{
 						<p class="fs--25 m-0 font-weight-medium text-danger">
-							@Model.ProductModel.Price ريال
+							@Model.ProductModel.Price.ToString("N0") ريال
 						</p>
 					}
 					else
 					{
 						<p class="text-muted m-0">
-							<del>@Model.ProductModel.Price ريال</del>
+							<del>@Model.ProductModel.Price.ToString("N0") ريال</del>
 						</p>
 
 						<p class="fs--25 m-0 font-weight-medium text-danger">
-							@Model.ProductModel.OffPrice ريال
+							@((decimal)Model.ProductModel.OffPrice).ToString("N0") ريال
 						</p>
 					}
 				</div>
@@ -455,7 +455,7 @@
 							<a asp-controller="Shop" asp-action="Item" asp-route-productId="@item.Id" class="text-decoration-none">
 
 								<figure class="pt--30 pb--30 pl--6 pr--6 m-0 text-center bg-light-radial rounded-top">
-									<img src="@item.BannerImage" alt="@item.Title" class="img-fluid maxx-h-150 bg-suprime opacity--9">
+									<img src="@item.BannerImage" alt="@item.Title" class="img-fluid max-h-150 bg-suprime opacity-9">
 								</figure>
 
 								<div class="text-center-xs text-gray-600 py-3">
@@ -468,14 +468,14 @@
 									<span class="d-block text-danger font-weight-medium fs--16 mt-2">
 										@if (item.OffPrice == null)
 										{
-											@item.Price<sup>ريال</sup>
+											@item.Price.ToString("N0")<sup>ريال</sup>
 										}
 										else
 										{
 
-											<del class="text-muted">@item.Price<sup>ريال</sup></del>
+											<del class="text-muted">@item.Price.ToString("N0")<sup>ريال</sup></del>
 
-											<span>@item.OffPrice<sup>ريال</sup></span>
+											<span>@((decimal)item.OffPrice).ToString("N0")<sup>ريال</sup></span>
 										}
 
 

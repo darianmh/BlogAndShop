@@ -589,3 +589,9 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Details.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Edit.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\SocialMedia\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\AdvancedStringBuilder.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\WebMarkupMin.AspNet.Common.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\WebMarkupMin.AspNetCore5.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\WebMarkupMin.Core.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Search\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\ForumSideBar\Default.cshtml.g.cs

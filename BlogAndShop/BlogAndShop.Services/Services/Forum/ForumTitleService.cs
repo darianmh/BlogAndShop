@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
+using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
@@ -20,8 +22,8 @@ namespace BlogAndShop.Services.Services.Forum
         #region Fields
 
         private readonly IProductForumGroupService _productForumGroupService;
-        private readonly IForumGroupService _forumGroupService;
         private readonly ISiteConfigService _siteConfigService;
+        private readonly IForumCommentService _forumCommentService;
         #endregion
         #region Methods
         public async Task<List<ForumTitleModel>> GetProductForumsModel(int productId)
@@ -40,13 +42,13 @@ namespace BlogAndShop.Services.Services.Forum
             return result;
         }
 
-        public async Task CreateProductForum(Data.Data.Product.Product item)
+        public async Task CreateProductForum(Data.Data.Product.Product item, IForumGroupService forumGroupService)
         {
             var group = await _siteConfigService.GetProductForumGroup();
-            var check = await _forumGroupService.CheckIdAsync(group);
-            if (!check) group = await _forumGroupService.GetFirst();
+            var check = await forumGroupService.CheckIdAsync(group);
+            if (!check) group = await forumGroupService.GetFirst();
             var forum = await CreateProductForum(item, group);
-            await _productForumGroupService.Create(forum, group);
+            await _productForumGroupService.Create(forum, item.Id);
         }
 
         public async Task<List<SiteMapItemModel>> GetSiteMap()
@@ -54,7 +56,7 @@ namespace BlogAndShop.Services.Services.Forum
             var all = await GetAllAsync();
             return all.Select(x => new SiteMapItemModel
             {
-                LastDate = x.UpdateDateTime.ToString("s"),
+                LastDate = x.UpdateDateTime.ToSiteMapString(),
                 Url = $"{DirectoryHelper.Domain}/Forum/Item/{x.Id}"
             }).ToList();
         }
@@ -70,6 +72,29 @@ namespace BlogAndShop.Services.Services.Forum
             }).ToList();
         }
 
+        public async Task<DbModelInfo<ForumTitle>> GetForumByGroup(int? forumGroupId, int count, int page, IForumGroupService forumGroupService)
+        {
+            DbModelInfo<ForumTitle> forumTitles;
+            //group is null
+            if (forumGroupId == null) forumTitles = await GetAllInfoAsync(page, count);
+            else forumTitles = await GetAllByGroupAsync(page, count, (int)forumGroupId, forumGroupService);
+            return forumTitles;
+        }
+
+        public async Task<ForumMiniModel> GetForumMiniModel(ForumTitle forumTitle)
+        {
+            var comments = await _forumCommentService.GetAcceptedCommentsByTitle(forumTitle.Id);
+            return new ForumMiniModel()
+            {
+                Id = forumTitle.Id,
+                Title = forumTitle.Title,
+                Keywords = forumTitle.Keywords,
+                Description = forumTitle.Description,
+                UsersCount = comments.GroupBy(x => x.UserId).Count(),
+                CommentsCount = comments.Count
+            };
+        }
+
         #endregion
         #region Utilities
         /// <summary>
@@ -82,7 +107,7 @@ namespace BlogAndShop.Services.Services.Forum
         {
             var forum = new ForumTitle()
             {
-                Description = item.Description,
+                Description = item.MetaDescription,
                 Keywords = item.Keywords,
                 MetaDescription = item.MetaDescription,
                 Status = ForumStatus.Open,
@@ -94,13 +119,25 @@ namespace BlogAndShop.Services.Services.Forum
             return forum;
         }
 
+        private async Task<DbModelInfo<ForumTitle>> GetAllByGroupAsync(int page, int count, int forumGroupId, IForumGroupService forumGroupService)
+        {
+            page = page - 1;
+            var all = Queryable.Where(x => x.ForumGroupId == forumGroupId);
+            var list = await Pagination(all, page, count);
+            return new DbModelInfo<ForumTitle>
+            {
+                List = list ?? new List<ForumTitle>(),
+                TotalCount = await Queryable.CountAsync()
+            };
+        }
+
         #endregion
         #region Ctor
-        public ForumTitleService(ApplicationDbContext db, IProductForumGroupService productForumGroupService, IForumGroupService forumGroupService, ISiteConfigService siteConfigService) : base(db)
+        public ForumTitleService(ApplicationDbContext db, IProductForumGroupService productForumGroupService, ISiteConfigService siteConfigService, IForumCommentService forumCommentService) : base(db)
         {
             _productForumGroupService = productForumGroupService;
-            _forumGroupService = forumGroupService;
             _siteConfigService = siteConfigService;
+            _forumCommentService = forumCommentService;
         }
         #endregion
 
