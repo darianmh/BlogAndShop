@@ -7,28 +7,8 @@
 }
 
 
-<!-- PAGE TITLE -->
-<section class="bg-light p-0">
-	<div class="container py-5">
-		@if (Model.CurrentGroup != null)
-		{
-			<h1 class="h3">
-				@Model.CurrentGroup.Title
-			</h1>
-		}
-
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb fs--14">
-				<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">خانه</a></li>
-				<li class="breadcrumb-item active" aria-current="page">دسته بندی ها</li>
-			</ol>
-		</nav>
-
-	</div>
-</section>
-<!-- /PAGE TITLE -->
 <!-- -->
-<section>
+<section class="pt-5">
 	<div class="container">
 
 		<div class="row">
@@ -38,7 +18,7 @@
 
 
 
-				@if (Model.CurrentGroup != null)
+				@if (Model.CurrentGroup != null && !string.IsNullOrEmpty(Model.CurrentGroup.Description))
 				{
 					<p>
 						@Model.CurrentGroup.Description
@@ -50,9 +30,27 @@
 				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
 
 					<h3 class="h5 mb-0">
+						@if (Model.CurrentGroup != null)
+						{
+							<b class="h3">
+								@Model.CurrentGroup.Title /
+							</b>
+						}
+						@if (Model.CurrentProductsCount != 0)
+						{
+							<span>@Model.ProductsCount محصول</span>
+						}
 						@{ var count = Model.SubCategories?.Count ?? 0;}
-						@count دسته موجود است
+						@if (count != 0)
+						{
+							<span>@count زیرگروه</span>
+						}
 					</h3>
+					<!-- pagination -->
+					<nav aria-label="pagination" class="mt-5">
+						<a class="btn btn-light btn-sm" asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.CurrentGroup?.Id">نمایش محصولات این دسته ></a>
+					</nav>
+					<!-- pagination -->
 
 				</div>
 
@@ -75,7 +73,7 @@
 
 										<a asp-controller="Shop" asp-action="Categories" asp-route-categoryId="@item.CurrentGroup.Id" class="d-block text-decoration-none">
 
-											<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.CurrentGroup.ImageUrl">
+											<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.ImagePath">
 												<img class="w-100" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiA5IiAvPg==" alt="@item.CurrentGroup.Title">
 											</figure>
 
@@ -92,7 +90,9 @@
 
 
 											</span>
-
+											<span class="d-block">
+												<span class="fs--12 text-muted">(@item.ProductsCount) محصول</span>
+											</span>
 										</a>
 
 									</div>

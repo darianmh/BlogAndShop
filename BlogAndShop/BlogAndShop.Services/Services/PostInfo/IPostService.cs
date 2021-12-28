@@ -45,5 +45,10 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="key"></param>
         /// <returns></returns>
         Task<List<SearchResultItemModel>> Search(string key);
+        /// <summary>
+        /// دریافت 5 پست آخر
+        /// </summary>
+        /// <returns></returns>
+        Task<List<PostModel>> GetRecentPosts();
     }
 }

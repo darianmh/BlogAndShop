@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,11 @@ using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
+using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
+using BlogAndShop.Services.Services.PaymentInfo;
 using BlogAndShop.Services.Services.Utilities;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +39,10 @@ namespace BlogAndShop.Services.Services.Product
             return products;
         }
 
+        public async Task<List<Data.Data.Product.Product>> GetProductBySpecificGroup(int categoryId)
+        {
+            return await Queryable.Where(x => x.ProductGroupId == categoryId).ToListAsync();
+        }
 
 
         public ProductMiniModel GetProductMiniModel(Data.Data.Product.Product product)
@@ -92,8 +99,59 @@ namespace BlogAndShop.Services.Services.Product
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<List<ProductModel>> SalesProduct()
+        {
+            var sales = await FindSalingProduct();
+            if (sales.Count < 5) sales = await GetNonSales(sales);
+            return sales;
+        }
+
+        public async Task<List<ProductModel>> GetNewestProducts()
+        {
+            return await Queryable.OrderBy(x => x.CreateDateTime).Reverse().Take(3).Select(x => x.ToModel())
+                .ToListAsync();
+        }
+
+        public async Task<List<ProductModel>> GetMostPopularProducts(IPaymentItemService paymentItemService)
+        {
+            var popularIds = await paymentItemService.GetTopProducts();
+            var result = new List<ProductModel>();
+            for (int i = 0; i < Math.Min(3, popularIds.Count); i++)
+            {
+                var tempProduct = await GetByIdAsync(popularIds[i]);
+                if (tempProduct != null) result.Add(tempProduct.ToModel());
+            }
+
+            return result;
+        }
+
         #endregion
         #region Utilities
+
+
+
+        /// <summary>
+        /// اگر تخفیف ها کمتر از پنج عدد بود بیه را پر کند
+        /// </summary>
+        /// <param name="sales"></param>
+        /// <returns></returns>
+        private async Task<List<ProductModel>> GetNonSales(List<ProductModel> sales)
+        {
+            var count = 5 - sales.Count;
+            var nonSales = await Queryable.Where(x => x.OffPrice == null).Take(count).Select(x => x.ToModel()).ToListAsync();
+            sales.AddRange(nonSales);
+            return sales;
+        }
+
+        /// <summary>
+        /// دریافت پنج مورد تخفیفی
+        /// </summary>
+        /// <returns></returns>
+        private async Task<List<ProductModel>> FindSalingProduct()
+        {
+            var sales = await Queryable.Where(x => x.OffPrice != null).Take(5).ToListAsync();
+            return sales.Select(x => x.ToModel()).ToList();
+        }
 
         private async Task<DbModelInfo<Data.Data.Product.Product>> GetAllByGroupAsync(int page, int count, int categoryId, IProductGroupService productGroupService)
         {

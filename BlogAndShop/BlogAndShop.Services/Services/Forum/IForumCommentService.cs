@@ -48,5 +48,10 @@ namespace BlogAndShop.Services.Services.Forum
         /// <param name="forumTitleId"></param>
         /// <returns></returns>
         Task<List<ForumComment>> GetAcceptedCommentsByTitle(int forumTitleId);
+        /// <summary>
+        /// دریافت 2 کامنت آخر 
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ForumCommentModel>> GetRecentComments(ApplicationUserManager applicationUserManager);
     }
 }

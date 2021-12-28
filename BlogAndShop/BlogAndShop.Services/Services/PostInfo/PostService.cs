@@ -86,6 +86,12 @@ namespace BlogAndShop.Services.Services.PostInfo
             }).ToList();
         }
 
+        public async Task<List<PostModel>> GetRecentPosts()
+        {
+            var recent = await Queryable.OrderBy(x => x.CreateDateTime).Reverse().Take(5).ToListAsync();
+            return recent.Select(x => x.ToModel()).ToList();
+        }
+
         #endregion
         #region Utilities
 

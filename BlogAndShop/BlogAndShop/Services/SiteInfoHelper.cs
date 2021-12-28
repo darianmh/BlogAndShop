@@ -98,6 +98,11 @@ namespace BlogAndShop.Services
             var model = await GetSiteInfo(helper);
             return model.Address;
         }
+        public static async Task<string> GetSiteAbout(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.AboutUs;
+        }
         #endregion
         #region Utilities
 

@@ -68,5 +68,7 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="categoryId"></param>
         /// <returns></returns>
         Task<ProductCategoryViewModel> GetGroupsHasProductsModel(int? categoryId);
+
+        Task<Dictionary<int, ProductCategoryViewModel>> GetCategoriesDictionaryFromCache();
     }
 }

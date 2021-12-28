@@ -1,7 +1,7 @@
-﻿@model BlogAndShop.Data.ViewModel.Common.SiteConfigModel
+﻿@using BlogAndShop.Services
 <section id="section_about" class="overflow-hidden bg-light">
 	<div class="container">
-		@Html.Raw(Model.AboutUs)
+		@Html.Raw(await Html.GetSiteAbout())
 
 	</div>
 </section>

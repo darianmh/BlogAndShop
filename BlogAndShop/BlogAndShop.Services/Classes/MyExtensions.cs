@@ -23,5 +23,12 @@ namespace BlogAndShop.Services.Classes
             var result = generic.Invoke(_context, null);
             return (IQueryable<object>)result;
         }
+
+
+
+        public static string GetShortString(this string text, int length = 60)
+        {
+            return text.Length < length ? text : string.Join(String.Empty, text.Take(length)) + "...";
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace BlogAndShop.Data.Data.Forum
         [EnumList(typeof(MessageStatus))]
         public MessageStatus MessageStatus { get; set; }
 
+
         //np
         [JsonIgnore]
         public virtual ApplicationUser User { get; set; }

@@ -23,5 +23,11 @@ namespace BlogAndShop.Services.Services.PaymentInfo
         /// <param name="userPaymentId"></param>
         /// <returns></returns>
         Task<List<PaymentItem>> GetPaymentItems(int userPaymentId);
+
+        /// <summary>
+        /// دریافت محصولات فروش
+        /// </summary>
+        /// <returns></returns>
+        Task<List<int>> GetTopProducts();
     }
 }

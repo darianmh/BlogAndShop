@@ -18,8 +18,7 @@ namespace BlogAndShop.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = await _siteConfigService.GetInfo();
-            return View(model);
+            return View();
         }
 
         #endregion

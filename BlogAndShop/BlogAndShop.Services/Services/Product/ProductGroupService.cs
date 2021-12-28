@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common;
@@ -26,32 +27,29 @@ namespace BlogAndShop.Services.Services.Product
 
         public async Task<List<LinkGroupHeaderViewModel>> GetHeaderModel()
         {
-            var allActives = await GetAllAsync();
+            var allActives = await GetProductCategoryViewModel();
             var model = GetHeaderModel(allActives);
             return model;
         }
 
         public async Task<List<ProductGroupModel>> GetHeaderNastedModel()
         {
-            var allParents = await Queryable.Where(x => x.ParentId == null).ToListAsync();
-            //var model = GetHeaderModel(allActives);
+            var allParents = await GetProductCategoryViewModel();
             var model = await GetHeader2Model(allParents);
             return model;
         }
 
         public async Task<ProductCategoryViewModel> GetGroupsModel(int? categoryId)
         {
-            if (CacheHelper.ProductCategoryViewModel == null)
-                CacheHelper.ProductCategoryViewModel = await CreateProductCategoryViewModel();
-            //var groups = await GetSubGroups(categoryId);
-            //var current = await GetCurrentGroup(categoryId);
-            //return new ProductCategoryViewModel() { CurrentGroup = current, SubCategories = groups };
-            return categoryId == null
-                ? CacheHelper.ProductCategoryViewModel
-                : CacheHelper.ProductCategoryReference[(int)categoryId];
+            return await GetProductCategoryViewModel(categoryId);
         }
 
-
+        public async Task<Dictionary<int, ProductCategoryViewModel>> GetCategoriesDictionaryFromCache()
+        {
+            if (CacheHelper.ProductCategoryReference == null)
+                await CreateProductCategoryViewModel();
+            return CacheHelper.ProductCategoryReference;
+        }
 
         public async Task<ProductListViewModel> GetProductModel(int? categoryId, int? brandId, int page, int count)
         {
@@ -60,13 +58,13 @@ namespace BlogAndShop.Services.Services.Product
             var brand = brandId == null ? null : await _brandService.GetByIdAsync((int)brandId);
             var result = new ProductListViewModel()
             {
-                CurrentGroup = currentGroup,
+                CurrentGroup = currentGroup.CurrentGroup,
                 Products = products.List.Select(x => _productService.GetProductMiniModel(x)).ToList(),
                 ListPaginationModel = new ListPaginationModel(products.TotalCount > page * count, hasPre: page > 1, page: page, count: products.List.Count, pagesCount: ((products.TotalCount - 1) / count) + 1),
                 Brand = brand?.ToModel()
             };
             result.Keywords = GetKeywords(result.CurrentGroup, result.Products);
-            result.HeaderText = GetHeaderGroupName(result);
+            result.HeaderText = GetHeaderGroupName(result, currentGroup.ParentGroupName);
             return result;
         }
 
@@ -104,9 +102,15 @@ namespace BlogAndShop.Services.Services.Product
 
         public async Task<List<int>> GetChildrenGroupsId(int categoryId)
         {
-            if (CacheHelper.ProductCategoryReference == null)
-                CacheHelper.ProductCategoryViewModel = await CreateProductCategoryViewModel();
-            var group = CacheHelper.ProductCategoryReference[categoryId];
+            var dictionary = await GetCategoriesDictionaryFromCache();
+            ProductCategoryViewModel group;
+            if (dictionary.ContainsKey(categoryId))
+                group = dictionary[categoryId];
+            else
+            {
+                var entity = await GetByIdAsync(categoryId);
+                group = new ProductCategoryViewModel(entity.ToModel());
+            }
             var children = GetChildren(group);
             return children;
         }
@@ -138,21 +142,49 @@ namespace BlogAndShop.Services.Services.Product
             children.Add(group.CurrentGroup.Id);
             return children;
         }
+
+        /// <summary>
+        /// دریافت درخت زیر مجموعه ها
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        private async Task<ProductCategoryViewModel> GetProductCategoryViewModel(int? categoryId = null)
+        {
+            if (CacheHelper.ProductCategoryViewModel == null)
+                await CreateProductCategoryViewModel();
+
+            return categoryId == null
+                ? CacheHelper.ProductCategoryViewModel
+                : CacheHelper.ProductCategoryReference[(int)categoryId];
+
+        }
         /// <summary>
         /// تبدیل همه گروه ها به درخت زیر مجموعه ها
         /// </summary>
         /// <returns></returns>
-        private async Task<ProductCategoryViewModel> CreateProductCategoryViewModel()
+        private async Task CreateProductCategoryViewModel()
         {
+            //اگر درحال مقدار دهی بود
+            if (CacheHelper.ProductCategoryReferenceLock)
+            {
+                //انتظار برای پایان مقدار دهی
+                while (CacheHelper.ProductCategoryReferenceLock)
+                {
+
+                }
+                return;
+            }
+            //آغاز مقدار دهی
+            CacheHelper.ProductCategoryReferenceLock = true;
             CacheHelper.ProductCategoryReference = new Dictionary<int, ProductCategoryViewModel>();
-            CacheHelper.ProductCategoryViewModel = new ProductCategoryViewModel();
             var all = await GetAllAsync();
             var parents = GetParents(all);
-            var tree = CreateTree(parents, all);
-            return new ProductCategoryViewModel()
-            {
-                SubCategories = tree
-            };
+            var tree = await CreateTree(parents, all, null);
+            var list = new ProductCategoryViewModel(tree);
+            CacheHelper.ProductCategoryViewModel = list;
+            //پایان مقدار دهی
+            CacheHelper.ProductCategoryReferenceLock = false;
+
         }
         /// <summary>
         /// یافتن سرگروه ای اصلی
@@ -163,29 +195,42 @@ namespace BlogAndShop.Services.Services.Product
         {
             return all.Where(x => x.ParentId == null).ToList();
         }
+
         /// <summary>
         /// ابجاد درخت نهایی
         /// </summary>
         /// <param name="parents"></param>
         /// <param name="all"></param>
+        /// <param name="parentGroupName"></param>
         /// <returns></returns>
-        private List<ProductCategoryViewModel> CreateTree(List<ProductGroup> parents, List<ProductGroup> all)
+        private async Task<List<ProductCategoryViewModel>> CreateTree(List<ProductGroup> parents, List<ProductGroup> all, string parentGroupName)
         {
             var result = new List<ProductCategoryViewModel>();
             foreach (var productGroup in parents)
             {
+
                 var children = GetChildren(productGroup, all);
-                var temp = new ProductCategoryViewModel
-                {
-                    CurrentGroup = productGroup.ToModel(),
-                    SubCategories = CreateTree(children, all)
-                };
+                //all products in group
+                var products = await _productService.GetProductBySpecificGroup(productGroup.Id);
+                var imagePath = !string.IsNullOrEmpty(productGroup.ImageUrl) ? productGroup.ImageUrl : products.LastOrDefault(x => !string.IsNullOrEmpty(x.BannerImage))?.BannerImage;
+                var groupModel = productGroup.ToModel();
+                var newParentGroupName = string.IsNullOrEmpty(parentGroupName)
+                     ? groupModel.Title
+                     : parentGroupName + " - " + groupModel.Title;
+                var temp = new ProductCategoryViewModel(
+                     groupModel,
+                     await CreateTree(children, all, newParentGroupName),
+                     products.Count,
+                     imagePath,
+                     parentGroupName);
                 CacheHelper.ProductCategoryReference.Add(productGroup.Id, temp);
                 result.Add(temp);
             }
 
             return result;
         }
+
+
         /// <summary>
         /// یافتن زیر مجموعه ها بر اساس پدر داده شده
         /// </summary>
@@ -204,44 +249,24 @@ namespace BlogAndShop.Services.Services.Product
         /// <returns></returns>
         private async Task<ProductCategoryViewModel> CheckProducts(ProductCategoryViewModel model)
         {
-            var result = new List<ProductCategoryViewModel>();
-            foreach (var item in model.SubCategories)
-            {
-                var temp = await GetProductedModel(item);
-                //اگر خالی بود یعنی محصول ندارد
-                if (temp != null) result.Add(temp);
-            }
-            model.SubCategories = result;
+            model.SubCategories = model.SubCategories.Where(x => x.HasProduct).ToList();
             return model;
-        }
-        /// <summary>
-        /// اگر نال برگرداند یعنی گروه محصولی ندارد
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        private async Task<ProductCategoryViewModel> GetProductedModel(ProductCategoryViewModel item)
-        {
-            var products = await _productService.GetProductByGroup(item.CurrentGroup.Id, null, 10, 1, this);
-            var product = products?.List?.OrderBy(x => x.CreateDateTime).Reverse().FirstOrDefault();
-            //اگر محصول نداشت نال برمیگردد
-            if (product == null) return null;
-            //اگر تصویر نداشت، تصویر محصول را تنشیم می کند
-            if (string.IsNullOrEmpty(item.CurrentGroup.ImageUrl))
-                item.CurrentGroup.ImageUrl = product.BannerImage;
-            return item;
         }
 
         /// <summary>
         /// بازگرداندن نام سربرگ محصولات
         /// </summary>
         /// <param name="result"></param>
+        /// <param name="parentName"></param>
         /// <returns></returns>
-        private string GetHeaderGroupName(ProductListViewModel result)
+        private string GetHeaderGroupName(ProductListViewModel result, string parentName)
         {
-            var text = result.CurrentGroup?.Title;
-            if (!string.IsNullOrEmpty(text)) text = text + " - ";
-            text = text + result.Brand?.Name;
-            return text ?? "همه محصولات";
+            var titles = new List<string>();
+            if (!string.IsNullOrEmpty(parentName)) titles.Add(parentName);
+            if (!string.IsNullOrEmpty(result.Brand?.Name)) titles.Add(result.Brand?.Name);
+            if (!string.IsNullOrEmpty(result.CurrentGroup?.Title)) titles.Add(result.CurrentGroup?.Title);
+            var text = string.Join(" - ", titles);
+            return string.IsNullOrEmpty(text) ? "همه محصولات" : text;
         }
 
 
@@ -311,11 +336,9 @@ namespace BlogAndShop.Services.Services.Product
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        private async Task<ProductGroupModel> GetCurrentGroup(int? categoryId)
+        private async Task<ProductCategoryViewModel> GetCurrentGroup(int? categoryId)
         {
-            if (categoryId == null) return null;
-            var group = await GetByIdAsync((int)categoryId);
-            return @group?.ToModel();
+            return await GetProductCategoryViewModel(categoryId);
         }
 
         /// <summary>
@@ -335,10 +358,7 @@ namespace BlogAndShop.Services.Services.Product
 
         private List<ProductCategoryViewModel> GetCategoryModel(List<ProductGroup> groups)
         {
-            return groups.Select(x => new ProductCategoryViewModel()
-            {
-                CurrentGroup = x.ToModel()
-            }).ToList();
+            return groups.Select(x => new ProductCategoryViewModel(x.ToModel())).ToList();
         }
 
         /// <summary>
@@ -364,20 +384,16 @@ namespace BlogAndShop.Services.Services.Product
         /// </summary>
         /// <param name="allActives"></param>
         /// <returns></returns>
-        private async Task<List<ProductGroupModel>> GetHeader2Model(List<ProductGroup> allActives)
+        private async Task<List<ProductGroupModel>> GetHeader2Model(ProductCategoryViewModel allActives)
         {
             var model = new List<ProductGroupModel>();
             //پیمایش همه
-            foreach (var productGroup in allActives)
+            foreach (var productGroup in allActives.SubCategories)
             {
-                var temp = productGroup.ToModel();
-                var children = await GetByParentId(productGroup.Id);
-                if (children != null && children.Any())
-                {
-                    temp.ProductGroups = await GetHeader2Model(children);
-                }
-
-                model.Add(temp);
+                var temp = await GetHeader2Model(productGroup);
+                var current = productGroup.CurrentGroup;
+                current.ProductGroups = temp;
+                model.Add(current);
             }
 
             return model;
@@ -388,72 +404,40 @@ namespace BlogAndShop.Services.Services.Product
         /// </summary>
         /// <param name="allActives"></param>
         /// <returns></returns>
-        private List<LinkGroupHeaderViewModel> GetHeaderModel(List<ProductGroup> allActives)
+        private List<LinkGroupHeaderViewModel> GetHeaderModel(ProductCategoryViewModel allActives)
         {
-            var model = new List<LinkGroupHeaderViewModel>();
-            //پیمایش همه
-            foreach (var productGroup in allActives)
+            //تبدیل تمام گروه های که محصول دارند به مدل هدر
+            var model = allActives.SubCategories.Where(x => x.HasProduct).Select(x => new LinkGroupHeaderViewModel
             {
-                //اگر پدر نداشت خودش گروه اصلی است
-                if (productGroup.ParentId == null)
-                {
-                    //افزودن به عنوان پدر
-                    model = AddAsParent(model, productGroup);
-                }
-                else
-                {
-                    //اگر گدر داشت زیر مجموعه پدر اضافه می شود
-                    var parent = GetParent(productGroup.ParentId, allActives);
-                    if (parent == null)
-                    {
-                        //افزودن به عنوان پدر
-                        model = AddAsParent(model, productGroup);
-                    }
-                    else
-                    {
-                        //پیدا کردن پدر اصلی
-                        var parentModel = model.FirstOrDefault(x => x.Id == parent.Id);
-                        //افزودن به عنوان زیر گروه
-                        parentModel?.SubGroups.Add(new LinkSubGroupViewModel()
-                        {
-                            Id = productGroup.Id,
-                            Name = productGroup.Title
-                        });
-                    }
-                }
-            }
+                Id = x.CurrentGroup.Id,
+                Name = x.CurrentGroup.Title,
+                SubGroups = GetSubGroups(x)
+            }).ToList();
+
 
             return model;
         }
-
-        private List<LinkGroupHeaderViewModel> AddAsParent(List<LinkGroupHeaderViewModel> model, ProductGroup productGroup)
+        /// <summary>
+        /// دریافت زیر گروه های مجموعه برای مدل هدر
+        /// </summary>
+        /// <returns></returns>
+        private List<LinkSubGroupViewModel> GetSubGroups(ProductCategoryViewModel model)
         {
-            model.Add(new LinkGroupHeaderViewModel()
+            var result = new List<LinkSubGroupViewModel>();
+            result.Add(new LinkSubGroupViewModel()
             {
-                Id = productGroup.Id,
-                Name = productGroup.Title
+                Id = model.CurrentGroup.Id,
+                Name = model.CurrentGroup.Title
             });
-            return model;
-        }
-
-        private ProductGroup? GetParent(int? productGroupParentId, List<ProductGroup> allActives)
-        {
-            //finding main parent
-            var parent = allActives.FirstOrDefault(x => x.Id == productGroupParentId);
-            if (parent == null) return null;
-            //if parent is sub of other group
-            if (parent.ParentId != null)
+            //زیر گروه هایی که محصول دارند
+            var subs = model.SubCategories.Where(x => x.HasProduct);
+            foreach (var sub in subs)
             {
-                //find grand parent
-                var tempParent = GetParent(parent.ParentId, allActives);
-                //return if parent is not valid
-                if (tempParent == null) return null;
-                //set grand parent as direct parent
-                parent = tempParent;
+                var temp = GetSubGroups(sub);
+                result.AddRange(temp);
             }
-            return parent;
+            return result;
         }
-
 
         #endregion
         #region Ctor

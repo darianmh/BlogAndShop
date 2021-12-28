@@ -9,6 +9,7 @@ using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Main;
+using BlogAndShop.Services.Services.PaymentInfo;
 
 namespace BlogAndShop.Services.Services.Product
 {
@@ -25,6 +26,11 @@ namespace BlogAndShop.Services.Services.Product
         /// <returns></returns>
         Task<DbModelInfo<Data.Data.Product.Product>> GetProductByGroup(int? categoryId, int? brandId, int count,
             int page, IProductGroupService productGroupService);
+        /// <summary>
+        /// دریافت لیست محصولات بر اساس یک گروه خاص نه گروه های زیر مجموعه
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Data.Data.Product.Product>> GetProductBySpecificGroup(int categoryId);
         /// <summary>
         /// ساخت مدل کوچک از محصول
         /// </summary>
@@ -64,5 +70,22 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="groupId"></param>
         /// <returns></returns>
         Task<Data.Data.Product.Product> GetLastGroupProduct(int groupId);
+        /// <summary>
+        /// find sales
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductModel>> SalesProduct();
+        /// <summary>
+        ///تعداد 3 محصول جدید
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductModel>> GetNewestProducts();
+
+        /// <summary>
+        /// محبوب ترین محصولات بر اساس فروش 3 عدد
+        /// </summary>
+        /// <param name="paymentItemService"></param>
+        /// <returns></returns>
+        Task<List<ProductModel>> GetMostPopularProducts(IPaymentItemService paymentItemService);
     }
 }

@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\Components\HomeRecentForum\Default.cshtml" />
+    <Content Remove="Views\Shared\Components\HomeSuggestedProductsPosts\Default.cshtml" />
+    <Content Remove="Views\Shared\Components\HomeTop6Categories\Default.cshtml" />
+    <Content Remove="Views\Shared\Components\HomeTopCategories\Default.cshtml" />
+    <Content Remove="Views\Shared\Components\HomeSalesProduct\Default.cshtml" />
     <Content Remove="wwwroot\richtexteditor\runtime\images\cpie_Color.cur" />
     <Content Remove="wwwroot\richtexteditor\runtime\images\cpns_Color.cur" />
     <Content Remove="wwwroot\richtexteditor\runtime\richtexteditor_preview.js" />
@@ -134,6 +139,11 @@
     <None Include="Views\Shared\Components\HeaderBlogGroups\Default.cshtml" />
     <None Include="Views\Shared\Components\HeaderProductGroups\Default.cshtml" />
     <None Include="Views\Shared\Components\HomeAbout\Default.cshtml" />
+    <None Include="Views\Shared\Components\HomeRecentForum\Default.cshtml" />
+    <None Include="Views\Shared\Components\HomeSuggestedProductsPosts\Default.cshtml" />
+    <None Include="Views\Shared\Components\HomeTop6Categories\Default.cshtml" />
+    <None Include="Views\Shared\Components\HomeTopCategories\Default.cshtml" />
+    <None Include="Views\Shared\Components\HomeSalesProduct\Default.cshtml" />
     <None Include="Views\Shared\Components\HomeBrandSlider\Default.cshtml" />
     <None Include="Views\Shared\Components\HomePageSlider\Default.cshtml" />
     <None Include="Views\Shared\Components\ForumSideBar\Default.cshtml" />

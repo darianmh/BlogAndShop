@@ -1,0 +1,65 @@
+﻿
+@model List<BlogAndShop.Data.ViewModel.Product.ProductCategoryViewModel>
+
+<section class="bg-light">
+	<div class="container">
+
+		<h2 class="font-weight-light mb-5">
+			<span class="font-weight-medium">تنوع</span> محصولات
+			<small class="d-block h6">دسته بندی های مختلف محصولات</small>
+		</h2>
+
+
+		<!--
+
+			NOTE:	IMAGES ARE SET AS BACKGROUNDS!
+			lazyload plugin used for best performance!
+
+		-->
+		<div class="row gutters-sm gutters-xs--xs">
+
+			<!--
+
+			MAIN/FEATURED
+			please pay attention to how order-* is set!
+			See on mobile how looks like! Play to set as desired!
+
+			You can also insert this "featured" anywhere
+			between them as long .order-2 class is present!
+
+			-->
+
+			@for (var i = 0; i < Model.Count; i++)
+			{
+				var className = "";
+				if (i == 0 || i == 2)
+				{
+					className = "order-1 col-6 col-lg-3 mb-3 mb-2-xs";
+				}
+				else if (i == 1)
+				{
+					className = "order-2 col-12 col-lg-6 mb-3 mb-2-xs";
+				}
+				else
+				{
+					className = "order-2 col-6 col-lg-3 mb-3 mb-2-xs";
+				}
+
+				<div class="@className">
+					<a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model[i].CurrentGroup?.Id" class="h-100 position-relative d-flex flex-wrap align-items-center justify-content-center text-decoration-none text-white mb-4 text-center overflow-hidden overlay-dark overlay-opacity-4 rounded shadow-primary-xs transition-hover-top transition-all-ease-150 bg-cover lazy"
+					   data-background-image="@Model[i].ImagePath">
+
+						<!-- blank svg : autoadjust background image -->
+						<img class="w-100" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiA5IiAvPg==" alt="@Model[i].CurrentGroup?.Title">
+						<h3 class="h5-xs position-absolute z-index-2">
+							@Model[i].CurrentGroup?.Title
+							<small class="d-block fs--13">@Model[i].ProductsCount محصول</small>
+						</h3>
+					</a>
+				</div>
+			}
+
+		</div>
+
+	</div>
+</section>

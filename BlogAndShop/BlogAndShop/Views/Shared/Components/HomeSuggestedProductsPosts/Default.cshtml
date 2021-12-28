@@ -1,0 +1,209 @@
+﻿
+@using BlogAndShop.Services.Classes.Date
+@using BlogAndShop.Services.Classes
+@model BlogAndShop.Data.ViewModel.Product.HomeSuggestedProductsPostsModel
+
+<section>
+	<div class="container">
+
+		<!--
+			Sale / Rent
+		-->
+		<div class="row">
+
+			<div class="col-12 col-md-6 mb-2">
+
+				<h3 class="mb-4 text-secondary">
+					<span class="font-weight-light">محصولات</span> پرفروش
+				</h3>
+
+				@foreach (var item in Model.Popular)
+				{
+					<a asp-controller="Shop" asp-action="Item" asp-route-productId="@item.Id" class="bg-white d-flex p-2 mb-3 shadow-xs shadow-md-hover rounded text-decoration-none transition-hover-top transition-all-ease-250">
+
+						<!-- image -->
+						<div class="text-center bg-light w--100 h--100 rounded bg-cover lazy" data-background-image="@item.BannerImage"></div>
+
+						<div class="col px-3">
+
+							<p class="fs--18 pt-2 mb-2 font-weight-light text-danger">
+								@item.Title
+								<span class="d-block mt-2 text-dark font-weight-medium fs--18">
+									@{
+										var price = item.OffPrice == null ?
+											item.Price.ToString("N0") : ((decimal)item.OffPrice).ToString("N0");
+									}
+									@price
+								</span>
+							</p>
+
+						</div>
+
+					</a>
+
+
+
+				}
+				<div class="text-align-end">
+					<a asp-controller="Shop" asp-action="Index" class="btn btn-light btn-sm">
+						<span>نمایش همه</span>
+						<i class="fi fi-arrow-end"></i>
+					</a>
+				</div>
+
+			</div>
+
+			<div class="col-12 col-md-6 mb-2">
+
+				<h3 class="mb-4 text-secondary">
+					<span class="font-weight-light">محصولات</span> جدید
+				</h3>
+
+				@foreach (var item in Model.Newest)
+				{
+					<a asp-controller="Shop" asp-action="Item" asp-route-productId="@item.Id" class="bg-white d-flex p-2 mb-3 shadow-xs shadow-md-hover rounded text-decoration-none transition-hover-top transition-all-ease-250">
+
+						<!-- image -->
+						<div class="text-center bg-light w--100 h--100 rounded bg-cover lazy" data-background-image="@item.BannerImage"></div>
+
+						<div class="col px-3">
+
+							<p class="fs--18 pt-2 mb-2 font-weight-light text-danger">
+								@item.Title
+								<span class="d-block mt-2 text-dark font-weight-medium fs--18">
+									@{
+										var price = item.OffPrice == null ?
+											item.Price.ToString("N0") : ((decimal)item.OffPrice).ToString("N0");
+									}
+									@price
+								</span>
+							</p>
+
+						</div>
+
+					</a>
+
+
+
+				}
+				<div class="text-align-end">
+					<a asp-controller="Shop" asp-action="Index" class="btn btn-light btn-sm">
+						<span>نمایش همه</span>
+						<i class="fi fi-arrow-end"></i>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+		<!-- blog news -->
+		<div class="mt-7">
+
+			<!-- News -->
+			<h2 class="font-weight-light mb-5">
+				<span class="font-weight-medium">جدیدترین</span> مطالب!
+				<small class="d-block h6">آخرین مطالب بلاگ</small>
+			</h2>
+
+			@if (Model.RecentPosts.Count > 0)
+			{
+				var postItem = Model.RecentPosts[0];
+				<!-- sticky article -->
+				<div class="row">
+
+					<a asp-controller="Blog" asp-action="Item" asp-route-postId="@postItem.Id" class="col-12 col-md-4 mb-4">
+						<img class="img-fluid w-100 rounded" src="@postItem.BannerImage" alt="@postItem.Title">
+					</a>
+
+					<div class="col pb-4">
+
+						<!-- title -->
+						<div class="mb-4">
+
+							<h2 class="h4 mb-0">
+								<a asp-controller="Blog" asp-action="Item" class="text-dark font-weight-medium">
+									@postItem.Title
+								</a>
+							</h2>
+
+							<!-- publish date -->
+							<span class="text-muted">
+								@postItem.CreateDateTime.ToPeString()
+							</span>
+
+						</div>
+
+						<!-- content preview -->
+						<div class="mb-4">
+							<p>
+								@postItem.Description.GetShortString()
+							</p>
+						</div>
+
+						<a asp-controller="Blog" asp-action="Item" class="link-muted">بخوانید</a>
+
+					</div>
+
+				</div>
+				<!-- /sticky article -->
+			}
+			<!-- more articles / blog -->
+			<div class="py-4 mt-3">
+
+				<div class="row">
+					@if (Model.RecentPosts.Count > 1)
+					{
+						for (int i = 0; i < 2; i++)
+						{
+							<div class="col-12 col-md-6">
+								@for (int j = 0; j < 2; j++)
+								{
+									var index = (i * j) + 1;
+									var postItem = Model.RecentPosts.Count - 1 > index ? Model.RecentPosts[index] : null;
+									if (postItem != null)
+									{
+
+
+										<div class="d-flex mb-3 text-decoration-none">
+
+											<!-- image -->
+											<div class="text-center bg-light w--100 h--100 rounded bg-cover lazy" data-background-image="@postItem.BannerImage"></div>
+
+											<div class="col px-3">
+
+												<h3 class="h5">
+													<a href="blog-page-single-sidebar.html" class="text-dark">
+														@postItem.Title
+													</a>
+												</h3>
+
+												<p class="font-weight-normal">
+													<strong>(@postItem.CreateDateTime.ToPeString())</strong>
+													@postItem.Description.GetShortString(20)
+												</p>
+
+											</div>
+
+										</div>
+
+
+
+									}
+								}
+							</div>
+						}
+					}
+
+				</div>
+
+			</div>
+			<!-- /more articles / blog -->
+
+		</div>
+		<!-- /blog news -->
+
+	</div>
+</section>

@@ -52,6 +52,10 @@ namespace BlogAndShop.Services.Classes
             get => _productCategoryReference;
             set => _productCategoryReference = value;
         }
+        /// <summary>
+        /// زمانی که در حال مقدار دادن به لیست رفرنس ها هستیم این مقدار 1 می باشد
+        /// </summary>
+        public static bool ProductCategoryReferenceLock { get; set; }
 
         #endregion
         #region Methods

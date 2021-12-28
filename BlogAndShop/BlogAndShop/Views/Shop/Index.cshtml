@@ -51,22 +51,22 @@
 
 
 				<!-- additional filters -->
-			<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
 
-				<h3 class="h5 mb-0">
-					@{ var count = Model.Products?.Count ?? 0;}
-					@count محصول موجود است
-				</h3>
-				@if (Model.Brand != null && !string.IsNullOrEmpty(Model.Brand.Description))
-				{
-					<p class="mt--10">برند @Model.Brand.Name</p>
-					<p>@Model.Brand.Description</p>
-					if (!string.IsNullOrEmpty(Model.Brand.SiteUrl))
+					<h3 class="h5 mb-0">
+						@{ var count = Model.Products?.Count ?? 0;}
+						@count محصول موجود است
+					</h3>
+					@if (Model.Brand != null && !string.IsNullOrEmpty(Model.Brand.Description))
 					{
-						<a href="@Model.Brand.SiteUrl" class="d-block fs--14">سایت</a>
+						<p class="mt--10">برند @Model.Brand.Name</p>
+						<p>@Model.Brand.Description</p>
+						if (!string.IsNullOrEmpty(Model.Brand.SiteUrl))
+						{
+							<a href="@Model.Brand.SiteUrl" class="d-block fs--14">سایت</a>
+						}
 					}
-				}
-			</div>
+				</div>
 				<!-- /additional filters -->
 				<!-- product list -->
 				<div class="row gutters-xs--xs">

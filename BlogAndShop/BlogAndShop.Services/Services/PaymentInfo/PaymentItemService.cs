@@ -37,7 +37,10 @@ namespace BlogAndShop.Services.Services.PaymentInfo
         {
             return await Queryable.Where(x => x.ProductId == userPaymentId).ToListAsync();
         }
-
+        public async Task<List<int>> GetTopProducts()
+        {
+            return await Queryable.GroupBy(x => x.ProductId).OrderBy(x => x.Count()).Select(x => x.Key).ToListAsync();
+        }
         #endregion
         #region Utilities
 

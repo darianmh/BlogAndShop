@@ -1,0 +1,72 @@
+﻿
+@model List<BlogAndShop.Data.ViewModel.Product.ProductCategoryViewModel>
+
+<section>
+	<div class="container">
+
+		<h2 class="h3 mb-5 text-center-xs font-weight-normal text-muted">
+			<b>برترین</b> دسته بندی
+		</h2>
+
+
+
+		<!-- product list -->
+		<div class="row gutters-xs--xs">
+			@foreach (var item in Model)
+			{
+
+				<!-- item -->
+				<div class="col-6 col-lg-3 mb-4 mb-2-xs">
+
+					<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+						<a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@item.CurrentGroup?.Id" class="d-block text-decoration-none">
+
+							<!--
+
+								3 ways to set the image
+
+							-->
+							<!-- 1. without .bg-suprime - use image as it is -->
+							<!--
+							<figure class="m-0 text-center rounded-top overflow-hidden">
+								<img class="img-fluid" src="image.jpg" alt="...">
+							</figure>
+							-->
+							<!-- 2. squared, as background -->
+							<!--
+							<figure class="m-0 text-center rounded-top overflow-hidden bg-cover" style="background-image:url('image.jpg')">
+								<img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="...">
+							</figure>
+							-->
+							<!-- 3. with .bg-suprime (remove white bg and add a gray bg) -->
+							<figure class="m-0 text-center bg-light-radial rounded-top overflow-hidden h--200">
+								<img class="img-fluid bg-suprime opacity-9" src="@item.ImagePath" alt="@item.CurrentGroup?.Title">
+							</figure>
+
+							<span class="d-block text-center-xs text-gray-600 py-3">
+
+								<!--
+									.max-height-50  = limited to 2 rows of text
+									-or-
+									.text-truncate
+								-->
+								<span class="d-block fs--16 max-h-50 overflow-hidden">
+									@item.CurrentGroup?.Title
+								</span>
+
+							</span>
+
+						</a>
+
+					</div>
+
+				</div>
+				<!-- /item -->
+			}
+		</div>
+		<!-- /product list -->
+
+
+	</div>
+</section>

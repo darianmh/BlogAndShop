@@ -17,7 +17,6 @@ namespace BlogAndShop.Services.Services.Forum
     {
         #region Fields
 
-
         #endregion
         #region Methods
         public async Task<List<NewNotificationModel>> GetNewComments()
@@ -57,6 +56,22 @@ namespace BlogAndShop.Services.Services.Forum
         {
             var comments = await Queryable.Where(x => x.ForumId == forumTitleId && x.IsAccepted).ToListAsync();
             return comments;
+        }
+
+        public async Task<List<ForumCommentModel>> GetRecentComments(ApplicationUserManager applicationUserManager)
+        {
+            var all = await Queryable.OrderBy(x => x.CreateDateTime).Reverse().Take(2)
+                .ToListAsync();
+            var result = new List<ForumCommentModel>();
+            foreach (var item in all)
+            {
+                var temp = item.ToModel();
+                if (temp.UserId != null)
+                    temp.UserName = await applicationUserManager.GetUSerDisplayNameAsync((int)temp.UserId);
+                result.Add(temp);
+            }
+
+            return result;
         }
 
         #endregion
