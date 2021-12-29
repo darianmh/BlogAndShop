@@ -14,5 +14,6 @@ namespace BlogAndShop.Data.ViewModel.Product
         public ListPaginationModel ListPaginationModel { get; set; }
         public string Keywords { get; set; }
         public string HeaderText { get; set; }
+        public int TotalCount { get; set; }
     }
 }

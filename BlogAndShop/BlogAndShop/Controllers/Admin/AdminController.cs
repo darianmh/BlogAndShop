@@ -16,6 +16,15 @@ namespace BlogAndShop.Controllers.Admin
         {
             return View();
         }
+        /// <summary>
+        /// پاک کردن کش
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult CacheClear()
+        {
+            CacheHelper.ClearCache();
+            return RedirectToAction("Index");
+        }
 
         public AdminController(IAdminModelHelper adminModelHelper) : base(adminModelHelper)
         {

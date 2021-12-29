@@ -595,3 +595,8 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\WebMarkupMi
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\WebMarkupMin.Core.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Search\Index.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\ForumSideBar\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\HomeRecentForum\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\HomeSalesProduct\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\HomeSuggestedProductsPosts\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\HomeTop6Categories\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Shared\Components\HomeTopCategories\Default.cshtml.g.cs

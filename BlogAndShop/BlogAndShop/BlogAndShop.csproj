@@ -6,17 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Shared\Components\HomeRecentForum\Default.cshtml" />
-    <Content Remove="Views\Shared\Components\HomeSuggestedProductsPosts\Default.cshtml" />
-    <Content Remove="Views\Shared\Components\HomeTop6Categories\Default.cshtml" />
-    <Content Remove="Views\Shared\Components\HomeTopCategories\Default.cshtml" />
-    <Content Remove="Views\Shared\Components\HomeSalesProduct\Default.cshtml" />
-    <Content Remove="wwwroot\richtexteditor\runtime\images\cpie_Color.cur" />
-    <Content Remove="wwwroot\richtexteditor\runtime\images\cpns_Color.cur" />
-    <Content Remove="wwwroot\richtexteditor\runtime\richtexteditor_preview.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\Index.cshtml" />
     <None Include="Views\Account\Orders.cshtml" />

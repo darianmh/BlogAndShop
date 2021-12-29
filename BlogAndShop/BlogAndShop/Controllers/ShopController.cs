@@ -27,7 +27,7 @@ namespace BlogAndShop.Controllers
 
         #endregion
         #region Methods
-        public async Task<IActionResult> Index(int? categoryId, int? brandId, int page = 1, int count = 10)
+        public async Task<IActionResult> Index(int? categoryId, int? brandId, int page = 1, int count = 12)
         {
             var model = await _productGroupService.GetProductModel(categoryId, brandId, page, count);
             return View(model);

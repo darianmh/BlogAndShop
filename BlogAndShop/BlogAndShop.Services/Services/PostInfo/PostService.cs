@@ -88,7 +88,7 @@ namespace BlogAndShop.Services.Services.PostInfo
 
         public async Task<List<PostModel>> GetRecentPosts()
         {
-            var recent = await Queryable.OrderBy(x => x.CreateDateTime).Reverse().Take(5).ToListAsync();
+            var recent = await Queryable.Where(x => x.IsPublished).OrderBy(x => x.CreateDateTime).Reverse().Take(5).ToListAsync();
             return recent.Select(x => x.ToModel()).ToList();
         }
 

@@ -61,7 +61,8 @@ namespace BlogAndShop.Services.Services.Product
                 CurrentGroup = currentGroup.CurrentGroup,
                 Products = products.List.Select(x => _productService.GetProductMiniModel(x)).ToList(),
                 ListPaginationModel = new ListPaginationModel(products.TotalCount > page * count, hasPre: page > 1, page: page, count: products.List.Count, pagesCount: ((products.TotalCount - 1) / count) + 1),
-                Brand = brand?.ToModel()
+                Brand = brand?.ToModel(),
+                TotalCount = products.TotalCount
             };
             result.Keywords = GetKeywords(result.CurrentGroup, result.Products);
             result.HeaderText = GetHeaderGroupName(result, currentGroup.ParentGroupName);

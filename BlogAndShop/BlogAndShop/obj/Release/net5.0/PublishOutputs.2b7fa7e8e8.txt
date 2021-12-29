@@ -1088,11 +1088,13 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\colorpicker_more_ns.htm
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\help.htm
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\1x1.gif
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpie_Color.cur
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpie_GradientPositionDark.gif
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpie_GradientPositionLight.gif
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpie_gradients.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpie_VerticalPosition.gif
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpie_WebSafe.gif
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpns_Color.cur
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpns_ColorSpace1.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpns_ColorSpace2.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\cpns_GradientPositionDark.gif
@@ -1107,6 +1109,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\images\multiclavier.gif
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\richtexteditor_content.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\richtexteditor_preview.css
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\richtexteditor_preview.js
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\127024050_386425585935620_9177426682045131715_n.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2111191242_Business-Model-Canvas-Uber.pdf
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112020539_ey-staff-at-event.jpg
@@ -1130,6 +1133,11 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112251248_5f9c280486094406332128 (2).webp
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112251248_5f9c280486094406332128.webp
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112251248_5f9c78d113e34980928519.webp
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112280913_128390387_374426093776407_6550861825096799451_n.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112280923_IMG_4737-800x362.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112281009_persian_warriors_from_berlin_museum.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112281010_kyudo_content_web.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112281010_mMwMDA4YTFhM.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo.psd
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo1.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo1_11zon-ConvertImage.png

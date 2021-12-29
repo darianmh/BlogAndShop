@@ -28,6 +28,7 @@ namespace BlogAndShop.Services.Classes
 
         public static string GetShortString(this string text, int length = 60)
         {
+            if (string.IsNullOrEmpty(text)) return "";
             return text.Length < length ? text : string.Join(String.Empty, text.Take(length)) + "...";
         }
     }

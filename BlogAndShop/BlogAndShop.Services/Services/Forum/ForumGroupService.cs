@@ -33,7 +33,7 @@ namespace BlogAndShop.Services.Services.Forum
             var result = new ForumListViewModel()
             {
                 CurrentGroup = currentGroup,
-                Forums = products.List.Select(async x => await _forumTitleService.GetForumMiniModel(x)).Select(x => x.Result).ToList(),
+                Forums = products.List.OrderBy(x => x.CreateDateTime).Reverse().Select(async x => await _forumTitleService.GetForumMiniModel(x)).Select(x => x.Result).ToList(),
                 ListPaginationModel = new ListPaginationModel(products.TotalCount > page * count, hasPre: page > 1, page: page, count: products.List.Count, pagesCount: ((products.TotalCount - 1) / count) + 1),
             };
             result.Keywords = GetKeywords(result.CurrentGroup, result.Forums);

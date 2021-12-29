@@ -67,6 +67,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             await _productTagService.SetProductTag(item.Id, model.SelectedTags);
             await _productMediaService.SetProductMedia(item.Id, model.SelectedImages);
             await _forumTitleService.CreateProductForum(item, _forumGroupService);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -76,6 +77,7 @@ namespace BlogAndShop.Controllers.Admin.Product
             await _service.UpdateAsync(item);
             await _productTagService.SetProductTag(model.Id, model.SelectedTags);
             await _productMediaService.SetProductMedia(model.Id, model.SelectedImages);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = model.Id });
         }
 

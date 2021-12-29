@@ -54,6 +54,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = model.ToEntity();
             await _service.InsertAsync(item);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -61,6 +62,7 @@ namespace BlogAndShop.Controllers.Admin.Product
         {
             var item = model.ToEntity();
             await _service.UpdateAsync(item);
+            CacheHelper.ClearCache();
             return RedirectToAction("Details", new { id = model.Id });
         }
 
