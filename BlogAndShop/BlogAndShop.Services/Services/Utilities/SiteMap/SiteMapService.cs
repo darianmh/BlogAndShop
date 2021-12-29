@@ -27,17 +27,17 @@ namespace BlogAndShop.Services.Services.Utilities.SiteMap
                 new SiteMapItemModel()
                 {
                     LastDate = DateTime.Now.ToSiteMapString(),
-                    Url = $"{domain}/sitemap/Blog"
+                    Url = $"{domain}/sitemap/Blog.xml"
                 },
                 new SiteMapItemModel()
                 {
                     LastDate = DateTime.Now.ToSiteMapString(),
-                    Url = $"{domain}/sitemap/Shop"
+                    Url = $"{domain}/sitemap/Shop.xml"
                 },
                 new SiteMapItemModel()
                 {
                     LastDate = DateTime.Now.ToSiteMapString(),
-                    Url = $"{domain}/sitemap/Forum"
+                    Url = $"{domain}/sitemap/Forum.xml"
                 }
             };
         }
