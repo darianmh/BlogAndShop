@@ -409,6 +409,47 @@
 	</div>
 </section>
 <!-- /INFO BOX -->
+<!-- SUGGESTIONS LINKS -->
+<section class="pb--10 bg-light">
+	<div class="container">
+
+		<h2 class="h4 mb-5">
+			لینک های محصول
+		</h2>
+
+		<div class="table-responsive">
+
+			@foreach (var item in Model.ForumTitles)
+			{
+				<a asp-controller="Forum" asp-action="Item" asp-route-id="@item.Id" class="btn btn-pill btn-dark shadow-none transition-hover-top">
+					<!-- .max-height-80  = limited to 2 rows of text -->
+					<span class="d-block fs--16 max-h-50 overflow-hidden">
+						@item.Title
+					</span>
+
+				</a>
+
+			}
+			@if (Model.ProductModel.Brand != null && !string.IsNullOrEmpty(Model.ProductModel.Brand.SiteUrl))
+			{
+
+				<a href="@Model.ProductModel.Brand.SiteUrl" class="btn btn-pill btn-dark shadow-none transition-hover-top">
+					<!-- .max-height-80  = limited to 2 rows of text -->
+					<span class="d-block fs--16 max-h-50 overflow-hidden">
+						معرفی برند @Model.ProductModel.Brand.Name
+					</span>
+
+				</a>
+			}
+
+
+
+		</div>
+
+
+	</div>
+</section>
+<!-- /SUGGESTIONS LINKS -->
 <!-- SUGGESTIONS -->
 <section>
 	<div class="container">
@@ -534,70 +575,6 @@
 	</div>
 </section>
 <!-- /DESCRIPTION -->
-<!-- SUGGESTIONS LINKS -->
-<section>
-	<div class="container">
-
-		<h2 class="h4 mb-5">
-			لینک های بررسی محصول
-		</h2>
-
-		<div class="table-responsive">
-
-			<table class="table table-striped">
-				<tbody>
-					@foreach (var item in Model.ForumTitles)
-					{
-						<tr>
-							<td class="text-muted">
-								<a asp-controller="Forum" asp-action="Item" asp-route-id="@item.Id" class="text-decoration-none">
-
-									<div class="text-center-xs text-gray-600 py-3">
-
-										<!-- .max-height-80  = limited to 2 rows of text -->
-										<span class="d-block fs--16 max-h-50 overflow-hidden">
-											@item.Title
-										</span>
-
-									</div>
-
-								</a>
-							</td>
-						</tr>
-
-					}
-					@if (Model.ProductModel.Brand != null && !string.IsNullOrEmpty(Model.ProductModel.Brand.SiteUrl))
-					{
-
-						<tr>
-							<td class="text-muted">
-								<a href="@Model.ProductModel.Brand.SiteUrl" class="text-decoration-none">
-
-									<div class="text-center-xs text-gray-600 py-3">
-
-										<!-- .max-height-80  = limited to 2 rows of text -->
-										<span class="d-block fs--16 max-h-50 overflow-hidden">
-											معرفی برند @Model.ProductModel.Brand.Name
-										</span>
-
-									</div>
-
-								</a>
-							</td>
-							<td>
-						</tr>
-					}
-
-				</tbody>
-			</table>
-
-
-		</div>
-
-
-	</div>
-</section>
-<!-- /SUGGESTIONS LINKS -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModalMd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelMd" aria-hidden="true">
 	<div class="modal-dialog" role="document">

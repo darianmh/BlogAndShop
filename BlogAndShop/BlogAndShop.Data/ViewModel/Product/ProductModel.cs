@@ -103,10 +103,13 @@ namespace BlogAndShop.Data.ViewModel.Product
         [AdminShowItem(4)]
         public decimal? OffPrice { get; set; }
         [Display(Name = "منتشر شده")]
+        [AdminShowItem(5)]
         public bool IsPublished { get; set; }
         [Display(Name = "کلمات کلیدی")]
         [TextArea]
         public string Keywords { get; set; }
+        [Ignore]
+        public bool SaveAndContinue { get; set; }
 
 
 

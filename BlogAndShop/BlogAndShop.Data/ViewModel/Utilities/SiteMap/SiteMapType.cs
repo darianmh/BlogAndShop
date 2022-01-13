@@ -4,6 +4,7 @@
     {
         Blog,
         Shop,
-        Forum
+        Forum,
+        Book
     }
 }

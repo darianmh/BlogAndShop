@@ -25,6 +25,7 @@
 						@await Component.InvokeAsync("EditCreateTemplate", new { Model, Html.ViewContext.HttpContext })
 						<div class="mt--10">
 							<button class="btn btn-primary" type="submit">تایید</button>
+							<button class="btn btn-primary" onclick="Save()" type="button">ذخیره</button>
 							<a asp-action="Index" class="btn btn-dark">لیست</a>
 							<a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-purple">جزییات</a>
 						</div>

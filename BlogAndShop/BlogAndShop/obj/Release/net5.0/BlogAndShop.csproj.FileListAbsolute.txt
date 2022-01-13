@@ -600,3 +600,9 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Vie
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Shared\Components\HomeSuggestedProductsPosts\Default.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Shared\Components\HomeTop6Categories\Default.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Shared\Components\HomeTopCategories\Default.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Book\Index.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\Book\Item.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\DownloadItem\Create.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\DownloadItem\Details.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\DownloadItem\Edit.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\Razor\Views\DownloadItem\Index.cshtml.g.cs

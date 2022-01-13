@@ -1,7 +1,7 @@
 ﻿//admin image file upload
 var targetInputName = '';
 var page = 1;
-var count = 3;
+var count = 10;
 function LoadAdminImage(targetName) {
   page = 1;
   targetInputName = targetName;
@@ -27,3 +27,8 @@ function SetSelectedImage(path) {
   $("#" + targetInputName + "Pre").html(image);
 }
 
+//admin save and continue
+function Save() {
+  $("form").append('<input type="hidden" name="SaveAndContinue" value="1"/>');
+  $("form").submit();
+}

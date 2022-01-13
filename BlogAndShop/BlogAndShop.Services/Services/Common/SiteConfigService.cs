@@ -25,13 +25,14 @@ namespace BlogAndShop.Services.Services.Common
             if (model == null)
             {
                 var entity = (await GetAllAsync()).FirstOrDefault();
-                if (entity == null) return new SiteConfigModel();
+                if (entity == null) entity = await CreateNewConfig();
                 model = entity?.ToModel();
                 if (model == null) return new SiteConfigModel();
                 CacheHelper.SiteConfigCache = model;
             }
             return model;
         }
+
 
         public async Task<int> GetProductForumGroup()
         {
@@ -70,6 +71,12 @@ namespace BlogAndShop.Services.Services.Common
             return split.Select(x => x.Trim()).ToList();
         }
 
+        private async Task<SiteConfig?> CreateNewConfig()
+        {
+            var entity = new SiteConfig();
+            await InsertAsync(entity);
+            return entity;
+        }
         #endregion
         #region Ctor
         public SiteConfigService(ApplicationDbContext db) : base(db)

@@ -1,0 +1,75 @@
+﻿@using BlogAndShop.Services.Classes.Date
+@model BlogAndShop.Data.ViewModel.Product.DownloadItemViewModel
+@{
+	ViewBag.metaDescription = Model.Description;
+	ViewBag.metaTitle = Model.Title;
+	ViewBag.metaKeywords = Model.Keywords;
+}
+
+
+<!-- start :: blog content -->
+<section>
+	<div class="container">
+
+		<div class="row">
+
+			@await Component.InvokeAsync("BlogSideBar")
+			<div class="col-lg-9 order-2 order-lg-1">
+
+				<div class="mb-4">
+
+					<h1 class="h3 h4-xs font-weight-medium mb-0">
+						@Model.Title
+					</h1>
+
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb fs--14 mb-3">
+							<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">خانه</a></li>
+							<li class="breadcrumb-item"><a asp-controller="Book" asp-action="Index">کتابخانه</a></li>
+							<li class="breadcrumb-item"><a href="#">@Model.Title</a></li>
+						</ol>
+					</nav>
+
+					<p class="d-block text-muted fs--14">
+						تاریخ ارسال: <time datetime="@Model.CreateDateTime.ToString("yyyy-MM-dd")">@Model.CreateDateTime.ToPeString()</time>
+					</p>
+
+				</div>
+
+
+
+				<!-- FEATURED POST : ALWAYS LAST ADDED -->
+				<div class="clearfix mb-5">
+
+					<img class="img-fluid w-100 h--500" src="@Model.BannerImage" alt="@Model.Title">
+
+				</div>
+				<div class="clearfix mb-5">
+					<a target="_blank" href="@Model.DownloadPath" class="btn btn-dark">دانلود</a>
+				</div>
+				<!-- /FEATURED POST : ALWAYS LAST ADDED -->
+				<!--
+					.article-format class will add some slightly formattings for a good text visuals.
+					This is because most editors are not ready formatted for bootstrap
+					Blog content should come inside this container, as it is from database!
+					src/scss/_core/base/_typography.scss
+				-->
+				<div class="article-format">
+
+					@Model.Description
+
+				</div>
+
+
+				<p class="text-muted border-bottom pb-2 fs--13 mt--60">
+					آخرین بروز رسامی: @Model.UpdateDateTime.ToPeString()
+				</p>
+
+
+
+			</div>
+		</div>
+
+	</div>
+</section>
+<!-- end :: blog content -->

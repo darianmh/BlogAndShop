@@ -15,6 +15,7 @@ namespace BlogAndShop.Services.Services.Common.Search
         private readonly IPostService _postService;
         private readonly IProductService _productService;
         private readonly IForumTitleService _forumTitleService;
+        private readonly IDownloadItemService _downloadItemService;
 
         #endregion
         #region Methods
@@ -47,22 +48,26 @@ namespace BlogAndShop.Services.Services.Common.Search
             var blog = await _postService.Search(key);
             var shop = await _productService.Search(key);
             var forum = await _forumTitleService.Search(key);
-            return CreateSearchResult(blog, shop, forum, key);
+            var book = await _downloadItemService.Search(key);
+            return CreateSearchResult(blog: blog, shop: shop, forum: forum, book: book, key: key);
         }
 
-        private SearchResultModel CreateSearchResult(List<SearchResultItemModel> blog, List<SearchResultItemModel> shop, List<SearchResultItemModel> forum, string key)
+        private SearchResultModel CreateSearchResult(List<SearchResultItemModel> blog, List<SearchResultItemModel> shop,
+            List<SearchResultItemModel> forum, List<SearchResultItemModel> book, string key)
         {
 
             var items = new List<SearchResultItemModel>();
             items.AddRange(blog);
             items.AddRange(shop);
             items.AddRange(forum);
+            items.AddRange(book);
             return new SearchResultModel()
             {
                 Items = items,
                 BlogCount = blog.Count,
                 ForumCount = forum.Count,
                 ShopCount = shop.Count,
+                BookCount = book.Count,
                 Key = key
             };
         }
@@ -75,6 +80,7 @@ namespace BlogAndShop.Services.Services.Common.Search
                 BlogCount = results.Sum(x => x.BlogCount),
                 ForumCount = results.Sum(x => x.ForumCount),
                 ShopCount = results.Sum(x => x.ShopCount),
+                BookCount = results.Sum(x => x.BookCount),
                 Key = string.Join(' ', results.Select(x => x.Key))
             };
         }
@@ -83,11 +89,12 @@ namespace BlogAndShop.Services.Services.Common.Search
         #endregion
         #region Ctor
 
-        public SearchService(IPostService postService, IProductService productService, IForumTitleService forumTitleService)
+        public SearchService(IPostService postService, IProductService productService, IForumTitleService forumTitleService, IDownloadItemService downloadItemService)
         {
             _postService = postService;
             _productService = productService;
             _forumTitleService = forumTitleService;
+            _downloadItemService = downloadItemService;
         }
         #endregion
 

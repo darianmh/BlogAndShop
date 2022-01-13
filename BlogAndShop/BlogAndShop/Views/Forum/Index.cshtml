@@ -1,4 +1,5 @@
 ﻿
+@using BlogAndShop.Services.Classes
 @model BlogAndShop.Data.ViewModel.Forum.ForumListViewModel
 <!-- PAGE TITLE -->
 <section class="bg-white p--30">
@@ -41,7 +42,7 @@
 						<div>
 
 							<h2 class="h4 text-primary font-weight-normal"><a asp-controller="Forum" asp-action="Item" asp-route-id="@item.Id">@item.Title</a></h2>
-							<p>@Html.Raw(item.Description)</p>
+							<p>@item.Description.GetShortString()</p>
 							<ul class="list-inline my-4">
 								<li class="list-inline-item d-block-xs m-0-xs">
 									<a href="#" class="btn btn-light py-1 px-2 mb-1 fs--14 d-block-xs text-align-start js-togglified">

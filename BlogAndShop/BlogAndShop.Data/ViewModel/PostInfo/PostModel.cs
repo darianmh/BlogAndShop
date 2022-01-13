@@ -78,7 +78,11 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [Display(Name = "دسته بندی ها")]
         public List<int> SelectedGroups { get; set; }
         [Display(Name = "منتشر شده")]
+        [AdminShowItem(3)]
         public bool IsPublished { get; set; }
+
+        [Ignore]
+        public bool SaveAndContinue { get; set; }
 
         //np
         [Ignore]

@@ -209,6 +209,62 @@
 
 				</div>
 				<!-- /forum list -->
+				<!-- additional filters -->
+				<div class="shadow-xs bg-white mb-5 p-3 rounded clearfix">
+
+					<p>
+						مطالب کتابخانه
+					</p>
+					<h3 class="h5 mb-0">
+						@{
+							count = Model.BookCount;
+						}
+						@count عنوان موجود است
+					</h3>
+				</div>
+				<!-- /additional filters -->
+				<!-- forum list -->
+				<div class="row gutters-xs--xs">
+
+					@if (Model.Items != null && Model.Items.Any())
+					{
+						foreach (var item in Model.Items.Where(x => x.SearchResultType == SiteMapType.Book))
+						{
+
+							<!-- squared item -->
+							<div class="col-6 col-md-4 mb-4 mb-2-xs">
+
+								<div class="bg-white shadow-md shadow-3d-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-2 h-100">
+
+									<figure class="m-0 text-center overflow-hidden bg-cover lazy" data-background-image="@item.ImagePath">
+										<img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="@item.Name">
+									</figure>
+
+									<a asp-controller="Book" asp-action="Item" asp-route-postId="@item.Id" class="d-block text-decoration-none">
+										<span class="d-block text-center-xs text-gray-600 py-3">
+
+											<!--
+												.max-height-50  = limited to 2 rows of text
+												-or-
+												.text-truncate
+											-->
+											<span class="d-block fs--16 max-h-50 overflow-hidden">
+												@item.Name
+											</span>
+
+										</span>
+
+									</a>
+
+								</div>
+
+							</div>
+							<!-- /squared item -->
+						}
+					}
+
+				</div>
+				<!-- /forum list -->
 
 
 

@@ -28,6 +28,8 @@
     <None Include="Views\BaseEntity\Create.cshtml" />
     <None Include="Views\BaseEntity\Details.cshtml" />
     <None Include="Views\BaseEntity\Edit.cshtml" />
+    <None Include="Views\Book\Index.cshtml" />
+    <None Include="Views\Book\Item.cshtml" />
     <None Include="Views\Blog\Index.cshtml" />
     <None Include="Views\Blog\Item.cshtml" />
     <None Include="Views\Brand\Create.cshtml" />
@@ -100,6 +102,10 @@
     <None Include="Views\ProductForumGroup\Details.cshtml" />
     <None Include="Views\ProductForumGroup\Edit.cshtml" />
     <None Include="Views\ProductForumGroup\Index.cshtml" />
+    <None Include="Views\DownloadItem\Create.cshtml" />
+    <None Include="Views\DownloadItem\Details.cshtml" />
+    <None Include="Views\DownloadItem\Edit.cshtml" />
+    <None Include="Views\DownloadItem\Index.cshtml" />
     <None Include="Views\ProductGroup\Create.cshtml" />
     <None Include="Views\ProductGroup\Details.cshtml" />
     <None Include="Views\ProductGroup\Edit.cshtml" />

@@ -35,14 +35,14 @@ namespace BlogAndShop.Controllers
         public async Task<IActionResult> Item(int postId)
         {
             var model = await _postService.GetPostModel(postId);
-            if (model == null) return NotFound();
-            if (HttpContext.Request.Cookies.ContainsKey("BlogMessage"))
-            {
-                model.MessageText = HttpContext.Request.Cookies["BlogMessage"].ToString();
-                HttpContext.Response.Cookies.Delete("BlogMessage");
-            }
+            return PostItem(model);
+        }
 
-            return View("Item", model);
+        [Route("Blog/Post/{postUrl}")]
+        public async Task<IActionResult> Post(string postUrl)
+        {
+            var model = await _postService.GetPostModel(postUrl);
+            return PostItem(model);
         }
 
         public async Task<IActionResult> AddComment(PostCommentModel model)
@@ -60,6 +60,18 @@ namespace BlogAndShop.Controllers
         }
         #endregion
         #region Utilities
+
+        private IActionResult PostItem(PostModel model)
+        {
+            if (model == null) return NotFound();
+            if (HttpContext.Request.Cookies.ContainsKey("BlogMessage"))
+            {
+                model.MessageText = HttpContext.Request.Cookies["BlogMessage"].ToString();
+                HttpContext.Response.Cookies.Delete("BlogMessage");
+            }
+
+            return View("Item", model);
+        }
 
 
         #endregion

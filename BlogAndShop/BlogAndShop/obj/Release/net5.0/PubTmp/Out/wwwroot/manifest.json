@@ -1,0 +1,16 @@
+﻿{
+	"short_name": "داریان",
+	"name": "داریان تیم",
+	"icons": [
+		{
+			"src": "/UploadedFiles/MediaUpload/2021/09/favicon-96x96-1.png",
+			"type": "image/png",
+			"sizes": "96x96"
+		}
+	],
+	"start_url": "/Home",
+	"background_color": "#ffffff",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#377dff"
+}

@@ -13,5 +13,6 @@ namespace BlogAndShop.Data.ViewModel.Common.Search
         public int ShopCount { get; set; }
         public int ForumCount { get; set; }
         public List<SearchResultItemModel> Items { get; set; }
+        public int BookCount { get; set; }
     }
 }

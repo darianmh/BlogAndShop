@@ -19,7 +19,8 @@
           "Microsoft.AspNetCore.Mvc.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "5.0.0.0",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "5.0.0.0",
-          "Microsoft.Extensions.Hosting.Abstractions": "5.0.0.0"
+          "Microsoft.Extensions.Hosting.Abstractions": "5.0.0.0",
+          "System.Security.Permissions.Reference": "5.0.0.0"
         },
         "runtime": {
           "BlogAndShop.Services.dll": {}
@@ -990,12 +991,6 @@
         "dependencies": {
           "System.Security.AccessControl": "4.7.0",
           "System.Windows.Extensions": "4.7.0"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Security.Permissions.dll": {
-            "assemblyVersion": "4.0.3.0",
-            "fileVersion": "4.700.19.56404"
-          }
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
@@ -1227,6 +1222,14 @@
           }
         }
       },
+      "System.Security.Permissions.Reference/5.0.0.0": {
+        "runtime": {
+          "System.Security.Permissions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
       "System.IO.Pipelines/5.0.0.0": {
         "runtime": {
           "System.IO.Pipelines.dll": {
@@ -1371,6 +1374,22 @@
           }
         }
       },
+      "System.Windows.Extensions.Reference/5.0.0.0": {
+        "runtime": {
+          "System.Windows.Extensions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Security.AccessControl.Reference/5.0.0.0": {
+        "runtime": {
+          "System.Security.AccessControl.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
       "Microsoft.Extensions.ObjectPool/5.0.0.0": {
         "runtime": {
           "Microsoft.Extensions.ObjectPool.dll": {
@@ -1395,6 +1414,14 @@
           }
         }
       },
+      "System.Security.Principal.Windows.Reference/5.0.0.0": {
+        "runtime": {
+          "System.Security.Principal.Windows.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
       "Microsoft.Win32.Registry.Reference/5.0.0.0": {
         "runtime": {
           "Microsoft.Win32.Registry.dll": {
@@ -1406,38 +1433,6 @@
       "System.Security.Cryptography.Xml/5.0.0.0": {
         "runtime": {
           "System.Security.Cryptography.Xml.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
-      "System.Security.AccessControl.Reference/5.0.0.0": {
-        "runtime": {
-          "System.Security.AccessControl.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
-      "System.Security.Principal.Windows.Reference/5.0.0.0": {
-        "runtime": {
-          "System.Security.Principal.Windows.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
-      "System.Security.Permissions.Reference/5.0.0.0": {
-        "runtime": {
-          "System.Security.Permissions.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
-      "System.Windows.Extensions.Reference/5.0.0.0": {
-        "runtime": {
-          "System.Windows.Extensions.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.20.51904"
           }
@@ -2229,6 +2224,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "System.Security.Permissions.Reference/5.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "System.IO.Pipelines/5.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -2319,6 +2319,16 @@
       "serviceable": false,
       "sha512": ""
     },
+    "System.Windows.Extensions.Reference/5.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Security.AccessControl.Reference/5.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.Extensions.ObjectPool/5.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -2334,32 +2344,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "System.Security.Principal.Windows.Reference/5.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.Win32.Registry.Reference/5.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "System.Security.Cryptography.Xml/5.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Security.AccessControl.Reference/5.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Security.Principal.Windows.Reference/5.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Security.Permissions.Reference/5.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Windows.Extensions.Reference/5.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

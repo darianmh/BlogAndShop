@@ -83,18 +83,18 @@
 
 					@*<div class="col-6 col-6 text-align-end">
 
-						<h4 class="fs--13 text-muted">
-							Share with your friends &amp; family
-						</h4>
+							<h4 class="fs--13 text-muted">
+								Share with your friends &amp; family
+							</h4>
 
-						<a href="#" class="btn btn-sm btn-facebook rounded-circle transition-hover-top mb-2" rel="noopener" target="smarty">
-							<i class="fi fi-social-facebook m-0"></i>
-						</a>
-						<a href="#" class="btn btn-sm btn-twitter rounded-circle transition-hover-top mb-2" rel="noopener" target="smarty">
-							<i class="fi fi-social-twitter m-0"></i>
-						</a>
+							<a href="#" class="btn btn-sm btn-facebook rounded-circle transition-hover-top mb-2" rel="noopener" target="smarty">
+								<i class="fi fi-social-facebook m-0"></i>
+							</a>
+							<a href="#" class="btn btn-sm btn-twitter rounded-circle transition-hover-top mb-2" rel="noopener" target="smarty">
+								<i class="fi fi-social-twitter m-0"></i>
+							</a>
 
-					</div>*@
+						</div>*@
 				</div>
 				<!-- /Tags and share -->
 				<!-- Related Posts -->
@@ -107,7 +107,7 @@
 					{
 
 						<!-- post -->
-						<a target="_blank" asp-controller="Blog" asp-action="Item" asp-route-postId="@item.Id" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
+						<a target="_blank" asp-controller="Blog" asp-action="Post" asp-route-postUrl="@item.PreferUrl" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
 
 							<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden h--120">
 								<img class="img-fluid rounded" src="@item.BannerImage" alt="@item.Title">

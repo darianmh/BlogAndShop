@@ -2,17 +2,18 @@
 @model List<BlogAndShop.Data.ViewModel.Product.BrandModel>
 
 
+@if (Model != null && Model.Any())
+{
+	<section class="border-top border-bottom p-0">
+		<div class="container">
 
-<section class="border-top border-bottom p-0">
-	<div class="container">
-
-		<!--
+			<!--
 
 			SWIPER SLIDER
 
-		-->
-		<div class="swiper-container"
-			 data-swiper='{
+			-->
+			<div class="swiper-container"
+			     data-swiper='{
 							"slidesPerView": 5,
 							"spaceBetween": 10,
 							"autoplay": true,
@@ -25,47 +26,47 @@
 							}
 						}'>
 
-			<!--
+				<!--
 
 				NOTE: do not use lazy when loop is true!
 
-			-->
-			<div class="swiper-wrapper">
+				-->
+				<div class="swiper-wrapper">
 
-				@foreach (var item in Model)
-				{
+					@foreach (var item in Model)
+					{
 
-					<!-- slider -->
-					<div class="swiper-slide">
-
-
-						<div class="lazy bg-white shadow-xs shadow-md-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-3 my-1">
-
-							<a asp-controller="Shop" asp-action="Index" asp-route-brandId="@item.Id" class="text-decoration-none">
-
-								<figure class="m-0 text-center">
-									<img width="200" height="71" class="opacity-4" src="@item.Logo" alt="@item.Logo">
-								</figure>
+						<!-- slider -->
+						<div class="swiper-slide">
 
 
-							</a>
+							<div class="lazy bg-white shadow-xs shadow-md-hover transition-all-ease-250 transition-hover-top rounded show-hover-container p-3 my-1">
+
+								<a asp-controller="Shop" asp-action="Index" asp-route-brandId="@item.Id" class="text-decoration-none">
+
+									<figure class="m-0 text-center">
+										<img width="200" height="71" class="opacity-4" src="@item.Logo" alt="@item.Logo">
+									</figure>
+
+
+								</a>
+
+							</div>
 
 						</div>
+					}
 
-					</div>
-				}
+
+				</div>
+
 
 
 			</div>
-
-
+			<!-- /SWIPER SLIDER -->
 
 		</div>
-		<!-- /SWIPER SLIDER -->
-
-	</div>
-</section>
-
+	</section>
+}
 
 
 

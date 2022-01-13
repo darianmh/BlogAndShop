@@ -16,28 +16,35 @@ namespace BlogAndShop.Services.Services.Utilities.SiteMap
         private readonly IPostService _postService;
         private readonly IProductService _productService;
         private readonly IForumTitleService _forumTitleService;
+        private readonly IDownloadItemService _downloadItemService;
 
         #endregion
         #region Methods
         public List<SiteMapItemModel> GetMainSiteMap()
         {
             var domain = DirectoryHelper.Domain;
+            var date = DateTime.Now.ToSiteMapString();
             return new List<SiteMapItemModel>()
             {
                 new SiteMapItemModel()
                 {
-                    LastDate = DateTime.Now.ToSiteMapString(),
+                    LastDate = date,
                     Url = $"{domain}/sitemap/Blog.xml"
                 },
                 new SiteMapItemModel()
                 {
-                    LastDate = DateTime.Now.ToSiteMapString(),
+                    LastDate = date,
                     Url = $"{domain}/sitemap/Shop.xml"
                 },
                 new SiteMapItemModel()
                 {
-                    LastDate = DateTime.Now.ToSiteMapString(),
+                    LastDate = date,
                     Url = $"{domain}/sitemap/Forum.xml"
+                },
+                new SiteMapItemModel()
+                {
+                    LastDate = date,
+                    Url = $"{domain}/sitemap/Book.xml"
                 }
             };
         }
@@ -52,6 +59,8 @@ namespace BlogAndShop.Services.Services.Utilities.SiteMap
                     return await _postService.GetSiteMap();
                 case SiteMapType.Forum:
                     return await _forumTitleService.GetSiteMap();
+                case SiteMapType.Book:
+                    return await _downloadItemService.GetSiteMap();
                 default: return new List<SiteMapItemModel>();
             }
         }
@@ -79,11 +88,12 @@ namespace BlogAndShop.Services.Services.Utilities.SiteMap
         #endregion
         #region Ctor
 
-        public SiteMapService(IPostService postService, IProductService productService, IForumTitleService forumTitleService)
+        public SiteMapService(IPostService postService, IProductService productService, IForumTitleService forumTitleService, IDownloadItemService downloadItemService)
         {
             _postService = postService;
             _productService = productService;
             _forumTitleService = forumTitleService;
+            _downloadItemService = downloadItemService;
         }
         #endregion
 

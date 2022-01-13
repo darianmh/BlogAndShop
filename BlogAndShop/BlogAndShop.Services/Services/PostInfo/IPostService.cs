@@ -27,6 +27,7 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <returns></returns>
         Task<List<TopPostModel>> GetTopPosts(int count);
         /// <summary>
+        /// بر اساس آیدی پست
         /// مدل نهایی را برای نمایش بلاگ بر میگرداند
         /// شامل تگ ها، کامنت ها و پست های مشابه
         /// </summary>
@@ -50,5 +51,25 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// </summary>
         /// <returns></returns>
         Task<List<PostModel>> GetRecentPosts();
+
+        /// <summary>
+        /// بر اساس آدرس پست
+        /// مدل نهایی را برای نمایش بلاگ بر میگرداند
+        /// شامل تگ ها، کامنت ها و پست های مشابه
+        /// </summary>
+        /// <returns></returns>
+        Task<PostModel> GetPostModel(string postUrl);
+
+        /// <summary>
+        /// پست را بر اساس آدرس آن برمیگرداند
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        Task<Post> GetPostByUrl(string url);
+        /// <summary>
+        /// آخرین پست را بر میگرداند
+        /// </summary>
+        /// <returns></returns>
+        Task<Post> GetLastPost();
     }
 }

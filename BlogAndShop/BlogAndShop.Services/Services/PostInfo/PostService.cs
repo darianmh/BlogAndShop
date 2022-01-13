@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
@@ -56,21 +59,20 @@ namespace BlogAndShop.Services.Services.PostInfo
         {
             var item = await GetByIdAsync(postId);
             if (item == null) return null;
-            var model = item.ToModel();
-            model.Tags = await GetPostTags(postId, model);
-            model.RelatedPosts = await GetRelatedPosts(item);
-            model.CommentsModel = await _postCommentService.GetPostCommentsModel(postId);
+            var model = await CreateBlogModel(item, postId);
             return model;
         }
+
 
 
         public async Task<List<SiteMapItemModel>> GetSiteMap()
         {
             var all = await GetAllAsync();
+            var encoder = UrlEncoder.Create();
             return all.Select(x => new SiteMapItemModel
             {
                 LastDate = x.UpdateDateTime.ToSiteMapString(),
-                Url = $"{DirectoryHelper.Domain}/Blog/Item/{x.Id}"
+                Url = $"{DirectoryHelper.Domain}/Blog/Post/{encoder.Encode(x.PreferUrl)}"
             }).ToList();
         }
 
@@ -92,8 +94,48 @@ namespace BlogAndShop.Services.Services.PostInfo
             return recent.Select(x => x.ToModel()).ToList();
         }
 
+        public async Task<PostModel> GetPostModel(string postUrl)
+        {
+            var item = await GetPostByUrl(postUrl);
+            if (item == null) return null;
+            var model = await CreateBlogModel(item, item.Id);
+            return model;
+        }
+
+        public async Task<Post> GetPostByUrl(string url)
+        {
+            return await Queryable.FirstOrDefaultAsync(x => x.PreferUrl.Equals(url));
+        }
+
+        public async Task<Post> GetLastPost()
+        {
+            return await Queryable.OrderBy(x => x.CreateDateTime).Reverse().FirstOrDefaultAsync();
+        }
+
         #endregion
         #region Utilities
+
+        private async Task<PostModel> CreateBlogModel(Post item, int postId)
+        {
+            var model = item.ToModel();
+            model.Tags = await GetPostTags(postId, model);
+            model.Keywords = GetTagsKeyWords(model.Tags, model.Keywords);
+            model.RelatedPosts = await GetRelatedPosts(item);
+            model.CommentsModel = await _postCommentService.GetPostCommentsModel(postId);
+            return model;
+        }
+
+        /// <summary>
+        /// دریافت کلمات کلیدی از تگ ها
+        /// </summary>
+        /// <param name="tags"></param>
+        /// <param name="modelKeywords"></param>
+        /// <returns></returns>
+        private string GetTagsKeyWords(List<TagModel> tags, string modelKeywords)
+        {
+            var keywords = string.Join(',', tags.Select(x => x.Title));
+            return modelKeywords + keywords;
+        }
 
         private async Task<List<PostModel>> GetRelatedPosts(Post item)
         {

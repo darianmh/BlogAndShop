@@ -139,3 +139,8 @@ function newCommentRequestCBError(data) {
   MyAlert(data.description.join(', '));
   stopLoading();
 }
+
+
+//instagram logo
+$(".instagram_logo").parent().addClass('image_icon');
+$(".instagram_logo").parent().css('background-image', 'url(/MyImages/instagram_white.svg)');

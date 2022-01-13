@@ -43,6 +43,13 @@ namespace BlogAndShop.Controllers
             var list = await _siteMapService.GetCategorySiteMap(SiteMapType.Forum);
             return Xml(list);
         }
+        [Route("/sitemap/Book.xml")]
+        public async Task<ContentResult> Book()
+        {
+            CheckDomain();
+            var list = await _siteMapService.GetCategorySiteMap(SiteMapType.Book);
+            return Xml(list);
+        }
         public async Task<ContentResult> Index()
         {
             CheckDomain();

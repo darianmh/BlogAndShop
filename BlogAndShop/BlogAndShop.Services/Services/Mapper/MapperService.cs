@@ -312,6 +312,17 @@ namespace BlogAndShop.Services.Services.Mapper
 
 
         //Brand
+        public static DownloadItemViewModel ToModel(this Data.Data.Product.DownloadItem item)
+        {
+            return Map<DownloadItemViewModel>(item);
+        }
+
+        public static Data.Data.Product.DownloadItem ToEntity(this DownloadItemViewModel item)
+        {
+            return Map<Data.Data.Product.DownloadItem>(item);
+        }
+
+        //Brand
         public static BrandModel ToModel(this Data.Data.Product.Brand item)
         {
             return Map<BrandModel>(item);
