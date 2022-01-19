@@ -27,6 +27,7 @@ namespace BlogAndShop.Controllers
 
         public async Task<IActionResult> Index(int? categoryId, int page = 1, int count = 10)
         {
+            if (page < 1) page = 1;
             var model = await _postGroupService.GetPostModel(categoryId, page, count);
             model.Posts = model.Posts.OrderBy(x => x.UpdateDateTime).Reverse().ToList();
             return View(model);

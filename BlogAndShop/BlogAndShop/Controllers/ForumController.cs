@@ -25,6 +25,7 @@ namespace BlogAndShop.Controllers
         #region Methods
         public async Task<IActionResult> Index(int? forumGroupId, int page = 1, int count = 10)
         {
+            if (page < 1) page = 1;
             var model = await _forumGroupService.GetForumModel(forumGroupId, page, count);
             return View(model);
         }

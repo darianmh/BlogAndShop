@@ -62,21 +62,20 @@ namespace BlogAndShop.Controllers
 
         public IActionResult ContactUs()
         {
-            return View();
+            return RedirectToAction("Index");
         }
         public IActionResult AboutUs()
         {
-            return View();
+            return RedirectToAction("Index");
         }
         public IActionResult TermsAndCondition()
         {
-            return View();
+            return RedirectToAction("Index");
         }
 
 
 
         public IActionResult Rout()
-        {
         {
 
             //find link item from context
