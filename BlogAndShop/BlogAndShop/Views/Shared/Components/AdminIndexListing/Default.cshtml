@@ -43,7 +43,14 @@ foreach($_POST['item_id'] as $item_id) {
 					{
 						<!-- Item -->
 						<td>
-							@value
+							@if (value.IsMedia)
+							{
+								<img src="@value.Value" class="img-fluid" height="50" width="50">
+							}
+							else
+							{
+								<span>@value.Value</span>
+							}
 						</td>
 					}
 					<!-- options -->

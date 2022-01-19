@@ -40,9 +40,9 @@ namespace BlogAndShop.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(string code)
         {
+            var url = Request.Path;
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
@@ -71,6 +71,18 @@ namespace BlogAndShop.Controllers
         public IActionResult TermsAndCondition()
         {
             return View();
+        }
+
+
+
+        public IActionResult Rout()
+        {
+        {
+
+            //find link item from context
+            var linkCheck = HttpContext.Items.TryGetValue("LinkObject", out object? item);
+            if (!linkCheck || item == null) return NotFound();
+            return RedirectPermanent(item.ToString());
         }
         #endregion
         #region Utilities

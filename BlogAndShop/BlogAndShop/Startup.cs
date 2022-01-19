@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +10,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using BlogAndShop.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Services;
@@ -19,6 +20,7 @@ using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using WebMarkupMin.AspNetCore5;
@@ -124,6 +126,11 @@ namespace BlogAndShop
             AdminPanelService.GetAllController(AssemblyHelper.BaseSiteAssembly);
 
 
+            //routing services (registering LinkConstraint)
+            services.Configure<RouteOptions>(routeOptions =>
+            {
+                routeOptions.ConstraintMap.Add("links", typeof(LinkConstraint));
+            });
 
         }
 
@@ -132,16 +139,16 @@ namespace BlogAndShop
         {
             app.UseResponseCompression();
             app.UseResponseCaching();
-            //if (env.IsDevelopment())
-            //{
-            app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            //    app.UseHsts();
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error?code={0}");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
             app.UseHttpsRedirection();
             app.UseStaticFiles(new StaticFileOptions()
             {
@@ -152,8 +159,7 @@ namespace BlogAndShop
                     context.Context.Response.Headers["Cache-Control"] =
                         "public,max-age=" + durationInSeconds;
                 }
-            }
-            );
+            });
             app.UseWebMarkupMin();
             app.UseRouting();
 
@@ -165,7 +171,13 @@ namespace BlogAndShop
 
 
             app.UseEndpoints(endpoints =>
-            {
+            {   //چک کردن لینک هیی که به صورت خطا ایندکس شده اند
+                endpoints.MapControllerRoute(
+                    name: "links",
+                    constraints: new { links = new LinkConstraint() },
+                    pattern: "{*links}",
+                    defaults: new { controller = "Home", action = "Rout" });
+                ////default
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

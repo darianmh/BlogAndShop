@@ -28,6 +28,7 @@ namespace BlogAndShop.Services.Services.PostInfo
         private readonly IPost_PostGroupService _postPostGroupService;
         private readonly ITagService _tagService;
         private readonly IPostCommentService _postCommentService;
+        private readonly IPost_TagsService _postTagsService;
 
         #endregion
         #region Methods
@@ -107,9 +108,26 @@ namespace BlogAndShop.Services.Services.PostInfo
             return await Queryable.FirstOrDefaultAsync(x => x.PreferUrl.Equals(url));
         }
 
-        public async Task<Post> GetLastPost()
+        public async Task<Post> GetLastPost() => await Queryable.OrderBy(x => x.CreateDateTime).Reverse().FirstOrDefaultAsync();
+
+        public async Task<BlogListViewModel> GetPostsByTag(int? tagId, int page, int count)
         {
-            return await Queryable.OrderBy(x => x.CreateDateTime).Reverse().FirstOrDefaultAsync();
+            DbModelInfo<Post> posts;
+            if (tagId == null) posts = await GetAllInfoAsync(page, count);
+            else posts = await GetAllByTagAsync(page, count, (int)tagId);
+            posts.List = posts.List.Where(x => x.IsPublished).ToList();
+            var model = CreatePostListModel(posts, page, count);
+            return model;
+        }
+
+        private BlogListViewModel CreatePostListModel(DbModelInfo<Post> posts, int page, int count)
+        {
+            var result = new BlogListViewModel()
+            {
+                ListPaginationModel = new ListPaginationModel(posts.TotalCount > page * count, hasPre: page > 1, page: page, count: posts.List.Count, pagesCount: ((posts.TotalCount - 1) / count) + 1),
+                Posts = posts.List.Select(x => x.ToModel()).ToList(),
+            };
+            return result;
         }
 
         #endregion
@@ -194,22 +212,41 @@ namespace BlogAndShop.Services.Services.PostInfo
                 TotalCount = await Queryable.CountAsync()
             };
         }
+        private async Task<DbModelInfo<Post>> GetAllByTagAsync(int page, int count, int tagId)
+        {
+            page = page - 1;
+            var all = await GetPostsInTag(tagId);
+            var list = await Pagination(all, page, count);
+            return new DbModelInfo<Post>
+            {
+                List = list ?? new List<Post>(),
+                TotalCount = await Queryable.CountAsync()
+            };
+        }
 
+        private async Task<IQueryable<Post>> GetPostsInTag(int tagId)
+        {
+            var postsGroups = await _postTagsService.GetPostsWithTag(tagId);
+            //if null return nothing
+            if (postsGroups == null) return Queryable.Take(0);
+            return Queryable.Where(x => postsGroups.Contains(x.Id));
+        }
         private async Task<IQueryable<Post>> GetPostsInGroup(int categoryId)
         {
             var postsGroups = await _postPostGroupService.GetPostsWithGroup(categoryId);
             //if null return nothing
-            if (postsGroups == null) return Queryable.Where(x => false);
+            if (postsGroups == null) return Queryable.Take(0);
             return Queryable.Where(x => postsGroups.Contains(x.Id));
         }
 
         #endregion
         #region Ctor
-        public PostService(ApplicationDbContext db, IPost_PostGroupService postPostGroupService, ITagService tagService, IPostCommentService postCommentService) : base(db)
+        public PostService(ApplicationDbContext db, IPost_PostGroupService postPostGroupService, ITagService tagService, IPostCommentService postCommentService, IPost_TagsService postTagsService) : base(db)
         {
             _postPostGroupService = postPostGroupService;
             _tagService = tagService;
             _postCommentService = postCommentService;
+            _postTagsService = postTagsService;
         }
         #endregion
 

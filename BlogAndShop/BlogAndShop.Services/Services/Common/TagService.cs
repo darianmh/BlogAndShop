@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Common;
+using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.PostInfo;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,10 @@ namespace BlogAndShop.Services.Services.Common
             return tags;
         }
 
+        public async Task<Tag> GetTagByName(string tagName)
+        {
+            return await Queryable.FirstOrDefaultAsync(x => x.Title.Equals(tagName));
+        }
 
         #endregion
         #region Utilities

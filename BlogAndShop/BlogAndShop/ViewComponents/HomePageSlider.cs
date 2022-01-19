@@ -47,8 +47,9 @@ namespace BlogAndShop.ViewComponents
                 HtmlContent = htmlContent,
                 Link = $"/Blog/Post/{lastBlog.PreferUrl}"
             };
-            model.Add(post);
-            return model;
+            var result = new List<HomeBannerModel>(model);
+            result.Add(post);
+            return result;
         }
         #endregion
         #region Ctor

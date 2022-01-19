@@ -8,6 +8,7 @@ using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo
 {
@@ -41,8 +42,30 @@ namespace BlogAndShop.Services.Services.PostInfo
             return result;
         }
 
+        public async Task<PostGroup> GetCatByName(string[] catNames)
+        {
+            return await GetChildGroup(catNames);
+        }
+
+        private async Task<PostGroup> GetGroupByName(string groupName)
+        {
+            groupName = groupName.Replace('-', ' ');
+            return await Queryable.FirstOrDefaultAsync(x => x.Title.Equals(groupName));
+        }
+
         #endregion
         #region Utilities
+
+        private async Task<PostGroup> GetChildGroup(string[] catNames)
+        {
+            //todo این مدل باید کامل شود تا هر گروه بر اساس گروه پدرش یافت شود
+            var current = catNames.FirstOrDefault();
+            var currentModel = await GetGroupByName(current);
+            if (currentModel == null) return null;
+            return await GetChildGroup(catNames.Skip(1).ToArray()) ?? currentModel;
+        }
+
+
 
         /// <summary>
         /// بازگرداندن اطلاعات متا برای سئو

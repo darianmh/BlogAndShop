@@ -31,5 +31,11 @@ namespace BlogAndShop.Services.Classes
             if (string.IsNullOrEmpty(text)) return "";
             return text.Length < length ? text : string.Join(String.Empty, text.Take(length)) + "...";
         }
+        public static string GetRouteTextString(this string text)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            text = text.Trim();
+            return text.Replace(' ', '-');
+        }
     }
 }

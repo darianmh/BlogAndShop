@@ -1,4 +1,5 @@
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.exe
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\ErrorStyle.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\FaCustom.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\font-awesome.min.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\MyStyle.css

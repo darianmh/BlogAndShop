@@ -31,5 +31,12 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="selectedTags"></param>
         /// <returns></returns>
         Task SetPostTags(int postId, List<int> selectedTags);
+
+        /// <summary>
+        /// return post ids fro selected post tag
+        /// </summary>
+        /// <param name="tagId">tag id</param>
+        /// <returns></returns>
+        Task<List<int>> GetPostsWithTag(int tagId);
     }
 }

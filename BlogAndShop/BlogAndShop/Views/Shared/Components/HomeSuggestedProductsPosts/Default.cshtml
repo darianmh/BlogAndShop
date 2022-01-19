@@ -172,23 +172,38 @@
 										{
 
 
-											<div class="d-flex mb-3 text-decoration-none">
+											<div class="row">
 
-												<!-- image -->
-												<div class="text-center bg-light w--100 h--100 rounded bg-cover lazy" data-background-image="@postItem.BannerImage"></div>
+												<a asp-controller="Blog" asp-action="Post" asp-route-postUrl="@postItem.PreferUrl" class="col-12 col-md-4 mb-4">
+													<img class="img-fluid w-100 rounded" src="@postItem.BannerImage" alt="@postItem.Title">
+												</a>
 
-												<div class="col px-3">
+												<div class="col pb-4">
 
-													<h3 class="h5">
-														<a asp-controller="Blog" asp-action="Item" asp-route-postId="@postItem.BannerImage" class="text-dark">
-															@postItem.Title
-														</a>
-													</h3>
+													<!-- title -->
+													<div class="mb-4">
 
-													<p class="font-weight-normal">
-														<strong>(@postItem.CreateDateTime.ToPeString())</strong>
-														@postItem.Description.GetShortString(20)
-													</p>
+														<h2 class="h4 mb-0">
+															<a asp-controller="Blog" asp-action="Post" asp-route-postUrl="@postItem.PreferUrl" class="text-dark font-weight-medium">
+																@postItem.Title
+															</a>
+														</h2>
+
+														<!-- publish date -->
+														<span class="text-muted">
+															@postItem.CreateDateTime.ToPeString()
+														</span>
+
+													</div>
+
+													<!-- content preview -->
+													<div class="mb-4">
+														<p>
+															@postItem.Description.GetShortString()
+														</p>
+													</div>
+
+													<a asp-controller="Blog" asp-action="Post" asp-route-postUrl="@postItem.PreferUrl" class="link-muted">بخوانید</a>
 
 												</div>
 

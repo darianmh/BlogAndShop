@@ -71,5 +71,11 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// </summary>
         /// <returns></returns>
         Task<Post> GetLastPost();
+
+        /// <summary>
+        /// دریافت لیست پست ها بر اساس تگ
+        /// </summary>
+        /// <returns></returns>
+        Task<BlogListViewModel> GetPostsByTag(int? tagId, int page, int count);
     }
 }

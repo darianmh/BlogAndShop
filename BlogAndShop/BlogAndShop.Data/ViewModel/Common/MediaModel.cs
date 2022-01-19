@@ -30,6 +30,8 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// آدرس سی دی ان  یا سایت خودمان
         /// </summary>
         [Display(Name = "آدرس فایل")]
+        [AdminShowItem(3)]
+        [IsMedia]
         public string Path { get; set; }
 
         /// <summary>

@@ -31,6 +31,15 @@ namespace BlogAndShop.Controllers
             model.Posts = model.Posts.OrderBy(x => x.UpdateDateTime).Reverse().ToList();
             return View(model);
         }
+        [Route("Blog/Index2/{*catName}")]
+        public async Task<IActionResult> Index2(string catName, int page = 1, int count = 10)
+        {
+            var catNames = catName.Replace("%2F", "/").Split('/');
+            var category = await _postGroupService.GetCatByName(catNames);
+            var model = await _postGroupService.GetPostModel(category?.Id, page, count);
+            model.Posts = model.Posts.OrderBy(x => x.UpdateDateTime).Reverse().ToList();
+            return View("Index", model);
+        }
         [Route("Blog/Item/{postId}")]
         public async Task<IActionResult> Item(int postId)
         {
@@ -43,6 +52,15 @@ namespace BlogAndShop.Controllers
         {
             var model = await _postService.GetPostModel(postUrl);
             return PostItem(model);
+        }
+        [Route("Blog/Tag/{tagName}")]
+        public async Task<IActionResult> Tag(string tagName, int page = 1, int count = 10)
+        {
+            tagName = tagName.Replace('-', ' ');
+            var tag = await _tagService.GetTagByName(tagName);
+            var model = await _postService.GetPostsByTag(tag?.Id, page, count);
+            model.Posts = model.Posts.OrderBy(x => x.UpdateDateTime).Reverse().ToList();
+            return View("Index", model);
         }
 
         public async Task<IActionResult> AddComment(PostCommentModel model)

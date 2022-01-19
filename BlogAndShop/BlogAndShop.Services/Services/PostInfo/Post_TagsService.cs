@@ -38,6 +38,11 @@ namespace BlogAndShop.Services.Services.PostInfo
             await CreateTags(postId, selectedTags);
         }
 
+        public async Task<List<int>> GetPostsWithTag(int tagId)
+        {
+            return await Queryable.Where(x => x.TagId == tagId).Select(x => x.PostId).ToListAsync();
+
+        }
 
         #endregion
         #region Utilities

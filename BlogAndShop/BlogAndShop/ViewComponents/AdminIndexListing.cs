@@ -53,22 +53,22 @@ namespace BlogAndShop.ViewComponents
 
             foreach (object item in modelItems)
             {
-                var temp = new List<string>();
+                var temp = new List<AdminShowListKeyValueItem>();
                 foreach (var property in propertyList)
                 {
-                    string? value;
                     var attr = property.PropertyInfo.GetCustomAttribute<DbOptionListAttribute>();
                     var currentValue = property.PropertyInfo.GetValue(item)?.ToString();
-                    if (attr != null)
+                    var isMedia = (property.PropertyInfo.GetCustomAttribute<IsMediaAttribute>() != null || property.PropertyInfo.GetCustomAttribute<FileUploadAttribute>() != null);
+                    var value = attr != null ? GetValueFromDb(attr, property.PropertyInfo, currentValue) : currentValue;
+                    if (!isMedia && value?.Length > 30)
                     {
-                        value = GetValueFromDb(attr, property.PropertyInfo, currentValue);
+                        value = string.Join(string.Empty, value.Take(70)) + "...";
                     }
-                    else
+                    temp.Add(new AdminShowListKeyValueItem()
                     {
-                        value = currentValue;
-                    }
-                    if (value?.Length > 30) value = string.Join(string.Empty, value.Take(70)) + "...";
-                    temp.Add(value);
+                        Value = value,
+                        IsMedia = isMedia
+                    });
                 }
 
                 var id = GetKey(item);

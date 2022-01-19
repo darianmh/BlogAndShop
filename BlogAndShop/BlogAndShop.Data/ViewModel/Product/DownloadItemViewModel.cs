@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
@@ -8,21 +9,21 @@ namespace BlogAndShop.Data.ViewModel.Product
     public class DownloadItemViewModel : BaseEntityModel
     {
         [DbOptionList(typeof(Media), true)]
-        [DisplayName("فایل موجود در سیستم")]
+        [Display(Name = "فایل موجود در سیستم")]
         public int? MediaId { get; set; }
-        [DisplayName("آدرس")]
+        [Display(Name = "آدرس")]
         public string DownloadPath { get; set; }
         [AdminShowItem(1)]
-        [DisplayName("عنوان")]
+        [Display(Name = "عنوان")]
         public string Title { get; set; }
         [TextArea]
-        [DisplayName("توضیحات")]
+        [Display(Name = "توضیحات")]
         public string Description { get; set; }
         [FileUpload()]
-        [DisplayName("تصویر")]
+        [Display(Name = "تصویر")]
         public string BannerImage { get; set; }
         [TextArea]
-        [DisplayName("کلمات کلیدی")]
+        [Display(Name = "کلمات کلیدی")]
         public string Keywords { get; set; }
     }
 }

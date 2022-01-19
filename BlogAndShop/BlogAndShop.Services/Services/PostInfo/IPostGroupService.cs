@@ -21,5 +21,13 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// <param name="count"></param>
         /// <returns></returns>
         Task<BlogListViewModel> GetPostModel(int? categoryId, int page, int count);
+
+        ///  <summary>
+        ///  لیستی از گروه ها داده می شود و نام گروه مورد نظر یافت می شود.
+        /// گروه ها از پدر به فرزند مرتب شده اند
+        ///  </summary>
+        ///  <param name="catNames"></param>
+        ///  <returns></returns>
+        Task<PostGroup> GetCatByName(string[] catNames);
     }
 }
