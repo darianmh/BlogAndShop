@@ -25,7 +25,7 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Methods
 
-        [Route("Blog/Index/{categoryId}")]
+        [Route("Blog/{action=Index}/{categoryId?}")]
         public async Task<IActionResult> Index(int? categoryId, int page = 1, int count = 10)
         {
             if (page < 1) page = 1;
