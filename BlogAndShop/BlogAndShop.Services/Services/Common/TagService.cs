@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,8 @@ namespace BlogAndShop.Services.Services.Common
 
         public async Task<Tag> GetTagByName(string tagName)
         {
-            return await Queryable.FirstOrDefaultAsync(x => x.Title.Equals(tagName));
+            tagName = tagName.Trim();
+            return (await Queryable.ToListAsync()).FirstOrDefault(x => x.Title.Trim().Equals(tagName, StringComparison.OrdinalIgnoreCase));
         }
 
         #endregion

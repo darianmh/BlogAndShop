@@ -66,6 +66,9 @@ namespace BlogAndShop.Data.Data.PostInfo
         [Display(Name = "منتشر شده")]
         public bool IsPublished { get; set; }
 
+        [Display(Name = "تعداد بازدید")]
+        public int VisitCount { get; set; }
+
 
         //np
         [JsonIgnore]

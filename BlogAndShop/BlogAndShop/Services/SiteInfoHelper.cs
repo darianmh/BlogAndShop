@@ -38,6 +38,11 @@ namespace BlogAndShop.Services
             var model = await GetSiteInfo(helper);
             return model.SiteIcon;
         }
+        public static async Task<SiteIndex> GetSiteIndex(this IHtmlHelper helper)
+        {
+            var model = await GetSiteInfo(helper);
+            return model.SelectIndex;
+        }
         public static async Task<string> GetSiteIcon512(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);

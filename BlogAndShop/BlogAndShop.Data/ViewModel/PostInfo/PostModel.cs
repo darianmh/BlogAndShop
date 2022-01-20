@@ -67,6 +67,11 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [Required(ErrorMessage = "{0} الزامی است")]
         [Hidden]
         public int OwnerId { get; set; }
+        [Display(Name = "تعداد بازدید")]
+        public int VisitCount { get; set; }
+        [Display(Name = "منتشر شده")]
+        [AdminShowItem(3)]
+        public bool IsPublished { get; set; }
 
 
         //added entity
@@ -77,9 +82,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         [DbOptionList(typeof(PostGroup), false, true)]
         [Display(Name = "دسته بندی ها")]
         public List<int> SelectedGroups { get; set; }
-        [Display(Name = "منتشر شده")]
-        [AdminShowItem(3)]
-        public bool IsPublished { get; set; }
+
 
         [Ignore]
         public bool SaveAndContinue { get; set; }

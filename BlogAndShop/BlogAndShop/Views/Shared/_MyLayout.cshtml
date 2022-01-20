@@ -1,5 +1,6 @@
 ﻿@using BlogAndShop.Services
 @using Microsoft.AspNetCore.Http.Extensions
+@using BlogAndShop.Data.Data.Common
 
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
@@ -77,6 +78,12 @@
 		@await Html.PartialAsync("_Header")
 		<!-- /HEADER -->
 		@RenderBody()
+		@if (await Html.GetSiteIndex() == SiteIndex.Main)
+		{
+			<!-- Best Deals + News -->
+			@await Component.InvokeAsync("HomeSuggestedProductsPosts")
+			<!-- /Best Deals + News -->
+		}
 		<!-- Footer -->
 		@await Html.PartialAsync("_Footer")
 		<!-- /Footer -->

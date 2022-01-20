@@ -61,9 +61,16 @@ namespace BlogAndShop.Services.Services.PostInfo
             var item = await GetByIdAsync(postId);
             if (item == null) return null;
             var model = await CreateBlogModel(item, postId);
+            //increase visit count
+            await IncreaseVisitCount(item);
             return model;
         }
 
+        public async Task IncreaseVisitCount(Post item)
+        {
+            item.VisitCount++;
+            await UpdateAsync(item);
+        }
 
 
         public async Task<List<SiteMapItemModel>> GetSiteMap()
@@ -100,6 +107,8 @@ namespace BlogAndShop.Services.Services.PostInfo
             var item = await GetPostByUrl(postUrl);
             if (item == null) return null;
             var model = await CreateBlogModel(item, item.Id);
+            //increase visit count
+            await IncreaseVisitCount(item);
             return model;
         }
 

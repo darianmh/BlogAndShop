@@ -25,26 +25,28 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Methods
 
+        [Route("Blog/Index/{categoryId}")]
         public async Task<IActionResult> Index(int? categoryId, int page = 1, int count = 10)
         {
             if (page < 1) page = 1;
             var model = await _postGroupService.GetPostModel(categoryId, page, count);
-            model.Posts = model.Posts.OrderBy(x => x.UpdateDateTime).Reverse().ToList();
+            model.Posts = model.Posts.OrderBy(x => x.CreateDateTime).Reverse().ToList();
             return View(model);
         }
-        [Route("Blog/Index2/{*catName}")]
-        public async Task<IActionResult> Index2(string catName, int page = 1, int count = 10)
-        {
-            var catNames = catName.Replace("%2F", "/").Split('/');
-            var category = await _postGroupService.GetCatByName(catNames);
-            var model = await _postGroupService.GetPostModel(category?.Id, page, count);
-            model.Posts = model.Posts.OrderBy(x => x.UpdateDateTime).Reverse().ToList();
-            return View("Index", model);
-        }
+        //[Route("Blog/Index2/{*catName}")]
+        //public async Task<IActionResult> Index2(string catName, int page = 1, int count = 10)
+        //{
+        //    var catNames = catName.Replace("%2F", "/").Split('/');
+        //    var category = await _postGroupService.GetCatByName(catNames);
+        //    var model = await _postGroupService.GetPostModel(category?.Id, page, count);
+        //    model.Posts = model.Posts.OrderBy(x => x.CreateDateTime).Reverse().ToList();
+        //    return View("Index", model);
+        //}
         [Route("Blog/Item/{postId}")]
         public async Task<IActionResult> Item(int postId)
         {
             var model = await _postService.GetPostModel(postId);
+
             return PostItem(model);
         }
 

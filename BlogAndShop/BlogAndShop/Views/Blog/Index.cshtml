@@ -38,6 +38,7 @@
 
 						<p class="d-block text-muted fs--14">
 							تاریخ: <time datetime="@featurePost.CreateDateTime.ToString("yyyy-MM-dd")">@featurePost.CreateDateTime.ToPeString()</time>
+							<span>( @featurePost.VisitCount &nbsp;<i class="fi fi-eye"></i> )</span>
 						</p>
 
 					</div>
@@ -74,6 +75,7 @@
 
 									<span class="d-block text-muted font-regular fs--14">
 										تاریخ: <time datetime="@item.CreateDateTime.ToString("yyyy-MM-dd")">@item.CreateDateTime.ToPeString()</time>
+										<span>( @item.VisitCount &nbsp;<i class="fi fi-eye"></i> )</span>
 									</span>
 								</p>
 

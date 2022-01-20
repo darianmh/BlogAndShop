@@ -48,7 +48,7 @@ namespace BlogAndShop.Controllers
 
         public IActionResult Faq()
         {
-            return RedirectToAction("Index");
+            return RedirectToActionPermanent("Index");
         }
 
         #endregion

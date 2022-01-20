@@ -56,6 +56,7 @@ namespace BlogAndShop.Classes
             _linksList.Add("wp-content", "/");
             _linksList.Add("product-tag", "/shop");
             _linksList.Add("product-category", "/shop");
+            _linksList.Add("blog/category", "/blog");
         }
 
     }

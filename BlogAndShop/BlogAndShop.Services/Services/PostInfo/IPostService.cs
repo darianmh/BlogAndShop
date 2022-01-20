@@ -77,5 +77,12 @@ namespace BlogAndShop.Services.Services.PostInfo
         /// </summary>
         /// <returns></returns>
         Task<BlogListViewModel> GetPostsByTag(int? tagId, int page, int count);
+
+        /// <summary>
+        /// تعداد بازدید یک پست را یکی افزایش میدهد
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        Task IncreaseVisitCount(Post item);
     }
 }
