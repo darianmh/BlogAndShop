@@ -2,7 +2,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\BlogAn
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\BlogAndShop.Data.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\ref\BlogAndShop.Data.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\BlogAndShop.Data.pdb
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Debug\net5.0\BlogAndShop.Data.csprojAssemblyReference.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Debug\net5.0\BlogAndShop.Data.GeneratedMSBuildEditorConfig.editorconfig
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Debug\net5.0\BlogAndShop.Data.AssemblyInfoInputs.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Debug\net5.0\BlogAndShop.Data.AssemblyInfo.cs

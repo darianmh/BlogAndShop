@@ -312,7 +312,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\ru\Microsof
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\BlogAndShop.csprojAssemblyReference.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\BlogAndShop.GeneratedMSBuildEditorConfig.editorconfig
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\BlogAndShop.AssemblyInfoInputs.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\BlogAndShop.AssemblyInfo.cs
@@ -607,3 +606,4 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\DownloadItem\Edit.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\DownloadItem\Index.cshtml.g.cs
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\Razor\Views\Home\MyView.cshtml.g.cs
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Debug\net5.0\BlogAndShop.csproj.AssemblyReference.cache

@@ -50,6 +50,17 @@ namespace BlogAndShop.Services.Services.Mapper
             return Map<HomeBanner>(item);
         }
 
+        //HomeBanner
+        public static PageViewLogViewModel ToModel(this PageViewLog item)
+        {
+            return Map<PageViewLogViewModel>(item);
+        }
+
+        public static PageViewLog ToEntity(this PageViewLogViewModel item)
+        {
+            return Map<PageViewLog>(item);
+        }
+
 
         //HomeBanner
         public static EmailAccountModel ToModel(this EmailAccount item)

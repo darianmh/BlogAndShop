@@ -8,7 +8,7 @@ namespace BlogAndShop.Data.ViewModel.Common
 {
     public class AdminListViewModel<T>
     {
-        public AdminListViewModel(bool hasNext, bool hasPre, List<T> items, int page, int count, int pagesCount)
+        public AdminListViewModel(bool hasNext, bool hasPre, List<T> items, int page, int count, int pagesCount) : this()
         {
             AdminListPaginationModel = new ListPaginationModel(hasNext, hasPre, page, count, pagesCount);
             Items = items;
@@ -17,10 +17,11 @@ namespace BlogAndShop.Data.ViewModel.Common
         public AdminListViewModel()
         {
             Items = new List<T>();
+            ExtraItems = new Dictionary<string, string>();
         }
 
         public List<T> Items { get; set; }
         public ListPaginationModel AdminListPaginationModel { get; set; }
-
+        public Dictionary<string, string> ExtraItems { get; set; }
     }
 }

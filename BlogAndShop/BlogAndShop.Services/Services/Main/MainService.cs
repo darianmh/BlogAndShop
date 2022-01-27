@@ -311,6 +311,10 @@ namespace BlogAndShop.Services.Services.Main
         {
             return await all.Skip(page * count).Take(count).ToListAsync();
         }
+        protected List<T> Pagination<T>(IEnumerable<T> all, int page, int count)
+        {
+            return all.Skip(page * count).Take(count).ToList();
+        }
 
 
         #endregion

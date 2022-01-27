@@ -4,7 +4,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\Blog
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\BlogAndShop.Data.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\ref\BlogAndShop.Data.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\BlogAndShop.Data.pdb
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Release\net5.0\BlogAndShop.Data.csprojAssemblyReference.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Release\net5.0\BlogAndShop.Data.GeneratedMSBuildEditorConfig.editorconfig
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Release\net5.0\BlogAndShop.Data.AssemblyInfoInputs.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Release\net5.0\BlogAndShop.Data.AssemblyInfo.cs
@@ -84,3 +83,4 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\Syst
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\System.Security.Permissions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Release\net5.0\System.Windows.Extensions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Release\net5.0\BlogAndShop.Data.csproj.CopyComplete
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Release\net5.0\BlogAndShop.Data.csproj.AssemblyReference.cache

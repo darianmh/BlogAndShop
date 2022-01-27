@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BlogAndShop.Services.Services.Common;
+using BlogAndShop.Services.Services.Utilities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Routing;
 
 namespace BlogAndShop.Classes
@@ -18,6 +23,9 @@ namespace BlogAndShop.Classes
             RouteDirection routeDirection)
         {
             if (httpContext == null) return false;
+
+            //add link log
+            InsertViewLogAsync(httpContext);
             //check the key exist
             if (values.TryGetValue(routeKey, out object rout))
             {
@@ -40,6 +48,46 @@ namespace BlogAndShop.Classes
 
             return false;
         }
+
+        /// <summary>
+        /// افزودن آیپی و لینک ورودی بازدید پست
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
+        private async Task InsertViewLogAsync(HttpContext httpContext)
+        {
+            var pageViewLogService =
+                (IPageViewLogService)httpContext.RequestServices.GetService(typeof(IPageViewLogService));
+            if (pageViewLogService == null) return;
+            var referer = httpContext.Request.Headers["Referer"].ToString();
+            var ip = httpContext.Connection.RemoteIpAddress;
+            int? userId = null;
+            var current = httpContext.Request.GetDisplayUrl();
+            var check = CheckAddLog(httpContext);
+            //int? userId = await GetUserId();
+            //userId = userId == 0 ? null : userId;
+            if (check)
+                await pageViewLogService.InsertLog(referer, ip?.ToString(), userId, current);
+        }
+        /// <summary>
+        /// چک می کند که آیا لینک جزو صفحات ادمین می باشد یا خیر
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckAddLog(HttpContext httpContext)
+        {
+            try
+            {
+                var controllers = AssemblyHelper.AdminControllers.Select(x => x.Name.Replace("Controller", ""));
+                var controller = httpContext.Request.Path.Value?.Split('/')[1] ?? null;
+                if (controller == null) return true;
+                return !controllers.Any(x => controller.Equals(x, StringComparison.OrdinalIgnoreCase));
+            }
+            catch (Exception e)
+            {
+                return true;
+            }
+        }
+
 
         public LinkConstraint()
         {

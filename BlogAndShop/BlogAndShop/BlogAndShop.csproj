@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\PageViewLog\Create.cshtml" />
+    <Content Remove="Views\PageViewLog\Details.cshtml" />
+    <Content Remove="Views\PageViewLog\Edit.cshtml" />
+    <Content Remove="Views\PageViewLog\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\Index.cshtml" />
     <None Include="Views\Account\Orders.cshtml" />
@@ -162,6 +169,10 @@
     <None Include="Views\SiteConfig\Details.cshtml" />
     <None Include="Views\SiteConfig\Edit.cshtml" />
     <None Include="Views\SiteConfig\Index.cshtml" />
+    <None Include="Views\PageViewLog\Create.cshtml" />
+    <None Include="Views\PageViewLog\Details.cshtml" />
+    <None Include="Views\PageViewLog\Edit.cshtml" />
+    <None Include="Views\PageViewLog\Index.cshtml" />
     <None Include="Views\SocialMedia\Create.cshtml" />
     <None Include="Views\SocialMedia\Details.cshtml" />
     <None Include="Views\SocialMedia\Edit.cshtml" />

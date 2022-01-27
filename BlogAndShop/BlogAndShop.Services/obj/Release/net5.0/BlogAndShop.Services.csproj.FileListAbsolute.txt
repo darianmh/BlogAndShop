@@ -4,7 +4,6 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\BlogAndShop.Services.pdb
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\BlogAndShop.Data.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\BlogAndShop.Data.pdb
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Release\net5.0\BlogAndShop.Services.csprojAssemblyReference.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Release\net5.0\BlogAndShop.Services.GeneratedMSBuildEditorConfig.editorconfig
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Release\net5.0\BlogAndShop.Services.AssemblyInfoInputs.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Release\net5.0\BlogAndShop.Services.AssemblyInfo.cs
@@ -85,3 +84,4 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\Microsoft.AspNetCore.Identity.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\Microsoft.AspNetCore.Authentication.Cookies.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Release\net5.0\Microsoft.AspNetCore.Authentication.xml
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Release\net5.0\BlogAndShop.Services.csproj.AssemblyReference.cache

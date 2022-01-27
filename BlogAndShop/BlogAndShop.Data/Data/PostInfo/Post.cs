@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.PostInfo
 {
+
     /// <summary>
     /// پست ها
     /// </summary>

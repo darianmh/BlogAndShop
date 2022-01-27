@@ -1,4 +1,3 @@
-E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Debug\net5.0\BlogAndShop.Services.csprojAssemblyReference.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Debug\net5.0\BlogAndShop.Services.GeneratedMSBuildEditorConfig.editorconfig
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Debug\net5.0\BlogAndShop.Services.AssemblyInfoInputs.cache
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Debug\net5.0\BlogAndShop.Services.AssemblyInfo.cs
@@ -85,3 +84,4 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Mi
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Cookies.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.xml
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Services\obj\Debug\net5.0\BlogAndShop.Services.csproj.AssemblyReference.cache

@@ -5,8 +5,11 @@ using System.Net;
 using System.Threading.Tasks;
 using BlogAndShop.Classes;
 using BlogAndShop.Data.ViewModel.Utilities;
+using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.User.Identity;
 using BlogAndShop.Services.Services.Utilities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -79,5 +82,6 @@ namespace BlogAndShop.Controllers
         public MainBaseController()
         {
         }
+
     }
 }

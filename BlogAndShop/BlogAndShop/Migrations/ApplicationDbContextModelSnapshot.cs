@@ -49,6 +49,36 @@ namespace BlogAndShop.Migrations
                     b.ToTable("Media");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.Common.PageViewLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CurrentPage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IpV4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefererUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PageViewLog");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.Common.SiteConfig", b =>
                 {
                     b.Property<int>("Id")

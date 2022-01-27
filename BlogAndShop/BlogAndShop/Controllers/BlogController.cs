@@ -8,6 +8,7 @@ using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PostInfo;
 using BlogAndShop.Services.Services.User.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace BlogAndShop.Controllers
 {
@@ -56,6 +57,9 @@ namespace BlogAndShop.Controllers
             var model = await _postService.GetPostModel(postUrl);
             return PostItem(model);
         }
+
+
+
         [Route("Blog/Tag/{tagName}")]
         public async Task<IActionResult> Tag(string tagName, int page = 1, int count = 10)
         {
