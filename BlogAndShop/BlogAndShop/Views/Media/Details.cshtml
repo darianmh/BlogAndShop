@@ -33,6 +33,10 @@
 							<a asp-action="Index" class="btn btn-dark">لیست</a>
 							<a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">حذف</a>
 							<a href="@Model.Path" target="_blank" class="btn btn-info">نمایش تصویر</a>
+							<a asp-action="OptimizeSingle" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+								<i class="fi fi-check"></i>
+								بهینه سازی
+							</a>
 						</div>
 					</form>
 

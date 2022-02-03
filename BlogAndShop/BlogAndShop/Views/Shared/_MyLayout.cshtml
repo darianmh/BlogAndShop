@@ -30,14 +30,24 @@
 
 
 	<meta name="viewport" content="width=device-width, maximum-scale=5, initial-scale=1, user-scalable=0">
-	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-	<!-- up to 10% speed up for external res -->
-	<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
-	<link rel="dns-prefetch" href="https://fonts.gstatic.com/">
-	<link rel="preconnect" href="https://fonts.googleapis.com/">
-	<link rel="preconnect" href="https://fonts.gstatic.com/">
+
 	<!-- preloading icon font is helping to speed up a little bit -->
 	<link rel="preload" href="~/lib/Smarty/assets/fonts/flaticon/Flaticon.woff2" as="font" type="font/woff2" crossorigin>
+	<!-- important css -->
+	<style>
+
+		/* loader */
+
+		.loader {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			background-color: #210a0ad9;
+			top: 0;
+			z-index: 10000;
+		}
+	</style>
+
 
 	<!-- non block rendering : page speed : js = polyfill for old browsers missing `preload` -->
 	<link rel="stylesheet" href="~/lib/Smarty/assets/css/core.min.css" asp-append-version="true">
@@ -49,6 +59,9 @@
 	<meta name="theme-color" content="#377dff">
 
 	<link href="~/css/MyStyle.css" rel="stylesheet" asp-append-version="true" />
+
+
+
 
 </head>
 
@@ -90,10 +103,14 @@
 
 
 	</div><!-- /#wrapper -->
-
-	<div class="loader hidden"></div>
+	<div class="loader"></div>
 	<script src="~/lib/Smarty/assets/js/core.min.js"></script>
 	<script src="~/js/MyScript.js"></script>
+	<script>
+		$(document).ready(function () {
+			stopLoading();
+		});
+	</script>
 
 </body>
 

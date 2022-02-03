@@ -21,6 +21,10 @@
 				<a asp-action="Create" class="btn btn-sm rounded-circle btn-outline-primary mb-2 float-end">
 					<i class="fi fi-plus"></i>
 				</a>
+				<a asp-action="Optimize" class="btn btn-sm btn-outline-primary mb-2 float-end">
+					<i class="fi fi-check"></i>
+					بهینه سازی تصاویر
+				</a>
 			</div>
 
 			<div class="portlet-body">
@@ -28,7 +32,7 @@
 
 					<form class="bs-validate" novalidate="" id="form_id" method="post" action="#">
 
-						@await Component.InvokeAsync("AdminIndexListing", new { paging = Model.AdminListPaginationModel, items=Model.Items })
+						@await Component.InvokeAsync("AdminIndexListing", new { paging = Model.AdminListPaginationModel, items = Model.Items })
 					</form>
 
 				</div>

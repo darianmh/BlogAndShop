@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using ImageMagick;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 
@@ -24,7 +25,46 @@ namespace BlogAndShop.Services.Services.Utilities.File
             var finalPath = Path.Combine(path, name);
             await using FileStream fileStream = new FileStream(finalPath, FileMode.Create);
             await file.CopyToAsync(fileStream);
-            return $"{folderPath}/{name}";
+            fileStream.Close();
+            var normalPath = $"{folderPath}/{name}";
+            Compress(normalPath, hostEnvironment);
+            return normalPath;
+        }
+
+        public void Compress(string path, IHostEnvironment hostEnvironment)
+        {
+            //var fileName = hostEnvironment.ContentRootPath + "/wwwroot/UploadedFiles/MediaUpload/2021/04/Main-1.jpg";
+            var file = LoadFile(path, hostEnvironment);
+            if (file == null) return;
+            var old = file.Length;
+
+            try
+            {
+                var optimizer = new ImageOptimizer();
+                optimizer.Compress(file);
+
+                file.Refresh();
+            }
+            catch (Exception e)
+            {
+                //ignore
+            }
+            var newVal = file.Length;
+            if (newVal != old)
+            {
+
+            }
+        }
+
+        public FileInfo LoadFile(string normalPath, IHostEnvironment hostEnvironment)
+        {
+            var path = hostEnvironment.ContentRootPath + "/wwwroot/" + normalPath;
+            if (System.IO.File.Exists(path))
+            {
+                var file = new FileInfo(path);
+                return file;
+            }
+            return null;
         }
 
         public void RemoveFile(string itemPath, IHostEnvironment hostEnvironment)

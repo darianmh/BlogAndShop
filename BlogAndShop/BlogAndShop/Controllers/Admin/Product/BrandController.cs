@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Product;
-using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Mapper;
@@ -73,12 +72,12 @@ namespace BlogAndShop.Controllers.Admin.Product
                 if (item.Products.Any()) return MessagePage("اول محصولات را پاک نمایید");
                 await _service.DeleteAsync(item);
                 CacheHelper.ClearCache();
-                return RedirectToAction("Index");
             }
             catch (Exception e)
             {
-                throw e;
+                // ignored
             }
+            return RedirectToAction("Index");
         }
         #endregion
         #region Utilities

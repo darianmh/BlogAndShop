@@ -35,6 +35,7 @@
         "dependencies": {
           "BlogAndShop.Data": "1.0.0",
           "BlogAndShop.Services": "1.0.0",
+          "Magick.NET-Q16-AnyCPU": "9.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.11",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.11",
           "Microsoft.EntityFrameworkCore.Abstractions": "5.0.11",
@@ -338,6 +339,63 @@
             "assemblyVersion": "2.8.0.0",
             "fileVersion": "2.8.26.1919"
           }
+        }
+      },
+      "Magick.NET-Q16-AnyCPU/9.0.0": {
+        "dependencies": {
+          "Magick.NET.Core": "9.0.0"
+        },
+        "runtime": {
+          "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-musl-x64/native/Magick.Native-Q16-x64.dll.so": {
+            "rid": "linux-musl-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/Magick.Native-Q16-x64.dll.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/Magick.Native-Q16-x64.dll.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/Magick.Native-Q16-arm64.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "7.1.0.20"
+          },
+          "runtimes/win-x64/native/Magick.Native-Q16-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "7.1.0.20"
+          },
+          "runtimes/win-x86/native/Magick.Native-Q16-x86.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "7.1.0.20"
+          }
+        },
+        "compile": {
+          "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll": {}
+        }
+      },
+      "Magick.NET.Core/9.0.0": {
+        "runtime": {
+          "lib/netstandard21/Magick.NET.Core.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard21/Magick.NET.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/6.0.0": {
@@ -2064,6 +2122,7 @@
       "BlogAndShop.Services/1.0.0": {
         "dependencies": {
           "BlogAndShop.Data": "1.0.0",
+          "Magick.NET-Q16-AnyCPU": "9.0.0",
           "Microsoft.AspNetCore.Authorization": "6.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.11"
         },
@@ -3715,6 +3774,20 @@
       "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
+    "Magick.NET-Q16-AnyCPU/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jQMmSNHnoIKguDt+PAq28SxlB8dYLgBIQAx3QD9fl6Nwq6nJrTR3W+mYYsJT1tkJPFwQc66wFB+nSHWITgZWMQ==",
+      "path": "magick.net-q16-anycpu/9.0.0",
+      "hashPath": "magick.net-q16-anycpu.9.0.0.nupkg.sha512"
+    },
+    "Magick.NET.Core/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EnJuo/O7HmnvHc9QOrYINL38WC7DGm1uuoYjyfGwT8Y2WarLXMWs/PLwBxFP41vA8rMJacTNdGjbfZ2xhLoGqg==",
+      "path": "magick.net.core/9.0.0",
+      "hashPath": "magick.net.core.9.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/6.0.0": {
       "type": "package",

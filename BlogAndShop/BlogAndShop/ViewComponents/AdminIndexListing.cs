@@ -59,7 +59,7 @@ namespace BlogAndShop.ViewComponents
                     var attr = property.PropertyInfo.GetCustomAttribute<DbOptionListAttribute>();
                     var currentValue = property.PropertyInfo.GetValue(item)?.ToString();
                     var isMedia = (property.PropertyInfo.GetCustomAttribute<IsMediaAttribute>() != null || property.PropertyInfo.GetCustomAttribute<FileUploadAttribute>() != null);
-                    var value = attr != null ? GetValueFromDb(attr, property.PropertyInfo, currentValue) : currentValue;
+                    var value = attr != null ? GetValueFromDb(attr, currentValue) : currentValue;
                     if (!isMedia && value?.Length > 30)
                     {
                         value = string.Join(string.Empty, value.Take(70)) + "...";
@@ -83,7 +83,7 @@ namespace BlogAndShop.ViewComponents
             return result;
         }
 
-        private string GetValueFromDb(DbOptionListAttribute attr, PropertyInfo propertyInfo,
+        private string GetValueFromDb(DbOptionListAttribute attr,
             string currentValue)
         {
             var queryAble = _dbContext.Set(attr.NavigationProperty);

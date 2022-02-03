@@ -1113,6 +1113,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\richtexteditor_content.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\richtexteditor_preview.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\richtexteditor_preview.js
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\Robots.txt
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\127024050_386425585935620_9177426682045131715_n.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\04\01-100x100.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\04\01-100x100.png
@@ -1958,6 +1959,9 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112291253_4770437_green_1000x.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2112291253_4770437_silver_1000x.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2201030727_COM_4_SIGHT_EN.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202030114_COM_3_D-LOOP_EN.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202030116_1370132_clear-2014_1000x.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202030117_2112200857_ADIX-hint-updated-slide.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo.psd
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo1.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo1_11zon-ConvertImage.png
@@ -1972,6 +1976,8 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.pdb
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\AdvancedStringBuilder.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Magick.NET-Q16-AnyCPU.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Magick.NET.Core.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Authorization.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -2080,6 +2086,12 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\linux-musl-x64\native\Magick.Native-Q16-x64.dll.so
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\linux-x64\native\Magick.Native-Q16-x64.dll.so
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\osx-x64\native\Magick.Native-Q16-x64.dll.dylib
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm64\native\Magick.Native-Q16-arm64.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-x64\native\Magick.Native-Q16-x64.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-x86\native\Magick.Native-Q16-x86.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll

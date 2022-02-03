@@ -1,0 +1,8 @@
+User-agent: *
+Disallow:
+Crawl-delay: 100
+Sitemap: https://darianteam.ir/sitemap 
+Sitemap: https://darianteam.ir/sitemap/Blog.xml
+Sitemap: https://darianteam.ir/sitemap/Shop.xml
+Sitemap: https://darianteam.ir/sitemap/Forum.xml
+Sitemap: https://darianteam.ir/sitemap/Book.xml

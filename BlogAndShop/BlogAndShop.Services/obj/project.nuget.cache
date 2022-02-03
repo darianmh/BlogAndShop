@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "D2NXP8Drxm790HsXrShcRBr+7StM0yNucatg9TZe1CWIwXJen6EnZ+0jw8YMm65kiZycKpcJuHlB5WcngK+SBg==",
+  "dgSpecHash": "SSBkuAl1beUIgJfGS4BsdwF0M/+8FBYNGwttETB7cGwE7rb86z9LGEUp49mymHy/70cKlZgc9FY4fWZXxPyxUw==",
   "success": true,
   "projectFilePath": "E:\\Projects\\BlogAndShopSite\\BlogAndShop\\BlogAndShop.Services\\BlogAndShop.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Kashfi\\.nuget\\packages\\magick.net-q16-anycpu\\9.0.0\\magick.net-q16-anycpu.9.0.0.nupkg.sha512",
+    "C:\\Users\\Kashfi\\.nuget\\packages\\magick.net.core\\9.0.0\\magick.net.core.9.0.0.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.0\\microsoft.aspnetcore.authorization.6.0.0.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.11\\microsoft.aspnetcore.cryptography.internal.5.0.11.nupkg.sha512",
     "C:\\Users\\Kashfi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",

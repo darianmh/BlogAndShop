@@ -83,3 +83,4 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\System
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\System.Security.Permissions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\bin\Debug\net5.0\System.Windows.Extensions.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Debug\net5.0\BlogAndShop.Data.csproj.CopyComplete
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop.Data\obj\Debug\net5.0\BlogAndShop.Data.csproj.AssemblyReference.cache

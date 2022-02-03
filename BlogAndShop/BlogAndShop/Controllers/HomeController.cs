@@ -1,24 +1,19 @@
 ﻿using BlogAndShop.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Api;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.User;
-using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers
 {
     public class HomeController : MainBaseController
     {
         #region Fields
-        private readonly ILogger<HomeController> _logger;
+
         private readonly INewsLetterEmailService _newsLetterEmailService;
         private readonly ISiteConfigService _siteConfigService;
 
@@ -42,7 +37,6 @@ namespace BlogAndShop.Controllers
 
         public IActionResult Error(string code)
         {
-            var url = Request.Path;
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
@@ -83,7 +77,7 @@ namespace BlogAndShop.Controllers
         {
 
             //find link item from context
-            var linkCheck = HttpContext.Items.TryGetValue("LinkObject", out object? item);
+            var linkCheck = HttpContext.Items.TryGetValue("LinkObject", out var item);
             if (!linkCheck || item == null) return NotFound();
             return RedirectPermanent(item.ToString());
         }
@@ -99,9 +93,8 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Ctor
 
-        public HomeController(ILogger<HomeController> logger, INewsLetterEmailService newsLetterEmailService, ISiteConfigService siteConfigService)
+        public HomeController(INewsLetterEmailService newsLetterEmailService, ISiteConfigService siteConfigService)
         {
-            _logger = logger;
             _newsLetterEmailService = newsLetterEmailService;
             _siteConfigService = siteConfigService;
 

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
-using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Common;
 using Microsoft.AspNetCore.Mvc;
