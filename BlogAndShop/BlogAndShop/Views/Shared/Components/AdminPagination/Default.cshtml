@@ -20,19 +20,35 @@
 				<a class="page-link" asp-route-page="@pre" tabindex="-1">قبلی</a>
 			</li>
 		}
+		@{
+			var showAll = Model.PagesCount <= 10;
+			var toShowCount = 3;
+		}
 		@for (int i = 1; i <= Model.PagesCount; i++)
 		{
-			@if (i == Model.Page)
+			if (i == Model.Page)
 			{
 				<li class="page-item active" aria-current="page">
 					<a class="page-link" asp-route-page="@i">@i <span class="sr-only">(فعلی)</span></a>
 				</li>
 			}
-			else
+			else if (showAll || (i >= Model.Page - toShowCount && i <= Model.Page + toShowCount) || i == 1 || i == Model.PagesCount)
 			{
-				<li class="page-item" aria-current="page">
+				if (i == Model.PagesCount && !showAll && Model.Page + toShowCount + 1 < i)
+				{
+					<li class="page-item disabled hide-sm">
+						<a class="page-link" href="#" aria-disabled="true">...</a>
+					</li>
+				}
+				<li class="page-item hide-sm" aria-current="page">
 					<a class="page-link" asp-route-page="@i">@i</a>
 				</li>
+				if (i == 1 && !showAll && Model.Page - toShowCount - 1 > i)
+				{
+					<li class="page-item disabled hide-sm">
+						<a class="page-link" href="#" aria-disabled="true">...</a>
+					</li>
+				}
 			}
 		}
 
