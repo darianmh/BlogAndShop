@@ -40,15 +40,15 @@
 	<link rel="preload" href="~/lib/Smarty/assets/fonts/flaticon/Flaticon.woff2" as="font" type="font/woff2" crossorigin>
 
 	<!-- non block rendering : page speed : js = polyfill for old browsers missing `preload` -->
-	<link rel="stylesheet" href="~/lib/Smarty/assets/css/core.min.css" asp-append-version="IsLayoutBeingRendered">
-	<link rel="stylesheet" href="~/lib/Smarty/assets/css/vendor_bundle.min.css" asp-append-version="IsLayoutBeingRendered">
+	<link rel="stylesheet" href="~/lib/Smarty/assets/css/core.min.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/lib/Smarty/assets/css/vendor_bundle.min.css" asp-append-version="true">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
 
 
-	<link rel="manifest" href="~/lib/Smarty/assets/images/manifest/manifest.json">
+	<link rel="manifest" href="~/lib/Smarty/assets/images/manifest/manifest.json" asp-append-version="true">
 	<meta name="theme-color" content="#377dff">
 
-	<link href="~/css/MyStyle.css" rel="stylesheet" />
+	<link href="~/css/MyStyle.css" rel="stylesheet" asp-append-version="true" />
 
 </head>
 

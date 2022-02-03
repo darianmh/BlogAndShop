@@ -43,3 +43,9 @@
     background-position-x: 9px;
     background-position-y: 7px;
 }
+
+@media (max-width: 768px) {
+    .hide-sm {
+        display: none !important;
+    }
+}
