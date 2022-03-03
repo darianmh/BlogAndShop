@@ -20,7 +20,7 @@ namespace BlogAndShop.Services
             var controllerName = pageBase.ViewContext.RouteData?.Values["controller"]?.ToString();
             var type = AssemblyHelper.AdminControllers.FirstOrDefault(x => x.Name.Equals((controllerName + "Controller"), StringComparison.InvariantCultureIgnoreCase));
             var controllerInfo = (AdminFilterNameAttribute)type?.GetCustomAttribute(typeof(AdminFilterNameAttribute));
-            return controllerInfo;
+            return controllerInfo ?? new AdminFilterNameAttribute(AdminControllerNames.Common, controllerName);
         }
     }
 }
