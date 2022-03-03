@@ -31,12 +31,13 @@ namespace BlogAndShop.Services.Services.Product
         /// </summary>
         /// <returns></returns>
         Task<List<Data.Data.Product.Product>> GetProductBySpecificGroup(int categoryId);
+
         /// <summary>
         /// ساخت مدل کوچک از محصول
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        ProductMiniModel GetProductMiniModel(Data.Data.Product.Product product);
+        Task<ProductMiniModel> GetProductMiniModel(Data.Data.Product.Product product);
 
         /// <summary>
         /// ساخت مدل کوچک از محصول

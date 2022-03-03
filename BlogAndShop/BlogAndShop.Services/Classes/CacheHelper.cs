@@ -57,6 +57,12 @@ namespace BlogAndShop.Services.Classes
         /// </summary>
         public static bool ProductCategoryReferenceLock { get; set; }
 
+        public static Dictionary<int, string> MediaPaths
+        {
+            get => _mediaPaths ?? new Dictionary<int, string>();
+            set => _mediaPaths = value;
+        }
+
         #endregion
         #region Methods
 
@@ -69,6 +75,7 @@ namespace BlogAndShop.Services.Classes
             _topPosts = null;
             _productCategoryViewModel = null;
             _productCategoryReference = null;
+            _mediaPaths = null;
         }
         #endregion
         #region Utilities
@@ -81,6 +88,7 @@ namespace BlogAndShop.Services.Classes
         private static List<TopPostModel> _topPosts;
         private static ProductCategoryViewModel _productCategoryViewModel;
         private static Dictionary<int, ProductCategoryViewModel> _productCategoryReference;
+        private static Dictionary<int, string> _mediaPaths;
 
         #endregion
         #region Ctor

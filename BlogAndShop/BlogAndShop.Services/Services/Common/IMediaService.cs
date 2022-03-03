@@ -21,5 +21,11 @@ namespace BlogAndShop.Services.Services.Common
         Task<List<MediaModel>> GetImagesModel(List<ProductMedia> all);
 
         Task DeleteAsync(int entity, IHostEnvironment hostEnvironment);
+        /// <summary>
+        /// یافتن مدیا و بازگرداندن آدرس آن
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<string> GetMediaPath(int id);
     }
 }

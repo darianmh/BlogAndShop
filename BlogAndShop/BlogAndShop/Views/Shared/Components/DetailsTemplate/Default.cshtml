@@ -1,5 +1,6 @@
 ﻿
 @using BlogAndShop.Data.ViewModel.Utilities
+@using BlogAndShop.Services
 @model List<BlogAndShop.Data.ViewModel.Utilities.EditCreateTemplateViewModel>
 <div>
 </div>
@@ -44,7 +45,7 @@
 			{
 				if (!string.IsNullOrEmpty(item.Value?.ToString()))
 				{
-					<img class="w-100 img-fluid rounded" src="@item.Value" alt="...">
+					<img class="w-100 img-fluid rounded" src="@await Html.GetMediaPath(item.Value)" alt="...">
 				}
 				check = true;
 			}

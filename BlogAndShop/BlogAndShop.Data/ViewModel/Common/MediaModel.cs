@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.ViewModel.HomePage;
+using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.Common
 {
@@ -46,9 +49,34 @@ namespace BlogAndShop.Data.ViewModel.Common
         public IFormFile PathFile { get; set; }
         [Ignore]
         public FileType FileType { get; set; }
+
+        /// <summary>
+        /// آیا فایل آپلود شده به فرمت وبپی تبدیل شود یا خیر
+        /// اگر ممکن بود
+        /// </summary>
+        [Display(Name = "تبدیل به webp")]
+        public bool ToWebp { get; set; }
+
+
+
         //np
         [Ignore]
         public virtual List<ProductMediaModel> ProductMedias { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<BrandModel> Brands { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<PostModel> Posts { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<HomeBannerModel> HomeBanners { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<Product.ProductModel> Products { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<ProductGroupModel> ProductGroups { get; set; }
 
     }
 }

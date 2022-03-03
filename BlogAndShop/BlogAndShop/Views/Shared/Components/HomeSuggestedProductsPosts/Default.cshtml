@@ -1,6 +1,7 @@
 ﻿
 @using BlogAndShop.Services.Classes.Date
 @using BlogAndShop.Services.Classes
+@using BlogAndShop.Services
 @model BlogAndShop.Data.ViewModel.Product.HomeSuggestedProductsPostsModel
 
 <section class="pt-0">
@@ -118,7 +119,7 @@
 					<div class="row">
 
 						<a asp-controller="Blog" asp-action="Post" asp-route-postUrl="@postItem.PreferUrl" class="col-12 col-md-4 mb-4">
-							<img class="img-fluid w-100 rounded" src="@postItem.BannerImage" alt="@postItem.Title">
+							<img class="img-fluid w-100 rounded" src="@await Html.GetMediaPath(postItem.BannerImageId)" alt="@postItem.Title">
 						</a>
 
 						<div class="col pb-4">
@@ -176,7 +177,7 @@
 											<div class="row">
 
 												<a asp-controller="Blog" asp-action="Post" asp-route-postUrl="@postItem.PreferUrl" class="col-12 col-md-4 mb-4">
-													<img class="img-fluid w-100 rounded" src="@postItem.BannerImage" alt="@postItem.Title">
+													<img class="img-fluid w-100 rounded" src="@await Html.GetMediaPath(postItem.BannerImageId)" alt="@postItem.Title">
 												</a>
 
 												<div class="col pb-4">

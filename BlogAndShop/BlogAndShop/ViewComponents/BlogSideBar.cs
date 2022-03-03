@@ -27,12 +27,13 @@ namespace BlogAndShop.ViewComponents
             {
                 Categories = categories,
                 TopPosts = topPosts,
-                AdvertizeHtml = @"<a href='#!' class='mt-5 d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden'>
-			<img class='w-100 img-fluid rounded' src='../../lib/Smarty/demo.files/images/unsplash/portfolio/thumb_330/boxed-water-is-better-6RTh34xCS1M-unsplash-min.jpg' alt='...'>
-		</a>
-		<h4 class='fs--13 text-gray-500 font-weight-normal mt-1 mb-0'>
-			Sponsored Ad
-		</h4>"
+                //              AdvertizeHtml = @"<a href='#!' class='mt-5 d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden'>
+                //	<img class='w-100 img-fluid rounded' src='../../lib/Smarty/demo.files/images/unsplash/portfolio/thumb_330/boxed-water-is-better-6RTh34xCS1M-unsplash-min.jpg' alt='...'>
+                //</a>
+                //<h4 class='fs--13 text-gray-500 font-weight-normal mt-1 mb-0'>
+                //	Sponsored Ad
+                //</h4>"
+                AdvertizeHtml = AdHtmlContent()
             };
             return View(model);
         }
@@ -40,6 +41,10 @@ namespace BlogAndShop.ViewComponents
         #endregion
         #region Utilities
 
+        private string AdHtmlContent()
+        {
+            return "<div id=\"pos-article-display-sticky-67314\"></div>";
+        }
 
         #endregion
         #region Ctor

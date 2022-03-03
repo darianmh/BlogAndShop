@@ -12,5 +12,19 @@ namespace BlogAndShop.Services.Services.Utilities.File
         void RemoveFile(string itemPath, IHostEnvironment hostEnvironment);
         void Compress(string path, IHostEnvironment hostEnvironment);
         FileInfo LoadFile(string normalPath, IHostEnvironment hostEnvironment);
+
+        /// <summary>
+        /// تبدیل فایل به وبپی و بازگرداندن آدرس جدید آن
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="hostEnvironment1"></param>
+        /// <returns></returns>
+        string ConvertToWebp(string filePath, IHostEnvironment hostEnvironment1);
+        /// <summary>
+        /// بالا سمت راست هر عکس یک واترمارک اضافه می کند
+        /// </summary>
+        /// <param name="itemPath"></param>
+        /// <param name="hostEnvironment"></param>
+        void AddDarianWaterMark(string itemPath, IHostEnvironment hostEnvironment);
     }
 }

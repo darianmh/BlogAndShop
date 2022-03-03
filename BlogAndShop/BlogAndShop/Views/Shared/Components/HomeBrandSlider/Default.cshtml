@@ -1,4 +1,5 @@
 ﻿
+@using BlogAndShop.Services
 @model List<BlogAndShop.Data.ViewModel.Product.BrandModel>
 
 
@@ -13,7 +14,7 @@
 
 			-->
 			<div class="swiper-container"
-			     data-swiper='{
+				 data-swiper='{
 							"slidesPerView": 5,
 							"spaceBetween": 10,
 							"autoplay": true,
@@ -45,7 +46,7 @@
 								<a asp-controller="Shop" asp-action="Index" asp-route-brandId="@item.Id" class="text-decoration-none">
 
 									<figure class="m-0 text-center">
-										<img width="200" height="71" class="opacity-4" src="@item.Logo" alt="@item.Logo">
+										<img width="200" height="71" class="opacity-4" src="@await Html.GetMediaPath(item.LogoId)" alt="@item.Name">
 									</figure>
 
 

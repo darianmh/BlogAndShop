@@ -41,8 +41,8 @@ namespace BlogAndShop.Data.Data.Product
         /// تصویر
         /// </summary>
         [Display(Name = "تصویر")]
-        [AdminShowItem(4)]
-        public string ImageUrl { get; set; }
+        [ForeignKey("Image")]
+        public int? ImageId { get; set; }
 
         /// <summary>
         /// کلمات کلیدی
@@ -54,6 +54,8 @@ namespace BlogAndShop.Data.Data.Product
         //np
         [JsonIgnore]
         public virtual List<Product> Products { get; set; }
+        [JsonIgnore]
+        public virtual Media Image { get; set; }
 
 
         public override MySelectListItem GetSelectListItem(string selected)

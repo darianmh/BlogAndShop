@@ -223,7 +223,7 @@ namespace BlogAndShop.Services.Services.Main
 
         public async Task<List<T>> GetAllAsync()
         {
-            var all = (await Queryable.ToListAsync()).ToList();
+            var all = await Queryable.ToListAsync();
             return all ?? new List<T>();
         }
 
@@ -336,23 +336,30 @@ namespace BlogAndShop.Services.Services.Main
         #endregion
         public void Dispose()
         {
-            List<FieldInfo> fields = GetType().GetFields(
-                   BindingFlags.NonPublic | BindingFlags.Public
-                   | BindingFlags.Instance | BindingFlags.Static | BindingFlags.SetProperty | BindingFlags.GetProperty)
-                   .Where(x => x.Name.Contains("Service"))
-                   .ToList();
-            foreach (var field in fields)
+            try
             {
-                var val = field.GetValue(this);
-                var type = field.FieldType;
-                var interfaceBase = type.GetInterface("IDisposable");
-                if (interfaceBase != null)
+                List<FieldInfo> fields = GetType().GetFields(
+                        BindingFlags.NonPublic | BindingFlags.Public
+                                               | BindingFlags.Instance | BindingFlags.Static | BindingFlags.SetProperty | BindingFlags.GetProperty)
+                    .Where(x => x.Name.Contains("Service"))
+                    .ToList();
+                foreach (var field in fields)
                 {
-                    var method = interfaceBase.GetMethod("Dispose");
-                    if (val != null) method?.Invoke(val, null);
+                    var val = field.GetValue(this);
+                    var type = field.FieldType;
+                    var interfaceBase = type.GetInterface("IDisposable");
+                    if (interfaceBase != null)
+                    {
+                        var method = interfaceBase.GetMethod("Dispose");
+                        if (val != null) method?.Invoke(val, null);
+                    }
                 }
+                Db.Dispose();
             }
-            Db.Dispose();
+            catch (Exception e)
+            {
+                //ignore
+            }
         }
 
 

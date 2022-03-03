@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using ImageMagick;
 using Microsoft.AspNetCore.Http;
@@ -67,11 +70,25 @@ namespace BlogAndShop.Services.Services.Utilities.File
             return null;
         }
 
+        public string ConvertToWebp(string filePath, IHostEnvironment hostEnvironment)
+        {
+            var formatConvertor = new FormatConvertor();
+            var finalPath = formatConvertor.ProcessConvertToWebp(filePath, "webp", hostEnvironment);
+            return finalPath;
+        }
+
         public void RemoveFile(string itemPath, IHostEnvironment hostEnvironment)
         {
             var path = hostEnvironment.ContentRootPath + "/wwwroot/" + itemPath;
             if (System.IO.File.Exists(path))
                 System.IO.File.Delete(path);
+        }
+
+
+        public void AddDarianWaterMark(string itemPath, IHostEnvironment hostEnvironment)
+        {
+            var file = LoadFile(itemPath, hostEnvironment);
+            //add water mark
         }
 
         #endregion

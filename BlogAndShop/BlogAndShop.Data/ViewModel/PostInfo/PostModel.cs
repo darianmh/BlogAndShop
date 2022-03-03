@@ -57,7 +57,7 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         /// </summary>
         [Display(Name = "تصویر اصلی")]
         [FileUpload]
-        public string BannerImage { get; set; }
+        public int BannerImageId { get; set; }
 
         /// <summary>
         /// Author
@@ -88,6 +88,8 @@ namespace BlogAndShop.Data.ViewModel.PostInfo
         public bool SaveAndContinue { get; set; }
 
         //np
+        [Ignore]
+        public virtual MediaModel BannerImage { get; set; }
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }
         [Ignore]

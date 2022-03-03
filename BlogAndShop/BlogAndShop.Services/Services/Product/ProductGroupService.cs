@@ -9,6 +9,7 @@ using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities;
 using BlogAndShop.Services.Classes;
+using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ namespace BlogAndShop.Services.Services.Product
 
         private readonly IProductService _productService;
         private readonly IBrandService _brandService;
+        private readonly IMediaService _mediaService;
+
 
         #endregion
         #region Methods
@@ -59,7 +62,7 @@ namespace BlogAndShop.Services.Services.Product
             var result = new ProductListViewModel()
             {
                 CurrentGroup = currentGroup.CurrentGroup,
-                Products = products.List.Select(x => _productService.GetProductMiniModel(x)).ToList(),
+                Products = products.List.Select(async x => await _productService.GetProductMiniModel(x)).Select(x => x.Result).ToList(),
                 ListPaginationModel = new ListPaginationModel(products.TotalCount > page * count, hasPre: page > 1, page: page, count: products.List.Count, pagesCount: ((products.TotalCount - 1) / count) + 1),
                 Brand = brand?.ToModel(),
                 TotalCount = products.TotalCount
@@ -73,7 +76,7 @@ namespace BlogAndShop.Services.Services.Product
         public async Task<List<ProductMiniModel>> GetSuggestedProduct(int productId, int groupId, int count = 4)
         {
             var productsWithGroup = await _productService.GetProductByGroup(groupId, brandId: null, count: count, page: 1, this);
-            var result = CreateSuggestModel(productsWithGroup.List, productId);
+            var result = await CreateSuggestModel(productsWithGroup.List, productId);
             if (result.Count >= count)
                 return result;
             var suggestedGroups = new List<int?>();
@@ -213,7 +216,8 @@ namespace BlogAndShop.Services.Services.Product
                 var children = GetChildren(productGroup, all);
                 //all products in group
                 var products = await _productService.GetProductBySpecificGroup(productGroup.Id);
-                var imagePath = !string.IsNullOrEmpty(productGroup.ImageUrl) ? productGroup.ImageUrl : products.LastOrDefault(x => !string.IsNullOrEmpty(x.BannerImage))?.BannerImage;
+                var imageId = productGroup.ImageId ?? products.LastOrDefault()?.BannerImageId;
+                var imagePath = imageId == null ? "" : await _mediaService.GetMediaPath((int)imageId);
                 var groupModel = productGroup.ToModel();
                 var newParentGroupName = string.IsNullOrEmpty(parentGroupName)
                      ? groupModel.Title
@@ -284,7 +288,7 @@ namespace BlogAndShop.Services.Services.Product
         private async Task<IEnumerable<ProductMiniModel>> GetGroupProducts(int productId, int count, int? suggestedGroup)
         {
             var productsWithGroup = await _productService.GetProductByGroup(suggestedGroup, brandId: null, count: count, page: 1, this);
-            return CreateSuggestModel(productsWithGroup.List, productId);
+            return await CreateSuggestModel(productsWithGroup.List, productId);
         }
 
 
@@ -318,13 +322,13 @@ namespace BlogAndShop.Services.Services.Product
         /// <param name="list"></param>
         /// <param name="productId"></param>
         /// <returns></returns>
-        private List<ProductMiniModel> CreateSuggestModel(List<Data.Data.Product.Product> list, in int productId)
+        private async Task<List<ProductMiniModel>> CreateSuggestModel(List<Data.Data.Product.Product> list, int productId)
         {
             var result = new List<ProductMiniModel>();
             foreach (var product in list)
             {
                 if (product.Id == productId) continue;
-                var model = _productService.GetProductMiniModel(product);
+                var model = await _productService.GetProductMiniModel(product);
                 result.Add(model);
             }
 
@@ -389,13 +393,14 @@ namespace BlogAndShop.Services.Services.Product
         {
             var model = new List<ProductGroupModel>();
             //پیمایش همه
-            foreach (var productGroup in allActives.SubCategories)
-            {
-                var temp = await GetHeader2Model(productGroup);
-                var current = productGroup.CurrentGroup;
-                current.ProductGroups = temp;
-                model.Add(current);
-            }
+            if (allActives?.SubCategories != null)
+                foreach (var productGroup in allActives?.SubCategories)
+                {
+                    var temp = await GetHeader2Model(productGroup);
+                    var current = productGroup.CurrentGroup;
+                    current.ProductGroups = temp;
+                    model.Add(current);
+                }
 
             return model;
         }
@@ -442,10 +447,11 @@ namespace BlogAndShop.Services.Services.Product
 
         #endregion
         #region Ctor
-        public ProductGroupService(ApplicationDbContext db, IProductService productService, IBrandService brandService) : base(db)
+        public ProductGroupService(ApplicationDbContext db, IProductService productService, IBrandService brandService, IMediaService mediaService) : base(db)
         {
             _productService = productService;
             _brandService = brandService;
+            _mediaService = mediaService;
             DataHelper.ProductGroups = db.Set<ProductGroup>().ToList();
         }
         #endregion

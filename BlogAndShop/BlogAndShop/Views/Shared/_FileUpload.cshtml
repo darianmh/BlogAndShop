@@ -1,28 +1,29 @@
-﻿@model BlogAndShop.Data.ViewModel.Utilities.EditCreateTemplateViewModel
+﻿@using BlogAndShop.Services
+@model BlogAndShop.Data.ViewModel.Utilities.EditCreateTemplateViewModel
 
 <div class="col-12 col-lg-12 mb-5 border p-3">
 
 
-	<ul class="nav nav-pills mb-3" id="pills-icon-tab" role="tablist">
-		<li class="nav-item mx-1">
-			<a class="nav-link btn btn-primary b-0 shadow-md btn-noshadow text-center active" id="pills-icon-home-tab" data-toggle="pill" href="#pills-icon-file" role="tab" aria-controls="pills-icon-file" aria-selected="true">
-				<span class="d-block">
-					<i class="fi fi-arrow-upload"></i>
-				</span>
-				تصاویر موجود
-			</a>
-		</li>
+	@*<ul class="nav nav-pills mb-3" id="pills-icon-tab" role="tablist">
+			<li class="nav-item mx-1">
+				<a class="nav-link btn btn-primary b-0 shadow-md btn-noshadow text-center active" id="pills-icon-home-tab" data-toggle="pill" href="#pills-icon-file" role="tab" aria-controls="pills-icon-file" aria-selected="true">
+					<span class="d-block">
+						<i class="fi fi-arrow-upload"></i>
+					</span>
+					تصاویر موجود
+				</a>
+			</li>
 
-		<li class="nav-item mx-1">
-			<a class="nav-link btn btn-primary b-0 shadow-md btn-noshadow text-center" id="pills-icon-profile-tab" data-toggle="pill" href="#pills-icon-address" role="tab" aria-controls="pills-icon-address" aria-selected="false">
-				<span class="d-block">
-					<i class="fi fi-cloud-upload"></i>
-				</span>
-				آدرس فایل
-			</a>
-		</li>
+			<li class="nav-item mx-1">
+				<a class="nav-link btn btn-primary b-0 shadow-md btn-noshadow text-center" id="pills-icon-profile-tab" data-toggle="pill" href="#pills-icon-address" role="tab" aria-controls="pills-icon-address" aria-selected="false">
+					<span class="d-block">
+						<i class="fi fi-cloud-upload"></i>
+					</span>
+					آدرس فایل
+				</a>
+			</li>
 
-	</ul>
+		</ul>*@
 
 	<div class="tab-content" id="pills-icon-tabContent">
 
@@ -35,13 +36,12 @@
 						نمایش تصاویر موجود
 					</button>
 					@{ var id = Model.Name + "Pre";}
-				<div class="row" id='@id'>
-					@if (!string.IsNullOrEmpty(Model.Value?.ToString()))
-					{
-						<div class="col-2  mb-4"><img class="w-100 img-fluid rounded" src="@Model.Value.ToString()"></div>
-					}
-				</div>
-
+					<div class="row" id='@id'>
+						@if (!string.IsNullOrEmpty(Model.Value?.ToString()))
+						{
+							<div class="col-2  mb-4"><img class="w-100 img-fluid rounded" src="@await Html.GetMediaPath(Model.Value)"></div>
+						}
+					</div>
 				</div>
 			</div>
 		</div>

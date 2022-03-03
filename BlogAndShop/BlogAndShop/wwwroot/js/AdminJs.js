@@ -20,8 +20,8 @@ function LoadImages() {
   });
 }
 
-function SetSelectedImage(path) {
-  $("#" + targetInputName).val(path);
+function SetSelectedImage(path, imageId) {
+  $("#" + targetInputName).val(imageId);
   $("#exampleModalFull").modal('hide');
   var image = '<div class="col-2  mb-4"><img class="w-100 img-fluid rounded" src="' + path + '" ></div>';
   $("#" + targetInputName + "Pre").html(image);

@@ -29,6 +29,7 @@ namespace BlogAndShop.Services.Services.PostInfo
         private readonly ITagService _tagService;
         private readonly IPostCommentService _postCommentService;
         private readonly IPost_TagsService _postTagsService;
+        private readonly IMediaService _mediaService;
 
         #endregion
         #region Methods
@@ -77,7 +78,7 @@ namespace BlogAndShop.Services.Services.PostInfo
         {
             var all = await GetAllAsync();
             var encoder = UrlEncoder.Create();
-            return all.Select(x => new SiteMapItemModel
+            return all.Where(x => x.IsPublished).Select(x => new SiteMapItemModel
             {
                 LastDate = x.UpdateDateTime.ToSiteMapString(),
                 Url = $"{DirectoryHelper.Domain}/Blog/Post/{encoder.Encode(x.PreferUrl)}"
@@ -87,13 +88,13 @@ namespace BlogAndShop.Services.Services.PostInfo
         public async Task<List<SearchResultItemModel>> Search(string key)
         {
             var all = await Queryable.Where(x => x.Title.Contains(key)).ToListAsync();
-            return all.Select(x => new SearchResultItemModel()
+            return all.Select(async x => new SearchResultItemModel()
             {
-                ImagePath = x.BannerImage,
+                ImagePath = await _mediaService.GetMediaPath(x.BannerImageId),
                 Name = x.Title,
                 SearchResultType = SiteMapType.Blog,
                 Id = x.Id
-            }).ToList();
+            }).Select(x => x.Result).ToList();
         }
 
         public async Task<List<PostModel>> GetRecentPosts()
@@ -117,7 +118,7 @@ namespace BlogAndShop.Services.Services.PostInfo
             return await Queryable.FirstOrDefaultAsync(x => x.PreferUrl.Equals(url));
         }
 
-        public async Task<Post> GetLastPost() => await Queryable.OrderBy(x => x.CreateDateTime).Reverse().FirstOrDefaultAsync();
+        public async Task<Post> GetLastPost() => await Queryable.OrderBy(x => x.CreateDateTime).Reverse().FirstOrDefaultAsync(x => x.IsPublished);
 
         public async Task<BlogListViewModel> GetPostsByTag(int? tagId, int page, int count)
         {
@@ -250,12 +251,13 @@ namespace BlogAndShop.Services.Services.PostInfo
 
         #endregion
         #region Ctor
-        public PostService(ApplicationDbContext db, IPost_PostGroupService postPostGroupService, ITagService tagService, IPostCommentService postCommentService, IPost_TagsService postTagsService) : base(db)
+        public PostService(ApplicationDbContext db, IPost_PostGroupService postPostGroupService, ITagService tagService, IPostCommentService postCommentService, IPost_TagsService postTagsService, IMediaService mediaService) : base(db)
         {
             _postPostGroupService = postPostGroupService;
             _tagService = tagService;
             _postCommentService = postCommentService;
             _postTagsService = postTagsService;
+            _mediaService = mediaService;
         }
         #endregion
 

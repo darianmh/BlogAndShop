@@ -51,7 +51,8 @@ namespace BlogAndShop.Data.Data.Product
         /// Banner Image
         /// </summary>
         [Display(Name = "تصویر")]
-        public string BannerImage { get; set; }
+        [ForeignKey("BannerImage")]
+        public int BannerImageId { get; set; }
 
         /// <summary>
         /// تعداد
@@ -105,6 +106,8 @@ namespace BlogAndShop.Data.Data.Product
         //np
         [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
+        [JsonIgnore]
+        public virtual Media BannerImage { get; set; }
         [JsonIgnore]
         public virtual Brand Brand { get; set; }
         [JsonIgnore]

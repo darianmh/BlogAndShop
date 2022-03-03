@@ -41,6 +41,9 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("ToWebp")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("UpdateDateTime")
                         .HasColumnType("datetime2");
 
@@ -397,8 +400,8 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BannerPath")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BannerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
@@ -413,6 +416,8 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BannerId");
 
                     b.ToTable("HomeBanner");
                 });
@@ -564,8 +569,8 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BannerImage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BannerImageId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
@@ -599,6 +604,8 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BannerImageId");
 
                     b.HasIndex("OwnerId");
 
@@ -721,9 +728,8 @@ namespace BlogAndShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Logo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("LogoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -737,6 +743,8 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LogoId");
 
                     b.ToTable("Brand");
                 });
@@ -784,8 +792,8 @@ namespace BlogAndShop.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BannerImage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BannerImageId")
+                        .HasColumnType("int");
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -830,6 +838,8 @@ namespace BlogAndShop.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("BannerImageId");
 
                     b.HasIndex("BrandId");
 
@@ -932,8 +942,8 @@ namespace BlogAndShop.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Keywords")
                         .HasColumnType("nvarchar(max)");
@@ -949,6 +959,8 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("ProductGroup");
                 });
@@ -1398,6 +1410,17 @@ namespace BlogAndShop.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.HomePage.HomeBanner", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "Banner")
+                        .WithMany("HomeBanners")
+                        .HasForeignKey("BannerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Banner");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.CartItem", b =>
                 {
                     b.HasOne("BlogAndShop.Data.Data.User.UserCart", "UserCart")
@@ -1468,11 +1491,19 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.Post", b =>
                 {
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "BannerImage")
+                        .WithMany("Posts")
+                        .HasForeignKey("BannerImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BannerImage");
 
                     b.Navigation("User");
                 });
@@ -1534,11 +1565,28 @@ namespace BlogAndShop.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.Product.Brand", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "Logo")
+                        .WithMany("Brands")
+                        .HasForeignKey("LogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Logo");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.Product", b =>
                 {
                     b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
                         .WithMany("Products")
                         .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "BannerImage")
+                        .WithMany("Products")
+                        .HasForeignKey("BannerImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1553,6 +1601,8 @@ namespace BlogAndShop.Migrations
                         .HasForeignKey("ProductGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BannerImage");
 
                     b.Navigation("Brand");
 
@@ -1596,6 +1646,16 @@ namespace BlogAndShop.Migrations
                     b.Navigation("Owner");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductGroup", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "Image")
+                        .WithMany("ProductGroups")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductMedia", b =>
@@ -1733,7 +1793,17 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Common.Media", b =>
                 {
+                    b.Navigation("Brands");
+
+                    b.Navigation("HomeBanners");
+
+                    b.Navigation("Posts");
+
+                    b.Navigation("ProductGroups");
+
                     b.Navigation("ProductMedias");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Common.Tag", b =>

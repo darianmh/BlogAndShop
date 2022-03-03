@@ -1,4 +1,5 @@
 ﻿@using BlogAndShop.Services.Classes.Date
+@using BlogAndShop.Services
 @model BlogAndShop.Data.ViewModel.PostInfo.BlogListViewModel
 
 @{
@@ -24,7 +25,7 @@
 					<div class="clearfix mb--100">
 
 						<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden h--300">
-							<img class="img-fluid rounded" src="@featurePost.BannerImage" alt="@featurePost.Title">
+							<img class="img-fluid rounded" src="@await Html.GetMediaPath(featurePost.BannerImageId)" alt="@featurePost.Title">
 						</figure>
 
 						@*<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden" data-background-image="@featurePost.BannerImage">
@@ -63,8 +64,8 @@
 								@*<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden">
 										<img class="img-fluid rounded" src="@item.BannerImage" alt="@item.Title">
 									</figure>*@
-								<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden h--300" data-background-image="@item.BannerImage">
-									<img class="img-fluid rounded h-100" src="@item.BannerImage" alt="@item.Title">
+								<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden h--300" data-background-image="@await Html.GetMediaPath(item.BannerImageId)">
+									<img class="img-fluid rounded h-100" src="@await Html.GetMediaPath(item.BannerImageId)" alt="@item.Title">
 								</figure>
 
 

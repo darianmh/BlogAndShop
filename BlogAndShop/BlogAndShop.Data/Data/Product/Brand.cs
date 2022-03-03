@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
@@ -22,7 +23,8 @@ namespace BlogAndShop.Data.Data.Product
         [Display(Name = "لوگو")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [AdminShowItem(2)]
-        public string Logo { get; set; }
+        [ForeignKey("Logo")]
+        public int LogoId { get; set; }
         [Display(Name = "توضیحات")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [AdminShowItem(3)]
@@ -35,6 +37,8 @@ namespace BlogAndShop.Data.Data.Product
         //np
         [JsonIgnore]
         public virtual List<Product> Products { get; set; }
+        [JsonIgnore]
+        public virtual Media Logo { get; set; }
 
 
 

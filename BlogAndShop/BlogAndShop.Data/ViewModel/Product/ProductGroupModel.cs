@@ -39,7 +39,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "تصویر")]
         [FileUpload]
-        public string ImageUrl { get; set; }
+        public int? ImageId { get; set; }
         /// <summary>
         /// کلمات کلیدی
         /// </summary>
@@ -52,5 +52,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         public virtual List<ProductModel> Products { get; set; }
         [Ignore]
         public List<ProductGroupModel> ProductGroups { get; set; }
+        [Ignore]
+        public virtual MediaModel Image { get; set; }
     }
 }

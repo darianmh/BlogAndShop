@@ -28,10 +28,11 @@ namespace BlogAndShop.Data.ViewModel.Product
         [Display(Name = "لوگو")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [FileUpload]
-        public string Logo { get; set; }
+        public string LogoId { get; set; }
 
         //np
         [Ignore]
         public virtual List<ProductModel> Products { get; set; }
+        public virtual MediaModel Image { get; set; }
     }
 }

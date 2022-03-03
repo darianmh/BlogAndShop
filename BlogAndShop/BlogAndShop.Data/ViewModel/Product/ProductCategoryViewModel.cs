@@ -62,6 +62,11 @@ namespace BlogAndShop.Data.ViewModel.Product
         {
             CurrentGroup = productGroup;
         }
+
+        public ProductCategoryViewModel()
+        {
+
+        }
         #endregion
 
 

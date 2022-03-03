@@ -4,6 +4,7 @@ using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common;
+using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Utilities.File;
@@ -38,10 +39,29 @@ namespace BlogAndShop.Services.Services.Common
             await DeleteAsync(item);
         }
 
+        public async Task<string> GetMediaPath(int id)
+        {
+            var defaultImagePath = "";
+            //find from cache
+            defaultImagePath = GetMediaPathCached(id);
+            if (!string.IsNullOrEmpty(defaultImagePath)) return defaultImagePath;
+            var media = await GetByIdAsync(id);
+            defaultImagePath = media?.Path;
+
+            if (!string.IsNullOrEmpty(defaultImagePath))
+                CacheHelper.MediaPaths.Add(id, defaultImagePath);
+            return defaultImagePath;
+        }
 
         #endregion
         #region Utilities
 
+        private static string GetMediaPathCached(int imageId)
+        {
+            var check = CacheHelper.MediaPaths.TryGetValue(imageId, out string path);
+            if (check) return path;
+            return "";
+        }
         private async Task<MediaModel> GetMediaModel(ProductMedia productMedia)
         {
             var media = await GetByIdAsync(productMedia.MediaId);

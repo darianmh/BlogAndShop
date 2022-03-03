@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.HomePage
 {
@@ -22,7 +24,8 @@ namespace BlogAndShop.Data.Data.HomePage
         /// </summary>
         [Display(Name = "تصویر")]
         [AdminShowItem(2)]
-        public string BannerPath { get; set; }
+        [ForeignKey("Banner")]
+        public int BannerId { get; set; }
 
         /// <summary>
         /// لینک بنر
@@ -30,5 +33,9 @@ namespace BlogAndShop.Data.Data.HomePage
         [Display(Name = "لینک")]
         [AdminShowItem(3)]
         public string Link { get; set; }
+
+        //np
+        [JsonIgnore]
+        public virtual Media Banner { get; set; }
     }
 }

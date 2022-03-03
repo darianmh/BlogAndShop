@@ -52,7 +52,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// </summary>
         [Display(Name = "تصویر")]
         [FileUpload]
-        public string BannerImage { get; set; }
+        public int BannerImageId { get; set; }
 
         /// <summary>
         /// تعداد
@@ -126,6 +126,8 @@ namespace BlogAndShop.Data.ViewModel.Product
         //np
         [Ignore]
         public virtual ApplicationUserModel User { get; set; }
+        [Ignore]
+        public virtual MediaModel BannerImage { get; set; }
         [JsonIgnore]
         [Ignore]
         public virtual List<ProductCallRequestModel> ProductCallRequests { get; set; }

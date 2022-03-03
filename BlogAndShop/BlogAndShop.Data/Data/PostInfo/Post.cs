@@ -54,7 +54,8 @@ namespace BlogAndShop.Data.Data.PostInfo
         /// Banner Image path
         /// </summary>
         [Display(Name = "تصویر اصلی")]
-        public string BannerImage { get; set; }
+        [ForeignKey("BannerImage")]
+        public int BannerImageId { get; set; }
 
         /// <summary>
         /// Author
@@ -74,6 +75,8 @@ namespace BlogAndShop.Data.Data.PostInfo
         //np
         [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
+        [JsonIgnore]
+        public virtual Media BannerImage { get; set; }
         [JsonIgnore]
         public virtual List<Post_PostGroup> Post_PostGroups { get; set; }
         [JsonIgnore]

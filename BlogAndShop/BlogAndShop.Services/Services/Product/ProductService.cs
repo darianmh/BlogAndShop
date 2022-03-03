@@ -10,6 +10,7 @@ using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Classes.Date;
+using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PaymentInfo;
@@ -22,6 +23,7 @@ namespace BlogAndShop.Services.Services.Product
     {
         #region Fields
 
+        private readonly IMediaService _mediaService;
 
         #endregion
         #region Methods
@@ -45,13 +47,13 @@ namespace BlogAndShop.Services.Services.Product
         }
 
 
-        public ProductMiniModel GetProductMiniModel(Data.Data.Product.Product product)
+        public async Task<ProductMiniModel> GetProductMiniModel(Data.Data.Product.Product product)
         {
             return new ProductMiniModel()
             {
                 Title = product.Title,
                 Id = product.Id,
-                BannerImage = product.BannerImage,
+                BannerImage = await _mediaService.GetMediaPath(product.BannerImageId),
                 OffPrice = product.OffPrice,
                 Price = product.Price,
                 Keywords = product.Keywords
@@ -74,7 +76,7 @@ namespace BlogAndShop.Services.Services.Product
         public async Task<List<SiteMapItemModel>> GetSiteMap()
         {
             var all = await GetAllAsync();
-            return all.Select(x => new SiteMapItemModel
+            return all.Where(x => x.IsPublished).Select(x => new SiteMapItemModel
             {
                 LastDate = x.UpdateDateTime.ToSiteMapString(),
                 Url = $"{DirectoryHelper.Domain}/Shop/Item/{x.Id}"
@@ -84,13 +86,13 @@ namespace BlogAndShop.Services.Services.Product
         public async Task<List<SearchResultItemModel>> Search(string key)
         {
             var all = await Queryable.Where(x => x.Title.Contains(key)).ToListAsync();
-            return all.Select(x => new SearchResultItemModel()
+            return all.Select(async x => new SearchResultItemModel()
             {
-                ImagePath = x.BannerImage,
+                ImagePath = await _mediaService.GetMediaPath(x.BannerImageId),
                 Name = x.Title,
                 SearchResultType = SiteMapType.Shop,
                 Id = x.Id
-            }).ToList();
+            }).Select(x => x.Result).ToList();
         }
 
         public async Task<Data.Data.Product.Product> GetLastGroupProduct(int groupId)
@@ -188,8 +190,9 @@ namespace BlogAndShop.Services.Services.Product
         }
         #endregion
         #region Ctor
-        public ProductService(ApplicationDbContext db) : base(db)
+        public ProductService(ApplicationDbContext db, IMediaService mediaService) : base(db)
         {
+            _mediaService = mediaService;
         }
         #endregion
 

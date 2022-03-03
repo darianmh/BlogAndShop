@@ -43,7 +43,7 @@ namespace BlogAndShop.ViewComponents
             {
                 CreateDateTime = lastBlog.CreateDateTime,
                 UpdateDateTime = lastBlog.UpdateDateTime,
-                BannerPath = lastBlog.BannerImage,
+                BannerId = lastBlog.BannerImageId,
                 HtmlContent = htmlContent,
                 Link = $"/Blog/Post/{lastBlog.PreferUrl}"
             };
