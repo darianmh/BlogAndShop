@@ -11,6 +11,7 @@ using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Utilities;
+using BlogAndShop.Services.Services.Utilities.File;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.Product
@@ -19,13 +20,14 @@ namespace BlogAndShop.Services.Services.Product
     {
         #region Fields
 
-
         #endregion
         #region Methods
         public async Task<DownloadItemViewModel> GetItemModel(int postId)
         {
             var item = await GetByIdAsync(postId);
-            return item?.ToModel();
+            var model = item?.ToModel();
+            if (model != null) model.Extension = FileHelperService.GetFileExtension(model.DownloadPath);
+            return model;
         }
 
         public async Task<BookListViewModel> GetItemsModel(int page, int count)

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Content Remove="Views\AdminStyle\Index.cshtml" />
+    <Content Remove="Views\Book\Read.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
     <None Include="Views\BaseEntity\Details.cshtml" />
     <None Include="Views\BaseEntity\Edit.cshtml" />
     <None Include="Views\Book\Index.cshtml" />
+    <None Include="Views\Book\Read.cshtml" />
     <None Include="Views\Book\Item.cshtml" />
     <None Include="Views\Blog\Index.cshtml" />
     <None Include="Views\Blog\Item.cshtml" />

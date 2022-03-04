@@ -36,6 +36,12 @@ namespace BlogAndShop.Controllers
             var model = await _downloadItemService.GetItemModel(postId);
             return View(model);
         }
+        [Route("Book/Read/{postId}")]
+        public async Task<IActionResult> Read(int postId)
+        {
+            var model = await _downloadItemService.GetItemModel(postId);
+            return View(model);
+        }
 
 
         #endregion

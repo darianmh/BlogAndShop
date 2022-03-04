@@ -25,5 +25,7 @@ namespace BlogAndShop.Data.ViewModel.Product
         [TextArea]
         [Display(Name = "کلمات کلیدی")]
         public string Keywords { get; set; }
+        [Ignore]
+        public string Extension { get; set; }
     }
 }

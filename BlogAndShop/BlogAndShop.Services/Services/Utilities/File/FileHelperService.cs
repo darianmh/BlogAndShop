@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using BlogAndShop.Data.ViewModel.Common;
 using ImageMagick;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -89,6 +90,56 @@ namespace BlogAndShop.Services.Services.Utilities.File
         {
             var file = LoadFile(itemPath, hostEnvironment);
             //add water mark
+        }
+
+
+        /// <summary>
+        /// بازگرداندن پشوند فایل
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetFileExtension(string path)
+        {
+            var extension = Path.GetExtension(path);
+            return extension;
+        }
+
+        /// <summary>
+        /// بازگرداندن نوع فایل
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static FileType GetFileType(string path)
+        {
+            var extension = GetFileExtension(path);
+            var fileType = FileType.Document;
+            if (extension.Equals("bmp", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals("jpg", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals("jpeg", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals("gif", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals("png", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals(".bmp", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals(".gif", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals(".WebP", StringComparison.OrdinalIgnoreCase)
+                || extension.Equals(".png", StringComparison.OrdinalIgnoreCase))
+            {
+                fileType = FileType.Image;
+            }
+            else if (extension.Equals("mp4", StringComparison.OrdinalIgnoreCase)
+                     || extension.Equals("WMV", StringComparison.OrdinalIgnoreCase)
+                     || extension.Equals(".mp4", StringComparison.OrdinalIgnoreCase)
+                     || extension.Equals(".WMV", StringComparison.OrdinalIgnoreCase))
+            {
+                fileType = FileType.Video;
+            }
+            else
+            {
+                fileType = FileType.Document;
+            }
+
+            return fileType;
         }
 
         #endregion

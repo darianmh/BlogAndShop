@@ -19,6 +19,7 @@ using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.User;
+using BlogAndShop.Services.Services.Utilities.File;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Services.Services.Mapper
@@ -99,32 +100,10 @@ namespace BlogAndShop.Services.Services.Mapper
         public static MediaModel ToModel(this Media item)
         {
             var model = Map<MediaModel>(item);
+
             //file type
-            if (item.Extension.Equals("bmp", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals("jpg", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals("jpeg", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals("gif", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals("png", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals(".bmp", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals(".gif", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals(".WebP", StringComparison.OrdinalIgnoreCase)
-                || item.Extension.Equals(".png", StringComparison.OrdinalIgnoreCase))
-            {
-                model.FileType = FileType.Image;
-            }
-            else if (item.Extension.Equals("mp4", StringComparison.OrdinalIgnoreCase)
-                     || item.Extension.Equals("WMV", StringComparison.OrdinalIgnoreCase)
-                     || item.Extension.Equals(".mp4", StringComparison.OrdinalIgnoreCase)
-                     || item.Extension.Equals(".WMV", StringComparison.OrdinalIgnoreCase))
-            {
-                model.FileType = FileType.Video;
-            }
-            else
-            {
-                model.FileType = FileType.Document;
-            }
+            model.FileType = FileHelperService.GetFileType(item.Extension);
+
 
             return model;
         }
