@@ -70,7 +70,8 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             await _postTagsService.SetPostTags(item.Id, model.SelectedTags);
             await _postPostGroupService.SetPostGroups(item.Id, model.SelectedGroups);
             CacheHelper.ClearCache();
-            if (model.SaveAndContinue) return View(model);
+            if (model.SaveAndContinue)
+                return RedirectToAction("Edit", new { id = model.Id });
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
@@ -83,7 +84,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             await _postPostGroupService.SetPostGroups(model.Id, model.SelectedGroups);
             CacheHelper.ClearCache();
             if (model.SaveAndContinue)
-                return View(model);
+                return RedirectToAction("Edit", new { id = model.Id });
             return RedirectToAction("Details", new { id = model.Id });
         }
 
