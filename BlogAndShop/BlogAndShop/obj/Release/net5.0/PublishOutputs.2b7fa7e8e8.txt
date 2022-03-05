@@ -1,4 +1,5 @@
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.exe
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\AdminCustom.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\ErrorStyle.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\FaCustom.css
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\css\font-awesome.min.css
@@ -1086,6 +1087,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Smarty\demo.files\video\hd0936.ogv
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\Smarty\demo.files\video\hd0936.webm
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\manifest.json
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\MyImages\darianwatermark.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\MyImages\instagram.svg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\MyImages\instagram_white.svg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\richtexteditor\runtime\colorpicker_more_ns.htm
@@ -1744,6 +1746,8 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\User-stories-Agile-Scrum-Belgium-Training-768x571.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\User-stories-Agile-Scrum-Belgium-Training-980x450.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\User-stories-Agile-Scrum-Belgium-Training.png
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\User-stories-Agile-Scrum-Belgium-Training2.png
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\User-stories-Agile-Scrum-Belgium-Training_png.webp
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\user-story-examples-agile-usa-150x150.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\user-story-examples-agile-usa-160x160.png
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2021\08\user-story-examples-agile-usa-300x192.png
@@ -1962,6 +1966,32 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202030114_COM_3_D-LOOP_EN.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202030116_1370132_clear-2014_1000x.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202030117_2112200857_ADIX-hint-updated-slide.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202110105_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202110107_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202110109_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202110109_286889_176_jpg.webp
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202111237_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202111239_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202111247_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202111256_286889_176.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202150242_20210313_195538.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202150242_20210313_195538_jpg.webp
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202150243_20210313_195538.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202150256_20210313_195538.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202150342_20210313_195538.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2202151151_tumblr_n9uo7h3Qhj1tyu4r6o1_640.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040136_539fe87b331fce0fd9c5e02c3ff1a1c5.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040137_539fe87b331fce0fd9c5e02c3ff1a1c5.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040137_539fe87b331fce0fd9c5e02c3ff1a1c5_jpg.webp
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040139_539fe87b331fce0fd9c5e02c3ff1a1c5.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040139_539fe87b331fce0fd9c5e02c3ff1a1c5_jpg.webp
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040148_539fe87b331fce0fd9c5e02c3ff1a1c5.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040148_539fe87b331fce0fd9c5e02c3ff1a1c5_jpg.webp
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040152_20210204_184521.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040153_20210204_184521.jpg
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040156_539fe87b331fce0fd9c5e02c3ff1a1c5.png
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040156_ConnectAppSetup2020_1_5.exe
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\2203040357_قیمت صبور.pdf
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo.psd
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo1.jpg
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\wwwroot\UploadedFiles\MediaUpload\logo1_11zon-ConvertImage.png
@@ -1976,6 +2006,8 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.pdb
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\AdvancedStringBuilder.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Humanizer.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\ImageProcessor.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\ImageProcessor.Plugins.WebP.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Magick.NET-Q16-AnyCPU.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Magick.NET.Core.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Authorization.dll
@@ -2019,6 +2051,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Composition.AttributedModel.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Composition.Convention.dll
@@ -2027,6 +2060,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Composition.TypedParts.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Drawing.Common.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Runtime.Caching.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\System.Runtime.CompilerServices.Unsafe.dll
@@ -2104,6 +2138,9 @@ E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Ou
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\Projects\BlogAndShopSite\BlogAndShop\BlogAndShop\obj\Release\net5.0\PubTmp\Out\BlogAndShop.Data.dll

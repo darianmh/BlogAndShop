@@ -7,9 +7,11 @@
 			 data-swiper='{
 					"slidesPerView": 1,
 					"spaceBetween": 0,
-					"autoplay": { "delay" : 3500, "disableOnInteraction": false },
+					"autoplay": { "delay" : 3500, "disableOnInteraction": false,"pauseOnMouseEnter":true },
 					"loop": true,
-					"pagination": { "type": "bullets" }
+					"pagination": { "type": "bullets" },
+					"updateOnImagesReady":true,
+					"preloadImages":true
 				}'>
 
 		<div class="swiper-wrapper h-100">
@@ -36,16 +38,16 @@
 
 				<!-- /slide @count-->
 				count++;
-			}
+				}
 
-		</div>
+			</div>
 
-		<!-- Add Arrows -->
-		<div class="swiper-button-next swiper-button-white"></div>
-		<div class="swiper-button-prev swiper-button-white"></div>
+			<!-- Add Arrows -->
+			<div class="swiper-button-next swiper-button-white"></div>
+			<div class="swiper-button-prev swiper-button-white"></div>
 
-		<!-- Add Pagination -->
-		<div class="swiper-pagination"></div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
 
-	</section>
-}
+		</section>
+	}

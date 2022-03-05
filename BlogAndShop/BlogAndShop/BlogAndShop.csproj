@@ -5,10 +5,6 @@
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Views\AdminStyle\Index.cshtml" />
-    <Content Remove="Views\Book\Read.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Account\ForgotPassword.cshtml" />

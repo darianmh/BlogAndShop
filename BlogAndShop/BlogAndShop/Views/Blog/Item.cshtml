@@ -112,7 +112,7 @@
 						<a target="_blank" asp-controller="Blog" asp-action="Post" asp-route-postUrl="@item.PreferUrl" class="col-6 col-md-4 mb-5 position-relative text-dark clearfix text-decoration-none">
 
 							<figure class="d-block text-center overlay-dark-hover overlay-opacity-2 rounded overflow-hidden h--120">
-								<img class="img-fluid rounded" src="@await Html.GetMediaPath(Model.BannerImageId)" alt="@item.Title">
+								<img class="img-fluid rounded" src="@await Html.GetMediaPath(item.BannerImageId)" alt="@item.Title">
 							</figure>
 
 							<p class="mt--20 fs--20 mb--6">

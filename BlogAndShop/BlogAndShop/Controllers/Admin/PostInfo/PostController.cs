@@ -61,7 +61,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(PostModel model)
+        public async Task<IActionResult> Create([FromForm] PostModel model)
         {
             if (!ModelState.IsValid) return View(model);
             model.OwnerId = await GetUserId();
@@ -75,7 +75,7 @@ namespace BlogAndShop.Controllers.Admin.PostInfo
             return RedirectToAction("Details", new { id = item.Id });
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(PostModel model)
+        public async Task<IActionResult> Edit([FromForm] PostModel model)
         {
             if (!ModelState.IsValid) return View(model);
             var item = model.ToEntity();

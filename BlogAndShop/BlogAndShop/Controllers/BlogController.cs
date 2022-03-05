@@ -27,7 +27,7 @@ namespace BlogAndShop.Controllers
         #region Methods
 
         [Route("Blog/{action=Index}/{categoryId?}")]
-        public async Task<IActionResult> Index(int? categoryId, int page = 1, int count = 10)
+        public async Task<IActionResult> Index(int? categoryId, int page = 1, int count = 11)
         {
             if (page < 1) page = 1;
             var model = await _postGroupService.GetPostModel(categoryId, page, count);

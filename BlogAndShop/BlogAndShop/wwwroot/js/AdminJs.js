@@ -29,6 +29,6 @@ function SetSelectedImage(path, imageId) {
 
 //admin save and continue
 function Save() {
-  $("form").append('<input type="hidden" name="SaveAndContinue" value="1"/>');
+  $("form").append('<input type="hidden" name="SaveAndContinue" value="true"/>');
   $("form").submit();
 }
