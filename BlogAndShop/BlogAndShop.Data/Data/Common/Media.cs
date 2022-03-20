@@ -66,6 +66,10 @@ namespace BlogAndShop.Data.Data.Common
         public virtual List<Product.Product> Products { get; set; }
         [JsonIgnore]
         public virtual List<ProductGroup> ProductGroups { get; set; }
+        [JsonIgnore]
+        public virtual List<DownloadItem> DownloadItems { get; set; }
+        [JsonIgnore]
+        public virtual List<DownloadItem> DownloadItems1 { get; set; }
 
 
         public override MySelectListItem GetSelectListItem(string selected)

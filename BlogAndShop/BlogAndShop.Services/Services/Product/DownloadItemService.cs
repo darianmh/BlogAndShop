@@ -8,6 +8,7 @@ using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes.Date;
+using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Utilities;
@@ -20,13 +21,14 @@ namespace BlogAndShop.Services.Services.Product
     {
         #region Fields
 
+        private readonly IMediaService _mediaService;
         #endregion
         #region Methods
         public async Task<DownloadItemViewModel> GetItemModel(int postId)
         {
             var item = await GetByIdAsync(postId);
             var model = item?.ToModel();
-            if (model != null) model.Extension = FileHelperService.GetFileExtension(model.DownloadPath);
+            if (model != null) model.Extension = FileHelperService.GetFileExtension(await _mediaService.GetMediaPath(model.DownloadPathId));
             return model;
         }
 
@@ -53,13 +55,13 @@ namespace BlogAndShop.Services.Services.Product
         public async Task<List<SearchResultItemModel>> Search(string key)
         {
             var all = await Queryable.Where(x => x.Title.Contains(key) || x.Description.Contains(key)).ToListAsync();
-            return all.Select(x => new SearchResultItemModel()
+            return all.Select(async x => new SearchResultItemModel()
             {
                 Name = x.Title,
                 SearchResultType = SiteMapType.Book,
                 Id = x.Id,
-                ImagePath = x.BannerImage
-            }).ToList();
+                ImagePath = await _mediaService.GetMediaPath(x.BannerImageId)
+            }).Select(x => x.Result).ToList();
         }
 
         #endregion
@@ -68,8 +70,9 @@ namespace BlogAndShop.Services.Services.Product
 
         #endregion
         #region Ctor
-        public DownloadItemService(ApplicationDbContext db) : base(db)
+        public DownloadItemService(ApplicationDbContext db, IMediaService mediaService) : base(db)
         {
+            _mediaService = mediaService;
         }
         #endregion
 

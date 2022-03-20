@@ -1,4 +1,5 @@
 ﻿@using BlogAndShop.Services.Classes.Date
+@using BlogAndShop.Services
 @model BlogAndShop.Data.ViewModel.Product.DownloadItemViewModel
 @{
 	ViewBag.metaDescription = Model.Description;
@@ -38,7 +39,7 @@
 
 
 				<div class="clearfix mb-5">
-					<a target="_blank" href="@Model.DownloadPath" class="btn btn-dark">دانلود</a>
+					<a target="_blank" href="@await Html.GetMediaPath(Model.DownloadPathId)" class="btn btn-dark">دانلود</a>
 				</div>
 
 				<!-- FEATURED POST : ALWAYS LAST ADDED -->
@@ -49,12 +50,12 @@
 
 
 
-					<!-- begin snippet: js hide: false console: true babel: null -->
-					<!-- language: lang-html -->
+						<!-- begin snippet: js hide: false console: true babel: null -->
+						<!-- language: lang-html -->
 
-					<embed class="col-12" src="@Model.DownloadPath" type="application/pdf" height="700px" width="500">
+						<embed class="col-12" src="@await Html.GetMediaPath(Model.DownloadPathId)" type="application/pdf" height="700px" width="500">
 
-					<!-- end snippet -->
+						<!-- end snippet -->
 					}
 
 

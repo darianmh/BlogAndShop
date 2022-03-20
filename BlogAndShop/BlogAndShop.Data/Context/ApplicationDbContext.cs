@@ -100,6 +100,19 @@ namespace BlogAndShop.Data.Context
                     .WithMany(x => x.ProductForumGroups)
                     .HasForeignKey(x => x.ForumTitleId);
             });
+            //DownloadItem
+            modelBuilder.Entity<DownloadItem>(entity =>
+            {
+                entity.HasOne(x => x.BannerImage)
+                    .WithMany(x => x.DownloadItems)
+                    .HasForeignKey(x => x.BannerImageId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(x => x.DownloadPath)
+                    .WithMany(x => x.DownloadItems1)
+                    .HasForeignKey(x => x.DownloadPathId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
 
             //var entities = modelBuilder.Model.GetEntityTypes();
             //var cascadeFKs = entities.SelectMany(t => t.GetForeignKeys())

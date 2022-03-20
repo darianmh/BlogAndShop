@@ -89,12 +89,10 @@ namespace BlogAndShop.Controllers.Admin.Product
         /// <returns></returns>
         private async Task<DownloadItemViewModel> GetMediaInfo(DownloadItemViewModel model)
         {
-            if (model.MediaId == null) return model;
-            var media = await _mediaService.GetByIdAsync((int)model.MediaId);
+            var media = await _mediaService.GetByIdAsync((int)model.DownloadPathId);
             if (media == null) return model;
             if (string.IsNullOrEmpty(model.Title)) model.Title = media.Title;
             if (string.IsNullOrEmpty(model.Description)) model.Description = media.Description;
-            if (string.IsNullOrEmpty(model.DownloadPath)) model.DownloadPath = media.Path;
             return model;
         }
         #endregion

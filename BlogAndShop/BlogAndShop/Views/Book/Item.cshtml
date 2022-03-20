@@ -1,4 +1,5 @@
 ﻿@using BlogAndShop.Services.Classes.Date
+@using BlogAndShop.Services
 @model BlogAndShop.Data.ViewModel.Product.DownloadItemViewModel
 @{
 	ViewBag.metaDescription = Model.Description;
@@ -43,7 +44,7 @@
 						<!-- FEATURED POST : ALWAYS LAST ADDED -->
 						<div class="clearfix mb-5">
 
-							<img class="img-fluid w-100 h--500" src="@Model.BannerImage" alt="@Model.Title">
+							<img class="img-fluid w-100 h--500" src="@await Html.GetMediaPath(Model.BannerImageId)" alt="@Model.Title">
 
 						</div>
 
@@ -51,33 +52,38 @@
 
 
 					<div class="col-lg-8 col-md-8 order-2 mb-5">
-						
+
 						<h1 class="h3 h4-xs font-weight-medium mb-0">
 							@Model.Title
 						</h1>
-						<hr/>
+						<hr />
 						<div class="clearfix mb-5">
-							<a target="_blank" href="@Model.DownloadPath" class="btn btn-dark btn-pill btn-soft">
+							<a target="_blank" href="@await Html.GetMediaPath(Model.DownloadPathId)" class="btn btn-dark btn-pill btn-soft">
 								<i class="fi fi-arrow-download"></i>
 								دانلود
 							</a>
-							<a asp-action="Read" asp-route-postId="@Model.Id" class="btn btn-info btn-pill btn-soft">
-								<i class="fi fi-eye"></i>
-								مطالعه
-							</a>
+							@if (Model.Extension.Contains("pdf", StringComparison.OrdinalIgnoreCase))
+							{
+
+								<a asp-action="Read" asp-route-postId="@Model.Id" class="btn btn-info btn-pill btn-soft">
+									<i class="fi fi-eye"></i>
+									مطالعه
+								</a>
+							}
+
 						</div>
 						<p>@Model.Description</p>
 					</div>
 
 				</div>
-			
+
 				<!-- /FEATURED POST : ALWAYS LAST ADDED -->
 				<!--
-	.article-format class will add some slightly formattings for a good text visuals.
-	This is because most editors are not ready formatted for bootstrap
-	Blog content should come inside this container, as it is from database!
-	src/scss/_core/base/_typography.scss
-	-->
+				.article-format class will add some slightly formattings for a good text visuals.
+				This is because most editors are not ready formatted for bootstrap
+				Blog content should come inside this container, as it is from database!
+				src/scss/_core/base/_typography.scss
+				-->
 
 
 				<p class="text-muted border-bottom pb-2 fs--13 mt--60">
