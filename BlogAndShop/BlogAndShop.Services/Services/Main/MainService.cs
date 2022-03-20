@@ -307,13 +307,13 @@ namespace BlogAndShop.Services.Services.Main
             foreach (object temp in navigationProperties)
                 Delete(temp);
         }
-        protected async Task<List<T>> Pagination<T>(IQueryable<T> all, int page, int count)
+        protected async Task<List<T>> Pagination<T>(IQueryable<T> all, int page, int count) where T : BaseEntity<TId>
         {
-            return await all.Skip(page * count).Take(count).ToListAsync();
+            return await all.OrderBy(x => x.CreateDateTime).Reverse().Skip(page * count).Take(count).ToListAsync();
         }
-        protected List<T> Pagination<T>(IEnumerable<T> all, int page, int count)
+        protected List<T> Pagination<T>(IEnumerable<T> all, int page, int count) where T : BaseEntity<TId>
         {
-            return all.Skip(page * count).Take(count).ToList();
+            return all.OrderBy(x => x.CreateDateTime).Reverse().Skip(page * count).Take(count).ToList();
         }
 
 
