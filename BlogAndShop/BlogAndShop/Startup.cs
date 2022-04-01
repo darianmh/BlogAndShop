@@ -110,12 +110,11 @@ namespace BlogAndShop
                 options.Cookie.HttpOnly = true;
                 //options.Cookie.Expiration
 
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
                 options.LoginPath = "/Account/Index";
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
-                //options.ReturnUrlParameter=""
             });
 
 

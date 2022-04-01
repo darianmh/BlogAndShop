@@ -1,9 +1,11 @@
 ﻿@using BlogAndShop.Services
+@using Microsoft.AspNetCore.Http.Extensions
+@using Microsoft.AspNetCore.Routing
 <li class="list-inline-item mx-1 dropdown">
 
 	@if (User.Identity == null || !User.Identity.IsAuthenticated)
 	{
-		<a asp-controller="Account" asp-action="Index" class="btn btn-pill btn-sm btn-primary">
+		<a asp-controller="Account" asp-action="Index" asp-route-ReturnUrl="@Html.ViewContext.HttpContext.Request.GetEncodedUrl()" class="btn btn-pill btn-sm btn-primary">
 
 			<!-- visible : mobile only (including small screen : iPhone 5) -->
 			<span class="d-block d-sm-none">
