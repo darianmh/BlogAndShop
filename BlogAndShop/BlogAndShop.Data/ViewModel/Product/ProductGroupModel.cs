@@ -44,7 +44,6 @@ namespace BlogAndShop.Data.ViewModel.Product
         /// کلمات کلیدی
         /// </summary>
         [Display(Name = "کلمات کلیدی")]
-        [FileUpload]
         public string Keywords { get; set; }
 
         //np

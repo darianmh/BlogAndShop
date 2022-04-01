@@ -69,13 +69,14 @@ namespace BlogAndShop.Services.Services.Utilities.SiteMap
         {
             var text = "";
             text += "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
-            foreach (var item in list)
-            {
-                text += "<url>";
-                text += $"<loc>{item.Url}</loc>";
-                text += $"<lastmod>{item.LastDate}</lastmod>";
-                text += "</url>";
-            }
+            if (list != null)
+                foreach (var item in list)
+                {
+                    text += "<url>";
+                    text += $"<loc>{item.Url}</loc>";
+                    text += $"<lastmod>{item.LastDate}</lastmod>";
+                    text += "</url>";
+                }
 
             text += "</urlset>";
             return text;
