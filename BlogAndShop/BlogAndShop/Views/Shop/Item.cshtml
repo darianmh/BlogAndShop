@@ -1,9 +1,11 @@
 ﻿@using BlogAndShop.Data.Data.Common
+@using BlogAndShop.Services
 @model BlogAndShop.Data.ViewModel.Product.ProductItemViewModel
 @{
 	ViewBag.metaDescription = Model.ProductModel.MetaDescription;
 	ViewBag.metaTitle = Model.ProductModel.Title;
 	ViewBag.metaKeywords = Model.ProductModel.Keywords;
+	string bannerPath = await Html.GetMediaPath(Model.ProductModel.BannerImageId);
 }
 
 <!-- PRODUCT -->
@@ -74,7 +76,7 @@
 								<!-- slider 1 -->
 								<div class="swiper-slide py-2 rounded cursor-pointer">
 									<img height="80" class="bg-suprime rounded max-h-600"
-										 src="@Model.ProductModel.BannerImage"
+										 src="@bannerPath"
 										 alt="@Model.ProductModel.Title">
 								</div>
 								@foreach (var item in Model.Images)
@@ -143,15 +145,15 @@
 										<img class="bg-suprime img-fluid rounded max-h-600"
 											 sizes="(max-width: 768px) 100vw"
 											 srcset="
-																@Model.ProductModel.BannerImage 1200w,
-																@Model.ProductModel.BannerImage 768w
+																@bannerPath 1200w,
+																@bannerPath 768w
 														"
-											 src="@Model.ProductModel.BannerImage"
+											 src="@bannerPath"
 											 alt="@Model.ProductModel.Title">
 									</div>
 								</div>
 
-								@foreach (var item in Model.Images)
+								@foreach (var item in Model.Images.Where(x => !x.Path.Equals(bannerPath, StringComparison.OrdinalIgnoreCase)))
 								{
 									<!-- slider 2 -->
 									<div class="swiper-slide">
@@ -197,21 +199,30 @@
 				</div>
 				<div class="border-bottom pb-2 mb-4 text-center-xs">
 
-					@if (Model.ProductModel.OffPrice == null)
+					@if (Model.ProductModel.Quantity == 0)
 					{
 						<p class="fs--25 m-0 font-weight-medium text-danger">
-							@Model.ProductModel.Price.ToString("N0") ريال
+							این محصول موجود نمی باشد.
 						</p>
 					}
 					else
 					{
-						<p class="text-muted m-0">
-							<del>@Model.ProductModel.Price.ToString("N0") ريال</del>
-						</p>
+						if (Model.ProductModel.OffPrice == null)
+						{
+							<p class="fs--25 m-0 font-weight-medium text-danger">
+								@Model.ProductModel.Price.ToString("N0") ريال
+							</p>
+						}
+						else
+						{
+							<p class="text-muted m-0">
+								<del>@Model.ProductModel.Price.ToString("N0") ريال</del>
+							</p>
 
-						<p class="fs--25 m-0 font-weight-medium text-danger">
-							@((decimal)Model.ProductModel.OffPrice).ToString("N0") ريال
-						</p>
+							<p class="fs--25 m-0 font-weight-medium text-danger">
+								@((decimal)Model.ProductModel.OffPrice).ToString("N0") ريال
+							</p>
+						}
 					}
 				</div>
 
@@ -583,7 +594,7 @@
 				<input type="hidden" name="ProductId" id="ProductId" value="@Model.ProductModel.Id" />
 				<div class="modal-header">
 					<h2 class="modal-title fs--18 m-0">
-						افزودن درخواست تماس
+						افزودن درخواست برای سفارش محصول
 					</h2>
 
 					<button type="button" class="close pointer" data-dismiss="modal" aria-label="Close">
@@ -595,6 +606,13 @@
 
 					<div class="row">
 
+						<div class="col-12 col-sm-12 col-lg-12">
+
+							<div class="form-label-group mb-3">
+								<p>لطفا اطلاعات تماس خود را وارد نمایید تا کارشناسان فروش ما در اسرع وقت برای ثبت سفارش با شما تماس بگیرند.</p>
+							</div>
+
+						</div>
 						<div class="col-12 col-sm-6 col-lg-6">
 
 							<div class="form-label-group mb-3">

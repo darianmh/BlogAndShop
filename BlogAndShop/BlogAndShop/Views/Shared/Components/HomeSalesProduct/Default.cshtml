@@ -17,37 +17,40 @@
 				@for (int i = 0; i < (Math.Min(2, Model.Count)); i++)
 				{
 
-					<div class="col-12 col-lg-6 mb-5">
+					if (Model[i].Quantity > 0)
+					{
+						<div class="col-12 col-lg-6 mb-5">
 
-						<div class="p-4 p-3-xs rounded shadow-md shadow-3d-hover transition-all-ease-250">
+							<div class="p-4 p-3-xs rounded shadow-md shadow-3d-hover transition-all-ease-250">
 
-							<a asp-controller="Shop" asp-action="Item" asp-route-productId="@Model[i].Id">
-								<figure class="mb-4 text-center overflow-hidden rounded-top bg-cover lazy" data-background-image="@Model[i].BannerImage">
-									<!-- squared -->
-									<!-- <img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="...">  -->
-									<!-- landscape -->
-									<img class="w-100" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiA5IiAvPg==" alt="@Model[i].Title">
-								</figure>
-							</a>
+								<a asp-controller="Shop" asp-action="Item" asp-route-productId="@Model[i].Id">
+									<figure class="mb-4 text-center overflow-hidden rounded-top bg-cover lazy" data-background-image="@Model[i].BannerImage">
+										<!-- squared -->
+										<!-- <img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="...">  -->
+										<!-- landscape -->
+										<img class="w-100" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiA5IiAvPg==" alt="@Model[i].Title">
+									</figure>
+								</a>
 
 
-							<h2 class="h5">
-								<span class="text-primary">
-									@{
-										var price = Model[i].OffPrice != null ? (decimal)Model[i].OffPrice : Model[i].Price;
-									}
-									@price.ToString("N0")
-								</span>
+								<h2 class="h5">
+									<span class="text-primary">
+										@{
+											var price = Model[i].OffPrice != null ? (decimal)Model[i].OffPrice : Model[i].Price;
+										}
+										@price.ToString("N0")
+									</span>
 
-								<span class="h6 d-block text-center text-truncate py-3">
-									@Model[i].Title
-								</span>
-							</h2>
+									<span class="h6 d-block text-center text-truncate py-3">
+										@Model[i].Title
+									</span>
+								</h2>
 
+
+							</div>
 
 						</div>
-
-					</div>
+					}
 
 				}
 

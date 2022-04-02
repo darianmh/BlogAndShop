@@ -11,5 +11,6 @@
         public string Keywords { get; set; }
         public decimal? OffPrice { get; set; }
         public decimal Price { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }

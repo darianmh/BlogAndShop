@@ -56,7 +56,8 @@ namespace BlogAndShop.Services.Services.Product
                 BannerImage = await _mediaService.GetMediaPath(product.BannerImageId),
                 OffPrice = product.OffPrice,
                 Price = product.Price,
-                Keywords = product.Keywords
+                Keywords = product.Keywords,
+                IsAvailable = product.Quantity > 0
             };
         }
 

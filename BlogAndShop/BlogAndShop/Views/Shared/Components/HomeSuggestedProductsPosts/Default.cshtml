@@ -33,8 +33,16 @@
 									@item.Title
 									<span class="d-block mt-2 text-dark font-weight-medium fs--18">
 										@{
-											var price = item.OffPrice == null ?
-												item.Price.ToString("N0") : ((decimal)item.OffPrice).ToString("N0");
+											string price;
+											if (item.Quantity > 0)
+											{
+												price = item.OffPrice == null ?
+													item.Price.ToString("N0") : ((decimal) item.OffPrice).ToString("N0");
+											}
+											else
+											{
+												price = "ناموجود";
+											}
 										}
 										@price
 									</span>
@@ -75,8 +83,16 @@
 									@item.Title
 									<span class="d-block mt-2 text-dark font-weight-medium fs--18">
 										@{
-											var price = item.OffPrice == null ?
-												item.Price.ToString("N0") : ((decimal)item.OffPrice).ToString("N0");
+											string price;
+											if (item.Quantity > 0)
+											{
+												price = item.OffPrice == null ?
+													item.Price.ToString("N0") : ((decimal)item.OffPrice).ToString("N0");
+											}
+											else
+											{
+												price = "ناموجود";
+											}
 										}
 										@price
 									</span>

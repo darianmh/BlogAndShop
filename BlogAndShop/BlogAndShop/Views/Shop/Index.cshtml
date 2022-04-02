@@ -111,15 +111,22 @@
 											<!-- price -->
 											<span class="d-block text-danger font-weight-medium fs--16 mt-2">
 
-												@if (item.OffPrice == null)
+												@if (item.IsAvailable)
 												{
-													<span>@item.Price.ToString("N0") <sup>ريال</sup></span>
+													if (item.OffPrice == null)
+													{
+														<span>@item.Price.ToString("N0") <sup>ريال</sup></span>
+													}
+													else
+													{
+														<del class="text-muted">@item.Price.ToString("N0") <sup>ريال</sup></del>
+
+														<span>@item.OffPrice.Value.ToString("N0")<sup>ريال</sup></span>
+													}
 												}
 												else
 												{
-													<del class="text-muted">@item.Price.ToString("N0") <sup>ريال</sup></del>
-
-													<span>@item.OffPrice.Value.ToString("N0")<sup>ريال</sup></span>
+													<span>ناموجود</span>
 												}
 											</span>
 
