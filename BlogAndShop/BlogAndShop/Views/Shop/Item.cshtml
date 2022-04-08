@@ -1,5 +1,6 @@
 ﻿@using BlogAndShop.Data.Data.Common
 @using BlogAndShop.Services
+@using BlogAndShop.Services.Classes
 @model BlogAndShop.Data.ViewModel.Product.ProductItemViewModel
 @{
 	ViewBag.metaDescription = Model.ProductModel.MetaDescription;
@@ -308,7 +309,7 @@
 
 
 						<li class="list-item clearfix border-bottom py-3">
-							<a asp-controller="Shop" asp-action="Index" asp-route-brandId="@Model.ProductModel.Brand.Id" class="float-end link-muted">
+							<a asp-controller="Shop" asp-action="Index" asp-route-brandName="@Model.ProductModel.Brand.Name.GetRouteTextString()" class="float-end link-muted">
 								@Model.ProductModel.Brand.Name
 							</a>
 							<span class="text-muted">

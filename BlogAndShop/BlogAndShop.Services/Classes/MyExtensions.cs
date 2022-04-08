@@ -31,10 +31,19 @@ namespace BlogAndShop.Services.Classes
             if (string.IsNullOrEmpty(text)) return "";
             return text.Length < length ? text : string.Join(String.Empty, text.Take(length)) + "...";
         }
+
+        public static string GetNormalRouteTextString(this string text)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            text = text.Trim();
+            text = text.Replace('-', ' ');
+            return text.Replace("%2D", "-");
+        }
         public static string GetRouteTextString(this string text)
         {
             if (string.IsNullOrEmpty(text)) return "";
             text = text.Trim();
+            text = text.Replace("-", "%2D");
             return text.Replace(' ', '-');
         }
     }

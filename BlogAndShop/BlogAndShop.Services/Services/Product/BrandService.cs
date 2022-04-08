@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
+using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Main;
 using BlogAndShop.Services.Services.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.Product
 {
@@ -34,6 +36,10 @@ namespace BlogAndShop.Services.Services.Product
             return entity == null ? new BrandModel() : entity.ToModel();
         }
 
+        public async Task<Brand> GetBrandByName(string normalName)
+        {
+            return await Queryable.FirstOrDefaultAsync(x => x.Name.Equals(normalName));
+        }
 
         #endregion
         #region Utilities

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
+using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.Mapper;
@@ -27,12 +28,14 @@ namespace BlogAndShop.Controllers
 
         #endregion
         #region Methods
-        public async Task<IActionResult> Index(int? categoryId, int? brandId, int page = 1, int count = 12)
+        public async Task<IActionResult> Index(int? categoryId, string? brandName, int page = 1, int count = 12)
         {
+            var brandId = await FindBrandId(brandName);
             if (page < 1) page = 1;
             var model = await _productGroupService.GetProductModel(categoryId, brandId, page, count);
             return View(model);
         }
+
 
         public async Task<IActionResult> Categories(int? categoryId)
         {
@@ -66,6 +69,19 @@ namespace BlogAndShop.Controllers
         #endregion
         #region Utilities
 
+        /// <summary>
+        /// اگر نام برند داده شده بود
+        /// مقدار آن را از دیتابیس دریات می کند
+        /// </summary>
+        /// <param name="brandName"></param>
+        /// <returns></returns>
+        private async Task<int?> FindBrandId(string? brandName)
+        {
+            if (string.IsNullOrEmpty(brandName)) return null;
+            var normalName = brandName.GetNormalRouteTextString();
+            var brand = await _brandService.GetBrandByName(normalName);
+            return brand?.Id;
+        }
 
         #endregion
         #region Ctor

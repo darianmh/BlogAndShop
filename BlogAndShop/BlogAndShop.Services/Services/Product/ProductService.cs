@@ -165,7 +165,7 @@ namespace BlogAndShop.Services.Services.Product
             return new DbModelInfo<Data.Data.Product.Product>
             {
                 List = list ?? new List<Data.Data.Product.Product>(),
-                TotalCount = await Queryable.CountAsync()
+                TotalCount = await all.CountAsync()
             };
         }
 
@@ -186,7 +186,7 @@ namespace BlogAndShop.Services.Services.Product
             return new DbModelInfo<Data.Data.Product.Product>
             {
                 List = list ?? new List<Data.Data.Product.Product>(),
-                TotalCount = await Queryable.CountAsync()
+                TotalCount = await all.CountAsync()
             };
         }
         #endregion
