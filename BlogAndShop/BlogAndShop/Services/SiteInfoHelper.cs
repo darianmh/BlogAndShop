@@ -35,7 +35,7 @@ namespace BlogAndShop.Services
         public static async Task<string> GetSiteIcon(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
-            return model.SiteIcon;
+            return await helper.GetMediaPath(model.SiteIcon);
         }
         public static async Task<SiteIndex> GetSiteIndex(this IHtmlHelper helper)
         {
@@ -45,12 +45,12 @@ namespace BlogAndShop.Services
         public static async Task<string> GetSiteIcon512(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
-            return model.SiteIcon512;
+            return await helper.GetMediaPath(model.SiteIcon512);
         }
         public static async Task<string> GetSiteLogo(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
-            return model.LogoFile;
+            return await helper.GetMediaPath(model.LogoFile);
         }
         public static async Task<string> GetSiteName(this IHtmlHelper helper)
         {
@@ -60,12 +60,12 @@ namespace BlogAndShop.Services
         public static async Task<string> GetSamandehiLogo(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
-            return model.SamandehiLogo;
+            return await helper.GetMediaPath(model.SamandehiLogo);
         }
         public static async Task<string> GetEnamadLogo(this IHtmlHelper helper)
         {
             var model = await GetSiteInfo(helper);
-            return model.EnamadLogo;
+            return await helper.GetMediaPath(model.EnamadLogo);
         }
         public static async Task<string> GetSamandehi(this IHtmlHelper helper)
         {
