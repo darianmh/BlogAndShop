@@ -1,4 +1,5 @@
 ﻿
+@using BlogAndShop.Services
 @model List<BlogAndShop.Data.ViewModel.Product.ProductModel>
 
 @if (Model.Any())
@@ -24,7 +25,7 @@
 							<div class="p-4 p-3-xs rounded shadow-md shadow-3d-hover transition-all-ease-250">
 
 								<a asp-controller="Shop" asp-action="Item" asp-route-productId="@Model[i].Id">
-									<figure class="mb-4 text-center overflow-hidden rounded-top bg-cover lazy" data-background-image="@Model[i].BannerImage">
+									<figure class="mb-4 text-center overflow-hidden rounded-top bg-cover lazy" data-background-image="@await Html.GetMediaPath(Model[i].BannerImageId)">
 										<!-- squared -->
 										<!-- <img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="...">  -->
 										<!-- landscape -->
@@ -68,7 +69,7 @@
 							<div class="p-4 p-3-xs rounded shadow-md shadow-3d-hover transition-all-ease-250">
 
 								<a asp-controller="Shop" asp-action="Item" asp-route-productId="@Model[i].Id">
-									<figure class="mb-4 text-center overflow-hidden rounded-top bg-cover lazy" data-background-image="@Model[i].BannerImage">
+									<figure class="mb-4 text-center overflow-hidden rounded-top bg-cover lazy" data-background-image="@await Html.GetMediaPath(Model[i].BannerImageId)">
 										<!-- squared -->
 										<!-- <img class="w-100" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="...">  -->
 										<!-- landscape -->
