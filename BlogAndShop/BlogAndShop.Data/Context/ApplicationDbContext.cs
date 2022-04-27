@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Data;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Forum;
+using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
@@ -111,6 +112,14 @@ namespace BlogAndShop.Data.Context
                 entity.HasOne(x => x.DownloadPath)
                     .WithMany(x => x.DownloadItems1)
                     .HasForeignKey(x => x.DownloadPathId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+            //LearningSiteConfig
+            modelBuilder.Entity<LearningSiteConfig>(entity =>
+            {
+                entity.HasOne(x => x.Icon)
+                    .WithMany(x => x.LearningSiteConfigs)
+                    .HasForeignKey(x => x.IconId)
                     .OnDelete(DeleteBehavior.NoAction);
             });
 

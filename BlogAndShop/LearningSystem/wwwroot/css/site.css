@@ -1,0 +1,72 @@
+﻿* {
+    color: #ffffff;
+}
+
+.data-box {
+    overflow: hidden;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+
+.data-holder {
+    height: 450px;
+}
+
+.data-border {
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+.data-image {
+    border: solid 1px;
+    border-radius: 50px;
+    background-color: #21252996;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.bg-site {
+    /*background: rgb(217,130,241);
+    background: linear-gradient(166deg, rgba(217,130,241,1) 0%, rgba(214,16,223,1) 18%, rgba(0,255,235,1) 100%);*/
+    /*background-image: linear-gradient( 174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );*/
+    /*background-image: radial-gradient( circle 588px at 31.7% 40.2%, rgba(225,200,239,1) 21.4%, rgba(163,225,233,1) 57.1% );*/
+    /*background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);*/
+    /*background: #7F7FD5;*/ /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);*/ /* Chrome 10-25, Safari 5.1-6 */
+    /*background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /*background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(90,92,106,1) 0%, rgba(32,45,58,1) 81.3% );*/
+    background-color: #212529;
+}
+
+.bg-site-2 {
+    /*background-image: linear-gradient( 174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );*/
+    /*background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);*/
+    /*background-image: linear-gradient( 112.1deg, rgba(32,38,57,1) 11.4%, rgba(63,76,119,1) 70.2% );*/
+    background-color: #3a742a;
+}
+
+a {
+    color: black !important;
+    color: #fcc9c9 !important;
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none !important;
+}
+
+.hide {
+    display: none;
+}
+
+.alert-success {
+    background-color: #034729;
+}
+
+.btn-details {
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-radius: 0px !important;
+    padding: 10px;
+}

@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.Product;
+using BlogAndShop.Data.ViewModel.Utilities;
 
 namespace BlogAndShop.Data.ViewModel.Common
 {
@@ -125,5 +127,9 @@ namespace BlogAndShop.Data.ViewModel.Common
         /// </summary>
         [Display(Name = "شماره ادمین (با, جداکنید)")]
         public string AdminPhones { get; set; }
+
+
+
+
     }
 }

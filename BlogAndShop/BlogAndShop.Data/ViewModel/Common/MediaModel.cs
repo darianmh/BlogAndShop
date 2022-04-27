@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
+using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.ViewModel.HomePage;
+using BlogAndShop.Data.ViewModel.LearningSystem;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
 using Microsoft.AspNetCore.Http;
@@ -73,7 +75,13 @@ namespace BlogAndShop.Data.ViewModel.Common
         public virtual List<HomeBannerModel> HomeBanners { get; set; }
         [JsonIgnore]
         [Ignore]
+        public virtual List<LearningSiteConfigViewModel> LearningSiteConfigs { get; set; }
+        [JsonIgnore]
+        [Ignore]
         public virtual List<Product.ProductModel> Products { get; set; }
+        [JsonIgnore]
+        [Ignore]
+        public virtual List<Course> Courses { get; set; }
         [JsonIgnore]
         [Ignore]
         public virtual List<ProductGroupModel> ProductGroups { get; set; }

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
 
+
   <ItemGroup>
     <None Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\Index.cshtml" />
@@ -43,6 +44,9 @@
     <None Include="Views\CartItem\Details.cshtml" />
     <None Include="Views\CartItem\Edit.cshtml" />
     <None Include="Views\CartItem\Index.cshtml" />
+    <None Include="Views\CourseRegisterRequest\Details.cshtml" />
+    <None Include="Views\CourseRegisterRequest\Edit.cshtml" />
+    <None Include="Views\CourseRegisterRequest\Index.cshtml" />
     <None Include="Views\EmailAccount\Create.cshtml" />
     <None Include="Views\EmailAccount\Details.cshtml" />
     <None Include="Views\EmailAccount\Edit.cshtml" />
@@ -51,6 +55,15 @@
     <None Include="Views\ForumComment\Details.cshtml" />
     <None Include="Views\ForumComment\Edit.cshtml" />
     <None Include="Views\ForumComment\Index.cshtml" />
+    <None Include="Views\LearningSystemFooterLink\Details.cshtml" />
+    <None Include="Views\LearningSystemFooterLink\Edit.cshtml" />
+    <None Include="Views\LearningSystemFooterLink\Index.cshtml" />
+    <None Include="Views\Course\Details.cshtml" />
+    <None Include="Views\Course\Edit.cshtml" />
+    <None Include="Views\Course\Index.cshtml" />
+    <None Include="Views\LearningSiteConfig\Details.cshtml" />
+    <None Include="Views\LearningSiteConfig\Edit.cshtml" />
+    <None Include="Views\LearningSiteConfig\Index.cshtml" />
     <None Include="Views\ForumGroup\Details.cshtml" />
     <None Include="Views\ForumGroup\Edit.cshtml" />
     <None Include="Views\ForumGroup\Index.cshtml" />

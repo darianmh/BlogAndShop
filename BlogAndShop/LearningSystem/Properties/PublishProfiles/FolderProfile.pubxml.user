@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Publish\LearningSystem</_PublishTargetUrl>
+    <History>True|2022-04-27T13:44:45.3046111Z;True|2022-04-27T16:34:21.7427111+04:30;True|2022-04-27T15:47:48.1257649+04:30;True|2022-04-24T17:17:07.3019863+04:30;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="wwwroot/js/site.min.js">
+      <publishTime>04/27/2022 18:35:20</publishTime>
+    </File>
+    <File Include="wwwroot/SiteMap.xml">
+      <publishTime>04/27/2022 18:51:06</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

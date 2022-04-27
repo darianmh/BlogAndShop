@@ -7,6 +7,7 @@ using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.Email;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.HomePage;
+using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
@@ -15,6 +16,7 @@ using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Email;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.HomePage;
+using BlogAndShop.Data.ViewModel.LearningSystem;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
@@ -453,6 +455,50 @@ namespace BlogAndShop.Services.Services.Mapper
 
         #endregion
 
+        #region LearningSystem
+
+
+        public static CourseRegisterRequestViewModel ToModel(this CourseRegisterRequest item)
+        {
+            return Map<CourseRegisterRequestViewModel>(item);
+        }
+
+        public static CourseRegisterRequest ToEntity(this CourseRegisterRequestViewModel item)
+        {
+            return Map<CourseRegisterRequest>(item);
+        }
+
+        public static CourseViewModel ToModel(this Course item)
+        {
+            return Map<CourseViewModel>(item);
+        }
+
+        public static Course ToEntity(this CourseViewModel item)
+        {
+            return Map<Course>(item);
+        }
+
+
+        public static LearningSiteConfigViewModel ToModel(this LearningSiteConfig item)
+        {
+            return Map<LearningSiteConfigViewModel>(item);
+        }
+
+        public static LearningSiteConfig ToEntity(this LearningSiteConfigViewModel item)
+        {
+            return Map<LearningSiteConfig>(item);
+        }
+        public static LearningSystemFooterLinkViewModel ToModel(this LearningSystemFooterLink item)
+        {
+            return Map<LearningSystemFooterLinkViewModel>(item);
+        }
+
+        public static LearningSystemFooterLink ToEntity(this LearningSystemFooterLinkViewModel item)
+        {
+            return Map<LearningSystemFooterLink>(item);
+        }
+
+        #endregion
 
 
         private static T Map<T>(object obj)

@@ -422,6 +422,143 @@ namespace BlogAndShop.Migrations
                     b.ToTable("HomeBanner");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SystemName")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.HasIndex("SystemName");
+
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.CourseRegisterRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RegisterCourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RegisterDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegisterCourseId");
+
+                    b.ToTable("CourseRegisterRequest");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.LearningSiteConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AboutText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FooterText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IconId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MetaDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IconId");
+
+                    b.ToTable("LearningSiteConfig");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.LearningSystemFooterLink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LearningSystemFooterLink");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.CartItem", b =>
                 {
                     b.Property<int>("Id")
@@ -1425,6 +1562,47 @@ namespace BlogAndShop.Migrations
                     b.Navigation("Banner");
                 });
 
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.Course", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "Image")
+                        .WithMany("Courses")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogAndShop.Data.Data.LearningSystem.LearningSiteConfig", "LearningSystem")
+                        .WithMany("Courses")
+                        .HasForeignKey("SystemName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+
+                    b.Navigation("LearningSystem");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.CourseRegisterRequest", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.LearningSystem.Course", "Course")
+                        .WithMany("CourseRegisterRequests")
+                        .HasForeignKey("RegisterCourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.LearningSiteConfig", b =>
+                {
+                    b.HasOne("BlogAndShop.Data.Data.Common.Media", "Icon")
+                        .WithMany("LearningSiteConfigs")
+                        .HasForeignKey("IconId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Icon");
+                });
+
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.CartItem", b =>
                 {
                     b.HasOne("BlogAndShop.Data.Data.User.UserCart", "UserCart")
@@ -1818,11 +1996,15 @@ namespace BlogAndShop.Migrations
                 {
                     b.Navigation("Brands");
 
+                    b.Navigation("Courses");
+
                     b.Navigation("DownloadItems");
 
                     b.Navigation("DownloadItems1");
 
                     b.Navigation("HomeBanners");
+
+                    b.Navigation("LearningSiteConfigs");
 
                     b.Navigation("Posts");
 
@@ -1850,6 +2032,16 @@ namespace BlogAndShop.Migrations
                     b.Navigation("ForumComments");
 
                     b.Navigation("ProductForumGroups");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.Course", b =>
+                {
+                    b.Navigation("CourseRegisterRequests");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.LearningSystem.LearningSiteConfig", b =>
+                {
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.Payment", b =>

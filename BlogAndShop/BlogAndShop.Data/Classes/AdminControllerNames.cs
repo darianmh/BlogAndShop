@@ -9,6 +9,7 @@
         PaymentInfo = 4,
         PostInfo = 5,
         Product = 6,
-        User = 7
+        User = 7,
+        LearningSystem = 8
     }
 }

@@ -1,0 +1,183 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using BlogAndShop.Services.Classes
+@model BlogAndShop.Data.ViewModel.LearningSystem.LearningSystemLandingModel
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=5, initial-scale=1, user-scalable=0">
+    <title>@Model.ConfigModel.MetaTitle</title>
+    <meta name="description" content="@Model.ConfigModel.MetaDescription">
+    <meta property="og:title" content="@Model.ConfigModel.MetaTitle" />
+    <meta property="og:description" content="@Model.ConfigModel.MetaDescription" />
+    <meta property="og:image" content="@await Html.GetMediaPath(Model.ConfigModel.IconId)" />
+    <meta property="og:url" content="@Context.Request.GetDisplayUrl()" />
+    <link rel="shortcut icon" href="@await Html.GetMediaPath(Model.ConfigModel.IconId)">
+    <link rel="apple-touch-icon" href="@await Html.GetMediaPath(Model.ConfigModel.IconId)">
+
+
+
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/css/bootstrap.rtl.css" rel="stylesheet" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</head>
+
+<body dir="rtl">
+    <header>
+        <nav class="navbar navbar-light bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="@await Html.GetMediaPath(Model.ConfigModel.IconId)" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    @Model.ConfigModel.Title
+                </a>
+                <a class="nav-link" href="https://darianteam.ir">داریان</a>
+            </div>
+        </nav>
+    </header>
+    <section class="bg-site pt-5 pb-5" id="introduction">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>@Model.ConfigModel.Title</h1>
+                    <p>@Model.ConfigModel.AboutText</p>
+                    <a href="#courses">لیست دوره ها</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="courses" class="text-center pt-5 pb-5 bg-site-2">
+        <div class="container">
+            <div class="col-md-12">
+                <h2>دوره ها</h2>
+            </div>
+            @if (Model.CoursesModel.Any())
+            {
+                for (int i = 0; i < Model.CoursesModel.Count; i++)
+                {
+
+                    <div class="row">
+                        @for (int j = 0; i < Model.CoursesModel.Count && j < 3; j++)
+                        {
+                            var course = Model.CoursesModel[i];
+                            <div class="col-md-4">
+                                <div class="col-md-12 data-holder data-box data-border mt-4">
+                                    <div class="h-75 overflow-hidden">
+                                        <h3>@course.Title</h3>
+                                        <div class="col-md-12">
+                                            <img src="@await Html.GetMediaPath(course.ImageId)" class="data-image" />
+                                        </div>
+                                        <p>@course.ShortDescription</p>
+                                    </div>
+                                    <div class="h-25">
+                                        <hr />
+                                        <input type="hidden" id="description_@course.Id" value="@course.Description"/>
+                                        <button class="col-md-12 btn btn-outline-light btn-details" onclick="showDetails(1,'@course.Title','@course.Price.ToString("N0")','@course.Id')">
+                                            جزییات
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            i++;
+                        }
+                        @{ i--; }
+                    </div>
+                }
+            }
+        </div>
+    </section>
+    <section id="coursesdetails" class="text-center bg-site pt-5 pb-5 hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 m-auto">
+                    <h2 id="courseTitle"></h2>
+                    <p id="courseDescription"></p>
+                    <p id="coursePrice"></p>
+                    <input type="hidden" id="courseId" />
+                    <button class="btn btn-outline-light" onclick="registerCourse()">ثبت نام</button>
+                    <button onclick="backToCourses()" class="btn btn-outline-light">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="registercourse" class="pt-5 pb-5 hide bg-site-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 m-auto data-border p-3">
+                    <h4 id="registerCourseTitle">Title</h4>
+                    <form action="" method="post" id="RegisterForm">
+                        <div class="mb-3">
+                            <label for="FirstName" class="form-label">نام</label>
+                            <input name="FirstName" id="FirstName" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">نام خانوادگی</label>
+                            <input name="LastName" id="LastName" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="PhoneNumber" class="form-label">شماره تماس</label>
+                            <input name="PhoneNumber" id="PhoneNumber" type="number" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="RegisterDescription" class="form-label">توضیحات</label>
+                            <input name="RegisterDescription" id="RegisterDescription" class="form-control" />
+                        </div>
+                        <input type="hidden" id="RegisterCourseId" name="RegisterCourseId" />
+                        <div class="mb-3">
+                            <button class="btn btn-info col-md-12" type="submit">ثبت نام</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="successRegister" class="pt-5 pb-5 hide bg-site-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 m-auto p-3">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">درخواست شما ثبت شد!</h4>
+                        <p>همکاران ما در آموزشگاه به زودی با شما تماس خواهند گرفت، تا مراحل ثبت نام شما را به پایان برسانند.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer class="text-center bg-dark pt-5 pb-5 border-top">
+        <div class="container">
+            <div class="row">
+                <p>@Model.ConfigModel.FooterText</p>
+                <p>
+                    @if (Model.Links.Any())
+                    {
+                        foreach (var link in Model.Links)
+                        {
+                            <a href="@link.Url">@link.Text</a>
+                            <span>/</span>
+                        }
+                    }
+
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/site.min.js"></script>
+
+
+</body>
+
+</html>

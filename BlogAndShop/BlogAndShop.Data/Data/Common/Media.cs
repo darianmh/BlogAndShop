@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.HomePage;
+using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Utilities;
@@ -62,6 +63,10 @@ namespace BlogAndShop.Data.Data.Common
         public virtual List<Post> Posts { get; set; }
         [JsonIgnore]
         public virtual List<HomeBanner> HomeBanners { get; set; }
+        [JsonIgnore]
+        public virtual List<LearningSiteConfig> LearningSiteConfigs { get; set; }
+        [JsonIgnore]
+        public virtual List<Course> Courses { get; set; }
         [JsonIgnore]
         public virtual List<Product.Product> Products { get; set; }
         [JsonIgnore]
