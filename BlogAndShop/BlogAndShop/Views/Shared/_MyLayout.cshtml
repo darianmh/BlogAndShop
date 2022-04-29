@@ -107,8 +107,8 @@
 		@if (await Html.GetSiteIndex() == SiteIndex.Main)
 		{
 			<!-- Best Deals + News -->
-		@await Component.InvokeAsync("HomeSuggestedProductsPosts")
- <!-- /Best Deals + News -->
+			@await Component.InvokeAsync("HomeSuggestedProductsPosts")
+			<!-- /Best Deals + News -->
 		}
 		<!-- Footer -->
 		@await Html.PartialAsync("_Footer")
@@ -123,6 +123,16 @@
 		$(document).ready(function () {
 			stopLoading();
 		});
+	</script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VBGMW9MD0W"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-VBGMW9MD0W');
 	</script>
 
 </body>

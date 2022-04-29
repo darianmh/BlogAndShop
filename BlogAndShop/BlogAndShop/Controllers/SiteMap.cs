@@ -53,13 +53,6 @@ namespace BlogAndShop.Controllers
         public async Task<ContentResult> Index()
         {
             CheckDomain();
-            //var list1 = await _siteMapService.GetCategorySiteMap(SiteMapType.Shop);
-            //var list2 = await _siteMapService.GetCategorySiteMap(SiteMapType.Forum);
-            //var list3 = await _siteMapService.GetCategorySiteMap(SiteMapType.Blog);
-            //var list = new List<SiteMapItemModel>();
-            //list.AddRange(list1);
-            //list.AddRange(list2);
-            //list.AddRange(list3);
             var list = _siteMapService.GetMainSiteMap();
             return Xml(list);
         }

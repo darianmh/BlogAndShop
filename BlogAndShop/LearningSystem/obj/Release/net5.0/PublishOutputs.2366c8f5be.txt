@@ -82,7 +82,7 @@ E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp
 E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.js
 E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.map
 E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\LICENSE.txt
-E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\wwwroot\SiteMap.xml
+E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\wwwroot\SiteMap2.xml
 E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\appsettings.json
 E:\Projects\BlogAndShopSite\BlogAndShop\LearningSystem\obj\Release\net5.0\PubTmp\Out\LearningSystem.dll
