@@ -19,7 +19,7 @@ function showDetails(id, title, price, courseId) {
   var description = $("#description_" + courseId).val();
   $("#courseTitle").text(title);
   $("#courseDescription").html(description);
-  $("#coursePrice").text(price);
+  $("#coursePrice").text(price + " ريال");
   $("#courseId").val(courseId);
   $("#coursesdetails").slideDown(1000, function () {
     window.location = '#coursesdetails';
