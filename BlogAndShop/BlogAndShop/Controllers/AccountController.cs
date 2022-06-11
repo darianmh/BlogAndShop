@@ -9,7 +9,11 @@ using BlogAndShop.Services.Services.Common.SenderServices;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PaymentInfo;
 using BlogAndShop.Services.Services.User;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Controllers;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Data.ViewModel.User;
+using CommonConfiguration.Core.Services.User;
+using CommonConfiguration.Core.Services.User.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 

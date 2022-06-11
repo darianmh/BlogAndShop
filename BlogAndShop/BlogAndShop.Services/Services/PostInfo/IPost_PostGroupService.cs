@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.PostInfo;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.PostInfo
 {

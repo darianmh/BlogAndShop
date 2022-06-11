@@ -5,6 +5,7 @@ using BlogAndShop.Data.ViewModel.HomePage;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.HomePage;
 using BlogAndShop.Services.Services.PostInfo;
+using CommonConfiguration.Core.Services.Classes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.ViewComponents

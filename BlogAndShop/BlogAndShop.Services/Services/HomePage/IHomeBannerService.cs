@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.HomePage;
+using CommonConfiguration.Core.Services.Main;
 using BlogAndShop.Data.ViewModel.HomePage;
-using BlogAndShop.Services.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.HomePage
 {

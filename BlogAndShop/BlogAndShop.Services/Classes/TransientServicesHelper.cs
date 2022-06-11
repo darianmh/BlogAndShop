@@ -1,12 +1,10 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Services.Services.Common.Search;
 using BlogAndShop.Services.Services.Common.SenderServices;
-using BlogAndShop.Services.Services.User.Identity;
-using BlogAndShop.Services.Services.Utilities;
-using BlogAndShop.Services.Services.Utilities.File;
 using BlogAndShop.Services.Services.Utilities.SiteMap;
+using CommonConfiguration.Core.Data.Context;
+using CommonConfiguration.Core.Services.Classes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BlogAndShop.Services.Classes
@@ -15,37 +13,12 @@ namespace BlogAndShop.Services.Classes
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            //sign in
-            //services.AddTransient<ApplicationUserManager>();
-            //services.AddTransient<ApplicationSignInManager>();
+            services.AddTransient<BaseApplicationDbContext, ApplicationDbContext>();
+            services.AddTransient<ApplicationDbContext, ApplicationDbContext>();
 
-            //db
-            services.AddTransient<ApplicationDbContext>();
             //services
+            BaseTransientServicesHelper.AddServices(Assembly.GetExecutingAssembly(), ref services);
 
-            var allTypes = assembly.GetTypes()
-                .Where(myType => myType.IsClass && !myType.IsAbstract).ToList();
-            var interfaces = assembly.GetTypes()
-                .Where(myType => myType.IsInterface).ToList();
-            foreach (var type in interfaces)
-            {
-                var typesToRegister = allTypes.Where(z => type.IsAssignableFrom(z)).ToList();
-                var typeToRegister = typesToRegister.FirstOrDefault();
-                if (typeToRegister != null) services.AddTransient(type, typeToRegister);
-            }
-
-
-            //file
-            services.AddTransient<IFileHelperService, FileHelperService>();
-
-
-            //identity
-            services.AddTransient<ApplicationUserManager>();
-            services.AddTransient<ApplicationUserStore>();
-            services.AddTransient<ApplicationRoleManager>();
-            services.AddTransient<ApplicationRoleStore>();
-            services.AddTransient<ApplicationSigninManager>();
 
             //other
             services.AddTransient<ISendService, SendService>();

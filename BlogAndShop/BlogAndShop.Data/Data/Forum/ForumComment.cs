@@ -2,7 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
+using CommonConfiguration.Core.Data.Data.User;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.Forum
@@ -15,7 +17,6 @@ namespace BlogAndShop.Data.Data.Forum
         /// <summary>
         /// کاربر...می تواند خالی باشد
         /// </summary>
-        [ForeignKey("User")]
         [Display(Name = "کاربر")]
         [AdminShowItem(2)]
         public int? UserId { get; set; }
@@ -50,8 +51,6 @@ namespace BlogAndShop.Data.Data.Forum
 
 
         //np
-        [JsonIgnore]
-        public virtual ApplicationUser User { get; set; }
         [JsonIgnore]
         public virtual ForumTitle ForumTitle { get; set; }
     }

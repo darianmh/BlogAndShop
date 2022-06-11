@@ -6,6 +6,7 @@ using BlogAndShop.Data.ViewModel.HomePage;
 using BlogAndShop.Data.ViewModel.LearningSystem;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 

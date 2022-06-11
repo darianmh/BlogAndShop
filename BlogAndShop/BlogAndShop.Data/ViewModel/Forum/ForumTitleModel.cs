@@ -5,6 +5,8 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.User;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.User;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.Forum

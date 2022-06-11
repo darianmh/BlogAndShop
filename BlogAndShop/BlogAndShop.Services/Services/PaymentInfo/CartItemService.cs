@@ -5,8 +5,9 @@ using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.User.Cart;
-using BlogAndShop.Services.Services.Main;
+
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.PaymentInfo
 {

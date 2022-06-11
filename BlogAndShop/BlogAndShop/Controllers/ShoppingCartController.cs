@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CommonConfiguration.Core.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.Controllers
 {

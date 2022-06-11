@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; using CommonConfiguration.Core.Services.Main;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,8 @@ using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Data.Classes;
+
 
 namespace BlogAndShop.Services.Services.Forum
 {

@@ -8,6 +8,9 @@ using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Utilities;
+using CommonConfiguration.Core.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +25,6 @@ namespace BlogAndShop.Data.Data.Common
         /// <summary>
         /// who created first
         /// </summary>
-        [ForeignKey("User")]
         [Display(Name = "نگارنده")]
         [Required(ErrorMessage = "{0} الزامی است")]
         public int OwnerId { get; set; }
@@ -44,8 +46,6 @@ namespace BlogAndShop.Data.Data.Common
 
 
         //np
-        [JsonIgnore]
-        public virtual ApplicationUser User { get; set; }
         [JsonIgnore]
         public virtual List<ProductTag> ProductTags { get; set; }
         [JsonIgnore]

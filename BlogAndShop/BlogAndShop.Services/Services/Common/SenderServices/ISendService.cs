@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.Data.User;
 
 namespace BlogAndShop.Services.Services.Common.SenderServices
 {

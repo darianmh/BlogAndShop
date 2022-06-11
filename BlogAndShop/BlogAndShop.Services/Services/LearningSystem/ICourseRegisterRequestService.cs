@@ -1,5 +1,6 @@
 ﻿using BlogAndShop.Data.Data.LearningSystem;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.LearningSystem
 {

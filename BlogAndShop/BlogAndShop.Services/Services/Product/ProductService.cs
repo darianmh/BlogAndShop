@@ -9,13 +9,16 @@ using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Common;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PaymentInfo;
 using BlogAndShop.Services.Services.Utilities;
+using CommonConfiguration.Core.Data.Classes;
+using CommonConfiguration.Core.Services.Classes.Date;
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
+using CommonConfiguration.Core.Services.Utilities;
 
 namespace BlogAndShop.Services.Services.Product
 {

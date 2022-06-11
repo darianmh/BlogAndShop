@@ -1,6 +1,8 @@
 ﻿using System;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.User;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.Common
 {

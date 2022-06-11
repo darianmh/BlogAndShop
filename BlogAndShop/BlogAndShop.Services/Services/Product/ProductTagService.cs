@@ -3,8 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Product;
-using BlogAndShop.Services.Services.Main;
+
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.Product
 {

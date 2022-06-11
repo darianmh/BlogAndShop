@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.ViewComponents

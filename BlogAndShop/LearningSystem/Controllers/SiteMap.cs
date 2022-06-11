@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Classes.Date;
+
 using BlogAndShop.Services.Services.Utilities.SiteMap;
+using CommonConfiguration.Core.Services.Classes.Date;
 
 namespace LearningSystem.Controllers
 {

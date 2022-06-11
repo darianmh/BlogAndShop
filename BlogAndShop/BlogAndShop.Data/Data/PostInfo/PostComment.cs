@@ -3,7 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
+using CommonConfiguration.Core.Data.Data.User;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.PostInfo
@@ -39,7 +41,6 @@ namespace BlogAndShop.Data.Data.PostInfo
         /// <summary>
         /// OwnerId
         /// </summary>
-        [ForeignKey("User")]
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [AdminShowItem(3)]
@@ -61,7 +62,5 @@ namespace BlogAndShop.Data.Data.PostInfo
         //np
         [JsonIgnore]
         public virtual Post Post { get; set; }
-        [JsonIgnore]
-        public virtual ApplicationUser User { get; set; }
     }
 }

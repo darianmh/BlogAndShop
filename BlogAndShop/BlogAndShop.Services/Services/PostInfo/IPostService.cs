@@ -8,7 +8,9 @@ using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Data.Classes;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.PostInfo
 {

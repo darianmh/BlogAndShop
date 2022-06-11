@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
 using Newtonsoft.Json;
 

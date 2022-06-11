@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Classes;
@@ -11,6 +11,8 @@ using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Product;
+using CommonConfiguration.Core.Controllers;
+using CommonConfiguration.Core.Services.Classes;
 
 namespace BlogAndShop.Controllers
 {

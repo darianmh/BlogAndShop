@@ -6,8 +6,10 @@ using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Services.Main;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo

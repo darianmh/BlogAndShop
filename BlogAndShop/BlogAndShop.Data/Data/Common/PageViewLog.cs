@@ -1,4 +1,6 @@
-﻿namespace BlogAndShop.Data.Data.Common
+﻿using CommonConfiguration.Core.Data.Data.Common;
+
+namespace BlogAndShop.Data.Data.Common
 {
     /// <summary>
     /// لاگ آیپی و لینک ورودی برای بازدید هر صفحه

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.PaymentInfo
 {

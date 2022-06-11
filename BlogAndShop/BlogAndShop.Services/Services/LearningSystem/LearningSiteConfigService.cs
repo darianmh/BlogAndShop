@@ -2,8 +2,9 @@
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.ViewModel.LearningSystem;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.LearningSystem
 {

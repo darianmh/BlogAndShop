@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.User;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.User
 {

@@ -7,13 +7,17 @@ using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Classes.Date;
+
 using BlogAndShop.Services.Services.Common;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Utilities;
-using BlogAndShop.Services.Services.Utilities.File;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Services.Classes.Date;
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
+using CommonConfiguration.Core.Services.Utilities;
+using CommonConfiguration.Core.Services.Utilities.File;
 
 namespace BlogAndShop.Services.Services.Product
 {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BlogAndShop.Services.Services.Forum;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Services.User.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAndShop.ViewComponents

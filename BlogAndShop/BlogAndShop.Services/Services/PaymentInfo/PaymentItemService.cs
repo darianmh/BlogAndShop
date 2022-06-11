@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Product;
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.PaymentInfo
 {

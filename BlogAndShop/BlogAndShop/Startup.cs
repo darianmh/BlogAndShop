@@ -15,8 +15,14 @@ using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Services;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Services.User.Identity;
+using BlogAndShop.Services.Services.Mapper;
+
 using BlogAndShop.Services.Services.Utilities;
+using CommonConfiguration.Core;
+using CommonConfiguration.Core.Data.Context;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Services.User.Identity;
+using CommonConfiguration.Core.Services.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -27,55 +33,23 @@ using WebMarkupMin.AspNetCore5;
 
 namespace BlogAndShop
 {
-    public class Startup
+    public class Startup : BaseStartup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) : base(configuration, webHostEnvironment)
         {
-            Configuration = configuration;
-            _webHostEnvironment = webHostEnvironment;
         }
 
-        public IConfiguration Configuration { get; }
-        private IWebHostEnvironment _webHostEnvironment;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //compression
-            // Configure Compression level
-            services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
-            services.AddResponseCompression(options =>
-            {
-                //options.Providers.Add<BrotliCompressionProvider>();
-                options.Providers.Add<GzipCompressionProvider>();
-                options.EnableForHttps = true;
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(CommonMimeTypes);
-            });
-            services.AddResponseCaching(options =>
-            {
-                options.UseCaseSensitivePaths = true;
-            });
-
-            services.AddControllersWithViews();
-
-
-            services.AddWebMarkupMin(
-                    options =>
-                    {
-                        options.AllowMinificationInDevelopmentEnvironment = true;
-                        options.AllowCompressionInDevelopmentEnvironment = true;
-                    })
-                .AddHtmlMinification(
-                    options =>
-                    {
-                        options.MinificationSettings.RemoveRedundantAttributes = true;
-                        options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-                        options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
-                    })
-                .AddHttpCompression();
-
+            //assembly
+            AssemblyHelper.BaseSiteAssembly = Assembly.GetExecutingAssembly();
+            var x = services.ToList();
+            base.BaseConfigureServices(services);
+            var x1 = services.ToList();
             string connectionString;
-            if (_webHostEnvironment.IsDevelopment())
+            if (WebHostEnvironment.IsDevelopment())
             {
                 connectionString = Configuration.GetConnectionString("DevelopmentDefaultConnection");
             }
@@ -84,18 +58,35 @@ namespace BlogAndShop
                 connectionString = Configuration.GetConnectionString("ProductionDefaultConnection");
             }
 
+            AssemblyHelper.ConnectionString = connectionString;
+            AssemblyHelper.MigrationAssembly = "BlogAndShop";
             //add db
             services.AddDbContext<ApplicationDbContext>(opt =>
-                opt.UseSqlServer(connectionString, b => b.MigrationsAssembly("BlogAndShop")));
+                opt.UseSqlServer(connectionString, b => b.MigrationsAssembly(AssemblyHelper.MigrationAssembly)));
 
             //add services
             services.AddServices();
 
+            var x2 = services.ToList();
+            //identity account
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                //options.Cookie.Expiration
+
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                options.LoginPath = "/Account/Index";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
             //identity
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-            {
-                options.SignIn.RequireConfirmedAccount = false;
-            })
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                })
                 .AddRoleStore<ApplicationRoleStore>()
                 .AddUserStore<ApplicationUserStore>()
                 .AddUserManager<ApplicationUserManager>()
@@ -117,12 +108,8 @@ namespace BlogAndShop
                 options.SlidingExpiration = true;
             });
 
-
-            //assembly
-            AssemblyHelper.BaseSiteAssembly = Assembly.GetExecutingAssembly();
-
-            //admin controllers
-            AdminPanelService.GetAllController(AssemblyHelper.BaseSiteAssembly);
+            //mapper
+            AssemblyHelper.MapperServiceType = typeof(MapperService);
 
 
             //routing services (registering LinkConstraint)
@@ -136,8 +123,7 @@ namespace BlogAndShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseResponseCompression();
-            app.UseResponseCaching();
+            base.BaseConfigure(app, env);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -148,7 +134,6 @@ namespace BlogAndShop
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
             app.UseStaticFiles(new StaticFileOptions()
             {
                 OnPrepareResponse = context =>
@@ -159,12 +144,6 @@ namespace BlogAndShop
                         "public,max-age=" + durationInSeconds;
                 }
             });
-            app.UseWebMarkupMin();
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
 
 
 
@@ -185,70 +164,5 @@ namespace BlogAndShop
 
 
 
-        public static readonly IEnumerable<string> CommonMimeTypes = new[]
-    {
-        "application/javascript",
-        "application/json",
-        "application/ld+json",
-        "application/msword",
-        "application/octet-stream",
-        "application/ogg",
-        "application/pdf",
-        "application/rtf",
-        "application/vnd.apple.installer+xml",
-        "application/vnd.mozilla.xul+xml",
-        "application/vnd.ms-excel",
-        "application/vnd.ms-fontobject",
-        "application/vnd.ms-powerpoint",
-        "application/vnd.oasis.opendocument.presentation",
-        "application/vnd.oasis.opendocument.spreadsheet",
-        "application/vnd.oasis.opendocument.text",
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/vnd.visio",
-        "application/x-csh",
-        "application/x-sh",
-        "application/x-shockwave-flash",
-        "application/xhtml+xml",
-        "application/xml",
-        "audio/3gpp",
-        "audio/3gpp2",
-        "audio/aac",
-        "audio/midi",
-        "audio/x-midi",
-        "audio/mpeg",
-        "audio/ogg",
-        "audio/opus",
-        "audio/wav",
-        "audio/webm",
-        "font/otf",
-        "font/ttf",
-        "font/woff",
-        "font/woff2",
-        "image/bmp",
-        "image/gif",
-        "image/jpeg",
-        "image/png",
-        "image/svg+xml",
-        "image/tiff",
-        "image/vnd.microsoft.icon",
-        "image/webp",
-        "text/calendar",
-        "text/css",
-        "text/csv",
-        "text/html",
-        "text/javascript",
-        "text/json",
-        "text/plain",
-        "text/xml",
-        "video/3gpp",
-        "video/3gpp2",
-        "video/mp2t",
-        "video/mpeg",
-        "video/ogg",
-        "video/webm",
-        "video/x-msvideo",
-    };
     }
 }

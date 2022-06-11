@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.LearningSystem

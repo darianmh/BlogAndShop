@@ -5,6 +5,9 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.User;
 
 namespace BlogAndShop.Data.ViewModel.User
 {

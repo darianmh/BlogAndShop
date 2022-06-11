@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Services.User.Identity;
+
 using BlogAndShop.Services.Services.Utilities;
 
 namespace BlogAndShop.Controllers.Admin.User

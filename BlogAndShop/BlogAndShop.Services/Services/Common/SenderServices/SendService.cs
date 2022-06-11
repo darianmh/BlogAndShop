@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System; using CommonConfiguration.Core.Services.Main;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Services.Email;
+using CommonConfiguration.Core.Data.Data.User;
 
 namespace BlogAndShop.Services.Services.Common.SenderServices
 {

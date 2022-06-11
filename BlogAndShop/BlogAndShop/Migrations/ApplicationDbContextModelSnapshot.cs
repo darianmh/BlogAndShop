@@ -212,8 +212,6 @@ namespace BlogAndShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
                     b.ToTable("Tag");
                 });
 
@@ -298,8 +296,6 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("ForumId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("ForumComment");
                 });
 
@@ -372,8 +368,6 @@ namespace BlogAndShop.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ForumGroupId");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("ForumTitle");
                 });
@@ -628,8 +622,6 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("OwnerId");
-
                     b.ToTable("Payment");
                 });
 
@@ -782,8 +774,6 @@ namespace BlogAndShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
 
                     b.HasIndex("PostId");
 
@@ -1024,8 +1014,6 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("ProductCallRequest");
                 });
 
@@ -1177,7 +1165,50 @@ namespace BlogAndShop.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.ApplicationRole", b =>
+            modelBuilder.Entity("BlogAndShop.Data.Data.User.NewsLetterEmail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewsLetterEmail");
+                });
+
+            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserCart");
+                });
+
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1203,10 +1234,10 @@ namespace BlogAndShop.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("ApplicationRole");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.ApplicationUser", b =>
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1279,32 +1310,10 @@ namespace BlogAndShop.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("ApplicationUser");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.NewsLetterEmail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NewsLetterEmail");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.RoleAccess", b =>
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.RoleAccess", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1331,30 +1340,7 @@ namespace BlogAndShop.Migrations
                     b.ToTable("RoleAccess");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdateDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("UserCart");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserToken", b =>
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.UserToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1403,7 +1389,7 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("IdentityRoleClaim<int>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
@@ -1426,7 +1412,7 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("IdentityUserClaim<int>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
@@ -1447,7 +1433,7 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("IdentityUserLogin<int>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
@@ -1462,7 +1448,7 @@ namespace BlogAndShop.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("IdentityUserRole<int>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -1481,18 +1467,7 @@ namespace BlogAndShop.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.Common.Tag", b =>
-                {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("Tags")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                    b.ToTable("IdentityUserToken<int>");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Forum.ForumComment", b =>
@@ -1503,14 +1478,7 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("ForumComments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.Navigation("ForumTitle");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Forum.ForumTitle", b =>
@@ -1521,15 +1489,7 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("ForumTitles")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ForumGroup");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Forum.Product_ForumInfo", b =>
@@ -1630,15 +1590,7 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("Payments")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Address");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PaymentInfo.PaymentItem", b =>
@@ -1679,8 +1631,8 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("Posts")
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", "User")
+                        .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1692,12 +1644,6 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.PostComment", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("PostComments")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BlogAndShop.Data.Data.PostInfo.Post", "Post")
                         .WithMany("PostComments")
                         .HasForeignKey("PostId")
@@ -1705,8 +1651,6 @@ namespace BlogAndShop.Migrations
                         .IsRequired();
 
                     b.Navigation("Post");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.PostInfo.Post_PostGroup", b =>
@@ -1779,8 +1723,8 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.Product", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("Products")
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", "User")
+                        .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1820,20 +1764,13 @@ namespace BlogAndShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("ProductCallRequests")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.Navigation("Product");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogAndShop.Data.Data.Product.ProductComment", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "Owner")
-                        .WithMany("ProductComments")
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", "Owner")
+                        .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1899,8 +1836,8 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("BlogAndShop.Data.Data.User.Address", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("Addresses")
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", "User")
+                        .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1908,9 +1845,9 @@ namespace BlogAndShop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.RoleAccess", b =>
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.RoleAccess", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", "ApplicationRole")
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationRole", "ApplicationRole")
                         .WithMany("RoleAccesses")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1919,20 +1856,9 @@ namespace BlogAndShop.Migrations
                     b.Navigation("ApplicationRole");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserCart", b =>
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.UserToken", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
-                        .WithMany("UserCarts")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserToken", b =>
-                {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", "User")
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", "User")
                         .WithMany("UserTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1943,7 +1869,7 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", null)
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1952,7 +1878,7 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1961,7 +1887,7 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1970,13 +1896,13 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationRole", null)
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1985,7 +1911,7 @@ namespace BlogAndShop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("BlogAndShop.Data.Data.User.ApplicationUser", null)
+                    b.HasOne("CommonConfiguration.Core.Data.Data.User.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2097,41 +2023,19 @@ namespace BlogAndShop.Migrations
                     b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.ApplicationRole", b =>
+            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserCart", b =>
+                {
+                    b.Navigation("CartItems");
+                });
+
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.ApplicationRole", b =>
                 {
                     b.Navigation("RoleAccesses");
                 });
 
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.ApplicationUser", b =>
+            modelBuilder.Entity("CommonConfiguration.Core.Data.Data.User.ApplicationUser", b =>
                 {
-                    b.Navigation("Addresses");
-
-                    b.Navigation("ForumComments");
-
-                    b.Navigation("ForumTitles");
-
-                    b.Navigation("Payments");
-
-                    b.Navigation("PostComments");
-
-                    b.Navigation("Posts");
-
-                    b.Navigation("ProductCallRequests");
-
-                    b.Navigation("ProductComments");
-
-                    b.Navigation("Products");
-
-                    b.Navigation("Tags");
-
-                    b.Navigation("UserCarts");
-
                     b.Navigation("UserTokens");
-                });
-
-            modelBuilder.Entity("BlogAndShop.Data.Data.User.UserCart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

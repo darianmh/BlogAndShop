@@ -7,7 +7,9 @@ using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.Mapper;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Controllers;
+using CommonConfiguration.Core.Services.User.Identity;
+
 
 namespace BlogAndShop.Controllers
 {

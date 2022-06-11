@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.Product
 {

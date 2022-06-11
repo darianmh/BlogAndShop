@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; using CommonConfiguration.Core.Services.Main;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Admin;
 using BlogAndShop.Data.ViewModel.Forum;
-using BlogAndShop.Services.Services.Main;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Services.User.Identity;
 
 namespace BlogAndShop.Services.Services.Forum
 {

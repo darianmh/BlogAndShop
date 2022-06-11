@@ -5,12 +5,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data;
-using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
+using CommonConfiguration.Core.Data.Context;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
@@ -18,32 +19,13 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace BlogAndShop.Data.Context
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
+    public class ApplicationDbContext : BaseApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-            this.ChangeTracker.LazyLoadingEnabled = false;
-        }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            var assembly = Assembly.GetExecutingAssembly();
-            var typesToRegister = assembly.GetTypes()
-                 .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(BaseEntity))).ToList();
-
-            foreach (var type in typesToRegister)
-            {
-                //var method = modelBuilder.GetType().GetMethod("Entity", new Type[] { });
-                //method = method.MakeGenericMethod(new Type[] { type });
-                //method.Invoke(modelBuilder, null);
-                modelBuilder.Entity(type);
-            }
             //post group
             modelBuilder.Entity<Post_PostGroup>(entity =>
             {
@@ -123,27 +105,9 @@ namespace BlogAndShop.Data.Context
                     .OnDelete(DeleteBehavior.NoAction);
             });
 
-            //var entities = modelBuilder.Model.GetEntityTypes();
-            //var cascadeFKs = entities.SelectMany(t => t.GetForeignKeys())
-            //  .Where(fk => !fk.IsOwnership && fk.DeleteBehavior != DeleteBehavior.Cascade);
-
-            //foreach (var fk in cascadeFKs)
-            //    fk.DeleteBehavior = DeleteBehavior.Cascade;
-
-            // for the other conventions, we do a metadata model loop
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            {
-                // equivalent of modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-                entityType.SetTableName(entityType.DisplayName());
-
-                // equivalent of modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-                entityType.GetForeignKeys()
-                    //.Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade)
-                    .ToList()
-                    .ForEach(fk => fk.DeleteBehavior = DeleteBehavior.Cascade);
-            }
 
             base.OnModelCreating(modelBuilder);
+            modelBuilder = base.BindEntity(modelBuilder, Assembly.GetExecutingAssembly());
         }
 
         public virtual DbSet<Post_PostGroup> Post_PostGroup { get; set; }
@@ -151,5 +115,9 @@ namespace BlogAndShop.Data.Context
         public virtual DbSet<ProductMedia> ProductMedia { get; set; }
         public virtual DbSet<ProductTag> ProductTag { get; set; }
         public virtual DbSet<Product_ForumInfo> ProductForumInfos { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<BaseApplicationDbContext> options) : base(options)
+        {
+        }
     }
 }

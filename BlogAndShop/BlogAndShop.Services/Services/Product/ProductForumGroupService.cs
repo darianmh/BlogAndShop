@@ -5,9 +5,10 @@ using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.Product
 {

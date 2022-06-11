@@ -1,4 +1,4 @@
-using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 
 namespace BlogAndShop.Data.Data.Email
 {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Services.Services.Common.Search;
+using CommonConfiguration.Core.Controllers;
 
 namespace BlogAndShop.Controllers
 {

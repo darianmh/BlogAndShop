@@ -8,8 +8,10 @@ using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.PaymentInfo;
+using CommonConfiguration.Core.Data.Classes;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.Product
 {

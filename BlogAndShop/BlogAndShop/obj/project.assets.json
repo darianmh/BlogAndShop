@@ -11,6 +11,27 @@
           "lib/netstandard2.0/AdvancedStringBuilder.dll": {}
         }
       },
+      "CommonConfiguration.Core/1.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Magick.NET-Q16-AnyCPU": "11.1.1",
+          "Microsoft.AspNetCore.Authorization": "6.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.11",
+          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.11",
+          "Microsoft.EntityFrameworkCore": "5.0.11",
+          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.11",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
+          "System.Drawing.Common": "6.0.0",
+          "WebMarkupMin.AspNetCore5": "2.11.0"
+        },
+        "compile": {
+          "lib/net5.0/CommonConfiguration.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/CommonConfiguration.Core.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -20,28 +41,10 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
-      "ImageProcessor/2.9.1": {
-        "type": "package",
-        "compile": {
-          "lib/net452/ImageProcessor.dll": {}
-        },
-        "runtime": {
-          "lib/net452/ImageProcessor.dll": {}
-        }
-      },
-      "ImageProcessor.Plugins.WebP/1.3.0": {
-        "type": "package",
-        "compile": {
-          "lib/net452/ImageProcessor.Plugins.WebP.dll": {}
-        },
-        "runtime": {
-          "lib/net452/ImageProcessor.Plugins.WebP.dll": {}
-        }
-      },
-      "Magick.NET-Q16-AnyCPU/9.0.0": {
+      "Magick.NET-Q16-AnyCPU/11.1.1": {
         "type": "package",
         "dependencies": {
-          "Magick.NET.Core": "9.0.0"
+          "Magick.NET.Core": "11.1.1"
         },
         "compile": {
           "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll": {}
@@ -49,7 +52,14 @@
         "runtime": {
           "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll": {}
         },
+        "build": {
+          "build/netstandard20/_._": {}
+        },
         "runtimeTargets": {
+          "runtimes/linux-arm64/native/Magick.Native-Q16-arm64.dll.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
           "runtimes/linux-musl-x64/native/Magick.Native-Q16-x64.dll.so": {
             "assetType": "native",
             "rid": "linux-musl-x64"
@@ -76,7 +86,7 @@
           }
         }
       },
-      "Magick.NET.Core/9.0.0": {
+      "Magick.NET.Core/11.1.1": {
         "type": "package",
         "compile": {
           "lib/netstandard21/Magick.NET.Core.dll": {}
@@ -2286,6 +2296,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "CommonConfiguration.Core": "1.1.5",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.11",
           "Microsoft.EntityFrameworkCore": "5.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11"
@@ -2302,9 +2313,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "BlogAndShop.Data": "1.0.0",
-          "ImageProcessor": "2.9.1",
-          "ImageProcessor.Plugins.WebP": "1.3.0",
-          "Magick.NET-Q16-AnyCPU": "9.0.0",
+          "CommonConfiguration.Core": "1.1.5",
           "Microsoft.AspNetCore.Authorization": "6.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.11",
           "System.Drawing.Common": "6.0.0"
@@ -2338,6 +2347,18 @@
         "lib/netstandard2.0/AdvancedStringBuilder.xml"
       ]
     },
+    "CommonConfiguration.Core/1.1.5": {
+      "sha512": "AxuPCMRDJrkeCEO8eC2NumvRb7MO5g3P76/ZiB9xKwVdu4TX/HJsx6TbKWxDejjVEEQJma08IkLrp7pwaTRfnw==",
+      "type": "package",
+      "path": "commonconfiguration.core/1.1.5",
+      "files": [
+        ".nupkg.metadata",
+        "commonconfiguration.core.1.1.5.nupkg.sha512",
+        "commonconfiguration.core.nuspec",
+        "lib/net5.0/CommonConfiguration.Core.dll",
+        "lib/net5.0/CommonConfiguration.Core.runtimeconfig.json"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -2354,37 +2375,10 @@
         "logo.png"
       ]
     },
-    "ImageProcessor/2.9.1": {
-      "sha512": "QzYXsKGBdgAcxneFucxPcsMnCFr3VwZKZ09cPwVH6TzcgA2JWskfDPr3u6IyDsHRgX+Ju1rgQr+I2I5/wRbcog==",
+    "Magick.NET-Q16-AnyCPU/11.1.1": {
+      "sha512": "XvnNhQghlVh/c3CjWq8WG5xdKGmjQ/yUMkJ7CSz1Q2y1CBpcWh+dZijGhnUtO93SXzsXZoTarvf9mnzMj2fCTQ==",
       "type": "package",
-      "path": "imageprocessor/2.9.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "imageprocessor.2.9.1.nupkg.sha512",
-        "imageprocessor.nuspec",
-        "lib/net452/ImageProcessor.dll",
-        "lib/net452/ImageProcessor.xml"
-      ]
-    },
-    "ImageProcessor.Plugins.WebP/1.3.0": {
-      "sha512": "b/XezEJDaiEp9bUhoPMXbPPSes7ugA+z97sRu5CnpOkGnbbJZJtgaz16uSp63/7DHqNuaL+g/Tr9mPmS0HzjVA==",
-      "type": "package",
-      "path": "imageprocessor.plugins.webp/1.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "content/web.config.transform",
-        "imageprocessor.plugins.webp.1.3.0.nupkg.sha512",
-        "imageprocessor.plugins.webp.nuspec",
-        "lib/net452/ImageProcessor.Plugins.WebP.dll",
-        "lib/net452/ImageProcessor.Plugins.WebP.xml"
-      ]
-    },
-    "Magick.NET-Q16-AnyCPU/9.0.0": {
-      "sha512": "jQMmSNHnoIKguDt+PAq28SxlB8dYLgBIQAx3QD9fl6Nwq6nJrTR3W+mYYsJT1tkJPFwQc66wFB+nSHWITgZWMQ==",
-      "type": "package",
-      "path": "magick.net-q16-anycpu/9.0.0",
+      "path": "magick.net-q16-anycpu/11.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2393,12 +2387,14 @@
         "Notice.linux.txt",
         "Notice.osx.txt",
         "Notice.win.txt",
+        "build/netstandard20/Magick.NET-Q16-AnyCPU.targets",
         "lib/netstandard20/Magick.NET-Q16-AnyCPU.dll",
         "lib/netstandard20/Magick.NET-Q16-AnyCPU.xml",
         "lib/netstandard21/Magick.NET-Q16-AnyCPU.dll",
         "lib/netstandard21/Magick.NET-Q16-AnyCPU.xml",
-        "magick.net-q16-anycpu.9.0.0.nupkg.sha512",
+        "magick.net-q16-anycpu.11.1.1.nupkg.sha512",
         "magick.net-q16-anycpu.nuspec",
+        "runtimes/linux-arm64/native/Magick.Native-Q16-arm64.dll.so",
         "runtimes/linux-musl-x64/native/Magick.Native-Q16-x64.dll.so",
         "runtimes/linux-x64/native/Magick.Native-Q16-x64.dll.so",
         "runtimes/osx-x64/native/Magick.Native-Q16-x64.dll.dylib",
@@ -2407,10 +2403,10 @@
         "runtimes/win-x86/native/Magick.Native-Q16-x86.dll"
       ]
     },
-    "Magick.NET.Core/9.0.0": {
-      "sha512": "EnJuo/O7HmnvHc9QOrYINL38WC7DGm1uuoYjyfGwT8Y2WarLXMWs/PLwBxFP41vA8rMJacTNdGjbfZ2xhLoGqg==",
+    "Magick.NET.Core/11.1.1": {
+      "sha512": "wzRShpr42UYjSLRIIytjyi4xDKYCq32s+uQjMjAkmjIemNG9IeAYrnaKqJN+Ueql6HLKYe2bhOPRexxWRCQK5g==",
       "type": "package",
-      "path": "magick.net.core/9.0.0",
+      "path": "magick.net.core/11.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2422,7 +2418,7 @@
         "lib/netstandard20/Magick.NET.Core.xml",
         "lib/netstandard21/Magick.NET.Core.dll",
         "lib/netstandard21/Magick.NET.Core.xml",
-        "magick.net.core.9.0.0.nupkg.sha512",
+        "magick.net.core.11.1.1.nupkg.sha512",
         "magick.net.core.nuspec"
       ]
     },
@@ -7869,7 +7865,7 @@
     "net5.0": [
       "BlogAndShop.Data >= 1.0.0",
       "BlogAndShop.Services >= 1.0.0",
-      "Magick.NET-Q16-AnyCPU >= 9.0.0",
+      "CommonConfiguration.Core >= 1.1.5",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.11",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Abstractions >= 5.0.11",
@@ -7909,6 +7905,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "E:\\Publish\\CommonConfiguration": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7934,9 +7931,9 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
-          "Magick.NET-Q16-AnyCPU": {
+          "CommonConfiguration.Core": {
             "target": "Package",
-            "version": "[9.0.0, )"
+            "version": "[1.1.5, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
@@ -7996,27 +7993,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'ImageProcessor 2.9.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "ImageProcessor",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'ImageProcessor.Plugins.WebP 1.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "ImageProcessor.Plugins.WebP",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  }
 }

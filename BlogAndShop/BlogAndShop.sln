@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogAndShop.Data", "BlogAnd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogAndShop.Services", "BlogAndShop.Services\BlogAndShop.Services.csproj", "{825392C8-EA2A-4D76-8FF4-EEEAA50798C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem", "LearningSystem\LearningSystem.csproj", "{6AA36B61-77EF-475B-8DD8-4794CDB70466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSystem", "LearningSystem\LearningSystem.csproj", "{6AA36B61-77EF-475B-8DD8-4794CDB70466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

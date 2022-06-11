@@ -5,8 +5,9 @@ using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.HomePage;
 using BlogAndShop.Data.ViewModel.HomePage;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.HomePage
 {

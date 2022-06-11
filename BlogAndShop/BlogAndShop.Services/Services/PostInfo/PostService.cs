@@ -12,11 +12,15 @@ using BlogAndShop.Data.ViewModel.Common.Search;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Common;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.Utilities;
+using CommonConfiguration.Core.Data.Classes;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Services.Classes.Date;
+using CommonConfiguration.Core.Services.Main;
+using CommonConfiguration.Core.Services.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo

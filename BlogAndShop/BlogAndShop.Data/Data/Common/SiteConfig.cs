@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
+using CommonConfiguration.Core.Data.Data.Common;
 
 namespace BlogAndShop.Data.Data.Common
 {

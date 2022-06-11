@@ -8,6 +8,8 @@ using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.User;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.User;
 
 namespace BlogAndShop.Data.ViewModel.Common
 {

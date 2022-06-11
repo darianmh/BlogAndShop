@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.User;
+using CommonConfiguration.Core.Data.Data.User;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.Product
@@ -23,7 +25,6 @@ namespace BlogAndShop.Data.Data.Product
         /// <summary>
         /// اگر لاگین بود اطلاعات کاربر
         /// </summary>
-        [ForeignKey("User")]
         public int? UserId { get; set; }
         /// <summary>
         /// شماره تماس
@@ -47,8 +48,5 @@ namespace BlogAndShop.Data.Data.Product
         [JsonIgnore]
         [Ignore]
         public virtual Product Product { get; set; }
-        [JsonIgnore]
-        [Ignore]
-        public virtual ApplicationUser User { get; set; }
     }
 }

@@ -3,11 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.Admin;
 using BlogAndShop.Data.ViewModel.PostInfo;
-using BlogAndShop.Services.Services.Main;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Services.Main;
+using CommonConfiguration.Core.Services.User.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo

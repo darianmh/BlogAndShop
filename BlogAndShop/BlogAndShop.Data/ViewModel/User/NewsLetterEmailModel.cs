@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.User
 {

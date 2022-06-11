@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; using CommonConfiguration.Core.Services.Main;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Email;
-using BlogAndShop.Services.Services.Main;
+
 using MailMessage = System.Net.Mail.MailMessage;
 
 namespace BlogAndShop.Services.Services.Email

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.PostInfo
 {

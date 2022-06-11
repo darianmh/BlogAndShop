@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.User;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Services.Main;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogAndShop.Services.Services.User

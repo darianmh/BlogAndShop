@@ -7,7 +7,8 @@ using BlogAndShop.Data.ViewModel.PostInfo;
 using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PostInfo;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Controllers;
+using CommonConfiguration.Core.Services.User.Identity;
 using Microsoft.AspNetCore.Http;
 
 namespace BlogAndShop.Controllers

@@ -8,7 +8,8 @@ using BlogAndShop.Services.Services.Common;
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PostInfo;
 using BlogAndShop.Services.Services.Product;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core.Controllers;
+
 
 namespace BlogAndShop.Controllers
 {

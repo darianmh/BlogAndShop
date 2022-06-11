@@ -1,6 +1,7 @@
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PaymentInfo;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.PaymentInfo
 {

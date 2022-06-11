@@ -3,9 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Admin;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.Product

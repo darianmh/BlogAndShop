@@ -11,31 +11,27 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Services.Classes;
-using BlogAndShop.Services.Services.User.Identity;
+using CommonConfiguration.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LearningSystem
 {
-    public class Startup
+    public class Startup : BaseStartup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) : base(configuration, webHostEnvironment)
         {
-            Configuration = configuration;
-            _webHostEnvironment = webHostEnvironment;
         }
 
-        public IConfiguration Configuration { get; }
-        private IWebHostEnvironment _webHostEnvironment;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            base.BaseConfigureServices(services);
 
 
             string connectionString;
-            if (_webHostEnvironment.IsDevelopment())
+            if (WebHostEnvironment.IsDevelopment())
             {
                 connectionString = Configuration.GetConnectionString("DevelopmentDefaultConnection");
             }
@@ -50,18 +46,6 @@ namespace LearningSystem
 
             //add services
             services.AddServices();
-
-            //identity
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-                {
-                    options.SignIn.RequireConfirmedAccount = false;
-                })
-                .AddRoleStore<ApplicationRoleStore>()
-                .AddUserStore<ApplicationUserStore>()
-                .AddUserManager<ApplicationUserManager>()
-                .AddRoleManager<ApplicationRoleManager>()
-                .AddSignInManager<ApplicationSigninManager>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //identity account
             services.ConfigureApplicationCookie(options =>
@@ -81,6 +65,7 @@ namespace LearningSystem
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            base.BaseConfigure(app, env);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -91,13 +76,6 @@ namespace LearningSystem
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

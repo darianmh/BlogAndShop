@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.LearningSystem;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.LearningSystem

@@ -2,8 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
-using BlogAndShop.Data.Data.Common;
 using BlogAndShop.Data.Data.PaymentInfo;
+using CommonConfiguration.Core.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.User;
 
 namespace BlogAndShop.Data.Data.User
 {

@@ -10,9 +10,11 @@ using BlogAndShop.Data.ViewModel.Product;
 using BlogAndShop.Data.ViewModel.Utilities;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Common;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 using Microsoft.EntityFrameworkCore;
+using CommonConfiguration.Core.Services.Main;
 
 namespace BlogAndShop.Services.Services.Product
 {

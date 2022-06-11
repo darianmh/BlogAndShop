@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
-using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Product;

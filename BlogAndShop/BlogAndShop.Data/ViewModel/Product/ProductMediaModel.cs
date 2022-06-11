@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 
 namespace BlogAndShop.Data.ViewModel.Product

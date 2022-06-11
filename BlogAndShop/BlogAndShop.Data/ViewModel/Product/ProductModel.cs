@@ -3,12 +3,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.Product;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Forum;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.User;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.User;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.Product

@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using BlogAndShop.Data.Data.Forum;
 using BlogAndShop.Data.ViewModel.Product;
-using BlogAndShop.Services.Services.Main;
+using CommonConfiguration.Core.Services.Main;
+
 
 namespace BlogAndShop.Services.Services.Product
 {

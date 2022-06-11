@@ -2,7 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
+using CommonConfiguration.Core.Data.ViewModel.Common;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.ViewModel.Product

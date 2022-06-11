@@ -4,7 +4,10 @@ using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Services.Classes;
 using BlogAndShop.Services.Services.Utilities;
-using BlogAndShop.Services.Services.Utilities.File;
+using CommonConfiguration.Core.Data.ViewModel.Common;
+using CommonConfiguration.Core.Services.Classes;
+using CommonConfiguration.Core.Services.Utilities;
+using CommonConfiguration.Core.Services.Utilities.File;
 using Microsoft.Extensions.Hosting;
 
 namespace BlogAndShop.Controllers.Admin.Common

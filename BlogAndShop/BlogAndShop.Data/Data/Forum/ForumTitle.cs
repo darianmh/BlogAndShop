@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
-using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.Utilities;
+using CommonConfiguration.Core.Data.Data.User;
+using CommonConfiguration.Core.Data.ViewModel.Utilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
@@ -35,7 +37,6 @@ namespace BlogAndShop.Data.Data.Forum
         /// <summary>
         /// کاربر ایجاد کننده
         /// </summary>
-        [ForeignKey("User")]
         [Display(Name = "مالک")]
         [Required(ErrorMessage = "{0} الزامی است")]
         [AdminShowItem(3)]
@@ -68,8 +69,6 @@ namespace BlogAndShop.Data.Data.Forum
 
 
         //np
-        [JsonIgnore]
-        public virtual ApplicationUser User { get; set; }
         [JsonIgnore]
         public virtual ForumGroup ForumGroup { get; set; }
         [JsonIgnore]

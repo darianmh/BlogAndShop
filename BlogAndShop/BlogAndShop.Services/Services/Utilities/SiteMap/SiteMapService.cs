@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
-using BlogAndShop.Services.Classes.Date;
 using BlogAndShop.Services.Services.Forum;
 using BlogAndShop.Services.Services.PostInfo;
 using BlogAndShop.Services.Services.Product;
+using CommonConfiguration.Core.Services.Classes.Date;
+using CommonConfiguration.Core.Services.Utilities;
 
 namespace BlogAndShop.Services.Services.Utilities.SiteMap
 {

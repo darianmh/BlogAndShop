@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.Context;
 using BlogAndShop.Data.Data.PostInfo;
 using BlogAndShop.Data.ViewModel.PostInfo;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
+using CommonConfiguration.Core.Services.Main;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.PostInfo

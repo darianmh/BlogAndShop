@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using BlogAndShop.Data.ViewModel.Common;
 using BlogAndShop.Data.ViewModel.Utilities;
+using CommonConfiguration.Core.Data.ViewModel.Utilities;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.Product

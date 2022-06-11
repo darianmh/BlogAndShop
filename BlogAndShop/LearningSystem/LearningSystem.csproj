@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommonConfiguration.Core" Version="1.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlogAndShop.Services\BlogAndShop.Services.csproj" />
   </ItemGroup>
 

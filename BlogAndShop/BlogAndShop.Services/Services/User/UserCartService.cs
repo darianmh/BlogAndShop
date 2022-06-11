@@ -6,10 +6,11 @@ using BlogAndShop.Data.Data.PaymentInfo;
 using BlogAndShop.Data.Data.User;
 using BlogAndShop.Data.ViewModel.PaymentInfo;
 using BlogAndShop.Data.ViewModel.User;
-using BlogAndShop.Services.Services.Main;
+
 using BlogAndShop.Services.Services.Mapper;
 using BlogAndShop.Services.Services.PaymentInfo;
 using BlogAndShop.Services.Services.Product;
+using CommonConfiguration.Core.Services.Main;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogAndShop.Services.Services.User

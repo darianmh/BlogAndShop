@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using BlogAndShop.Data.ViewModel.Utilities.SiteMap;
 using BlogAndShop.Services.Services.Utilities;
 using BlogAndShop.Services.Services.Utilities.SiteMap;
+using CommonConfiguration.Core.Controllers;
+using CommonConfiguration.Core.Services.Utilities;
 using Microsoft.Net.Http.Headers;
 
 namespace BlogAndShop.Controllers

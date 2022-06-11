@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlogAndShop.Data.Classes;
 using BlogAndShop.Data.Data.Common;
+using CommonConfiguration.Core.Data.Data.Common;
 using Newtonsoft.Json;
 
 namespace BlogAndShop.Data.Data.HomePage
